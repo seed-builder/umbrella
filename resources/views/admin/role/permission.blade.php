@@ -1,6 +1,6 @@
-@extends('admin.layout.collapsed-sidebar')
+@extends('admin.layouts.main')
 @section('styles')
-    <link type="text/css" href="/assets/plugins/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
+    <link type="text/css" href="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
 @endsection
 @section('content')
     <!-- Content Header (Page header) -->
@@ -55,8 +55,8 @@
     </section>
 @endsection
 
-@section('js')
-    <script src="/assets/plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+@section('scripts')
+    <script src="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
     <script type="text/javascript">
         function cball(cb) {
             //alert(cb.checked);

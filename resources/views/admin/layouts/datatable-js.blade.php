@@ -1,5 +1,5 @@
 <script src="/assets/global/plugins/datatables/js/jquery.dataTables.js"></script>
-<script src="/assets/global/plugins/datatables/js/dataTables.material.min.js"></script>
+<script src="/assets/global/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
 <script src="/assets/global/plugins/datatables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
 <script src="/assets/global/plugins/datatables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
 <script src="/assets/global/plugins/datatables/extensions/Buttons/js/buttons.colVis.min.js"></script>
