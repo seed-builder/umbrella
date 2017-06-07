@@ -39,6 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapAdminRoutes();
         //
     }
 
@@ -51,9 +52,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+//        Route::middleware('web')
+//             ->namespace($this->namespace)
+//             ->group(base_path('routes/web.php'));
+	    Route::group([
+		    'middleware' => 'web',
+		    'namespace' => $this->namespace . '\Web',
+	    ], function ($router) {
+		    //require base_path('routes/web/web.php');
+		    load_routes(base_path('routes/web/'));
+	    });
     }
 
     /**
@@ -65,9 +73,41 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+//        Route::prefix('api')
+//             ->middleware('api')
+//             ->namespace($this->namespace)
+//             ->group(base_path('routes/api.php'));
+	    Route::group([
+		    'middleware' => 'api',
+		    'namespace' => $this->namespace . '\Api',
+		    'prefix' => 'api',
+	    ], function ($router) {
+		    //require base_path('routes/api/api.php');
+		    load_routes(base_path('routes/api/'));
+	    });
     }
+
+	/**
+	 * Define the "api" routes for the application.
+	 *
+	 * These routes are typically stateless.
+	 *
+	 * @return void
+	 */
+	protected function mapAdminRoutes()
+	{
+//		Route::prefix('admin')
+//			->middleware('admin')
+//			->namespace($this->namespace . '\admin')
+//			->group(base_path('routes/api.php'));
+
+		Route::group([
+			'middleware' => 'admin',
+			'namespace' => $this->namespace . '\Admin',
+			'prefix' => 'admin',
+		], function ($router) {
+			//require base_path('routes/admin/admin.php');
+			load_routes(base_path('routes/admin/'));
+		});
+	}
 }
