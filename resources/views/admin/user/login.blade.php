@@ -58,8 +58,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
+@include('admin.layouts.flash-message')
     <!-- BEGIN LOGIN FORM -->
     <form class="login-form" action="/admin/login" method="post">
+        {!! csrf_field() !!}
         <h3 class="form-title">Login to your account</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
@@ -70,7 +72,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <label class="control-label visible-ie8 visible-ie9">Username</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" /> </div>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="name" /> </div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">Password</label>
