@@ -23,7 +23,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">Dashboard</span>
+                <span id="breadcrumb" class="active">Dashboard</span>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->

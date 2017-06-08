@@ -25,7 +25,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">批量设置角色</span>
+                <span id="breadcrumb" class="active">批量设置角色</span>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->

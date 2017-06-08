@@ -513,7 +513,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 </div>
 <!-- END FOOTER -->
-
+<input type="hidden" id="cur_url" value="{{url( Route::getCurrentRoute()->uri() )}}">
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->

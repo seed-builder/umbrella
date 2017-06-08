@@ -25,7 +25,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span class="active">users</span>
+            <span id="breadcrumb" class="active">users</span>
         </li>
     </ul>
     <!-- END PAGE BREADCRUMB -->

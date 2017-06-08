@@ -24,7 +24,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">角色管理</span>
+                <span id="breadcrumb"  class="active">角色管理</span>
             </li>
         </ul>
         <div class="row">

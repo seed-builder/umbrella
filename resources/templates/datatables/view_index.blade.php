@@ -31,7 +31,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span class="active">{{$table}}</span>
+            <span id="breadcrumb"  class="active">{{$table}}</span>
         </li>
     </ul>
     <!-- END PAGE BREADCRUMB -->

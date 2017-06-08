@@ -4,17 +4,22 @@ $loginUserName = empty($user->nick_name) ? $loginUser->name: $user->nick_name;
 $tops = \App\Models\Permission::where('pid',0)->orderBy('sort')->get();
 
 function createLi($user, $m){
+	$curUrl =  url( Route::getCurrentRoute()->uri() );
+
 	$html = '';
 	if($m->type == 'm' && $user->can($m->name)){
 		$url = $m->url ? url($m->url) : '';
 		$display = $m->display_name;
 		$icon = $m->icon;
+		$selectedSpan = str_contains($curUrl, $m->url) ? '<span class="selected"></span>':'';
 		if(!empty($m->children) && count($m->children) > 0){
 			$html = <<<EOD
-<li class="nav-item ">
-   <a href="$url" class="nav-link">
+<li class="nav-item">
+   <a href="$url" class="nav-link nav-toggle">
        <i class="$icon"></i>
        <span class="title">$display</span>
+       <span class="arrow"></span>
+       $selectedSpan
    </a>
    <ul class="sub-menu">
 EOD;
@@ -26,16 +31,12 @@ EOD;
 			$html = $html . implode('', $childrenHtml) . '</ul>';
 
 		}else{
-			$html = '<li class="nav-item "><a href="'.$url.'"  class="nav-link"><i class="'.$icon.'"></i><span class="title">'.$display.'</span></a></li>';
+			$html = '<li class="nav-item"><a href="'.$url.'"  class="nav-link"><i class="'.$icon.'"></i><span class="title">'.$display.'</span>'.$selectedSpan.'</a></li>';
 		}
 	}
 	return $html;
 }
-
-
 ?>
-
-
 
 <div class="page-sidebar-wrapper">
     <!-- BEGIN SIDEBAR -->
@@ -50,33 +51,17 @@ EOD;
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-            <li class="nav-item start active open">
+            <li class="nav-item">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
-                    <span class="selected"></span>
-                    <span class="arrow open"></span>
+                    <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item start active open">
+                    <li class="nav-item ">
                         <a href="index.html" class="nav-link ">
                             <i class="icon-bar-chart"></i>
                             <span class="title">Dashboard 1</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item start ">
-                        <a href="dashboard_2.html" class="nav-link ">
-                            <i class="icon-bulb"></i>
-                            <span class="title">Dashboard 2</span>
-                            <span class="badge badge-success">1</span>
-                        </a>
-                    </li>
-                    <li class="nav-item start ">
-                        <a href="dashboard_3.html" class="nav-link ">
-                            <i class="icon-graph"></i>
-                            <span class="title">Dashboard 3</span>
-                            <span class="badge badge-danger">5</span>
                         </a>
                     </li>
                 </ul>
@@ -93,3 +78,27 @@ EOD;
     </div>
     <!-- END SIDEBAR -->
 </div>
+
+<script>
+    /**
+     *    根据当前url选中菜单
+     *    设置导航栏
+     **/
+
+    $(".selected").each(function (i, obj) {
+        $(obj).parents("li").each(function (j, li) {
+            $(li).addClass('start active open');
+            $('.arrow',li).addClass('open');
+        });
+        $(obj).parents("ul.sub-menu").css('display', "block");
+
+        var t = $(obj).parent().parent().parent().parent().find('.title').get(0);
+        var m = $(t).text();
+        var n = $(obj).siblings('.title').text();
+
+        var title = '<h1>'+m+'<small>'+n+'</small></h1>'
+        $('.page-title').html(title);
+        $('#breadcrumb').html(n);
+    });
+
+</script>

@@ -23,7 +23,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span class="active">设置权限</span>
+                <span id="breadcrumb"  class="active">设置权限</span>
             </li>
         </ul>
         <div class="row">
