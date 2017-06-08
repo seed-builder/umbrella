@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('nick_name')->nullable();
             $table->string('password');
             $table->integer('login_time')->default(0);
+            $table->integer('status')->default(1)->comment('状态（0-禁用，1-启用）');
             $table->integer('gender')->nullable()->comment('性别(0-女,1-男，2-未知');
             $table->timestamp('birth_day')->nullable()->comment('生日');
             $table->string('tel')->nullable()->comment('联系电话');

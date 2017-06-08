@@ -51,21 +51,17 @@
                     <table id="moduleTable" class="table table-bordered table-hover display nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                                                            <th>address</th>
-                                                            <th>birth_day</th>
-                                                            <th>created_at</th>
-                                                            <th>email</th>
-                                                            <th>gender</th>
-                                                            <th>id</th>
-                                                            <th>login_time</th>
-                                                            <th>name</th>
-                                                            <th>nick_name</th>
-                                                            <th>password</th>
-                                                            <th>remark</th>
-                                                            <th>remember_token</th>
-                                                            <th>tel</th>
-                                                            <th>updated_at</th>
-                                                    </tr>
+                            {{--<th>id</th>--}}
+                            <th>登陆名</th>
+                            <th>昵称</th>
+                            {{--<th>Email</th>--}}
+                            <th>电话</th>
+                            <th>地址</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
+                            <th>操作</th>
+                        </tr>
                         </thead>
                     </table>
                 </div>

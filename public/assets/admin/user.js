@@ -28,18 +28,12 @@ define(function(require, exports, module) {
             table: "#" + tableId,
             idSrc: 'id',
             fields: [
-            { 'label':  'address', 'name': 'address', },
-                { 'label':  'birth_day', 'name': 'birth_day', },
-                    { 'label':  'email', 'name': 'email', },
-                { 'label':  'gender', 'name': 'gender', },
-                    { 'label':  'login_time', 'name': 'login_time', },
-                { 'label':  'name', 'name': 'name', },
-                { 'label':  'nick_name', 'name': 'nick_name', },
-                { 'label':  'password', 'name': 'password', },
-                { 'label':  'remark', 'name': 'remark', },
-                { 'label':  'remember_token', 'name': 'remember_token', },
-                { 'label':  'tel', 'name': 'tel', },
-        ]
+                { 'label':  '用户名', 'name': 'name', },
+                { 'label':  '昵称', 'name': 'nick_name', },
+                { 'label':  '电话', 'name': 'tel', },
+                { 'label':  '地址', 'name': 'address', },
+                { 'label':  '密码', 'name': 'password', 'type':'password'},
+            ]
         });
 
         var table = $("#" + tableId).DataTable({
@@ -52,20 +46,27 @@ define(function(require, exports, module) {
             rowId: "id",
             ajax: '/admin/user/pagination',
             columns: [
-                    {  'data': 'address' },
-                    {  'data': 'birth_day' },
-                    {  'data': 'created_at' },
-                    {  'data': 'email' },
-                    {  'data': 'gender' },
-                    {  'data': 'id' },
-                    {  'data': 'login_time' },
-                    {  'data': 'name' },
-                    {  'data': 'nick_name' },
-                    {  'data': 'password' },
-                    {  'data': 'remark' },
-                    {  'data': 'remember_token' },
-                    {  'data': 'tel' },
-                    {  'data': 'updated_at' },
+                // {  'data': 'id' },
+                {  'data': 'name' },
+                {  'data': 'nick_name' },
+                {  'data': 'tel' },
+                {  'data': 'address' },
+                {  'data': 'status', render: function (data, type, full) {
+                    return data == 1 ? '启用':'禁用';
+                } },
+                {  'data': 'created_at' },
+                {  'data': 'updated_at' },
+                {  'data': 'id' },
+            ],
+            "columnDefs": [
+                {
+                    "render": function ( data, type, row ) {
+                        return '<a href="/admin/user/'+data+'/set-role">设置角色</a>'
+                        },
+                    "targets": 7,
+                    "searchable": false,
+                    "sortable": false
+                }
             ],
             buttons: [
                 // { text: '新增', action: function () { }  },

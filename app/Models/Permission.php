@@ -13,5 +13,6 @@ use Zizaco\Entrust\EntrustPermission;
 
 class Permission extends EntrustPermission
 {
-
+	protected $guarded=['id'];
+	protected $dateFormat='Y-m-d H:i:s';
 }

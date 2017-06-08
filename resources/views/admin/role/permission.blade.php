@@ -3,29 +3,39 @@
     <link type="text/css" href="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
 @endsection
 @section('content')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            用户权限管理
-            <small>设置权限</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">用户权限管理</a></li>
-            <li class="active">设置权限</li>
-        </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>用户权限管理
+                    <small>设置权限</small>
+                </h1>
+            </div>
+            <!-- END PAGE TITLE -->
+            @include('admin.layouts.page-toolbar')
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="/admin/">Home</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span class="active">设置权限</span>
+            </li>
+        </ul>
         <div class="row">
             <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">角色【{{$role->display_name}}】权限设置</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                            </button>
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-docs font-dark"></i>
+                            <span class="caption-subject bold uppercase font-dark">角色【{{$role->display_name}}】权限设置</span>
+                            {{--<span class="caption-helper">distance stats...</span>--}}
+                        </div>
+                        <div class="tools">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-wrench"></i></button>
@@ -34,10 +44,14 @@
                                     <li><a href="#" id="btnCollapse"><i class="fa fa-folder"></i>折叠</a></li>
                                 </ul>
                             </div>
+                            <a href="" class="collapse"> </a>
+                            {{--<a href="#portlet-config" data-toggle="modal" class="config"> </a>--}}
+                            {{--<a href="" class="reload"> </a>--}}
+                            {{--<a href="" class="remove"> </a>--}}
                         </div>
+
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="portlet-body">
                         <div id="tree" ></div>
                         <form id="saveForm" method="post" action="#" >
                             {!! csrf_field() !!}
@@ -52,7 +66,7 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
-    </section>
+    </div>
 @endsection
 
 @section('scripts')
