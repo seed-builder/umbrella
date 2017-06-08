@@ -517,7 +517,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
-{{--<script src="/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>--}}
+<script src="/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
 {{--<script src="/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>--}}
 <!-- END THEME LAYOUT SCRIPTS -->
 @yield('scripts')

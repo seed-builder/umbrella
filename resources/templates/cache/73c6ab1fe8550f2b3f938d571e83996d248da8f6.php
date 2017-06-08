@@ -8,14 +8,14 @@
 
 
 <?php echo  "@section('content')" ; ?>
-
 <div class="page-content">
     <!-- BEGIN PAGE HEAD-->
     <div class="page-head">
         <!-- BEGIN PAGE TITLE -->
         <div class="page-title">
-            <h1>{{$topModule or 'top module'}}
-                <small>{{$table}}</small>
+            <h1><?php echo e(isset($topModule) ? $topModule : 'top module'); ?>
+
+                <small><?php echo e($table); ?></small>
             </h1>
         </div>
         <!-- END PAGE TITLE -->
@@ -31,7 +31,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span class="active">{{$table}}</span>
+            <span class="active"><?php echo e($table); ?></span>
         </li>
     </ul>
     <!-- END PAGE BREADCRUMB -->
@@ -43,24 +43,24 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-docs font-dark"></i>
-                        <span class="caption-subject bold uppercase font-dark">{{$table}}</span>
-                        {{--<span class="caption-helper">distance stats...</span>--}}
+                        <span class="caption-subject bold uppercase font-dark"><?php echo e($table); ?></span>
+                        
                     </div>
                     <div class="tools">
                         <a href="" class="collapse"> </a>
-                        {{--<a href="#portlet-config" data-toggle="modal" class="config"> </a>--}}
-                        {{--<a href="" class="reload"> </a>--}}
-                        {{--<a href="" class="remove"> </a>--}}
+                        
+                        
+                        
                     </div>
                 </div>
                 <div class="portlet-body">
                     <table id="moduleTable" class="table table-bordered table-hover display nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            @forelse($columns as $col)
-                                <th>{{$col->name}}</th>
-                            @empty
-                            @endforelse
+                            <?php $__empty_1 = true; $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $col): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <th><?php echo e($col->name); ?></th>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <?php endif; ?>
                         </tr>
                         </thead>
                     </table>
@@ -80,7 +80,7 @@
 
     <script type="text/javascript">
         $(function () {
-            seajs.use('admin/{{snake_case($model)}}.js', function (app) {
+            seajs.use('admin/<?php echo e(snake_case($model)); ?>.js', function (app) {
                 app.index($, 'moduleTable');
             });
         });

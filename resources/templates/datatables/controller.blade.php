@@ -11,10 +11,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\AdminController;
-use App\Models\Busi\{{$model}};
+use App\Http\Controllers\Admin\BaseController;
+use App\Models\{{$model}};
 
-class {{$model}}Controller extends AdminController
+class {{$model}}Controller extends BaseController
 {
 	public function newEntity(array $attributes = [])
 	{
