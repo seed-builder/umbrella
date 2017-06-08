@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 @section('styles')
     @include('admin.layouts.datatable-css')
+    <link href="/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/global/plugins/bootstrap-validator/css/bootstrapValidator.min.css" />
 @endsection
@@ -85,8 +86,9 @@
                             {{--<a href="" class="remove"> </a>--}}
                         </div>
                     </div>
-                    <div class="portlet-body">
-                        <form class="form-horizontal" id="permissionForm" action="{{route('permission.store')}}">
+                    <div class="portlet-body form">
+                        <form class="form-horizontal form-row-seperated" id="permissionForm" action="{{route('permission.store')}}">
+                            <div class="form-body">
                             {{ csrf_field() }}
                             <input type="hidden" id="id" name="id" />
                             <div class="form-group">
@@ -110,10 +112,10 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">图标</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" id="icon" name="icon">
+                                    <select class="bs-select form-control" data-show-subtext="true" id="icon" name="icon">
                                         <option value="">--select--</option>
                                         @forelse($icons as $icon)
-                                            <option value="{{$icon}}" >{{$icon}}</option>
+                                            <option value="{{$icon}}"  data-icon="{{$icon}}">{{$icon}}</option>
                                         @empty
                                         @endforelse
                                     </select>
@@ -158,6 +160,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -169,11 +172,11 @@
 @endsection
 @section('scripts')
     @include('admin.layouts.datatable-js')
+    <script src="/assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
     <script src="/assets/global/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
     <script src="/assets/global/plugins/bootstrap-validator/js/language/zh_CN.js"></script>
-    <script src="/assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
-    <script src="/assets/global/plugins/bootstrap-select/i18n/defaults-zh_CN.min.js"></script>
+    <script src="/assets/pages/scripts/components-bootstrap-select.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         //$('.selectpicker').selectpicker();
 
