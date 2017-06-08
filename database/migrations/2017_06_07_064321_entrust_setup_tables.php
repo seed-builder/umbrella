@@ -44,7 +44,7 @@ class EntrustSetupTables extends Migration
             $table->char('type', 1)->default('p')->comment('类型： m-模块, p-页面, f-功能');
             $table->string('url')->nullable();
             $table->string('icon')->nullable();
-            $table->string('flag')->comment('父子路径标识（id-id）');
+            $table->string('flag')->nullable()->comment('父子路径标识（id-id）');
             $table->integer('sort')->default(0)->comment('排序');
             $table->timestamps();
         });

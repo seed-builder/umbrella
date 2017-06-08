@@ -83,7 +83,7 @@ class PermissionController extends BaseController
 		$tops = Permission::where('pid', 0)->orderBy('sort')->get();
 		$tree = ['text' => 'root', 'selectable' => false, 'state' => [ 'expanded' => true ], 'nodes' => []];
 		foreach ($tops as $top)
-			$tree['nodes'][] = $this->toBootstrapTreeViewData($top,  ['text' => 'display_name', 'dataid' => 'id', 'icon' => 'logo'], false);
+			$tree['nodes'][] = $this->toBootstrapTreeViewData($top,  ['text' => 'display_name', 'dataid' => 'id', 'icon' => 'icon'], false);
 		return response()->json([$tree]);
 	}
 

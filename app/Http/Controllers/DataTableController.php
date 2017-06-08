@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Closure;
+use Illuminate\Support\Facades\Session;
 
 /**
  * controller for UI Plugins: Datatables , Editor

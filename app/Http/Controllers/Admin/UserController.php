@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends BaseController
 {

@@ -110,10 +110,10 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">图标</label>
                                 <div class="col-md-9">
-                                    <select class="form-control selectpicker" id="logo" name="logo">
+                                    <select class="form-control" id="icon" name="icon">
                                         <option value="">--select--</option>
                                         @forelse($icons as $icon)
-                                            <option value="{{$icon}}" data-content="<span class='{{$icon}}'></span>"></option>
+                                            <option value="{{$icon}}" >{{$icon}}</option>
                                         @empty
                                         @endforelse
                                     </select>
@@ -175,7 +175,7 @@
     <script src="/assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
     <script src="/assets/global/plugins/bootstrap-select/i18n/defaults-zh_CN.min.js"></script>
     <script type="text/javascript">
-        $('.selectpicker').selectpicker();
+        //$('.selectpicker').selectpicker();
 
     </script>
     <script type="text/javascript">
