@@ -1,6 +1,5 @@
 @extends('admin.layouts.main')
 @section('styles')
-    @include('admin.layouts.datatable-css')
     <link href="/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/global/plugins/bootstrap-validator/css/bootstrapValidator.min.css" />
@@ -124,7 +123,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">上级</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="pid" id="pid">
+                                    <select class="bs-select form-control" name="pid" id="pid">
                                         <option value="">--请选择--</option>
                                         @foreach($perOptions as $p)
                                             <option value="{{$p['value']}}">{{$p['label']}}</option>
@@ -135,7 +134,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">类型</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="type" id="type">
+                                    <select class="bs-select form-control" name="type" id="type">
                                         <option value="m">模块</option>
                                         <option value="f">功能</option>
                                     </select>
@@ -171,7 +170,6 @@
 
 @endsection
 @section('scripts')
-    @include('admin.layouts.datatable-js')
     <script src="/assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
     <script src="/assets/global/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>

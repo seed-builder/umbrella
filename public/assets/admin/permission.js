@@ -89,7 +89,9 @@ define(function(require, exports, module) {
                             for(var p in data.item){
                                 $('#'+p, '#permissionForm').val(data.item[p]);
                             }
-                            $('.selectpicker').selectpicker('val', data.item['logo']);
+                            $('#icon').selectpicker('val', data.item['icon']);
+                            $('#pid').selectpicker('val', data.item['pid']);
+                            $('#type').selectpicker('val', data.item['type']);
 
                         },
                         onNodeUnselected: function(event, data) {
@@ -110,7 +112,9 @@ define(function(require, exports, module) {
             }
             $('#permissionForm')[0].reset();
             $('#id').val(0);
-            $('#pid').val(curNodeData['dataid']);
+            // $('#pid').val(curNodeData['dataid']);
+            $('#pid').selectpicker('val', curNodeData['dataid']);
+
         });
 
         $('#btnAddSame').click(function () {
@@ -120,8 +124,10 @@ define(function(require, exports, module) {
             }
             $('#permissionForm')[0].reset();
             $('#id').val(0);
-            $('#pid').val(curNodeData['item']['pid']);
+            // $('#pid').val(curNodeData['item']['pid']);
+            $('#pid').selectpicker('val', curNodeData['item']['pid']);
         });
+
 
 
         $('#btnRemove').click(function () {
