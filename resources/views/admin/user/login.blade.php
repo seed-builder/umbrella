@@ -21,7 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | User Login 4</title>
+    <title>7T共享雨伞管理系统</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
@@ -52,8 +52,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class=" login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="index.html">
-        <img src="/assets/pages/img/logo-big.png" alt="" /> </a>
+    <a href="#">
+        <h3 style="color: white">7T共享雨伞管理系统</h3> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -62,7 +62,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN LOGIN FORM -->
     <form class="login-form" action="/admin/login" method="post">
         {!! csrf_field() !!}
-        <h3 class="form-title">Login to your account</h3>
+        <h3 class="form-title">用户登录</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> Enter any username and password. </span>
@@ -72,27 +72,27 @@ License: You must have a valid license purchased only from themeforest(the above
             <label class="control-label visible-ie8 visible-ie9">Username</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="name" /> </div>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="name" /> </div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">Password</label>
             <div class="input-icon">
                 <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" /> </div>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" /> </div>
         </div>
         <div class="form-actions">
             <label class="rememberme mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" name="remember" value="1" /> Remember me
+                <input type="checkbox" name="remember" value="1" /> 记住密码
                 <span></span>
             </label>
-            <button type="submit" class="btn green pull-right"> Login </button>
+            <button type="submit" class="btn green pull-right"> 登录 </button>
         </div>
     </form>
     <!-- END LOGIN FORM -->
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
-<div class="copyright"> 2014 &copy; Metronic - Admin Dashboard Template. </div>
+<div class="copyright"> 2017 &copy; By Shineraini & john. </div>
 <!-- END COPYRIGHT -->
 <!--[if lt IE 9]>
 <script src="/assets/global/plugins/respond.min.js"></script>
