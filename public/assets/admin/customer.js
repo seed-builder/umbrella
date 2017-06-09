@@ -1,21 +1,3 @@
-<?php
-
-function exclude($column){
-	$arr = ['id', 'created_at', 'updated_at'];
-	return in_array($column->name , $arr);
-}
-function showEditorType($column){
-	if(empty($column))
-		return '';
-
-	switch ($column->name){
-		case 'created_at':
-		case 'updated_at':
-			return "'type':'datetime'";
-	}
-}
-?>
-
 /**
 *
 */
@@ -32,10 +14,10 @@ define(function(require, exports, module) {
             searching : false,
             select: false,
             paging: true,
-            {{--scrollY: "auto",--}}
-            {{--scrollCollapse: true,--}}
+            
+            
             rowId: "id",
-            ajax: '/admin/{{snake_case($model,'-')}}/pagination',
+            ajax: '/admin/customer/pagination',
             columns: [
             {
                 'data': 'id',
@@ -53,28 +35,40 @@ define(function(require, exports, module) {
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="/admin/{{snake_case($model,'-')}}/edit/`+data+`"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
+                            <a href="/admin/customer/edit/`+data+`"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
                         </li>
                         <li>
                             <a href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
                         </li>
                         <li>
-                            <a href="/admin/{{snake_case($model,'-')}}/show/`+data+`"> 详情 <i class="fa fa-file-o"></i> </a>
+                            <a href="/admin/customer/show/`+data+`"> 详情 <i class="fa fa-file-o"></i> </a>
                         </li>
                     </ul>
                 </div>`;
                 }
             },
-        @forelse($columns as $col)
-            {  'data': '{{$col->name}}' },
-        @empty
-        @endforelse
-
+                    {  'data': 'address' },
+                    {  'data': 'birth_day' },
+                    {  'data': 'created_at' },
+                    {  'data': 'creator_id' },
+                    {  'data': 'deleted_at' },
+                    {  'data': 'gender' },
+                    {  'data': 'head_img_url' },
+                    {  'data': 'id' },
+                    {  'data': 'login_time' },
+                    {  'data': 'mobile' },
+                    {  'data': 'modifier_id' },
+                    {  'data': 'nickname' },
+                    {  'data': 'openid' },
+                    {  'data': 'password' },
+                    {  'data': 'remark' },
+                    {  'data': 'updated_at' },
+        
     ],
 
             buttons: [
                 { text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href="/admin/{{snake_case($model,'')}}/create"
+                    window.location.href="/admin/customer/create"
                 }  },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
@@ -92,12 +86,12 @@ define(function(require, exports, module) {
         $(".table-search").on('click',function(){
             var data = $(this).parents('.search-form').serializeArray()
             var arr = $.param(data)
-            table.ajax.url("/admin/{{snake_case($model,'-')}}/pagination?" + arr).load();
+            table.ajax.url("/admin/customer/pagination?" + arr).load();
         })
 
         $(".table-reset").on('click',function(){
             $(this).parents('.search-form')[0].reset();
-            table.ajax.url("/admin/{{snake_case($model,'-')}}/pagination").load();
+            table.ajax.url("/admin/customer/pagination").load();
         })
 
 

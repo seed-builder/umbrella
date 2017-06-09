@@ -7,9 +7,10 @@ function dataTypeFilter($data_type){
 ?>
 {!! $BEGIN_PHP !!}
 
-namespace App\Models\Busi;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
 
 /**
  * model description

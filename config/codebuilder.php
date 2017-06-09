@@ -29,6 +29,9 @@ return [
 		'route' => ['path' => base_path('routes/admin'), 'name_pattern' => '{model}.php', 'name_format' => 'strtolower'],
 		'controller' => ['path' => app_path('Http/Controllers/Admin'), 'name_pattern' => '{model}Controller.php'],
 		'view_index' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'index.blade.php', 'name_format' => 'snake_case2'],
+		'view_create' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'create.blade.php', 'name_format' => 'snake_case2'],
+		'view_edit' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'edit.blade.php', 'name_format' => 'snake_case2'],
+		'view_show' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'show.blade.php', 'name_format' => 'snake_case2'],
 		'js' => ['path' => base_path('public/assets/admin'), 'name_pattern' => '{model}.js', 'name_format' => 'snake_case'],
 	],
 ];

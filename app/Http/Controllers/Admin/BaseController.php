@@ -22,4 +22,13 @@ class BaseController extends DataTableController
 	{
 		// TODO: Implement newEntity() method.
 	}
+
+	public function filterQuery($filters,$queryBuilder){
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v)
+                if (!empty($v)) {
+                    $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                }
+        }
+    }
 }

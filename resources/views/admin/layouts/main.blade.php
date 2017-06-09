@@ -504,10 +504,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END CONTAINER -->
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-    <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
-        <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-        <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-    </div>
+    <div class="page-footer-inner"> 2017 &copy; By Shineraini & john.</div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
     </div>
@@ -515,11 +512,13 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END FOOTER -->
 <input type="hidden" id="cur_url" value="{{url( Route::getCurrentRoute()->uri() )}}">
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
-<script src="/assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="/assets/global/scripts/app.js" type="text/javascript"></script>
+<script src="/assets/global/scripts/Shineraini.js" type="text/javascript"></script>
+
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
-<script src="/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
+{{--<script src="/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>--}}
 {{--<script src="/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>--}}
 <!-- END THEME LAYOUT SCRIPTS -->
 @yield('scripts')

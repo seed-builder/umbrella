@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DbsTable extends Migration
+class UmbrelladbTable extends Migration
 {
     /**
      * Run the migrations.
@@ -242,6 +242,7 @@ class DbsTable extends Migration
         Schema::dropIfExists('customer_accounts');
         Schema::dropIfExists('customer_account_records');
         Schema::dropIfExists('customer_payments');
+        Schema::dropIfExists('customer_hires');
         Schema::dropIfExists('umbrellas');
         Schema::dropIfExists('umbrella_hires');
         Schema::dropIfExists('equipments');

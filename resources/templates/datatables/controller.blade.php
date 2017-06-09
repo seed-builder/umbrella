@@ -63,7 +63,8 @@ class {{$model}}Controller extends BaseController
 	*/
 	public function show($id)
 	{
-		//
+		$entity = {{$model}}::find($id);
+		return view('admin.{{snake_case($model,'-')}}.show', ['entity' => $entity]);
 	}
 
 	/**
@@ -74,7 +75,7 @@ class {{$model}}Controller extends BaseController
 	* @param bool $all_columns
 	* @return \Illuminate\Http\JsonResponse
 	*/
-	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $all_columns = false){
+	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
 		$searchCols = {!! json_encode($searchCols) !!};
 		return parent::pagination($request, $searchCols);
 	}
