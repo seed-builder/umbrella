@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Closure;
+use Validator;
 use Illuminate\Support\Facades\Session;
 
 /**
@@ -42,25 +43,6 @@ abstract class DataTableController extends Controller
      * @param array $extraFields
      * @return \Illuminate\Http\Response
      */
-//	public function store(Request $request, $extraFields = [])
-//	{
-//		$data = $request->input('data', []);
-//		if (empty($data))
-//			return $this->fail('data is empty');
-//		//$props = current($data);
-//		$props = $this->beforeSave(current($data));
-//		$fieldErrors = $this->validateFields($props);
-//		if (!empty($fieldErrors)) {
-//			return $this->fail('validate error', $fieldErrors);
-//		} else {
-//			if (!empty($extraFields)) {
-//				$props += $extraFields;
-//			}
-//			$entity = $this->newEntity($props);
-//			$entity->save();
-//			return $this->success($entity);
-//		}
-//	}
 
     public function store(Request $request, $only = [], $extraFields = [], $redirect_url = null)
     {
@@ -72,9 +54,7 @@ abstract class DataTableController extends Controller
         $fieldErrors = $this->validateFields($props);
 
         if (!empty($fieldErrors)) {
-            return response()->json([
-                'error' => $fieldErrors
-            ]);
+            return $this->fail_result($fieldErrors);
         } else {
             if (!empty($extraFields)) {
                 $props += $extraFields;
@@ -82,7 +62,7 @@ abstract class DataTableController extends Controller
             $entity = $this->newEntity($props);
             $entity->save();
 
-            return $this->success_result('添加成功',$entity,$redirect_url);
+            return $this->success_result('添加成功', $entity, $redirect_url);
         }
     }
 
@@ -115,29 +95,6 @@ abstract class DataTableController extends Controller
      * @param array $extraFields
      * @return \Illuminate\Http\Response
      */
-//    public function update(Request $request, $id, $extraFields = [])
-//    {
-//        //
-//        $data = $request->input('data', []);
-//        if (empty($data))
-//            return $this->fail('data is empty');
-//
-//        //$props = current($data);
-//        $props = $this->beforeSave(current($data));
-//        $fieldErrors = $this->validateFields($props);
-//        if (!empty($fieldErrors)) {
-//            return $this->fail('validate error', $fieldErrors);
-//        } else {
-//            if (!empty($extraFields)) {
-//                $props += $extraFields;
-//            }
-//            $entity = $this->newEntity()->newQuery()->find($id);
-//            $entity->fill($props);
-//            $entity->save();
-//            $this->afterSave($entity);
-//            return $this->success($entity);
-//        }
-//    }
     public function update(Request $request, $id, $only = [], $extraFields = [], $redirect_url = null)
     {
         if (!empty($only)) {
@@ -148,10 +105,7 @@ abstract class DataTableController extends Controller
         $fieldErrors = $this->validateFields($props);
 
         if (!empty($fieldErrors)) {
-            return response()->json([
-                'error' => $fieldErrors
-            ]);
-
+            return $this->fail_result($fieldErrors);
         } else {
             if (!empty($extraFields)) {
                 $props += $extraFields;
@@ -160,7 +114,7 @@ abstract class DataTableController extends Controller
             $entity->fill($props);
             $entity->save();
 
-            return $this->success_result('编辑成功',$entity,$redirect_url);
+            return $this->success_result('编辑成功', $entity, $redirect_url);
         }
 
     }
@@ -271,20 +225,20 @@ abstract class DataTableController extends Controller
         return response()->json($result);
     }
 
-    protected function validateFields($data)
+    protected function validateFields($data, $rules=[])
     {
         $fieldErrors = [];
         $entity = $this->newEntity();
-        if (isset($entity->validateRules)) {
-            $validator = Validator::make($data, $entity->validateRules);
-            if ($validator->fails()) {
-                $errors = $validator->errors();
-                $keys = $errors->keys();
-                foreach ($keys as $k) {
-                    $fieldErrors[] = ['name' => $k, 'status' => $errors->first($k)];
-                }
-            }
+
+        if (empty($rules) && isset($entity->validateRules))
+            $rules = $entity->validateRules;
+
+        $validator = Validator::make($data, $rules ,$entity->validateMessages);
+
+        if ($validator->fails()) {
+            $fieldErrors = implode('<br/>', $validator->errors()->all());
         }
+
         return $fieldErrors;
     }
 
@@ -324,6 +278,13 @@ abstract class DataTableController extends Controller
             $result['redirect_url'] = $redirect_url;
 
         return response()->json($result);
+    }
+
+    public function fail_result($msg)
+    {
+        return response()->json([
+            'error' => $msg
+        ]);
     }
 
     /**

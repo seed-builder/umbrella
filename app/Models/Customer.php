@@ -34,4 +34,12 @@ class Customer extends BaseModel
 	//
 	protected $table = 'customers';
 	protected $guarded = ['id'];
+
+    public $validateRules = [
+        'id' => 'required',
+    ];
+
+    public $validateMessages = [
+        'id.required' => "id不能为空",
+    ];
 }
