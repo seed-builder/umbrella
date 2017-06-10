@@ -4,7 +4,7 @@
 define(function(require, exports, module) {
 
     var zhCN = require('datatableZh');
-    exports.index = function ($, tableId) {
+    exports.index = function ($, tableId,alertId) {
 
         var table = $("#" + tableId).DataTable({
             dom: "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'<'pull-right'B>><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
@@ -38,7 +38,7 @@ define(function(require, exports, module) {
                             <a href="/admin/customer/edit/`+data+`"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
                         </li>
                         <li>
-                            <a href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
+                            <a class="csx-delete" data-url="/admin/customer/delete/`+data+`" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
                         </li>
                         <li>
                             <a href="/admin/customer/show/`+data+`"> 详情 <i class="fa fa-file-o"></i> </a>
@@ -92,6 +92,16 @@ define(function(require, exports, module) {
         $(".table-reset").on('click',function(){
             $(this).parents('.search-form')[0].reset();
             table.ajax.url("/admin/customer/pagination").load();
+        })
+
+        $("table").on('click','.csx-delete',function(){
+            var url = $(this).data('url')
+            layer.confirm("确定删除该记录吗?", function(result) {
+                App.ajaxLink(url,'#'+alertId,'#'+tableId,function(){
+                    table.ajax.reload();
+                    layer.closeAll();
+                })
+            });
         })
 
 

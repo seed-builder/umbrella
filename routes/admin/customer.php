@@ -5,4 +5,5 @@ Route::post('customer/store', ['uses' => 'CustomerController@store']);
 Route::get('customer/edit/{id}', ['uses' => 'CustomerController@edit']);
 Route::post('customer/edit/{id}', ['uses' => 'CustomerController@update']);
 Route::get('customer/show/{id}', ['uses' => 'CustomerController@show']);
+Route::get('customer/delete/{id}', ['uses' => 'CustomerController@destroy']);
 Route::resource('customer', 'CustomerController');

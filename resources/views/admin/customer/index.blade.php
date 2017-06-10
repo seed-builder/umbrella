@@ -30,8 +30,7 @@
     <!-- BEGIN PAGE BASE CONTENT -->
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet light bordered" id="blockui-id">
-                <div id="alert-id"></div>
+            <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="fa fa-search"></i>
@@ -189,6 +188,8 @@
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="portlet light bordered">
+                <div id="alert-id"></div>
+
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="fa fa-th-list"></i>
@@ -238,7 +239,7 @@
     <script type="text/javascript">
         $(function () {
             seajs.use('admin/customer.js', function (app) {
-                app.index($, 'moduleTable');
+                app.index($, 'moduleTable','alert-id');
             });
         });
     </script>

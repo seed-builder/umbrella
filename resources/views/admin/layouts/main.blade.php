@@ -63,6 +63,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/layer/layer.js"></script>
+    <script src="/assets/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <script src="/assets/sea.js"></script>
     <script src="/assets/sea.config.js"></script>
@@ -124,7 +125,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END PAGE ACTIONS -->
         <!-- BEGIN PAGE TOP -->
-        <div class="page-top">
+        <div class= "page-top">
             <!-- BEGIN HEADER SEARCH BOX -->
             <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
             <form class="search-form" action="page_general_search_2.html" method="GET">

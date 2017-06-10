@@ -82,17 +82,7 @@ abstract class DataTableController extends Controller
             $entity = $this->newEntity($props);
             $entity->save();
 
-            Session::flash('success', '添加成功');
-
-            $result = [
-                'data' => $entity,
-                'success' => '添加成功',
-            ];
-
-            if (!empty($redirect_url)) {
-                $result['redirect_url'] = $redirect_url;
-            }
-            return response()->json($result);
+            return $this->success_result('添加成功',$entity,$redirect_url);
         }
     }
 
@@ -170,17 +160,7 @@ abstract class DataTableController extends Controller
             $entity->fill($props);
             $entity->save();
 
-            //if redirect_url empty do not need to flash
-            Session::flash('success', '编辑成功');
-            $result = [
-                'data' => $entity,
-                'success' => '编辑成功',
-            ];
-
-            if (!empty($redirect_url)) {
-                $result['redirect_url'] = $redirect_url;
-            }
-            return response()->json($result);
+            return $this->success_result('编辑成功',$entity,$redirect_url);
         }
 
     }
@@ -191,14 +171,13 @@ abstract class DataTableController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        //var_dump($id);
         $entity = $this->newEntity()->newQuery()->find($id);
-        //var_dump($entity);
+
         $entity->delete();
-        //$entity = [];
-        return $this->success($entity);
+
+        return $this->success_result('删除成功');
     }
 
     /**
@@ -255,7 +234,7 @@ abstract class DataTableController extends Controller
             $queryBuilder->where($col, $val);
         }
 
-        $this->filterQuery($filters,$queryBuilder);
+        $this->filterQuery($filters, $queryBuilder);
 
         //模糊查询
         if (!empty($searchCols) && !empty($search['value'])) {
@@ -332,6 +311,19 @@ abstract class DataTableController extends Controller
     public function flash_error($msg)
     {
         Session::flash('error', $msg);
+    }
+
+    public function success_result($msg, $data = [], $redirect_url = null)
+    {
+        $result = [];
+        Session::flash('success', $msg);
+
+        $result['success'] = $msg;
+        $result['data'] = $data;
+        if (!empty($redirect_url))
+            $result['redirect_url'] = $redirect_url;
+
+        return response()->json($result);
     }
 
     /**

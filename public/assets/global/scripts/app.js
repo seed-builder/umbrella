@@ -1039,6 +1039,7 @@ var App = function () {
 
         ajaxLink: function(url, alert_id, blockui_id, success_callback, error_callback, fail_callback){
             // block ui prevent double submit
+            console.log(alert_id)
             App.blockUI({
                 target: blockui_id,
                 animate: true,
