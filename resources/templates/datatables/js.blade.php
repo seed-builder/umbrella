@@ -32,8 +32,6 @@ define(function(require, exports, module) {
             searching : false,
             select: false,
             paging: true,
-            {{--scrollY: "auto",--}}
-            {{--scrollCollapse: true,--}}
             rowId: "id",
             ajax: '/admin/{{snake_case($model,'-')}}/pagination',
             columns: [
@@ -81,13 +79,6 @@ define(function(require, exports, module) {
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ]
         });
-
-        // table.on( 'select', checkBtn).on( 'deselect', checkBtn);
-        //
-        // function checkBtn(e, dt, type, indexes) {
-        //     var count = table.rows( { selected: true } ).count();
-        //     table.buttons( ['.edit', '.delete'] ).enable(count > 0);
-        // }
 
         $(".table-search").on('click',function(){
             var data = $(this).parents('.search-form').serializeArray()

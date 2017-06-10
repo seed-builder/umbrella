@@ -76,7 +76,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
+            <a href="#">
                 <img src="/assets/layouts/layout4/img/logo-light.png" alt="logo" class="logo-default" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -128,7 +128,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class= "page-top">
             <!-- BEGIN HEADER SEARCH BOX -->
             <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-            <form class="search-form" action="page_general_search_2.html" method="GET">
+            <form class="search-form" action="#" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control input-sm" placeholder="Search..." name="query">
                     <span class="input-group-btn">
@@ -154,7 +154,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li class="external">
                                 <h3>
                                     <span class="bold">12 pending</span> notifications</h3>
-                                <a href="page_user_profile_1.html">view all</a>
+                                <a href="#">view all</a>
                             </li>
                             <li>
                                 <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
@@ -256,7 +256,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li class="external">
                                 <h3>You have
                                     <span class="bold">7 New</span> Messages</h3>
-                                <a href="app_inbox.html">view all</a>
+                                <a href="#">view all</a>
                             </li>
                             <li>
                                 <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
@@ -441,28 +441,28 @@ License: You must have a valid license purchased only from themeforest(the above
                             <img alt="" class="img-circle" src="/assets/layouts/layout4/img/avatar9.jpg" /> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="page_user_profile_1.html">
+                                <a href="#">
                                     <i class="icon-user"></i> My Profile </a>
                             </li>
                             <li>
-                                <a href="app_calendar.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i> My Calendar </a>
                             </li>
                             <li>
-                                <a href="app_inbox.html">
+                                <a href="#">
                                     <i class="icon-envelope-open"></i> My Inbox
                                     <span class="badge badge-danger"> 3 </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="app_todo_2.html">
+                                <a href="#">
                                     <i class="icon-rocket"></i> My Tasks
                                     <span class="badge badge-success"> 7 </span>
                                 </a>
                             </li>
                             <li class="divider"> </li>
                             <li>
-                                <a href="/admin/logout">
+                                <a href="#">
                                     <i class="icon-key"></i> Log Out </a>
                             </li>
                         </ul>
