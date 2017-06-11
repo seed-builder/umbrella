@@ -95,19 +95,18 @@ class PermissionController extends BaseController
 	 * @param array $extraFields
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request, $extraFields=[])
-	{
-		//
-		$data = $request->all();
-		unset($data['_token']);
-		if($data['id']){
-			$entity = Permission::find($data['id']);
-			$entity->fill($data);
-			$entity->save();
-		}else{
-			$entity = Permission::create($data);
-		}
-		return $this->success($entity);
-	}
+	public function store(Request $request, $only = [], $extraFields = [], $redirect_url = null)
+    {
+        $data = $request->all();
+        unset($data['_token']);
+        if($data['id']){
+            $entity = Permission::find($data['id']);
+            $entity->fill($data);
+            $entity->save();
+        }else{
+            $entity = Permission::create($data);
+        }
+        return $this->success($entity);
+    }
 
 }

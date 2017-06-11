@@ -51,24 +51,7 @@ EOD;
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-            <li class="nav-item">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
-                    <span class="title">Dashboard</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item ">
-                        <a href="index.html" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Dashboard 1</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="heading">
-                <h3 class="uppercase">Features</h3>
-            </li>
+
             @forelse($tops as $top)
 		        <?php echo createLi($user, $top); ?>
             @empty
