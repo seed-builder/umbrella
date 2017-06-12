@@ -67,7 +67,7 @@ EOD;
      *    根据当前url选中菜单
      *    设置导航栏
      **/
-
+$(function () {
     $(".selected").each(function (i, obj) {
         $(obj).parents("li").each(function (j, li) {
             $(li).addClass('start active open');
@@ -83,5 +83,5 @@ EOD;
         $('.page-title').html(title);
         $('#breadcrumb').html(n);
     });
-
+});
 </script>

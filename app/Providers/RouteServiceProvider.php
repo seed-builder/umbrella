@@ -110,4 +110,28 @@ class RouteServiceProvider extends ServiceProvider
 			load_routes(base_path('routes/admin/'));
 		});
 	}
+
+	/**
+	 * Define the "api" routes for the application.
+	 *
+	 * These routes are typically stateless.
+	 *
+	 * @return void
+	 */
+	protected function mapMobileRoutes()
+	{
+//		Route::prefix('admin')
+//			->middleware('admin')
+//			->namespace($this->namespace . '\admin')
+//			->group(base_path('routes/api.php'));
+
+		Route::group([
+			'middleware' => 'mobile',
+			'namespace' => $this->namespace . '\Mobile',
+			'prefix' => 'mobile',
+		], function ($router) {
+			//require base_path('routes/admin/admin.php');
+			load_routes(base_path('routes/mobile/'));
+		});
+	}
 }
