@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class PermissionSeeder extends Seeder
     public function permission(){
         $rs = \App\Models\Permission::create([
             'pid' => 0,
+            'icon' => 'fa fa-circle-o',
             'name' => 'user_permission_manage',
             'display_name' => '用户权限管理',
             'description' => '用户权限管理',
@@ -58,7 +60,9 @@ class PermissionSeeder extends Seeder
 
         foreach ($permissions as $permission){
             $permission['pid'] = $rs->id;
-            DB::table('permissions')->insert($permission);
+            $model = new Permission();
+            $model->fill($permission);
+            $model->save();
         }
     }
 
@@ -68,6 +72,7 @@ class PermissionSeeder extends Seeder
     public function customers(){
         $rs = \App\Models\Permission::create([
             'pid' => 0,
+            'icon' => 'fa fa-circle-o',
             'name' => 'customer',
             'display_name' => '微信用户管理',
             'description' => '微信用户管理',
@@ -105,10 +110,14 @@ class PermissionSeeder extends Seeder
             ],
         ];
 
+
         foreach ($data as $d){
             $d['pid'] = $rs->id;
-            DB::table('permissions')->insert($d);
+            $model = new Permission();
+            $model->fill($d);
+            $model->save();
         }
+
     }
 
     /*
@@ -117,6 +126,7 @@ class PermissionSeeder extends Seeder
     public function umbrella(){
         $rs = \App\Models\Permission::create([
             'pid' => 0,
+            'icon' => 'fa fa-circle-o',
             'name' => 'umbrella',
             'display_name' => '共享伞管理',
             'description' => '共享伞管理',
@@ -142,7 +152,9 @@ class PermissionSeeder extends Seeder
 
         foreach ($data as $d){
             $d['pid'] = $rs->id;
-            DB::table('permissions')->insert($d);
+            $model = new Permission();
+            $model->fill($d);
+            $model->save();
         }
     }
 
@@ -152,6 +164,7 @@ class PermissionSeeder extends Seeder
     public function equipment(){
         $rs = \App\Models\Permission::create([
             'pid' => 0,
+            'icon' => 'fa fa-circle-o',
             'name' => 'equipment',
             'display_name' => '设备管理',
             'description' => '设备管理',
@@ -184,7 +197,9 @@ class PermissionSeeder extends Seeder
 
         foreach ($data as $d){
             $d['pid'] = $rs->id;
-            DB::table('permissions')->insert($d);
+            $model = new Permission();
+            $model->fill($d);
+            $model->save();
         }
     }
 
@@ -194,6 +209,7 @@ class PermissionSeeder extends Seeder
     public function site(){
         $rs = \App\Models\Permission::create([
             'pid' => 0,
+            'icon' => 'fa fa-circle-o',
             'name' => 'site',
             'display_name' => '网点管理',
             'description' => '网点管理',
@@ -210,9 +226,12 @@ class PermissionSeeder extends Seeder
             ],
         ];
 
+        ;
         foreach ($data as $d){
             $d['pid'] = $rs->id;
-            DB::table('permissions')->insert($d);
+            $model = new Permission();
+            $model->fill($d);
+            $model->save();
         }
     }
 
@@ -222,6 +241,7 @@ class PermissionSeeder extends Seeder
     public function sys_log(){
         $rs = \App\Models\Permission::create([
             'pid' => 0,
+            'icon' => 'fa fa-circle-o',
             'name' => 'sys_log',
             'display_name' => '系统日志',
             'description' => '系统日志',
@@ -238,9 +258,12 @@ class PermissionSeeder extends Seeder
             ],
         ];
 
+        ;
         foreach ($data as $d){
             $d['pid'] = $rs->id;
-            DB::table('permissions')->insert($d);
+            $model = new Permission();
+            $model->fill($d);
+            $model->save();
         }
     }
 }
