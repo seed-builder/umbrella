@@ -23,4 +23,34 @@
     table.dataTable thead .sorting {
         background: none;
     }
+    table.dataTable tr.selected td.sorting_1,
+    table.dataTable tr.selected td.sorting_2,
+    table.dataTable tr.selected td.sorting_3,
+    table.dataTable tr.selected th.sorting_1,
+    table.dataTable tr.selected th.sorting_2,
+    table.dataTable tr.selected th.sorting_3 {
+        background: #08C  !important; }
+
+    table.dataTable.dtr-column > tbody > tr > td.control:before,
+    table.dataTable.dtr-column > tbody > tr > th.control:before,
+    table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+    table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+        box-shadow: none !important;
+        background-color: #08C;
+        font-weight: 300;
+        vertical-align: middle;
+        line-height: 16px;
+        border: 0; }
+
+    table.dataTable.dtr-column > tbody > tr.parent td.control:before,
+    table.dataTable.dtr-column > tbody > tr.parent th.control:before,
+    table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before,
+    table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
+        background-color: #08C;
+        font-weight: 300;
+        vertical-align: middle;
+        border: 0; }
+    .table-hover>tbody>tr:hover, .table-hover>tbody>tr:hover>td {
+        background-color: #08C  !important;
+    }
 </style>
