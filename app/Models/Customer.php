@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 /**
  * model description
@@ -29,17 +31,17 @@ use App\Models\BaseModel;
  * @SWG\Property(name="remark", type="string", description="备注")
  * @SWG\Property(name="updated_at", type="string", description="")
   */
-class Customer extends BaseModel
+class Customer extends Authenticatable
 {
 	//
 	protected $table = 'customers';
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+        'mobile' => 'required',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+        'mobile.required' => "手机号不能为空",
     ];
 }

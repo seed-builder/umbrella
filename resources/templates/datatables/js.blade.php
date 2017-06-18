@@ -72,7 +72,7 @@ define(function(require, exports, module) {
 
             buttons: [
                 { text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href="/admin/{{snake_case($model,'')}}/create"
+                    window.location.href="/admin/{{snake_case($model,'-')}}/create"
                 }  },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},

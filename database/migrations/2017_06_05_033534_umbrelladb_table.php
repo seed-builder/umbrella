@@ -23,7 +23,7 @@ class UmbrelladbTable extends Migration
             $table->string('head_img_url')->default('')->comment('微信头像');
 	        $table->string('password')->default('')->comment('密码');
 	        $table->integer('login_time')->default(0);
-	        $table->integer('gender')->nullable()->comment('性别(0-女,1-男，2-未知');
+	        $table->integer('gender')->nullable()->comment('性别(1-女,2-男，3-未知');
 	        $table->timestamp('birth_day')->nullable()->comment('生日');
 	        $table->string('address')->nullable()->comment('地址');
 	        $table->string('remark')->nullable()->comment('备注');
@@ -58,7 +58,7 @@ class UmbrelladbTable extends Migration
 		    $table->integer('customer_id')->comment('customer id');
 		    $table->decimal('amt', 12, 2)->default(0)->comment('流水金额');
 		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入） 2-支出');
-		    $table->integer('status')->default(0)->comment('状态(0-未完成，1-已完成, 2-取消)');
+		    $table->integer('status')->default(0)->comment('状态(1-未完成，2-已完成, 3-取消)');
 		    $table->string('remark')->comment('备注');
 		    $table->integer('creator_id')->default(0)->comment('创建用户id');
 		    $table->integer('modifier_id')->default(0)->comment('修改用户id');
@@ -78,7 +78,7 @@ class UmbrelladbTable extends Migration
             $table->integer('payment_channel')->default(1)->comment('支付渠道 1-微信支付 2-支付宝');
             $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
             $table->longText('remark')->comment('备注');
-			$table->integer('status')->default(0)->comment('支付状态（0-未支付, 1-已支付, 2-支付失败）');
+			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败）');
 			$table->integer('type')->default(0)->comment('类型(1-定金支付, 2-租金支付, 3-账户充值支付');
 			$table->integer('reference_id')->nullable()->comment('关联表id');
 			$table->string('reference_type')->nullable()->comment('关联表类型');
@@ -146,7 +146,7 @@ class UmbrelladbTable extends Migration
             $table->integer('have')->default(0)->comment('当前还有数（伞数量）');
             $table->integer('type')->default(1)->comment('设备类型 1-伞机设备 2-手持设备');
             $table->string('ip')->nullable()->comment('ip');
-            $table->integer('status')->default(0)->comment('状态（0-未启用, 1-启用, 2-系统故障）');
+            $table->integer('status')->default(0)->comment('状态（1-未启用, 2-启用, 3-系统故障）');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
             $table->timestamps();

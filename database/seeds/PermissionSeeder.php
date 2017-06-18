@@ -92,21 +92,21 @@ class PermissionSeeder extends Seeder
                 'display_name' => '用户资金账户',
                 'description' => '用户资金账户',
                 'type' => 'm',
-                'url' => '/admin/customer_account',
+                'url' => '/admin/customer-account',
             ],
             [
                 'name' => 'customer_account_record_index',
                 'display_name' => '用户资金流水记录',
                 'description' => '用户资金流水记录',
                 'type' => 'm',
-                'url' => '/admin/customer_account_record',
+                'url' => '/admin/customer-account-record',
             ],
             [
                 'name' => 'customer_payment_index',
                 'display_name' => '用户支付记录',
                 'description' => '用户支付记录',
                 'type' => 'm',
-                'url' => '/admin/customer_payment',
+                'url' => '/admin/customer-payment',
             ],
         ];
 
@@ -146,7 +146,7 @@ class PermissionSeeder extends Seeder
                 'display_name' => '租用纪录',
                 'description' => '租用纪录',
                 'type' => 'm',
-                'url' => '/admin/customer_hire',
+                'url' => '/admin/customer-hire',
             ],
         ];
 
@@ -184,14 +184,14 @@ class PermissionSeeder extends Seeder
                 'display_name' => '设备日志',
                 'description' => '设备日志',
                 'type' => 'm',
-                'url' => '/admin/equipment_log',
+                'url' => '/admin/equipment-log',
             ],
             [
                 'name' => 'equipment_maintain_index',
                 'display_name' => '设备维修纪录',
                 'description' => '设备维修纪录',
                 'type' => 'm',
-                'url' => '/admin/equipment_maintain',
+                'url' => '/admin/equipment-maintain',
             ],
         ];
 
@@ -254,7 +254,7 @@ class PermissionSeeder extends Seeder
                 'display_name' => '系统日志查询',
                 'description' => '系统日志查询',
                 'type' => 'm',
-                'url' => '/admin/sys_log',
+                'url' => '/admin/sys-log',
             ],
         ];
 

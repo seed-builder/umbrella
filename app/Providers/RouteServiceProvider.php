@@ -40,6 +40,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapAdminRoutes();
+
+        $this->mapMobileRoutes();
         //
     }
 
@@ -105,6 +107,7 @@ class RouteServiceProvider extends ServiceProvider
 			'middleware' => 'admin',
 			'namespace' => $this->namespace . '\Admin',
 			'prefix' => 'admin',
+            'domain' => env('ADMIN_DOMAIN','127.0.0.1')
 		], function ($router) {
 			//require base_path('routes/admin/admin.php');
 			load_routes(base_path('routes/admin/'));
@@ -129,6 +132,7 @@ class RouteServiceProvider extends ServiceProvider
 			'middleware' => 'mobile',
 			'namespace' => $this->namespace . '\Mobile',
 			'prefix' => 'mobile',
+            'domain' => env('MOBILE_DOMAIN','localhost')
 		], function ($router) {
 			//require base_path('routes/admin/admin.php');
 			load_routes(base_path('routes/mobile/'));

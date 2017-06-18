@@ -6,6 +6,5 @@
  * Time: 17:43
  */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+Route::get('home/index', ['uses' => 'HomeController@index']);
+Route::get('home/map', ['uses' => 'HomeController@map']);
