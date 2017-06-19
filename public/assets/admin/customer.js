@@ -63,11 +63,6 @@ define(function (require, exports, module) {
                 }
             ],
             buttons: [
-                {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/customer/create"
-                }
-                },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}

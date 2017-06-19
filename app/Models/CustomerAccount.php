@@ -36,4 +36,8 @@ class CustomerAccount extends BaseModel
     public $validateMessages = [
         'id.required' => "id不能为空",
     ];
+
+    public function customer(){
+        return $this->hasOne(Customer::class,'id','customer_id');
+    }
 }
