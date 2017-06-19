@@ -33,10 +33,38 @@ class Umbrella extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+//        'id' => 'required',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+//        'id.required' => "id不能为空",
     ];
+
+    public function site(){
+        return $this->hasOne(Site::class,'id','site_id');
+    }
+
+    public function equipment(){
+        return $this->hasOne(Equipment::class,'id','equipment_id');
+    }
+
+    public function status(){
+        switch ($this->status){
+            case 1:{
+                return '未发放';
+            }
+            case 2:{
+                return '待借中';
+            }
+            case 3:{
+                return '借出中';
+            }
+            case 4:{
+                return '失效';
+            }
+            default : {
+                return '未发放';
+            }
+        }
+    }
 }

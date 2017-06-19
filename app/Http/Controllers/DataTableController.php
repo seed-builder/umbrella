@@ -57,8 +57,9 @@ abstract class DataTableController extends Controller
             return $this->fail_result($fieldErrors);
         } else {
             if (!empty($extraFields)) {
-                $props += $extraFields;
+                $props = array_merge($props,$extraFields);
             }
+
             $entity = $this->newEntity($props);
             $entity->save();
 

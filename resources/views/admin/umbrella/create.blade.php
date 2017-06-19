@@ -4,164 +4,115 @@
 @endsection
 
 @section('content')
-<div class="page-content">
-    <div class="page-head">
-        <div class="page-title">
-            <h1>top module
-                <small>umbrellas新增</small>
-            </h1>
+    <div class="page-content">
+        <div class="page-head">
+            <div class="page-title">
+                <h1>top module
+                    <small>共享伞新增</small>
+                </h1>
+            </div>
         </div>
-    </div>
-    <ul class="page-breadcrumb breadcrumb">
-        <li>
-            <a href="/admin/">首页</a>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <span id="breadcrumb" class="active">umbrellas新增</span>
-        </li>
-    </ul>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="portlet light bordered" id="blockui-id">
-                <div id="alert-id"></div>
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject font-dark sbold uppercase">umbrellas新增</span>
-                    </div>
-
-                </div>
-                <div class="portlet-body form">
-                    <form class="form-horizontal" id="form-id" action="/admin/umbrella/store">
-                        {{ csrf_field() }}                        <div class="form-body">
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">color</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="color">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">created_at</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="created_at">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">creator_id</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="creator_id">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">deleted_at</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="deleted_at">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">equipment_id</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="equipment_id">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">id</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="id">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">logo</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="logo">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">modifier_id</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="modifier_id">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">name</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="name">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">site_id</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="site_id">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">sn</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="sn">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">status</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="status">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">updated_at</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="updated_at">
-                                    </div>
-                                </div>
-                            </div>
-                                                    </div>
-                        <div class="row"></div>
-
-
-                        <div class="form-actions right">
-                            <button type="button" class="btn default back-link">返回</button>
-                            <button type="button" class="btn green form-submit">提交</button>
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="/admin/">首页</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span id="breadcrumb" class="active">共享伞新增</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered" id="blockui-id">
+                    <div id="alert-id"></div>
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-settings font-dark"></i>
+                            <span class="caption-subject font-dark sbold uppercase">共享伞新增</span>
                         </div>
 
-                    </form>
+                    </div>
+                    <div class="portlet-body form">
+                        <form class="form-horizontal" id="form-id" action="/admin/umbrella/store">
+                            {{ csrf_field() }}
+                            <div class="form-body">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">颜色</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="color">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">初始设备</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="equipment_id">
+                                                @foreach($equipments as $equipment)
+                                                    <option value="{{$equipment->id}}">{{$equipment->sn}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">伞名称</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="name" placeholder="不填将自动生成">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">初始网点</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="site_id">
+                                                @foreach($sites as $site)
+                                                    <option value="{{$site->id}}">{{$site->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">状态</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="status">
+                                                <option value="1">未发放</option>
+                                                <option value="2">待借中</option>
+                                                <option value="3">借出中</option>
+                                                <option value="4">失效</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+
+
+                            <div class="form-actions right">
+                                <button type="button" class="btn default back-link">返回</button>
+                                <button type="button" class="btn green form-submit">提交</button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 @endsection
-@section('scripts')<script>
-    $('.form-submit').on('click', function (e) {
-        e.preventDefault();
-        App.ajaxForm('#form-id','#alert-id','#blockui-id');
-    });
-</script>
+@section('scripts')
+    <script>
+        $('.form-submit').on('click', function (e) {
+            e.preventDefault();
+            App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
+        });
+    </script>
 
 @endsection

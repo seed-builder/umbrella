@@ -98,7 +98,7 @@ class UmbrelladbTable extends Migration
             $table->integer('site_id')->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）');
             $table->string('name')->default('')->comment('伞名称');
-            $table->string('color')->default('')->comment('颜色');
+            $table->string('color')->nullable()->default('')->comment('颜色');
             $table->string('logo')->default('')->comment('logo');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
