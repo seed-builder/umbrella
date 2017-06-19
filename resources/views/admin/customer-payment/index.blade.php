@@ -4,233 +4,174 @@
 @endsection
 
 @section('content')
-<div class="page-content">
-    <!-- BEGIN PAGE HEAD-->
-    <div class="page-head">
-        <!-- BEGIN PAGE TITLE -->
-        <div class="page-title">
-            <h1>top module
-                <small>customer_payments</small>
-            </h1>
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>top module
+                    <small>customer_payments</small>
+                </h1>
+            </div>
+            <!-- END PAGE TITLE -->
         </div>
-        <!-- END PAGE TITLE -->
-    </div>
-    <!-- END PAGE HEAD-->
-    <!-- BEGIN PAGE BREADCRUMB -->
-    <ul class="page-breadcrumb breadcrumb">
-        <li>
-            <a href="/admin/">首页</a>
-            <i class="fa fa-circle"></i>
-        </li>
-        <li>
-            <span id="breadcrumb"  class="active">customer_payments</span>
-        </li>
-    </ul>
-    <!-- END PAGE BREADCRUMB -->
-    <!-- BEGIN PAGE BASE CONTENT -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-search"></i>
-                        <span class="caption-subject font-dark sbold uppercase">customer_payments搜索</span>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="/admin/">首页</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span id="breadcrumb" class="active">customer_payments</span>
+            </li>
+        </ul>
+        <!-- END PAGE BREADCRUMB -->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-search"></i>
+                            <span class="caption-subject font-dark sbold uppercase">customer_payments搜索</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse"> </a>
+                        </div>
                     </div>
-                    <div class="tools">
-                        <a href="" class="collapse"> </a>
-                    </div>
-                </div>
-                <div class="portlet-body form">
-                    <form class="form-horizontal search-form">
-                        <div class="form-body">
-                                                            <div class="col-md-4">
+                    <div class="portlet-body form">
+                        <form class="form-horizontal search-form">
+                            <div class="form-body">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">amt</label>
+                                        <label class="col-md-3 control-label">金额</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][amt]">
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">created_at</label>
+                                        <label class="col-md-3 control-label">创建时间</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][created_at]">
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">creator_id</label>
+                                        <label class="col-md-3 control-label">用户</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][creator_id]">
+                                            <input type="text" class="form-control" name="filter[][nickname]">
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">customer_id</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][customer_id]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">deleted_at</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][deleted_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">id</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][id]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">modifier_id</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][modifier_id]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">outer_order_sn</label>
+                                        <label class="col-md-3 control-label">外部订单号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][outer_order_sn]">
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">payment_channel</label>
+                                        <label class="col-md-3 control-label">支付渠道</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][payment_channel]">
+                                            <select class="form-control" name="filter[][payment_channel]">
+                                                <option value="">请选择</option>
+                                                <option value="1">微信支付</option>
+                                                <option value="2">支付宝</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">reference_id</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][reference_id]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">reference_type</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][reference_type]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">remark</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][remark]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">sn</label>
+                                        <label class="col-md-3 control-label">内部订单号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][sn]">
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">status</label>
+                                        <label class="col-md-3 control-label">状态</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][status]">
+                                            <select class="form-control" name="filter[][status]">
+                                                <option value="">请选择</option>
+                                                <option value="1">未支付</option>
+                                                <option value="2">已支付</option>
+                                                <option value="3">支付失败</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">type</label>
+                                        <label class="col-md-3 control-label">类型</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][type]">
+                                            <select class="form-control" name="filter[][type]">
+                                                <option value="">请选择</option>
+                                                <option value="1">定金支付</option>
+                                                <option value="2">租金支付</option>
+                                                <option value="3">账户充值支付</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">updated_at</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][updated_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                    </div>
-                        <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
 
 
-                        <div class="form-actions right">
-                            <button type="button" class="btn green table-search">查询</button>
-                            <button type="button" class="btn red table-reset">重置</button>
+                            <div class="form-actions right">
+                                <button type="button" class="btn green table-search">查询</button>
+                                <button type="button" class="btn red table-reset">重置</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet light bordered">
+                    <div id="alert-id"></div>
+
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-th-list"></i>
+                            <span class="caption-subject bold uppercase font-dark">customer_payments</span>
                         </div>
-
-                    </form>
+                        <div class="tools">
+                            <a href="" class="collapse"> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <table id="moduleTable" class="table table-bordered table-hover display nowrap" cellspacing="0"
+                               width="100%">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>内部订单号</th>
+                                <th>外部订单号</th>
+                                <th>用户</th>
+                                <th>支付渠道</th>
+                                <th>金额</th>
+                                <th>支付状态</th>
+                                <th>支付类别</th>
+                                <th>创建时间</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="portlet light bordered">
-                <div id="alert-id"></div>
-
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-th-list"></i>
-                        <span class="caption-subject bold uppercase font-dark">customer_payments</span>
-                    </div>
-                    <div class="tools">
-                        <a href="" class="collapse"> </a>
-                    </div>
-                </div>
-                <div class="portlet-body">
-                    <table id="moduleTable" class="table table-bordered table-hover display nowrap" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th width="10%">操作</th>
-                                                            <th>amt</th>
-                                                            <th>created_at</th>
-                                                            <th>creator_id</th>
-                                                            <th>customer_id</th>
-                                                            <th>deleted_at</th>
-                                                            <th>id</th>
-                                                            <th>modifier_id</th>
-                                                            <th>outer_order_sn</th>
-                                                            <th>payment_channel</th>
-                                                            <th>reference_id</th>
-                                                            <th>reference_type</th>
-                                                            <th>remark</th>
-                                                            <th>sn</th>
-                                                            <th>status</th>
-                                                            <th>type</th>
-                                                            <th>updated_at</th>
-                            
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
         <!-- END PAGE BASE CONTENT -->
-</div>
+    </div>
 
 
 @endsection
@@ -239,7 +180,7 @@
     <script type="text/javascript">
         $(function () {
             seajs.use('admin/customer_payment.js', function (app) {
-                app.index($, 'moduleTable','alert-id');
+                app.index($, 'moduleTable', 'alert-id');
             });
         });
     </script>
