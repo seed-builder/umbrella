@@ -1116,12 +1116,6 @@ var App = function () {
                 success: function(res)
                 {
                     if(res.error) {
-                        App.alert({
-                            reset: true, // close all previouse alerts first
-                            container: alert_id,
-                            type: 'danger',  // alert's type
-                            message: res.error,  // alert's message
-                        });
 
                         if(error_callback !== undefined ){
                             error_callback();

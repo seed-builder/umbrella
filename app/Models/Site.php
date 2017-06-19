@@ -34,10 +34,32 @@ class Site extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+        'name' => 'required',
+        'province' => 'required',
+        'city' => 'required',
+        'district' => 'required',
+        'address' => 'required',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+        'name.required' => "网点名不能为空",
+        'province.required' => "省份不能为空",
+        'city.required' => "城市不能为空",
+        'district.required' => "区域不能为空",
+        'address.required' => "详细地址不能为空",
     ];
+
+    public function type(){
+        switch ($this->type){
+            case 1:{
+                return '设备网点';
+            }
+            case 2:{
+                return '还伞网点';
+            }
+            default : {
+                return '设备网点';
+            }
+        }
+    }
 }

@@ -63,6 +63,30 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">省份</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="province" id="province" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">城市</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="city" id="city" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">区域</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="district" id="district" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">详细地址</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="address" id="address">
@@ -70,30 +94,6 @@
                                     </div>
                                 </div>
                                 <div id="map_selected" style="display: none;">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">province</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="province" id="province">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">city</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="city" id="city">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">district</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="district" id="district">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">latitude</label>
@@ -114,7 +114,30 @@
                             </div>
                             <div class="row"></div>
                             <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">区域</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="region">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">地点</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="poi">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions right">
+                                <button type="button" class="btn green map-search">地图搜索</button>
+                            </div>
+                            <hr>
                             <div id="map"></div>
+
 
                             <div class="form-actions right">
                                 <button type="button" class="btn default back-link">返回</button>
@@ -132,27 +155,30 @@
 @endsection
 @section('scripts')
     <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+    <script type='text/javascript' src='/mobile/Shineraini/js/web_map.js' charset='utf-8'></script>
     <script>
         $('.form-submit').on('click', function (e) {
             e.preventDefault();
             App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
         });
 
-        var container = document.getElementById("map");
-        var map = new qq.maps.Map(container, {
-            zoom: 13
-        });
+        var mapTool = new Map();
+        mapTool.key("{{env('QQ_MAP_KEY')}}")
+        mapTool.init();
+        mapTool.mapClick(function (data) {
+            $("#province").val(data.address_component.province);
+            $("#city").val(data.address_component.city);
+            $("#district").val(data.address_component.district);
+            $("#address").val(data.address_component.street_number);
+            $("#latitude").val(data.ad_info.location.lat);
+            $("#longitude").val(data.ad_info.location.lng);
+        })
 
-        citylocation = new qq.maps.CityService({
-            complete : function(result){
-                map.setCenter(result.detail.latLng);
-            }
-        });
-        citylocation.searchLocalCity();
+        $(".map-search").on('click',function () {
+            mapTool.searchMap('#region','#poi');
+        })
 
-        qq.maps.event.addListener(map, 'click', function(event) {
-            console.log(event)
-        });
+
     </script>
 
 @endsection

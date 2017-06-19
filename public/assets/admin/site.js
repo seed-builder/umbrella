@@ -45,10 +45,10 @@ define(function (require, exports, module) {
                 </div>`;
                     }
                 },
-                {'data': 'address'},
                 {'data': 'province'},
                 {'data': 'city'},
                 {'data': 'district'},
+                {'data': 'address'},
                 {'data': 'name'},
                 {
                     'data': 'type',
