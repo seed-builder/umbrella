@@ -69,6 +69,12 @@ define(function(require, exports, module) {
         @endforelse
 
     ],
+    columnDefs: [
+        {
+            'targets': [0],
+            "visible": false
+        }
+    ],
 
             buttons: [
                 { text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {

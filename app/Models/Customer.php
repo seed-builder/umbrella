@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 /**
  * model description
@@ -19,7 +17,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @SWG\Property(name="created_at", type="string", description="")
  * @SWG\Property(name="creator_id", type="integer", description="创建用户id")
  * @SWG\Property(name="deleted_at", type="string", description="")
- * @SWG\Property(name="gender", type="integer", description="性别(0-女,1-男，2-未知")
+ * @SWG\Property(name="gender", type="integer", description="性别(1-女,2-男，3-未知")
  * @SWG\Property(name="head_img_url", type="string", description="微信头像")
  * @SWG\Property(name="id", type="integer", description="")
  * @SWG\Property(name="login_time", type="integer", description="")
@@ -31,17 +29,17 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @SWG\Property(name="remark", type="string", description="备注")
  * @SWG\Property(name="updated_at", type="string", description="")
   */
-class Customer extends Authenticatable
+class Customer extends BaseModel
 {
 	//
 	protected $table = 'customers';
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'mobile' => 'required',
+        'id' => 'required',
     ];
 
     public $validateMessages = [
-        'mobile.required' => "手机号不能为空",
+        'id.required' => "id不能为空",
     ];
 }

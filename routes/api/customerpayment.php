@@ -69,7 +69,7 @@ Route::group(['prefix' => 'customer-payment', 'middleware' => 'api.sign'], funct
             *          @SWG\Parameter(name="reference_type", description="关联表类型", required=true,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="remark", description="备注", required=false,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="sn", description="内部订单号 系统内部的订单号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="支付状态（0-未支付, 1-已支付, 2-支付失败）", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="status", description="支付状态（1-未支付, 2-已支付, 3-支付失败）", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="type", description="类型(1-定金支付, 2-租金支付, 3-账户充值支付", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
         *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
@@ -101,7 +101,7 @@ Route::group(['prefix' => 'customer-payment', 'middleware' => 'api.sign'], funct
             *          @SWG\Parameter(name="reference_type", description="关联表类型", required=false,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="remark", description="备注", required=false,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="sn", description="内部订单号 系统内部的订单号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="支付状态（0-未支付, 1-已支付, 2-支付失败）", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="status", description="支付状态（1-未支付, 2-已支付, 3-支付失败）", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="type", description="类型(1-定金支付, 2-租金支付, 3-账户充值支付", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
         *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),

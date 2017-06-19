@@ -21,7 +21,7 @@ use App\Models\BaseModel;
  * @SWG\Property(name="id", type="integer", description="")
  * @SWG\Property(name="modifier_id", type="integer", description="修改用户id")
  * @SWG\Property(name="remark", type="string", description="备注")
- * @SWG\Property(name="status", type="integer", description="状态(0-未完成，1-已完成, 2-取消)")
+ * @SWG\Property(name="status", type="integer", description="状态(1-未完成，2-已完成, 3-取消)")
  * @SWG\Property(name="type", type="integer", description="流水类型 1-充值（收入） 2-支出")
  * @SWG\Property(name="updated_at", type="string", description="")
   */

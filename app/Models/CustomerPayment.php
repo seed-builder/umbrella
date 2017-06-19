@@ -25,7 +25,7 @@ use App\Models\BaseModel;
  * @SWG\Property(name="reference_type", type="string", description="关联表类型")
  * @SWG\Property(name="remark", type="string", description="备注")
  * @SWG\Property(name="sn", type="string", description="内部订单号 系统内部的订单号")
- * @SWG\Property(name="status", type="integer", description="支付状态（0-未支付, 1-已支付, 2-支付失败）")
+ * @SWG\Property(name="status", type="integer", description="支付状态（1-未支付, 2-已支付, 3-支付失败）")
  * @SWG\Property(name="type", type="integer", description="类型(1-定金支付, 2-租金支付, 3-账户充值支付")
  * @SWG\Property(name="updated_at", type="string", description="")
   */

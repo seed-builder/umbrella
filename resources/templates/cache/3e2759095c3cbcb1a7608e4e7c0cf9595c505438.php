@@ -25,7 +25,7 @@
     <!-- BEGIN PAGE BREADCRUMB -->
     <ul class="page-breadcrumb breadcrumb">
         <li>
-            <a href="/admin/">Home</a>
+            <a href="/admin/">首页</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label"><?php echo e($col->name); ?></label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][<?php echo e($col->name); ?>]" filter-op='like' filter-name='<?php echo e($col->name); ?>'>
+                                            <input type="text" class="form-control" name="filter[][<?php echo e($col->name); ?>]">
                                         </div>
                                     </div>
                                 </div>

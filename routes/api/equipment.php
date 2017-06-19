@@ -66,7 +66,7 @@ Route::group(['prefix' => 'equipment', 'middleware' => 'api.sign'], function () 
             *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="site_id", description="sites id", required=false,type="integer", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="sn", description="设备编号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="状态（0-未启用, 1-启用, 2-系统故障）", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="status", description="状态（1-未启用, 2-启用, 3-系统故障）", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="type", description="设备类型 1-伞机设备 2-手持设备", required=false,type="integer", paramType="form", defaultValue="1" ),
             *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
         *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
@@ -95,7 +95,7 @@ Route::group(['prefix' => 'equipment', 'middleware' => 'api.sign'], function () 
             *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="site_id", description="sites id", required=false,type="integer", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="sn", description="设备编号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="状态（0-未启用, 1-启用, 2-系统故障）", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="status", description="状态（1-未启用, 2-启用, 3-系统故障）", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="type", description="设备类型 1-伞机设备 2-手持设备", required=false,type="integer", paramType="form", defaultValue="1" ),
             *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
         *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),

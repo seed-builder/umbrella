@@ -19,7 +19,7 @@
     <!-- BEGIN PAGE BREADCRUMB -->
     <ul class="page-breadcrumb breadcrumb">
         <li>
-            <a href="/admin/">Home</a>
+            <a href="/admin/">首页</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
@@ -47,7 +47,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">color</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][color]" filter-op='like' filter-name='color'>
+                                            <input type="text" class="form-control" name="filter[][color]">
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">created_at</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][created_at]" filter-op='like' filter-name='created_at'>
+                                            <input type="text" class="form-control" name="filter[][created_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">creator_id</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][creator_id]" filter-op='like' filter-name='creator_id'>
+                                            <input type="text" class="form-control" name="filter[][creator_id]">
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">deleted_at</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][deleted_at]" filter-op='like' filter-name='deleted_at'>
+                                            <input type="text" class="form-control" name="filter[][deleted_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">equipment_id</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][equipment_id]" filter-op='like' filter-name='equipment_id'>
+                                            <input type="text" class="form-control" name="filter[][equipment_id]">
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">id</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][id]" filter-op='like' filter-name='id'>
+                                            <input type="text" class="form-control" name="filter[][id]">
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">logo</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][logo]" filter-op='like' filter-name='logo'>
+                                            <input type="text" class="form-control" name="filter[][logo]">
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">modifier_id</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][modifier_id]" filter-op='like' filter-name='modifier_id'>
+                                            <input type="text" class="form-control" name="filter[][modifier_id]">
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][name]" filter-op='like' filter-name='name'>
+                                            <input type="text" class="form-control" name="filter[][name]">
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">site_id</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][site_id]" filter-op='like' filter-name='site_id'>
+                                            <input type="text" class="form-control" name="filter[][site_id]">
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">sn</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][sn]" filter-op='like' filter-name='sn'>
+                                            <input type="text" class="form-control" name="filter[][sn]">
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">status</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][status]" filter-op='like' filter-name='status'>
+                                            <input type="text" class="form-control" name="filter[][status]">
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">updated_at</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control filter-condition" name="filter[][updated_at]" filter-op='like' filter-name='updated_at'>
+                                            <input type="text" class="form-control" name="filter[][updated_at]">
                                         </div>
                                     </div>
                                 </div>

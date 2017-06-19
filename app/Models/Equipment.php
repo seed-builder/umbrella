@@ -22,7 +22,7 @@ use App\Models\BaseModel;
  * @SWG\Property(name="modifier_id", type="integer", description="修改用户id")
  * @SWG\Property(name="site_id", type="integer", description="sites id")
  * @SWG\Property(name="sn", type="string", description="设备编号")
- * @SWG\Property(name="status", type="integer", description="状态（0-未启用, 1-启用, 2-系统故障）")
+ * @SWG\Property(name="status", type="integer", description="状态（1-未启用, 2-启用, 3-系统故障）")
  * @SWG\Property(name="type", type="integer", description="设备类型 1-伞机设备 2-手持设备")
  * @SWG\Property(name="updated_at", type="string", description="")
   */

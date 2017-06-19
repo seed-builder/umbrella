@@ -65,7 +65,7 @@ Route::group(['prefix' => 'customer-account-record', 'middleware' => 'api.sign']
             *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
                     *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="remark", description="备注", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="状态(0-未完成，1-已完成, 2-取消)", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="status", description="状态(1-未完成，2-已完成, 3-取消)", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="type", description="流水类型 1-充值（收入） 2-支出", required=false,type="integer", paramType="form", defaultValue="1" ),
             *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
         *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
@@ -93,7 +93,7 @@ Route::group(['prefix' => 'customer-account-record', 'middleware' => 'api.sign']
             *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
                     *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="remark", description="备注", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="状态(0-未完成，1-已完成, 2-取消)", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="status", description="状态(1-未完成，2-已完成, 3-取消)", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="type", description="流水类型 1-充值（收入） 2-支出", required=false,type="integer", paramType="form", defaultValue="1" ),
             *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
         *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
