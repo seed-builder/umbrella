@@ -1,97 +1,113 @@
 /**
-*
-*/
-define(function(require, exports, module) {
+ *
+ */
+define(function (require, exports, module) {
 
     var zhCN = require('datatableZh');
-    exports.index = function ($, tableId,alertId) {
+    exports.index = function ($, tableId, alertId) {
 
         var table = $("#" + tableId).DataTable({
             dom: "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'<'pull-right'B>><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
             language: zhCN,
             processing: true,
             serverSide: true,
-            searching : false,
+            searching: false,
             select: false,
             paging: true,
             rowId: "id",
             ajax: '/admin/equipment/pagination',
             columns: [
-            {
-                'data': 'id',
-                render: function (data, type, full) {
-                    return '';
-                }
-            },
-            {
-                'data': 'id',
-                render: function (data, type, full) {
-                return `<div class="btn-group">
+                {
+                    'data': 'id',
+                    render: function (data, type, full) {
+                        return '';
+                    }
+                },
+                {
+                    'data': 'id',
+                    render: function (data, type, full) {
+                        return `<div class="btn-group">
                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-cog"></i>
                         <i class="fa fa-angle-down"></i>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="/admin/equipment/edit/`+data+`"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
+                            <a href="/admin/equipment/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
                         </li>
                         <li>
-                            <a class="csx-delete" data-url="/admin/equipment/delete/`+data+`" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
+                            <a class="csx-delete" data-url="/admin/equipment/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
                         </li>
                         <li>
-                            <a href="/admin/equipment/show/`+data+`"> 详情 <i class="fa fa-file-o"></i> </a>
+                            <a href="/admin/equipment/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>
                         </li>
                     </ul>
                 </div>`;
+                    }
+                },
+                {'data': 'sn'},
+                {
+                    'data': 'site_id',
+                    render: function (data, type, full) {
+                        return full.site.name
+                    }
+                },
+                {'data': 'capacity'},
+                {'data': 'have'},
+                {
+                    'data': 'type',
+                    render: function (data, type, full) {
+                        return data==1?'伞机设备':'手持设备'
+                    }
+                },
+                {'data': 'ip'},
+                {
+                    'data': 'status',
+                    render: function (data, type, full) {
+                        if(data==1)
+                            return '未启用'
+                        else if(data==2)
+                            return '启用'
+                        else
+                            return '系统故障'
+                    }
+                },
+                {'data': 'created_at'},
+            ],
+            columnDefs: [
+                {
+                    'targets': [0],
+                    "visible": false
                 }
-            },
-                    {  'data': 'capacity' },
-                    {  'data': 'created_at' },
-                    {  'data': 'creator_id' },
-                    {  'data': 'deleted_at' },
-                    {  'data': 'have' },
-                    {  'data': 'id' },
-                    {  'data': 'ip' },
-                    {  'data': 'modifier_id' },
-                    {  'data': 'site_id' },
-                    {  'data': 'sn' },
-                    {  'data': 'status' },
-                    {  'data': 'type' },
-                    {  'data': 'updated_at' },
-        
-    ],
-    columnDefs: [
-        {
-            'targets': [0],
-            "visible": false
-        }
-    ],
+            ],
 
             buttons: [
-                { text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href="/admin/equipment/create"
-                }  },
+                {
+                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
+                    window.location.href = "/admin/equipment/create"
+                }
+                },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ]
         });
 
-        $(".table-search").on('click',function(){
+        $(".table-search").on('click', function () {
             var data = $(this).parents('.search-form').serializeArray()
             var arr = $.param(data)
             table.ajax.url("/admin/equipment/pagination?" + arr).load();
         })
 
-        $(".table-reset").on('click',function(){
+        $(".table-reset").on('click', function () {
             $(this).parents('.search-form')[0].reset();
             table.ajax.url("/admin/equipment/pagination").load();
         })
 
-        $("table").on('click','.csx-delete',function(){
+        $("table").on('click', '.csx-delete', function () {
             var url = $(this).data('url')
-            layer.confirm("确定删除该记录吗?", function(result) {
-                App.ajaxLink(url,'#'+alertId,'#'+tableId,function(){
+            layer.confirm("确定删除该记录吗?", function (result) {
+                App.ajaxLink(url, '#' + alertId, '#' + tableId, function () {
                     table.ajax.reload();
                     layer.closeAll();
                 })

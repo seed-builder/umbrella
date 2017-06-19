@@ -33,10 +33,47 @@ class Equipment extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+        'capacity' => 'required',
+        'ip' => 'required',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+        'capacity.required' => "伞容量不能为空",
+        'ip.required' => "ip不能为空",
     ];
+
+    public function site(){
+        return $this->hasOne(Site::class,'id','site_id');
+    }
+
+    public function status(){
+        switch ($this->status){
+            case 1:{
+                return '未启用';
+            }
+            case 2:{
+                return '启用';
+            }
+            case 3:{
+                return '系统故障';
+            }
+            default : {
+                return '未启用';
+            }
+        }
+    }
+
+    public function type(){
+        switch ($this->type){
+            case 1:{
+                return '伞机设备';
+            }
+            case 2:{
+                return '手持设备';
+            }
+            default : {
+                return '伞机设备';
+            }
+        }
+    }
 }
