@@ -28,6 +28,7 @@ class Utl
 
     public function token()
     {
+        dd(1);
         return $this->config()['token'];
     }
 

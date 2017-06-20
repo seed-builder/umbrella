@@ -11,6 +11,7 @@ namespace App\Helpers;
 
 use App\Models\SysLog;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cache;
 
 class WeChatApi
 {
@@ -25,12 +26,19 @@ class WeChatApi
      */
     public function getUserByCode($code)
     {
-        $response = $this->utl()->get('https://api.weixin.qq.com/sns/oauth2/access_token', [
-            'code' => $code,
-            'appid' => env('WECHAT_APPID'),
-            'secret' => env('WECHAT_SECRET'),
-            'grant_type' => 'authorization_code',
-        ]);
+        $token = Cache::get('wxUserAuthToken');
+        if (!empty($token)){
+            $response = $this->utl()->get('https://api.weixin.qq.com/sns/oauth2/access_token', [
+                'code' => $code,
+                'appid' => env('WECHAT_APPID'),
+                'secret' => env('WECHAT_SECRET'),
+                'grant_type' => 'authorization_code',
+            ]);
+
+            $token = $response->access_token;
+            Cache::add('wxUserAuthToken',$response->access_token,5);
+        }
+
 
         SysLog::create([
             'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
@@ -38,8 +46,9 @@ class WeChatApi
             'content' => json_encode($response),
         ]);
 
+
         $response = $this->utl()->get('https://api.weixin.qq.com/cgi-bin/user/info', [
-            'access_token' => $response->access_token,
+            'access_token' => $token,
             'openid' => $response->openid,
             'lang' => 'zh_CN',
         ]);
