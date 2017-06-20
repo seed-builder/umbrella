@@ -17,7 +17,7 @@ class SiteSeeder extends Seeder
         $data = [];
         for ($i=0;$i<100;$i++){
             $data[] = [
-                'name' => $faker->lexify('测试网点 ???'),
+                'name' => $faker->lexify('测试网点 ????'),
                 'address' => $faker->address,
                 'type' => $faker->randomElement([1,2]),
             ];
