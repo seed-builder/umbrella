@@ -20,7 +20,7 @@ class Utl
      */
     public function config()
     {
-        $helper = new WeChatHelper();
+        $helper = new WeChatConfig();
         $config = $helper->getSignPackage();
 
         return $config;

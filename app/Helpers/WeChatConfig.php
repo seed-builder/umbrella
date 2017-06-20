@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
 
 
-class WeChatJSApi
+class WeChatConfig
 {
 
 
