@@ -32,6 +32,13 @@ class WeChatApi
             'grant_type' => 'authorization_code',
         ]);
 
+        SysLog::create([
+            'name' => '请求接口',
+            'table' => '接口：'.'https://api.weixin.qq.com/sns/oauth2/access_token',
+            'action' => '调用微信接口',
+            'content' => json_encode($response),
+        ]);
+
         $response = $this->utl()->get('https://api.weixin.qq.com/cgi-bin/user/info', [
             'access_token' => $response->access_token,
             'openid' => $response->openid,
