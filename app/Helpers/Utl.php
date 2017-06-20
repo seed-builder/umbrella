@@ -43,7 +43,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        $this->addLog($rs, $url, $data);
+//        $this->addLog($rs, $url, $data);
 
         return $rs;
     }
@@ -61,7 +61,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        $this->addLog($rs, $url, $data);
+//        $this->addLog($rs, $url, $data);
 
         return $rs;
     }
@@ -79,7 +79,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        $this->addLog($rs, $url, $data);
+//        $this->addLog($rs, $url, $data);
 
         return $rs;
     }
