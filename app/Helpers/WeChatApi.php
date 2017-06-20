@@ -27,7 +27,7 @@ class WeChatApi
     public function getUserByCode($code)
     {
 
-        $response = $this->utl()->get('https://api.weixin.qq.com/sns/oauth2/access_token', [
+        $auth_info = $this->utl()->get('https://api.weixin.qq.com/sns/oauth2/access_token', [
             'code' => $code,
             'appid' => env('WECHAT_APPID'),
             'secret' => env('WECHAT_SECRET'),
@@ -37,12 +37,12 @@ class WeChatApi
         SysLog::create([
             'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
             'action' => '调用微信接口',
-            'content' => json_encode($response),
+            'content' => json_encode($auth_info),
         ]);
 
         $response = $this->utl()->get('https://api.weixin.qq.com/cgi-bin/user/info', [
-            'access_token' => $response->access_token,
-            'openid' => $response->openid,
+            'access_token' => $auth_info->access_token,
+            'openid' => $auth_info->openid,
             'lang' => 'zh_CN',
         ]);
         SysLog::create([
