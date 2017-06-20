@@ -14,7 +14,11 @@ $(document).on("pageInit", function(e, pageId, $page) {
             e.preventDefault();
             App.ajaxForm('#form-id');
         })
-    }else if(pageId == 'home-map'){
+    }else if(pageId == 'customer-account-index'){
+        $(".amt-item").on('click',function () {
+            $(".amt-item").removeClass('amt-select')
+            $(this).addClass('amt-select')
+        })
     }
 
 

@@ -1,63 +1,17 @@
-.csx-icon {
-    padding: 5px;
-}
-/*.map-btn-group{*/
-    /*position: fixed;*/
-    /*top : 23rem;*/
-    /*left: 90%;*/
-/*}*/
-/*.map-btn{*/
-    /*width: 32px;*/
-    /*height: 32px;*/
-    /*background: #f7f7f7;*/
-    /*margin-top: 10px;*/
-    /*padding: 5px;*/
-    /*text-align: center;*/
-    /*z-index: 9000;*/
-    /*box-sizing: border-box;*/
-    /*border: 1px solid #d9d7d5;*/
-    /*border-radius: 3px;*/
-    /*-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.2);*/
-/*}*/
 
-
-.anchorBL{
-    display:none;
-}
-
-.tool-bar-text{
-    display: block;
-    font-size: 10px;
-    margin-top: -3px;
-}
-
-.bar-tab{
-    height: 2.8rem !important;
-}
-
-
-/*
- * 宫格布局
- */
 .grid {
     width: 100%;
     text-align: center;
     background: #fff;
-    height: 100%;
     padding: 1rem;
 }
-/*.row .col-33 {*/
-    /*width: 33.333333333333332%;*/
-    /*margin-left: 0%;*/
-/*}*/
-
-.grid-item{
-    background: #efefef;
-    border-bottom: 1px #692c46 solid;
-    padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 10px;
-    /*box-shadow: 10px 10px 5px #888888;*/
+.amt{
+    color: black;
+    margin-bottom: 1rem;
+}
+.amt-select{
+    color: white;
+    background: #4cd964;
 }
 
 /*

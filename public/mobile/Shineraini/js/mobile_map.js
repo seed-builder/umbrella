@@ -99,7 +99,7 @@ var MapTool = function () {
             map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
         },
         account : function () {
-            alert('我的账户');
+            $.router.loadPage("/mobile/customer-account/index");
         },
         recordControl : function () {
             var button = document.createElement("div");

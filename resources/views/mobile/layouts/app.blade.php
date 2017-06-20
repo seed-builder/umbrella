@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/mobile/Shineraini/css/icon.css">
     <link rel="stylesheet" href="/mobile/layer_mobile/need/layer.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//at.alicdn.com/t/font_xdmd6ub1flqmpldi.css" rel="stylesheet">
+
     @yield('css')
     <script type='text/javascript' src='/js/app.js' charset='utf-8'></script>
 </head>
