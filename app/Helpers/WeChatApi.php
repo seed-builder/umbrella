@@ -37,15 +37,13 @@ class WeChatApi
 
             $token = $response->access_token;
             Cache::add('wxUserAuthToken',$response->access_token,5);
+
+            SysLog::create([
+                'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
+                'action' => '调用微信接口',
+                'content' => json_encode($response),
+            ]);
         }
-
-
-        SysLog::create([
-            'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
-            'action' => '调用微信接口',
-            'content' => json_encode($response),
-        ]);
-
 
         $response = $this->utl()->get('https://api.weixin.qq.com/cgi-bin/user/info', [
             'access_token' => $token,
