@@ -20,7 +20,7 @@ class AuthController extends Controller
 
             $data = [
                 'nickname' => $response->nickname,
-                'head_img_url' => $response->head_img_url,
+                'head_img_url' => $response->headimgurl,
                 'gender' => $response->sex,
                 'city' => $response->city,
                 'country' => $response->country,
