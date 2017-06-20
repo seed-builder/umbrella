@@ -12,14 +12,14 @@
                      :data-url="options.itemUrl?options.itemUrl(item):''"
                      v-for="item in items"
                 >
-                    <div class="card-header">{{options.header(item)}}</div>
+                    <div class="card-header" v-if="options.header">{{options.header(item)}}</div>
                     <div class="card-content" @click="options.itemBtns?showBtns(item):''">
                         <div class="card-content-inner" v-for="col in options.columns">
                             <span v-if="col.value">{{col.name+'：'+itemVal(item,col.value)}}</span>
                             <span v-if="col.render">{{col.name+'：'+col.render(item)}}</span>
                         </div>
                     </div>
-                    <div class="card-footer">{{options.footer(item)}}</div>
+                    <div class="card-footer" v-if="options.footer">{{options.footer(item)}}</div>
                 </div>
 
 

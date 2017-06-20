@@ -189,4 +189,13 @@ abstract class MobileController extends Controller
             'error' => $msg
         ]);
     }
+
+    public function filterQuery($filters,$queryBuilder){
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v)
+                if (!empty($v)) {
+                    $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                }
+        }
+    }
 }

@@ -27,6 +27,8 @@ class CustomerPayment extends Seeder
                 'remark' => $faker->lexify('测试备注 ???'),
                 'status' => $faker->randomElement([1,2,3]),
                 'type' => $faker->randomElement([1,2,3]),
+                'created_at' => $faker->dateTime,
+                'updated_at' => $faker->dateTime,
             ];
         }
 

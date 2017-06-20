@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/mobile/Shineraini/css/icon.css">
     <link rel="stylesheet" href="/mobile/layer_mobile/need/layer.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//at.alicdn.com/t/font_xdmd6ub1flqmpldi.css" rel="stylesheet">
+    <link href="//at.alicdn.com/t/font_9ajfujk1yc3m1jor.css" rel="stylesheet">
 
     @yield('css')
     <script type='text/javascript' src='/js/app.js' charset='utf-8'></script>
@@ -35,10 +35,17 @@
 <script type='text/javascript' src='/mobile/layer_mobile/layer.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/Shineraini/js/page.js' charset='utf-8'></script>
 <script>
-    $(".link").on('click',function () {
+    $("body").on('click','.link',function () {
         var url = $(this).data('url')
         if (url!=null){
             window.location.href = url;
+        }
+    })
+
+    $("body").on('click','.ajax-link',function () {
+        var url = $(this).data('url')
+        if (url!=null){
+            $.router.loadPage(url);
         }
     })
 </script>

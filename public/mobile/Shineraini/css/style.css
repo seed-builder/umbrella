@@ -56,3 +56,27 @@
     /*margin-right: 1rem;*/
     vertical-align:middle;
 }
+
+
+/*
+ * 卡片列表
+ */
+.card-content-item {
+    padding-top: 1.4rem;
+    width: 100%;
+    text-align: center;
+
+}
+.item-left{
+    font-size: 18px;
+}
+.item-right{
+    font-weight: bold;
+    font-size: 18px;
+}
+.amt-in {
+    color: #4cd964;
+}
+.amt-out {
+    color: red;
+}

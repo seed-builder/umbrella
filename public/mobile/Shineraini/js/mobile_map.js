@@ -109,7 +109,8 @@ var MapTool = function () {
             map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
         },
         record : function () {
-            alert('资金纪录');
+            // $.router.loadPage("/mobile/customer-payment/index");
+            window.location.href="/mobile/customer-payment/index";
         },
         myControl : function () {
             var button = document.createElement("div");

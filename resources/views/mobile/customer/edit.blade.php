@@ -77,8 +77,8 @@
 @section('javascript')
     <script type="text/javascript">
         $(function () {
-            seajs.use('admin/customer.js', function (app) {
-                app.index($, 'moduleTable', 'alert-id');
+            seajs.use('mobile/customer.js', function (app) {
+                app.index($);
             });
         });
     </script>

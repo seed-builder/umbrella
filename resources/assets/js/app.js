@@ -16,6 +16,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('card-list', require('./components/CardList.vue'));
+Vue.component('card-lr-list', require('./components/CardLRList.vue'));
+Vue.component('list', require('./components/List.vue'));
 
 // const app = new Vue({
 //     el: '#app'

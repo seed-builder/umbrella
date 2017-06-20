@@ -42,4 +42,35 @@ class CustomerPayment extends BaseModel
     public $validateMessages = [
         'id.required' => "id不能为空",
     ];
+
+    public function type(){
+        switch ($this->type){
+            case 1:{
+                return '押金支付';
+            }
+            case 2:{
+                return '租金支付';
+            }
+            case 3:{
+                return '账户充值';
+            }
+            default : {
+                return '押金支付';
+            }
+        }
+    }
+
+    public function channel(){
+        switch ($this->payment_channel){
+            case 1:{
+                return '微信支付';
+            }
+            case 2:{
+                return '支付宝';
+            }
+            default : {
+                return '微信支付';
+            }
+        }
+    }
 }
