@@ -48,7 +48,11 @@ class WeChatApi
         SysLog::create([
             'module' => '请求接口 https://api.weixin.qq.com/cgi-bin/user/info',
             'action' => '调用微信接口',
-            'content' => json_encode($response),
+            'content' => '【参数】'.json_encode([
+                    'access_token' => $auth_info->access_token,
+                    'openid' => $auth_info->openid,
+                    'lang' => 'zh_CN',
+                ]).'【结果】'.json_encode($response),
         ]);
 
         return $response;
