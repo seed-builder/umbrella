@@ -9,6 +9,7 @@
 namespace App\Helpers;
 
 
+use App\Models\SysLog;
 use GuzzleHttp\Client;
 
 class WeChatApi
@@ -35,6 +36,12 @@ class WeChatApi
             'access_token' => $response->access_token,
             'openid' => $response->openid,
             'lang' => 'zh_CN',
+        ]);
+        SysLog::create([
+            'name' => '请求接口',
+            'table' => '接口：'.'https://api.weixin.qq.com/cgi-bin/user/info',
+            'action' => '调用微信接口',
+            'content' => json_encode($response),
         ]);
 
         return $response;
