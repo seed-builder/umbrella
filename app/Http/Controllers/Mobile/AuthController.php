@@ -10,9 +10,9 @@ use Session;
 
 class AuthController extends Controller
 {
-    public function AuthLogin()
+    public function AuthLogin(Request $request)
     {
-        $code = $this->request->input('code','');
+        $code = $request->input('code','');
 
         if (!empty($code)) {
             $api = new WeChatApi();
