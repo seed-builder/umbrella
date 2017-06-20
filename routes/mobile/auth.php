@@ -6,4 +6,4 @@
  * Time: 17:43
  */
 
-Route::get('auth/login', ['uses' => 'AuthController@AuthLogin']);
+Route::get('auth-login', ['uses' => 'AuthController@AuthLogin']);
