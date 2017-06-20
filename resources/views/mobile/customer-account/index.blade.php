@@ -57,6 +57,10 @@
                 </div>
             </div>
 
+            <div class="content-padded">
+                <p>点击充值，代表已接受<a>《充值协议》</a></p>
+            </div>
+
             <div class="content-block">
                 <div class="row">
                     <div class="col-50">
