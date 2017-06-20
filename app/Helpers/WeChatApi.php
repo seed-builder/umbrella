@@ -26,27 +26,22 @@ class WeChatApi
      */
     public function getUserByCode($code)
     {
-        $token = Cache::get('wxUserAuthToken');
-        if (!empty($token)){
-            $response = $this->utl()->get('https://api.weixin.qq.com/sns/oauth2/access_token', [
-                'code' => $code,
-                'appid' => env('WECHAT_APPID'),
-                'secret' => env('WECHAT_SECRET'),
-                'grant_type' => 'authorization_code',
-            ]);
 
-            $token = $response->access_token;
-            Cache::add('wxUserAuthToken',$response->access_token,5);
+        $response = $this->utl()->get('https://api.weixin.qq.com/sns/oauth2/access_token', [
+            'code' => $code,
+            'appid' => env('WECHAT_APPID'),
+            'secret' => env('WECHAT_SECRET'),
+            'grant_type' => 'authorization_code',
+        ]);
 
-            SysLog::create([
-                'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
-                'action' => '调用微信接口',
-                'content' => json_encode($response),
-            ]);
-        }
+        SysLog::create([
+            'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
+            'action' => '调用微信接口',
+            'content' => json_encode($response),
+        ]);
 
         $response = $this->utl()->get('https://api.weixin.qq.com/cgi-bin/user/info', [
-            'access_token' => $token,
+            'access_token' => $response->access_token,
             'openid' => $response->openid,
             'lang' => 'zh_CN',
         ]);
