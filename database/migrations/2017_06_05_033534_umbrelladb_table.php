@@ -100,6 +100,7 @@ class UmbrelladbTable extends Migration
             $table->string('name')->default('')->comment('伞名称');
             $table->string('color')->nullable()->default('')->comment('颜色');
             $table->string('logo')->default('')->comment('logo');
+            $table->integer('price_id')->nullable()->comment('价格id');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
             $table->timestamps();
@@ -117,7 +118,7 @@ class UmbrelladbTable extends Migration
             $table->integer('hire_equipment_id')->comment('equipments id 借伞设备id');
             $table->integer('hire_site_id')->comment('sites id 借伞网点id');
             $table->timestamp('hire_at')->comment('借伞时间');
-            $table->decimal('margin_amt',12, 2)->default(0)->comment('缴纳的保证金');
+            $table->decimal('deposit_amt',12, 2)->default(0)->comment('缴纳的保证金');
 
             $table->integer('return_equipment_id')->comment('equipments id 还伞设备id');
             $table->integer('return_site_id')->comment('sites id 还伞网点id');
