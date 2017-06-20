@@ -17,7 +17,6 @@ $(document).on("pageInit", function(e, pageId, $page) {
         seajs.use('mobile/customer_payment.js', function (app) {
             app.index($);
         });
-
     }
 
 

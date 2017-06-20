@@ -35,14 +35,14 @@
 <script type='text/javascript' src='/mobile/layer_mobile/layer.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/Shineraini/js/page.js' charset='utf-8'></script>
 <script>
-    $("body").on('click','.link',function () {
+    $(document).on('click','.link',function () {
         var url = $(this).data('url')
         if (url!=null){
             window.location.href = url;
         }
     })
 
-    $("body").on('click','.ajax-link',function () {
+    $(document).on('click','.ajax-link',function () {
         var url = $(this).data('url')
         if (url!=null){
             $.router.loadPage(url);
