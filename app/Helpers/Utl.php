@@ -28,7 +28,6 @@ class Utl
 
     public function token()
     {
-        dd(1);
         return $this->config()['token'];
     }
 
@@ -36,7 +35,7 @@ class Utl
     {
         $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]);
 
-//        $data['access_token'] = $this->token();
+        $data['access_token'] = $this->token();
 
         $response = $client->request('GET', $url, [
             'query' => $data
