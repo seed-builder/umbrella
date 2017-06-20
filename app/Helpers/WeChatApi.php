@@ -33,8 +33,7 @@ class WeChatApi
         ]);
 
         SysLog::create([
-            'name' => '请求接口',
-            'table' => '接口：'.'https://api.weixin.qq.com/sns/oauth2/access_token',
+            'module' => '请求接口 https://api.weixin.qq.com/sns/oauth2/access_token',
             'action' => '调用微信接口',
             'content' => json_encode($response),
         ]);
@@ -45,8 +44,7 @@ class WeChatApi
             'lang' => 'zh_CN',
         ]);
         SysLog::create([
-            'name' => '请求接口',
-            'table' => '接口：'.'https://api.weixin.qq.com/cgi-bin/user/info',
+            'module' => '请求接口 https://api.weixin.qq.com/cgi-bin/user/info',
             'action' => '调用微信接口',
             'content' => json_encode($response),
         ]);
