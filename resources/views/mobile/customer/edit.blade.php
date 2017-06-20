@@ -38,8 +38,8 @@
                                     <div class="item-title label">性别</div>
                                     <div class="item-input">
                                         <select name="gender">
-                                            <option>男</option>
-                                            <option>女</option>
+                                            <option value="1">男</option>
+                                            <option value="2">女</option>
                                         </select>
                                     </div>
                                 </div>

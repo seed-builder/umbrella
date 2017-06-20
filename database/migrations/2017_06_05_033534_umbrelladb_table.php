@@ -23,10 +23,13 @@ class UmbrelladbTable extends Migration
             $table->string('head_img_url')->default('')->comment('微信头像');
 	        $table->string('password')->default('')->comment('密码');
 	        $table->integer('login_time')->default(0);
-	        $table->integer('gender')->nullable()->comment('性别(1-女,2-男，3-未知');
+	        $table->integer('gender')->nullable()->comment('性别(0-未知，1-男,2-女');
 	        $table->timestamp('birth_day')->nullable()->comment('生日');
 	        $table->string('address')->nullable()->comment('地址');
 	        $table->string('remark')->nullable()->comment('备注');
+	        $table->string('country')->nullable()->comment('国家');
+	        $table->string('province')->nullable()->comment('省份');
+	        $table->string('city')->nullable()->comment('城市');
 
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');

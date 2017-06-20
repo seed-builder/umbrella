@@ -26,11 +26,11 @@
                     <div class="item-media"><i class="fa fa-venus-mars" aria-hidden="true"></i></div>
                     <div class="item-inner">
                         <div class="item-title">性别</div>
-                        @if($user->gender==1)
+                        @if($user->gender==2)
                             <div class="item-after">女</div>
-                        @elseif($user->gender==2)
+                        @elseif($user->gender==1)
                             <div class="item-after">男</div>
-                        @elseif($user->gender==3)
+                        @elseif($user->gender==0)
                             <div class="item-after">未知</div>
                         @endif
                     </div>

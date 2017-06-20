@@ -43,9 +43,9 @@ define(function (require, exports, module) {
                 {
                     'data': 'gender',
                     render: function (data, type, full) {
-                        if (data===1)
+                        if (data===2)
                             return '女'
-                        else if (data==2)
+                        else if (data==1)
                             return '男'
                         else
                             return '未知'

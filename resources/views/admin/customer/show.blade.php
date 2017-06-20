@@ -61,9 +61,9 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">性别:</label>
                                             <div class="col-md-9">
-                                                @if($entity->gender==1)
+                                                @if($entity->gender==2)
                                                     <p class="form-control-static"> 女 </p>
-                                                @elseif($entity->gender==2)
+                                                @elseif($entity->gender==1)
                                                     <p class="form-control-static"> 男 </p>
                                                 @else
                                                     <p class="form-control-static"> 未知 </p>

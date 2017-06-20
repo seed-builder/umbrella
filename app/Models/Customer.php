@@ -19,7 +19,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  * @SWG\Property(name="created_at", type="string", description="")
  * @SWG\Property(name="creator_id", type="integer", description="创建用户id")
  * @SWG\Property(name="deleted_at", type="string", description="")
- * @SWG\Property(name="gender", type="integer", description="性别(1-女,2-男，3-未知")
+ * @SWG\Property(name="gender", type="integer", description="性别(2-女,1-男，0-未知")
  * @SWG\Property(name="head_img_url", type="string", description="微信头像")
  * @SWG\Property(name="id", type="integer", description="")
  * @SWG\Property(name="login_time", type="integer", description="")
