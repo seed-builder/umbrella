@@ -10,15 +10,13 @@ $(document).on("pageInit", function(e, pageId, $page) {
     })
 
     if(pageId == "customer-edit") {
-        $(".form-submit").on('click', function (e) {
-            e.preventDefault();
-            App.ajaxForm('#form-id');
-        })
+        seajs.use('mobile/customer.js', function (app) {
+            app.index($);
+        });
     }else if(pageId == 'customer-account-index'){
-        $(".amt-item").on('click',function () {
-            $(".amt-item").removeClass('amt-select')
-            $(this).addClass('amt-select')
-        })
+        seajs.use('mobile/customer_account.js', function (app) {
+            app.index($);
+        });
     }
 
 

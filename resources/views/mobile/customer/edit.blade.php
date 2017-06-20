@@ -75,7 +75,11 @@
 @endsection
 
 @section('javascript')
-    <script>
-
+    <script type="text/javascript">
+        $(function () {
+            seajs.use('admin/customer.js', function (app) {
+                app.index($, 'moduleTable', 'alert-id');
+            });
+        });
     </script>
 @endsection

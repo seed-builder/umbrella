@@ -76,10 +76,11 @@
 @endsection
 
 @section('javascript')
-    <script>
-        $(".amt-item").on('click',function () {
-            $(".amt-item").removeClass('amt-select')
-            $(this).addClass('amt-select')
-        })
+    <script type="text/javascript">
+        $(function () {
+            seajs.use('mobile/customer_account.js', function (app) {
+                app.index($);
+            });
+        });
     </script>
 @endsection

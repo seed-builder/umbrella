@@ -19,6 +19,7 @@
 
     @yield('css')
     <script type='text/javascript' src='/js/app.js' charset='utf-8'></script>
+    <script src="/assets/sea.js"></script>
 </head>
 <body>
 <div class="page-group"  id="app">
