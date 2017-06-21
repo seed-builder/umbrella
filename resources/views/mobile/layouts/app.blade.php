@@ -56,8 +56,10 @@ $config = $helper->getSignPackage();
             $.router.loadPage(url);
         }
     })
-</script>
-<script>
+
+    var mapmodel = new Map();
+    mapmodel.h5Location();
+
     wx.config({
         debug: false,
         appId: '{{$config['appId']}}',
@@ -100,6 +102,7 @@ $config = $helper->getSignPackage();
         ]
     });
 </script>
+
 @yield('javascript')
 </body>
 </html>

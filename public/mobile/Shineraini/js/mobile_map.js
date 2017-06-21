@@ -14,7 +14,6 @@ var MapTool = function () {
                 panControl: false,
             }
             this.h5Location();
-
             map = new qq.maps.Map(document.getElementById("map"), options);
 
             this.QRControl();
@@ -27,6 +26,7 @@ var MapTool = function () {
 
         },
         h5Location : function () {
+            alert('定位');
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(this.locationSuccess,this.locationError);
             }
@@ -35,6 +35,7 @@ var MapTool = function () {
             }
         },
         locationSuccess : function (position) {
+            alert('定位成功');
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             qq.maps.convertor.translate(new qq.maps.LatLng(lat, lng), 1, function (res) {
@@ -43,6 +44,7 @@ var MapTool = function () {
         },
         locationError : function () {
             //h5定位失败 自动定位到当前城市中心
+            alert('定位失败');
             var citylocation = new qq.maps.CityService({
                 complete : function(result){
                     map.setCenter(result.detail.latLng);
