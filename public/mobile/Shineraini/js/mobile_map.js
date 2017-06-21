@@ -16,27 +16,17 @@ var MapTool = function () {
             }
             map = new qq.maps.Map(document.getElementById("map"), options);
 
-            // this.h5Location();
-            this.wechatLocation();
+            this.h5Location();
+            // this.wechatLocation();
             this.QRControl();
             this.myControl();
             this.accountControl();
             this.recordControl();
             this.helpControl();
+            this.wechatLocationControl();
             // this.createMarker(new qq.maps.LatLng(24.479834, 118.089425));
 
 
-        },
-        wechatLocation : function () {
-            alert('微信定位开始')
-            wx.getLocation({
-                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-                success: function (res) {
-                    alert('微信定位成功')
-                    console.log(res)
-                    // this.createMarker(res);
-                }
-            });
         },
         h5Location : function () {
             if (navigator.geolocation) {
@@ -47,7 +37,6 @@ var MapTool = function () {
             }
         },
         locationSuccess : function (position) {
-            alert('定位成功');
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             qq.maps.convertor.translate(new qq.maps.LatLng(lat, lng), 1, function (res) {
@@ -56,7 +45,6 @@ var MapTool = function () {
         },
         locationError : function () {
             //h5定位失败 自动定位到当前城市中心
-            alert('定位失败');
             var citylocation = new qq.maps.CityService({
                 complete : function(result){
                     map.setCenter(result.detail.latLng);
@@ -148,7 +136,35 @@ var MapTool = function () {
         my : function () {
             $.router.loadPage("/mobile/customer/view");
         },
+        wechatLocationControl : function () {
+            var button = document.createElement("div");
+            button.innerHTML = '<div class="map-btn" id="location"><img src="/images/icon/icon_location.png"></div>'
 
+            qq.maps.event.addListener(button, "click", this.wechatLocation);
+            map.controls[qq.maps.ControlPosition.LEFT_BOTTOM].push(button);
+        },
+        wechatLocation : function () {
+            var self = this;
+            wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                    var latitude = res.latitude;
+                    var longitude = res.longitude;
+
+                    var point = new qq.maps.LatLng(latitude, longitude);
+                    var marker = new qq.maps.Marker({
+                        map: map,
+                        position: point,
+                        animation:qq.maps.MarkerAnimation.DROP
+                    });
+
+                    map.panTo(point);
+                },
+                cancel: function (res) {
+                    alert('用户拒绝授权获取地理位置');
+                }
+            });
+        }
     }
 }
 
