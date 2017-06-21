@@ -4,6 +4,7 @@
 var MapTool = function () {
     var options = {};
     var map;
+    var geolocation;
 
     return {
         init : function () {
@@ -13,20 +14,31 @@ var MapTool = function () {
                 zoomControl : false,
                 panControl: false,
             }
-            this.h5Location();
             map = new qq.maps.Map(document.getElementById("map"), options);
 
+            // this.h5Location();
+            this.wechatLocation();
             this.QRControl();
             this.myControl();
             this.accountControl();
             this.recordControl();
             this.helpControl();
-            this.createMarker();
+            // this.createMarker(new qq.maps.LatLng(24.479834, 118.089425));
 
 
         },
+        wechatLocation : function () {
+            alert('微信定位开始')
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    alert('微信定位成功')
+                    console.log(res)
+                    // this.createMarker(res);
+                }
+            });
+        },
         h5Location : function () {
-            alert('定位');
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(this.locationSuccess,this.locationError);
             }
@@ -52,8 +64,8 @@ var MapTool = function () {
             });
             citylocation.searchLocalCity();
         },
-        createMarker : function () {
-            var center = new qq.maps.LatLng(24.479834, 118.089425);
+        createMarker : function (point) {
+            var center = point ;
 
             var anchor = new qq.maps.Point(0, 39),
                 size = new qq.maps.Size(100, 100),

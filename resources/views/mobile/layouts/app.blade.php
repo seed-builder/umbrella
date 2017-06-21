@@ -57,9 +57,6 @@ $config = $helper->getSignPackage();
         }
     })
 
-    var mapmodel = new Map();
-    mapmodel.h5Location();
-
     wx.config({
         debug: false,
         appId: '{{$config['appId']}}',
