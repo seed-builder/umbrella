@@ -1,3 +1,8 @@
+<?php
+$helper = new \App\Helpers\WeChatConfig();
+$config = $helper->getSignPackage();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +23,8 @@
     <link href="//at.alicdn.com/t/font_9ajfujk1yc3m1jor.css" rel="stylesheet">
 
     @yield('css')
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
     <script type='text/javascript' src='/js/app.js' charset='utf-8'></script>
     <script src="/assets/sea.js"></script>
 </head>
@@ -28,6 +35,7 @@
         {{--@yield('map_buttons')--}}
         {{--@include('mobile.layouts.toolbar')--}}
 </div>
+
 
 
 <script type='text/javascript' src='/mobile/light7/js/light7.min.js' charset='utf-8'></script>
@@ -48,6 +56,49 @@
             $.router.loadPage(url);
         }
     })
+</script>
+<script>
+    wx.config({
+        debug: false,
+        appId: '{{$config['appId']}}',
+        timestamp:'{{$config['timestamp']}}' ,
+        nonceStr: '{{$config['nonceStr'] }}',
+        signature: '{{$config['signature'] }}',
+        jsApiList: [
+            'openEnterpriseChat',
+            'openEnterpriseContact',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'pauseVoice',
+            'stopVoice',
+            'onVoicePlayEnd',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'translateVoice',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'closeWindow',
+            'scanQRCode',
+        ]
+    });
 </script>
 @yield('javascript')
 </body>
