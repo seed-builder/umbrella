@@ -108,13 +108,18 @@ class WeChatController extends MobileController
     /*
      * 支付成功 异步回调
      */
-    public function paymentNotify(Request $request){
+    public function paymentNotify(Request $request,$id){
         $data = $request->all();
 
         SysLog::create([
             'module' => '微信支付异步回调',
             'action' => '微信支付异步回调',
             'content' => '【回调数据】：' . json_encode($data),
+        ]);
+        SysLog::create([
+            'module' => '微信支付异步回调',
+            'action' => '微信支付异步回调',
+            'content' => '【回调数据】：' . $id,
         ]);
         dd('异步回调成功');
     }
@@ -143,7 +148,8 @@ class WeChatController extends MobileController
 
         $sign = md5($order->id.env('SIGN_KEY'));
 
-        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'&_sign='.$sign;
+//        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'&_sign='.$sign;
+        $notify_url = env('WECHATPAY_NOTIFY_URL').'/111';
 
         $input->SetBody($body);
         $input->SetAttach($order->sn . "," . $order->customer_id);
