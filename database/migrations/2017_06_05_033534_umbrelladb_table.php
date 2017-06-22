@@ -60,7 +60,7 @@ class UmbrelladbTable extends Migration
 		    $table->integer('customer_account_id')->comment('accounts id');
 		    $table->integer('customer_id')->comment('customer id');
 		    $table->decimal('amt', 12, 2)->default(0)->comment('流水金额');
-		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入） 2-支出');
+		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入）， 2-押金支出， 3-租金支出，4-押金退回（收入)');
 		    $table->integer('status')->default(0)->comment('状态(1-未完成，2-已完成, 3-取消)');
 		    $table->string('remark')->comment('备注');
 		    $table->integer('creator_id')->default(0)->comment('创建用户id');
@@ -101,6 +101,7 @@ class UmbrelladbTable extends Migration
             $table->integer('site_id')->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）');
             $table->string('name')->default('')->comment('伞名称');
+            $table->string('model')->default('')->comment('型号');
             $table->string('color')->nullable()->default('')->comment('颜色');
             $table->string('logo')->default('')->comment('logo');
             $table->integer('price_id')->nullable()->comment('价格id');
