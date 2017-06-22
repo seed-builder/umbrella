@@ -141,13 +141,18 @@ class WeChatController extends MobileController
         //         $price = $order->amt * 100; // 微信支付金额单位为分
         $price = 1; // 测试环境
 
+        $sign = md5($order->id.env('SIGN_KEY'));
+
+//        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'_sign'.$sign;
+        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'&_sign'.$sign;
+
         $input->SetBody($body);
         $input->SetAttach($order->sn . "," . $order->customer_id);
         $input->SetOut_trade_no($order->sn);
         $input->SetTotal_fee($price);
         $input->SetTime_start(date("YmdHis"));
         $input->SetTime_expire(date("YmdHis", time() + 600));
-        $input->SetNotify_url(env('WECHATPAY_NOTIFY_URL'));
+        $input->SetNotify_url($notify_url);
         $input->SetTrade_type("JSAPI");
         $input->SetOpenid($order->customer->openid);
 

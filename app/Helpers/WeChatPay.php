@@ -31,7 +31,7 @@ class WeChatPay
 
         //检测必填参数
         if (!$inputObj->IsOut_trade_noSet()) {
-            dd("缺少统一支付接口必填参数out_trade_no！");
+            throw new WxPayException("缺少统一支付接口必填参数out_trade_no！");
         } else if (!$inputObj->IsBodySet()) {
             throw new WxPayException("缺少统一支付接口必填参数body！");
         } else if (!$inputObj->IsTotal_feeSet()) {

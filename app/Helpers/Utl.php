@@ -43,6 +43,12 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
+        if (!empty($rs->errcode)){
+            $cg = new WeChatConfig();
+            $cg->getAccessToken(true);
+            return $this->get($url, $data);
+        }
+
         $this->addLog($rs, $url, $data);
 
         return $rs;
