@@ -116,6 +116,7 @@ class WeChatController extends MobileController
             'action' => '微信支付异步回调',
             'content' => '【回调数据】：' . json_encode($data),
         ]);
+        dd('异步回调成功');
     }
 
     /*

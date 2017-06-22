@@ -43,7 +43,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-//        $this->addLog($rs, $url, $data);
+        $this->addLog($rs, $url, $data);
 
         return $rs;
     }
@@ -61,7 +61,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-//        $this->addLog($rs, $url, $data);
+        $this->addLog($rs, $url, $data);
 
         return $rs;
     }
@@ -79,7 +79,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-//        $this->addLog($rs, $url, $data);
+        $this->addLog($rs, $url, $data);
 
         return $rs;
     }
@@ -88,19 +88,15 @@ class Utl
     {
         if (!empty($rs->errcode))
             SysLog::create([
-                'name' => '请求接口' . ($rs->errcode == 0 ? '成功' : '失败'),
-                'table' => '接口：' . $url,
-                'action' => '调用微信接口',
+                'module' => '调用微信接口' ,
+                'action' => $url,
                 'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
-                'account_id' => !empty(Auth::guard('admin')->user()->id) ? Auth::guard('admin')->user()->id : 0
             ]);
         else
             SysLog::create([
-                'name' => '请求接口',
-                'table' => '接口：' . $url,
-                'action' => '调用微信接口',
+                'module' => '请求接口',
+                'action' => $url,
                 'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
-                'account_id' => !empty(Auth::guard('admin')->user()->id) ? Auth::guard('admin')->user()->id : 0
             ]);
     }
 
