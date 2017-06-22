@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
-        '/mobile/wechat-payment/notify'
+        '/mobile/wechat-payment/notify',
+        '/mobile/wechat-payment/notify/{id}',
     ];
 }
