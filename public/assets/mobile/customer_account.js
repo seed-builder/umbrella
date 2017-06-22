@@ -49,7 +49,7 @@ define(function (require, exports, module) {
                     document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
                 }
             }else{
-                jsApiCall(jsApiParams);
+                jsApiCall();
             }
         }
     }

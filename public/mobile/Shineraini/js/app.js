@@ -40,6 +40,7 @@ var App = function () {
                 },
 
                 error: function (jqXHR, textStatus, errorThrown) {
+                    layer.closeAll();
                     layer.open({
                         content:'系统繁忙，请稍后再试'
                         , btn: '我知道了'
@@ -126,6 +127,7 @@ var App = function () {
                 },
 
                 error: function (jqXHR, textStatus, errorThrown) {
+                    layer.closeAll();
                     layer.open({
                         content:'系统繁忙，请稍后再试'
                         , btn: '我知道了'
