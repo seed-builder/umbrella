@@ -13,6 +13,7 @@ use App\Http\Controllers\MobileController;
 use App\Models\Customer;
 use App\Models\CustomerAccount;
 use App\Models\CustomerPayment;
+use App\Models\SysLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -97,11 +98,24 @@ class WeChatController extends MobileController
     /*
      * 支付成功 - 同步地址
      */
-    public function paySuccess($id){
+    public function paymentSuccess($id){
         $order = CustomerPayment::find($id);
 
         $out_order = $this->orderQuery($order);
         dd($out_order);
+    }
+
+    /*
+     * 支付成功 异步回调
+     */
+    public function paymentNotify(Request $request){
+        $data = $request->all();
+
+        SysLog::create([
+            'module' => '微信支付异步回调',
+            'action' => '微信支付异步回调',
+            'content' => '【回调数据】：' . json_encode($data),
+        ]);
     }
 
     /*

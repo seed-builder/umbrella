@@ -29,11 +29,15 @@ define(function (require, exports, module) {
                 jsApiParams,
             function(res){
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                    layer.open('充值成功')
+                    layer.open({
+                        content: '充值成功'
+                        , btn: '我知道了'
+                    });
                 } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
-                    layer.open('用户取消')
-                } else {
-
+                    layer.open({
+                        content: '用户取消支付'
+                        , btn: '我知道了'
+                    });
                 }
             }
         );
