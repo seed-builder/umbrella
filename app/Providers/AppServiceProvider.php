@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\CustomerPayment;
+use App\Models\CustomerHire;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+	    Relation::morphMap([
+		    'customer_payment' => CustomerPayment::class,
+		    'customer_hire' => CustomerHire::class,
+	    ]);
     }
 
     /**
