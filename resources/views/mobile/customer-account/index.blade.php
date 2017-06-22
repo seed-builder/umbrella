@@ -61,13 +61,19 @@
                 <p>点击充值，代表已接受<a>《充值协议》</a></p>
             </div>
 
+            <form id="form-id" action="/mobile/wechat-payment/create-order" style="display: none">
+                {{ csrf_field() }}
+                <input type="text" name="amt" value="">
+                <input type="text" name="payment_channel" value="1">
+                <input type="text" name="type" value="3">
+            </form>
+
             <div class="content-block">
                 <div class="row">
                     <div class="col-50">
-                        <div data-url="/mobile/home/map" class="button button-big button-fill button-danger link">返回
-                        </div>
+                        <div data-url="/mobile/home/map" class="button button-big button-fill button-danger link">返回</div>
                     </div>
-                    <div class="col-50"><a class="button button-big button-fill button-success">充值</a></div>
+                    <div class="col-50"><a class="button button-big button-fill button-success form-submit">充值</a></div>
                 </div>
             </div>
 

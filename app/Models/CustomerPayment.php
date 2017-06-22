@@ -36,12 +36,17 @@ class CustomerPayment extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+        'amt' => 'required|numeric',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+        'amt.required' => "请选择一个金额",
+        'amt.numeric' => '金额只能为数字',
     ];
+
+    public function customer(){
+        return $this->hasOne(Customer::class,'id','customer_id');
+    }
 
     public function type(){
         switch ($this->type){
@@ -73,4 +78,6 @@ class CustomerPayment extends BaseModel
             }
         }
     }
+
+
 }

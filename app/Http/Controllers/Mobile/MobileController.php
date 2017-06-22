@@ -25,7 +25,7 @@ abstract class MobileController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request, $only = [], $extraFields = [], $redirect_url = null)
+    public function store(Request $request, $only = [], $extraFields = [], $successMsg = null)
     {
         if (!empty($only)) {
             $props = $request->only($only);
@@ -43,7 +43,8 @@ abstract class MobileController extends Controller
             $entity = $this->newEntity($props);
             $entity->save();
 
-            return $this->success_result('添加成功', $entity, $redirect_url);
+            return $this->success_result($successMsg, $entity);
+
         }
     }
 
@@ -56,7 +57,7 @@ abstract class MobileController extends Controller
      * @param array $extraFields
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $only = [], $extraFields = [], $redirect_url = null)
+    public function update(Request $request, $id, $only = [], $extraFields = [], $successMsg = null)
     {
         $fieldErrors = $this->validateFields($request->except('_token'));
         if (!empty($only)) {
@@ -77,7 +78,7 @@ abstract class MobileController extends Controller
 
             $entity->save();
 
-            return $this->success_result('编辑成功', $entity, $redirect_url);
+            return $this->success_result('编辑成功', $entity);
         }
 
     }
@@ -153,7 +154,7 @@ abstract class MobileController extends Controller
         return response()->json($result);
     }
 
-    protected function validateFields($data, $rules=[])
+    protected function validateFields($data, $rules = [])
     {
         $fieldErrors = [];
         $entity = $this->newEntity();
@@ -161,7 +162,7 @@ abstract class MobileController extends Controller
         if (empty($rules) && isset($entity->validateRules))
             $rules = $entity->validateRules;
 
-        $validator = Validator::make($data, $rules ,$entity->validateMessages);
+        $validator = Validator::make($data, $rules, $entity->validateMessages);
 
         if ($validator->fails()) {
             $fieldErrors = implode('<br/>', $validator->errors()->all());
@@ -170,27 +171,29 @@ abstract class MobileController extends Controller
         return $fieldErrors;
     }
 
-    public function success_result($msg, $data = [], $redirect_url = null)
+    public function success_result($msg, $data = [])
     {
-        $result = [];
         Session::flash('success', $msg);
 
-        $result['success'] = $msg;
-        $result['data'] = $data;
-        if (!empty($redirect_url))
-            $result['redirect_url'] = $redirect_url;
-
-        return response()->json($result);
+        return $this->result(0, $msg, $data);
     }
 
-    public function fail_result($msg)
+    public function fail_result($msg, $code = 500)
+    {
+        return $this->result($code,$msg );
+    }
+
+    public function result($code = 0, $msg, $data = [])
     {
         return response()->json([
-            'error' => $msg
+            'code' => $code,
+            'message' => $msg,
+            'data' => $data
         ]);
     }
 
-    public function filterQuery($filters,$queryBuilder){
+    public function filterQuery($filters, $queryBuilder)
+    {
         foreach ($filters as $filter) {
             foreach ($filter as $k => $v)
                 if (!empty($v)) {

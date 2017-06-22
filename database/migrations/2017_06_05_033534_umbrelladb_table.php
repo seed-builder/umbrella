@@ -75,8 +75,8 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('customer_payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sn',100)->unique()->comment('内部订单号 系统内部的订单号');
-            $table->string('outer_order_sn',100)->unique()->comment('外部订单号 支付宝|微信生成的订单号');
+            $table->string('sn',100)->unique()->unique()->comment('内部订单号 系统内部的订单号');
+            $table->string('outer_order_sn',100)->nullable()->comment('外部订单号 支付宝|微信生成的订单号');
             $table->integer('customer_id')->comment('customer id');
             $table->integer('payment_channel')->default(1)->comment('支付渠道 1-微信支付 2-支付宝');
             $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
