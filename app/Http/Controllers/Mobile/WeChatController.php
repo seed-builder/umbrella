@@ -5,6 +5,7 @@ use App\Helpers\WeChatApi;
 use App\Helpers\WeChatLib\WxPayApi;
 use App\Helpers\WeChatLib\WxPayException;
 use App\Helpers\WeChatLib\WxPayJsApiPay;
+use App\Helpers\WeChatLib\WxPayOrderQuery;
 use App\Helpers\WeChatLib\WxPayUnifiedOrder;
 use App\Helpers\WeChatPay;
 use App\Http\Controllers\Controller;
@@ -90,7 +91,28 @@ class WeChatController extends MobileController
         ]);
 
         $result = $this->wxpay($order);
-        return $this->result(0,'',$result);
+        return $this->result(0,'',json_decode($result));
+    }
+
+    /*
+     * 支付成功 - 同步地址
+     */
+    public function paySuccess($id){
+        $order = CustomerPayment::find($id);
+
+        $out_order = $this->orderQuery($order);
+        dd($out_order);
+    }
+
+    /*
+     * 微信订单查询
+     */
+    public function orderQuery($order){
+        $input = new WxPayOrderQuery();
+        $input->SetTransaction_id($order->sn);
+
+        $api = new WxPayApi();
+        return $api->orderQuery($input);
     }
 
     /*
@@ -98,7 +120,6 @@ class WeChatController extends MobileController
      */
     protected function wxpay($order)
     {
-
         $input = new WxPayUnifiedOrder();
 
         $body = env('PROJECT_NAME') . $order->type();
@@ -120,10 +141,14 @@ class WeChatController extends MobileController
 
         $jsApiParams = $this->GetJsApiParameters($out_order);
 
+
         return $jsApiParams;
     }
 
-    public function GetJsApiParameters($UnifiedOrderResult)
+    /*
+     * 获取微信支付JsApi参数
+     */
+    protected function GetJsApiParameters($UnifiedOrderResult)
     {
         if(!array_key_exists("appid", $UnifiedOrderResult)
             || !array_key_exists("prepay_id", $UnifiedOrderResult)

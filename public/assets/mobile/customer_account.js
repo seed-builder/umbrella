@@ -3,6 +3,7 @@
  */
 define(function (require, exports, module) {
     exports.index = function ($) {
+        var jsApiParams;
 
         $(".amt-item").on('click',function () {
             $(".amt-item").removeClass('amt-select')
@@ -15,12 +16,12 @@ define(function (require, exports, module) {
         $(".form-submit").on('click', function (e) {
             e.preventDefault();
             App.ajaxForm('#form-id',function (data) {
+                jsApiParams = data;
                 callpay();
                 // $.router.loadPage("/mobile/customer-payment/pay/"+data.id)
             })
         })
 
-        var jsApiParams;
         var jsApiCall =function ()
         {
             WeixinJSBridge.invoke(
@@ -48,7 +49,7 @@ define(function (require, exports, module) {
                     document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
                 }
             }else{
-                jsApiCall();
+                jsApiCall(jsApiParams);
             }
         }
     }
