@@ -16,7 +16,6 @@ use App\Models\CustomerPayment;
 use App\Models\SysLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use Session;
 
 class WeChatController extends MobileController
@@ -109,18 +108,13 @@ class WeChatController extends MobileController
     /*
      * 支付成功 异步回调
      */
-    public function paymentNotify(Request $request,$sign){
+    public function paymentNotify(Request $request){
         $data = $request->all();
 
         SysLog::create([
             'module' => '微信支付异步回调',
             'action' => '微信支付异步回调',
             'content' => '【回调数据】：' . json_encode($data),
-        ]);
-        SysLog::create([
-            'module' => '微信支付异步回调',
-            'action' => '微信支付异步回调',
-            'content' => '【回调数据】：' . $sign,
         ]);
         dd('异步回调成功');
     }
@@ -149,8 +143,7 @@ class WeChatController extends MobileController
 
         $sign = md5($order->id.env('SIGN_KEY'));
 
-//        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'_sign'.$sign;
-        $notify_url = env('WECHATPAY_NOTIFY_URL').'/'.Crypt::encrypt($order->id);
+        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'_sign'.$sign;
 
         $input->SetBody($body);
         $input->SetAttach($order->sn . "," . $order->customer_id);
