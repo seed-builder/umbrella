@@ -143,7 +143,8 @@ class WeChatController extends MobileController
 
         $sign = md5($order->id.env('SIGN_KEY'));
 
-        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'_sign'.$sign;
+        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'&_sign='.$sign;
+        dd($notify_url);
 
         $input->SetBody($body);
         $input->SetAttach($order->sn . "," . $order->customer_id);
