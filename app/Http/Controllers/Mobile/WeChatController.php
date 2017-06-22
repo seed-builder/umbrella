@@ -120,7 +120,8 @@ class WeChatController extends MobileController
             'action' => '微信支付异步回调',
             'content' => '【回调数据】：' . $sign .'【订单】：'.json_encode($order),
         ]);
-        dd('异步回调成功');
+
+        dd('SUCCESS');
     }
 
     /*
