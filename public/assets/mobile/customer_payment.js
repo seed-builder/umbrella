@@ -18,20 +18,18 @@ define(function (require, exports, module) {
                     itemUrl: function (item) {
                         return '/mobile/customer-payment/view/' + item.id
                     },
-                    left: function (data) {
-                        if (data.type == 1)
-                            return '押金支付'
-                        else if (data.type == 2)
-                            return '租金支付'
-                        else
-                            return '账户充值'
-                    },
-                    right: function (data) {
-                        if (data.type == 1 || data.type == 2)
-                            return '<span class="amt-out">-' + data.amt + '</span>'
-                        else
-                            return '<span class="amt-in">+' + data.amt + '</span>'
-                    },
+                    columns : [
+                        {
+                            name : '订单号',
+                            value : 'sn'
+                        },
+                        {
+                            name : '交易金额',
+                            render : function (item) {
+                                return item.amt
+                            }
+                        }
+                    ],
                     footer: function (data) {
                         return data.created_at
                     },

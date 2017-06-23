@@ -6,7 +6,7 @@
     <div class="page page-current" id="customer-payment-view">
         <header class="bar bar-nav">
             <a class="icon icon-left pull-left ajax-link" data-url="/mobile/customer-payment/index"></a>
-            <h1 class='title'>资金纪录详情</h1>
+            <h1 class='title'>纪录详情</h1>
         </header>
 
         <div class="content">

@@ -31,8 +31,12 @@ define(function (require, exports, module) {
                     render: function (data, type, full) {
                         if (data == 1)
                             return '充值'
-                        else
-                            return '支出'
+                        else if(data == 2)
+                            return '押金支出'
+                        else if(data == 3)
+                            return '租金支出'
+                        else if(data == 3)
+                            return '押金退回'
                     }
                 },
                 {

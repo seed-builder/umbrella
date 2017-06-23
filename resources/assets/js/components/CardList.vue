@@ -7,7 +7,7 @@
                 <div class="pull-to-refresh-arrow"></div>
             </div>
             <div class="card-container">
-                <div class="card"
+                <div class="card ajax-link"
                      :class="{'csx-link':options.itemUrl} "
                      :data-url="options.itemUrl?options.itemUrl(item):''"
                      v-for="item in items"

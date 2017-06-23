@@ -114,9 +114,8 @@
                                         <div class="col-md-9">
                                             <select class="form-control" name="filter[][type]">
                                                 <option value="">请选择</option>
-                                                <option value="1">定金支付</option>
-                                                <option value="2">租金支付</option>
-                                                <option value="3">账户充值支付</option>
+                                                <option value="1">充值</option>
+                                                <option value="2">提现</option>
                                             </select>
                                         </div>
                                     </div>

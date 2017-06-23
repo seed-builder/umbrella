@@ -6,7 +6,7 @@
     <div class="page page-current" id="customer-payment-index">
         <header class="bar bar-nav">
             <a class="icon icon-left pull-left link" data-url="{{url('mobile/home/map')}}"></a>
-            <h1 class='title'>资金纪录</h1>
+            <h1 class='title'>充值/提现纪录</h1>
         </header>
         <div class="bar bar-header-secondary">
             <div class="searchbar">
@@ -17,13 +17,13 @@
             </div>
         </div>
 
-        <card-lr-list :options="listOptions"></card-lr-list>
+        <card-list :options="listOptions"></card-list>
 
     </div>
 
     <div class="popup popup-about">
         <div class="content-block">
-            <form id="search-form" action="/mobile/customer/edit" class="search-form">
+            <form id="search-form" class="search-form">
                 {{ csrf_field() }}
                 <div class="list-block">
                     <ul>
@@ -35,9 +35,8 @@
                                     <div class="item-input">
                                         <select name="filter[][type]">
                                             <option value="">请选择</option>
-                                            <option value="1">押金支付</option>
-                                            <option value="2">租金支付</option>
-                                            <option value="3">账户充值</option>
+                                            <option value="1">充值</option>
+                                            <option value="2">提现</option>
                                         </select>
                                     </div>
                                 </div>

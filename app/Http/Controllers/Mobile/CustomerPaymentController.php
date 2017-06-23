@@ -26,6 +26,12 @@ class CustomerPaymentController extends MobileController
         return view('mobile.customer-payment.view',compact('entity'));
     }
 
+    public function entityQuery()
+    {
+        $user = Auth::guard('mobile')->user();
+        return $this->newEntity()->newQuery()->where('customer_id',$user->id);
+    }
+
     public function filterQuery($filters,$queryBuilder){
         foreach ($filters as $filter) {
             foreach ($filter as $k => $v){

@@ -43,7 +43,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        if (!empty($rs->errcode)){
+        if (!empty($rs->errcode)) {
             $cg = new WeChatConfig();
             $cg->getAccessToken(true);
             return $this->get($url, $data);
@@ -90,20 +90,18 @@ class Utl
         return $rs;
     }
 
-    public function addLog($rs, $url, $data)
+    public function addLog($rs, $url, $data, $api='微信')
     {
-        if (!empty($rs->errcode))
-            SysLog::create([
-                'module' => '调用微信接口' ,
-                'action' => $url,
-                'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
-            ]);
-        else
-            SysLog::create([
-                'module' => '请求接口',
-                'action' => $url,
-                'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
-            ]);
+        $log = [
+            'module' => '调用'.$api.'接口',
+            'action' => $url,
+            'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
+        ];
+        if (!empty($rs->errcode) || !empty($rs->err_code)) {
+            //$log['status'] = 2;
+        }
+
+        SysLog::create($log);
     }
 
     /*

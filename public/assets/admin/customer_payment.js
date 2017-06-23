@@ -48,11 +48,9 @@ define(function (require, exports, module) {
                     'data': 'type',
                     render: function (data, type, full) {
                         if (data==1)
-                            return '定金支付'
+                            return '充值'
                         else if(data==2)
-                            return '租金支付'
-                        else
-                            return '账户充值支付'
+                            return '提现'
                     }
                 },
                 {'data': 'created_at'},

@@ -21,11 +21,13 @@ var MapTool = function () {
             this.QRControl();
             this.myControl();
             this.accountControl();
-            this.recordControl();
+            this.paymentControl();
+            this.moneyRecordControl();
             this.helpControl();
             this.wechatLocationControl();
             // this.createMarker(new qq.maps.LatLng(24.479834, 118.089425));
 
+            $("#location").trigger('click')
 
         },
         h5Location : function () {
@@ -96,52 +98,55 @@ var MapTool = function () {
             });
         },
         helpControl : function () {
-            var button = document.createElement("div");
-            button.innerHTML = '<div class="map-btn"><img src="/images/icon/icon_help.png"></div>'
-
-            qq.maps.event.addListener(button, "click", this.help);
-            map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
+            var html = '<div class="map-btn"><img src="/images/icon/icon_help.png"></div>';
+            this.createControl(html,this.help);
         },
         help : function () {
             alert('帮助中心');
         },
         accountControl : function () {
-            var button = document.createElement("div");
-            button.innerHTML = '<div class="map-btn"><img src="/images/icon/icon_account.png"></div>'
-
-            qq.maps.event.addListener(button, "click", this.account);
-            map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
+            var html = '<div class="map-btn"><img src="/images/icon/icon_account.png"></div>';
+            this.createControl(html,this.account);
         },
         account : function () {
             $.router.loadPage("/mobile/customer-account/index");
         },
-        recordControl : function () {
-            var button = document.createElement("div");
-            button.innerHTML = '<div class="map-btn"><img src="/images/icon/icon_money_record_orange.png"></div>'
-
-            qq.maps.event.addListener(button, "click", this.record);
-            map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
+        paymentControl : function () {
+            var html = '<div class="map-btn"><img src="/images/icon/icon_payment_orange.png"></div>';
+            this.createControl(html,this.payment);
         },
-        record : function () {
+        payment : function () {
             // $.router.loadPage("/mobile/customer-payment/index");
             window.location.href="/mobile/customer-payment/index";
         },
+        moneyRecordControl : function () {
+            var html = '<div class="map-btn"><img src="/images/icon/icon_money_record_red.png"></div>';
+            this.createControl(html,this.moneyRecord);
+        },
+        moneyRecord : function () {
+            // $.router.loadPage("/mobile/customer-payment/index");
+            window.location.href="/mobile/customer-account-record/index";
+        },
         myControl : function () {
-            var button = document.createElement("div");
-            button.innerHTML = '<div class="map-btn"><img src="/images/icon/icon_my1.png"></div>'
-
-            qq.maps.event.addListener(button, "click", this.my);
-            map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
+            var html = '<div class="map-btn"><img src="/images/icon/icon_my1.png"></div>';
+            this.createControl(html,this.my);
         },
         my : function () {
             $.router.loadPage("/mobile/customer/view");
         },
-        wechatLocationControl : function () {
+        createControl : function (html,callback,position) {
             var button = document.createElement("div");
-            button.innerHTML = '<div class="map-btn" id="location"><img src="/images/icon/icon_location.png"></div>'
+            button.innerHTML = html;
 
-            qq.maps.event.addListener(button, "click", this.wechatLocation);
-            map.controls[qq.maps.ControlPosition.LEFT_BOTTOM].push(button);
+            qq.maps.event.addListener(button, "click", callback);
+            if (position)
+                map.controls[position].push(button);
+            else
+                map.controls[qq.maps.ControlPosition.RIGHT_CENTER].push(button);
+        },
+        wechatLocationControl : function () {
+            var html = '<div class="map-btn" id="location"><img src="/images/icon/icon_location.png"></div>';
+            this.createControl(html,this.wechatLocation,qq.maps.ControlPosition.LEFT_BOTTOM);
         },
         wechatLocation : function () {
             var self = this;
@@ -161,7 +166,10 @@ var MapTool = function () {
                     map.panTo(point);
                 },
                 cancel: function (res) {
-                    alert('用户拒绝授权获取地理位置');
+                    layer.open({
+                        content: '您已拒绝了授权获取地理位置，要授权才能定位到您的位置哦'
+                        , btn: '我知道了'
+                    });
                 }
             });
         }

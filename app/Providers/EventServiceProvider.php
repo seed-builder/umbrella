@@ -16,6 +16,15 @@ class EventServiceProvider extends ServiceProvider
 	    'App\Events\FlagChangedEvent' => [
 		    'App\Listeners\FlagChangedEventHandler',
 	    ],
+        'App\Events\ModelCreatedEvent' => [
+            'App\Listeners\ModelCreatedHandler',
+        ],
+        'App\Events\ModelDeletedEvent' => [
+            'App\Listeners\ModelDeletedHandler',
+        ],
+        'App\Events\ModelUpdatedEvent' => [
+            'App\Listeners\ModelUpdatedHandler',
+        ],
     ];
 
     /**

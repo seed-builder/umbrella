@@ -32211,7 +32211,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-container"
   }, _vm._l((_vm.items), function(item) {
     return _c('div', {
-      staticClass: "card",
+      staticClass: "card ajax-link",
       class: {
         'csx-link': _vm.options.itemUrl
       },

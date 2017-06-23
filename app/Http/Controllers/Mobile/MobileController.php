@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SysLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Session;
  */
 abstract class MobileController extends Controller
 {
-
     public abstract function newEntity(array $attributes = []);
 
     /**

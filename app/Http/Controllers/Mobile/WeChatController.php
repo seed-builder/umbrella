@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Mobile;
 
+use App\Helpers\Utl;
 use App\Helpers\WeChatApi;
 use App\Helpers\WeChatLib\WxPayApi;
 use App\Helpers\WeChatLib\WxPayException;
@@ -21,7 +22,7 @@ use Session;
 
 class WeChatController extends MobileController
 {
-    public  function newEntity(array $attributes = [])
+    public function newEntity(array $attributes = [])
     {
         // TODO: Implement newEntity() method.
         return new CustomerPayment();
@@ -93,13 +94,14 @@ class WeChatController extends MobileController
         ]);
 
         $result = $this->wxpay($order);
-        return $this->result(0,'',json_decode($result));
+        return $this->result(0, '', json_decode($result));
     }
 
     /*
      * 支付成功 - 同步地址
      */
-    public function paymentSuccess($id){
+    public function paymentSuccess($id)
+    {
         $order = CustomerPayment::find($id);
 
         $out_order = $this->orderQuery($order);
@@ -109,17 +111,20 @@ class WeChatController extends MobileController
     /*
      * 支付成功 异步回调
      */
-    public function paymentNotify(Request $request,$sign){
-
+    public function paymentNotify($sign)
+    {
         $order = CustomerPayment::find(Crypt::decrypt($sign));
+        $result = $this->orderQuery($order);
+        $order->outer_order_sn = $result->transaction_id;
+
+        if ($order->status != 1)
+            dd('SUCCESS');
+
         $order->status = 2;
         $order->save();
 
-        SysLog::create([
-            'module' => '微信支付异步回调',
-            'action' => '微信支付异步回调',
-            'content' => '【回调数据】：' . $sign .'【订单】：'.json_encode($order),
-        ]);
+        $utl = new Utl();
+        $utl->addLog($sign, '微信支付异步回调', '');
 
         dd('SUCCESS');
     }
@@ -127,12 +132,18 @@ class WeChatController extends MobileController
     /*
      * 微信订单查询
      */
-    public function orderQuery($order){
+    public function orderQuery($order)
+    {
         $input = new WxPayOrderQuery();
         $input->SetTransaction_id($order->sn);
 
         $api = new WxPayApi();
-        return $api->orderQuery($input);
+        $response = $api->orderQuery($input);
+
+        $utl = new Utl();
+        $utl->addLog($response, '订单查询接口', $order->sn);
+
+        return $response;
     }
 
     /*
@@ -149,7 +160,7 @@ class WeChatController extends MobileController
 //        $sign = md5($order->id.env('SIGN_KEY'));
 
 //        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'&_sign='.$sign;
-        $notify_url = env('WECHATPAY_NOTIFY_URL').'/'.Crypt::encrypt($order->id);
+        $notify_url = env('WECHATPAY_NOTIFY_URL') . '/' . Crypt::encrypt($order->id);
 
         $input->SetBody($body);
         $input->SetAttach($order->sn . "," . $order->customer_id);
@@ -175,10 +186,10 @@ class WeChatController extends MobileController
      */
     protected function GetJsApiParameters($UnifiedOrderResult)
     {
-        if(!array_key_exists("appid", $UnifiedOrderResult)
+        if (!array_key_exists("appid", $UnifiedOrderResult)
             || !array_key_exists("prepay_id", $UnifiedOrderResult)
-            || $UnifiedOrderResult['prepay_id'] == "")
-        {
+            || $UnifiedOrderResult['prepay_id'] == ""
+        ) {
             throw new WxPayException("参数错误");
         }
         $jsapi = new WxPayJsApiPay();

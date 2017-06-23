@@ -24,4 +24,25 @@ class CustomerAccountRecordController extends MobileController
 	    $entity = $this->newEntity()->newQuery()->find($id);
         return view('mobile.customer-account-record.index',compact('entity'));
     }
+
+    public function entityQuery()
+    {
+        $user = Auth::guard('mobile')->user();
+        return CustomerAccountRecord::query()->where('customer_id',$user->id);
+    }
+
+    public function filterQuery($filters,$queryBuilder){
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v))
+                    continue ;
+
+                if ($k=='start_date')
+                    $queryBuilder->where('created_at', '>=', $v);
+
+                if ($k=='end_date')
+                    $queryBuilder->where('created_at', '<=', $v);
+            }
+        }
+    }
 }

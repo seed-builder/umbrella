@@ -89,7 +89,9 @@
                                             <select class="form-control" name="filter[][type]">
                                                 <option value="">请选择</option>
                                                 <option value="1">充值</option>
-                                                <option value="2">支出</option>
+                                                <option value="2">押金支出</option>
+                                                <option value="3">租金支出</option>
+                                                <option value="4">押金退回</option>
                                             </select>
                                         </div>
                                     </div>

@@ -71,7 +71,7 @@ class UmbrelladbTable extends Migration
 
 
         /*
-         * 客户支付记录
+         * 客户订单记录
          */
         Schema::create('customer_payments', function (Blueprint $table) {
             $table->increments('id');
@@ -82,7 +82,7 @@ class UmbrelladbTable extends Migration
             $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
             $table->longText('remark')->comment('备注');
 			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败）');
-			$table->integer('type')->default(0)->comment('类型(1-定金支付, 2-租金支付, 3-账户充值支付');
+			$table->integer('type')->default(0)->comment('类型(1-充值, 2-提现');
 			$table->integer('reference_id')->nullable()->comment('关联表id');
 			$table->string('reference_type')->nullable()->comment('关联表类型');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
