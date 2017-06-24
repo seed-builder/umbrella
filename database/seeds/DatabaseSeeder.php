@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
 	    $this->call(CustomerAccountSeeder::class);
 	    $this->call(CustomerAccountRecordSeeder::class);
 	    $this->call(CustomerPayment::class);
-
-
 	    $this->call(SiteSeeder::class);
 	    $this->call(EquipmentSeeder::class);
 	    $this->call(Umbrella::class);
+	    $this->call(CustomerHireSeeder::class);
+
 	    $this->call(PermissionSeeder::class);
 	    $this->call(RoleSeeder::class);
 	    $this->call(PermissionRoleSeeder::class);
