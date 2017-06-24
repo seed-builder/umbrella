@@ -31,7 +31,7 @@
                     </li>
                     <li class="item-content item-link">
                         <div class="item-media"><i class="iconfont icon-xuehua"></i></div>
-                        <div class="item-inner">
+                        <div class="item-inner ajax-link" data-url="/mobile/customer-account/withdraw">
                             <div class="item-title">押金</div>
                             <div class="item-after">¥{{$user->account->freeze_amt}}</div>
                         </div>

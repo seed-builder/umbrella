@@ -21,4 +21,10 @@ class CustomerAccountController extends MobileController
 
         return view('mobile.customer-account.index',compact('user'));
     }
+
+    public function withdraw(){
+        $user = Auth::guard('mobile')->user();
+
+        return view('mobile.customer-account.withdraw',compact('user'));
+    }
 }
