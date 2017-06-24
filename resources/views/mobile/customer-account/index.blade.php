@@ -29,11 +29,18 @@
                             <div class="item-after">¥{{$user->account->balance_amt}}</div>
                         </div>
                     </li>
-                    <li class="item-content">
+                    <li class="item-content item-link">
                         <div class="item-media"><i class="iconfont icon-xuehua"></i></div>
                         <div class="item-inner">
-                            <div class="item-title">冻结金额（押金）</div>
+                            <div class="item-title">押金</div>
                             <div class="item-after">¥{{$user->account->freeze_amt}}</div>
+                        </div>
+                    </li>
+                    <li class="item-content item-link">
+                        <div class="item-media"><i class="iconfont icon-msnui-gift-square"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">优惠券</div>
+                            <div class="item-after">¥0.00</div>
                         </div>
                     </li>
                 </ul>
@@ -53,6 +60,9 @@
                     </div>
                     <div class="col-50">
                         <a class="button button-big button-success amt-item amt" data-value="20">¥ 20</a>
+                    </div>
+                    <div class="col-50">
+                        <input type="number" class="amt-input col-100" placeholder="其他">
                     </div>
                 </div>
             </div>

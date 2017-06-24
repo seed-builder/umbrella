@@ -13,6 +13,13 @@
     color: white;
     background: #4cd964;
 }
+.amt-input{
+    height: 2.4rem;
+    font-size: .85rem;
+    line-height: 2.3rem;
+    border-radius: .25rem;
+}
+
 
 /*
  *  地图
