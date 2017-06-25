@@ -1774,7 +1774,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             draw: 1,
             items: {},
             loading: false,
-            header: function header(item) {}
+            header: function header(item) {},
+            nodata: false
         };
     },
 
@@ -1822,6 +1823,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
 
             this.ajaxPostData(this.options.ajax, this.options.ajaxParams, function (res) {
+                if (res.data.length == 0) {
+                    self.nodata = true;
+                    return;
+                }
+
                 self.draw++;
 
                 var data = $.makeArray(self.items);
@@ -1957,7 +1963,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             draw: 1,
             items: {},
             loading: false,
-            header: function header(item) {}
+            header: function header(item) {},
+            nodata: false
         };
     },
 
@@ -2003,6 +2010,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
 
             this.ajaxPostData(this.options.ajax, this.options.ajaxParams, function (res) {
+                if (res.data.length == 0) {
+                    self.nodata = true;
+                    return;
+                }
                 self.draw++;
 
                 var data = $.makeArray(self.items);

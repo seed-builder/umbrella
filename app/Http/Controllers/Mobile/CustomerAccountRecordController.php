@@ -22,7 +22,7 @@ class CustomerAccountRecordController extends MobileController
 
     public function view($id){
 	    $entity = $this->newEntity()->newQuery()->find($id);
-        return view('mobile.customer-account-record.index',compact('entity'));
+        return view('mobile.customer-account-record.view',compact('entity'));
     }
 
     public function entityQuery()

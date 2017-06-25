@@ -82,7 +82,7 @@ class UmbrelladbTable extends Migration
             $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
             $table->longText('remark')->comment('备注');
 			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败）');
-			$table->integer('type')->default(0)->comment('类型(1-充值, 2-提现');
+			$table->integer('type')->default(0)->comment('类型(1-账户充值, 2-押金支付');
 			$table->integer('reference_id')->nullable()->comment('关联表id');
 			$table->string('reference_type')->nullable()->comment('关联表类型');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
@@ -132,7 +132,7 @@ class UmbrelladbTable extends Migration
             $table->timestamp('expired_at')->nullable()->comment('到期时间');
             $table->integer('hire_day')->default(0)->comment('租用时长');
             $table->decimal('hire_amt', 12, 2)->default('0.00')->comment('租借费用');
-            $table->integer('status')->default(1)->comment('状态(1-正常出租, 2-按时归还, 3-逾期未归还)');
+            $table->integer('status')->default(1)->comment('状态(1-租借中, 2-已完成, 3-逾期未归还 4-待支付租金)');
 
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
@@ -232,6 +232,44 @@ class UmbrelladbTable extends Migration
 	        $table->softDeletes();
         });
 
+        /*
+         * 借伞纪录视图
+         */
+        $view_customer_hires = <<<EOD
+CREATE 
+VIEW `view_customer_hire`AS 
+SELECT 
+customer_hires.id,
+customer_hires.customer_id,
+customer_hires.umbrella_id,
+customer_hires.hire_equipment_id,
+customer_hires.hire_site_id,
+customer_hires.hire_at,
+customer_hires.deposit_amt,
+customer_hires.return_equipment_id,
+customer_hires.return_site_id,
+customer_hires.return_at,
+customer_hires.expire_day,
+customer_hires.expired_at,
+customer_hires.hire_day,
+customer_hires.hire_amt,
+customer_hires.status,
+customer_hires.created_at,
+customer_hires.updated_at,
+hire_equ.sn AS hire_equ_sn,
+hire_site.name AS hire_site_name,
+return_equ.sn AS return_equ_sn,
+return_site.name AS return_site_name
+
+FROM customer_hires
+LEFT JOIN customers ON customers.id = customer_hires.customer_id
+LEFT JOIN equipments AS hire_equ ON hire_equ.id = customer_hires.hire_equipment_id
+LEFT JOIN sites AS hire_site ON hire_site.id = customer_hires.hire_site_id
+LEFT JOIN equipments AS return_equ ON return_equ.id = customer_hires.return_equipment_id
+LEFT JOIN sites AS return_site ON return_site.id = customer_hires.return_site_id ;
+
+
+EOD;
 
 
     }

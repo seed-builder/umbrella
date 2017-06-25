@@ -22,6 +22,7 @@ var MapTool = function () {
             this.myControl();
             this.accountControl();
             this.paymentControl();
+            this.hireControl();
             this.moneyRecordControl();
             this.helpControl();
             this.wechatLocationControl();
@@ -133,6 +134,15 @@ var MapTool = function () {
         },
         my : function () {
             $.router.loadPage("/mobile/customer/view");
+        },
+        hireControl : function () {
+            var html = '<div class="map-btn"><img src="/images/icon/icon_umbrella1.png"></div>';
+            this.createControl(html,this.hire);
+        },
+        hire : function () {
+            // $.router.loadPage("/mobile/customer-hire/index");
+            window.location.href="/mobile/customer-hire/index";
+
         },
         createControl : function (html,callback,position) {
             var button = document.createElement("div");

@@ -21,6 +21,10 @@ $(document).on("pageInit", function(e, pageId, $page) {
         seajs.use('mobile/customer_payment.js', function (app) {
             app.index($);
         });
+    }else if(pageId == 'customer-hire-index'){ //用户租用纪录
+        seajs.use('mobile/customer_hire.js', function (app) {
+            app.index($);
+        });
     }
 
 

@@ -3,10 +3,10 @@
 
 @endsection
 @section('content')
-    <div class="page page-current" id="customer-payment-index">
+    <div class="page page-current" id="customer-hire-index">
         <header class="bar bar-nav">
             <a class="icon icon-left pull-left link" data-url="{{url('mobile/home/map')}}"></a>
-            <h1 class='title'>订单纪录</h1>
+            <h1 class='title'>用伞纪录</h1>
         </header>
         <div class="bar bar-header-secondary">
             <div class="searchbar">
@@ -85,7 +85,7 @@
 @section('javascript')
     <script type="text/javascript">
         $(function () {
-            seajs.use('mobile/customer_payment.js', function (app) {
+            seajs.use('mobile/customer_hire.js', function (app) {
                 app.index($);
             });
         });

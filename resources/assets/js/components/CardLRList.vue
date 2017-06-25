@@ -71,8 +71,9 @@
                 loading: false,
                 header: function (item) {
 
-                }
-            }
+                },
+                nodata : false
+        }
         },
         methods: {
             init: function () {
@@ -121,6 +122,11 @@
                 var self = this
 
                 this.ajaxPostData(this.options.ajax, this.options.ajaxParams, function (res) {
+                    if (res.data.length==0){
+                        self.nodata = true;
+                        return
+                    }
+
                     self.draw++;
 
                     var data = $.makeArray(self.items);
