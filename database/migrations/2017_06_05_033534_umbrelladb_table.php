@@ -312,6 +312,7 @@ EOD;
         Schema::dropIfExists('equipment_maintains');
 	    Schema::dropIfExists('sites');
 	    Schema::dropIfExists('sys_logs');
+        DB::statement('drop view view_customer_hire');
 
     }
 
