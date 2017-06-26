@@ -50,16 +50,16 @@
             <div class="grid">
                 <div class="row">
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="5">¥ 5元</a>
+                        <div class="amt-item" data-value="5">¥ 5元</div>
                     </div>
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="10">¥ 10元</a>
+                        <div class="amt-item" data-value="10">¥ 10元</div>
                     </div>
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="15">¥ 15元</a>
+                        <div class="amt-item" data-value="15">¥ 15元</div>
                     </div>
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="20">¥ 20元</a>
+                        <div class="amt-item" data-value="20">¥ 20元</div>
                     </div>
                     <div class="col-50">
                         <input type="number" class="amt-item amt-input col-100" placeholder="其他">
