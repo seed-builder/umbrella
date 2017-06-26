@@ -99,7 +99,7 @@ class UmbrelladbTable extends Migration
             $table->string('sn',100)->unique()->comment('内部单号 系统内部的单号');
             $table->string('outer_order_sn',100)->nullable()->comment('外部单号 微信生成的单号');
             $table->integer('customer_id')->comment('customer id');
-            $table->integer('status')->comment('1-成功 2-失败');
+            $table->integer('status')->comment('1-提现申请中 2-提现成功 3-提现失败' );
             $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
             $table->longText('remark')->comment('备注');
             $table->integer('creator_id')->default(0)->comment('创建用户id');
