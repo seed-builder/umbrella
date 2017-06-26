@@ -115,7 +115,7 @@ class WeChatController extends MobileController
     {
         $order = CustomerPayment::find(Crypt::decrypt($sign));
         $result = $this->orderQuery($order);
-//        $order->outer_order_sn = $result->transaction_id;
+        $order->outer_order_sn = $result['transaction_id'];
 
         if ($order->status != 1)
             dd('SUCCESS');
@@ -203,5 +203,13 @@ class WeChatController extends MobileController
         $jsapi->SetPaySign($jsapi->MakeSign());
         $parameters = json_encode($jsapi->GetValues());
         return $parameters;
+    }
+
+    public function test(){
+        $order = CustomerPayment::find(112);
+        $re = $this->orderQuery($order);
+        $order->status = 2;
+        $order->save();
+        dd($re);
     }
 }
