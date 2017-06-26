@@ -289,7 +289,7 @@ LEFT JOIN sites AS return_site ON return_site.id = customer_hires.return_site_id
 
 EOD;
 
-
+        DB::statement($view_customer_hires);
     }
 
     /**
