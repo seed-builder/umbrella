@@ -60,7 +60,7 @@ class UmbrelladbTable extends Migration
 		    $table->integer('customer_account_id')->comment('accounts id');
 		    $table->integer('customer_id')->comment('customer id');
 		    $table->decimal('amt', 12, 2)->default(0)->comment('流水金额');
-		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入）， 2-押金支出， 3-租金支出，4-押金退回（收入)');
+		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入）， 2-押金充值， 3-押金支出， 4-押金退回（收入)， 5-租金支出， 6-提现支出');
 		    $table->integer('status')->default(0)->comment('状态(1-未完成，2-已完成, 3-取消)');
 		    $table->string('remark')->comment('备注');
 		    $table->integer('creator_id')->default(0)->comment('创建用户id');
@@ -97,8 +97,8 @@ class UmbrelladbTable extends Migration
         Schema::create('umbrellas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sn')->unique()->default('')->comment('伞编号');
-            $table->integer('equipment_id')->comment('equipments id');
-            $table->integer('site_id')->comment('sites id');
+            $table->integer('equipment_id')->nullable()->comment('equipments id');
+            $table->integer('site_id')->nullable()->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）');
             $table->string('name')->default('')->comment('伞名称');
             $table->string('model')->default('')->comment('型号');
