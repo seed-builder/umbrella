@@ -135,7 +135,7 @@ class WeChatController extends MobileController
     public function orderQuery($order)
     {
         $input = new WxPayOrderQuery();
-        $input->SetTransaction_id($order->sn);
+        $input->SetOut_trade_no($order->sn);
 
         $api = new WxPayApi();
         $response = $api->orderQuery($input);
