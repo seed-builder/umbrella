@@ -13,6 +13,7 @@ var MapTool = function () {
                 zoom: 14,
                 zoomControl : false,
                 panControl: false,
+                mapTypeControl: false
             }
             map = new qq.maps.Map(document.getElementById("map"), options);
 
