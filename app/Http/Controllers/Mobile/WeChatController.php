@@ -115,7 +115,7 @@ class WeChatController extends MobileController
     {
         $order = CustomerPayment::find(Crypt::decrypt($sign));
         $result = $this->orderQuery($order);
-        $order->outer_order_sn = $result->transaction_id;
+//        $order->outer_order_sn = $result->transaction_id;
 
         if ($order->status != 1)
             dd('SUCCESS');
