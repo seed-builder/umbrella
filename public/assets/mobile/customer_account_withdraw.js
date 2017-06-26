@@ -3,6 +3,8 @@
  */
 define(function (require, exports, module) {
     exports.index = function ($) {
-
+        $(".form-submit").on('click', function () {
+            App.ajaxForm('#form-id')
+        })
     }
 })

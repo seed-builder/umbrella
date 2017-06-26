@@ -154,10 +154,10 @@ abstract class MobileController extends Controller
         return response()->json($result);
     }
 
-    protected function validateFields($data, $rules = [])
+    protected function validateFields($data, $rules = [], $entity = null)
     {
         $fieldErrors = [];
-        $entity = $this->newEntity();
+        $entity = !empty($entity) ? $entity : $this->newEntity();
 
         if (empty($rules) && isset($entity->validateRules))
             $rules = $entity->validateRules;
@@ -180,7 +180,7 @@ abstract class MobileController extends Controller
 
     public function fail_result($msg, $code = 500)
     {
-        return $this->result($code,$msg );
+        return $this->result($code, $msg);
     }
 
     public function result($code = 0, $msg, $data = [])

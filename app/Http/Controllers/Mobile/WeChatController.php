@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Helpers\Utl;
 use App\Helpers\WeChatApi;
 use App\Helpers\WeChatLib\WxPayApi;
+use App\Helpers\WeChatLib\WxPayEnterprise;
 use App\Helpers\WeChatLib\WxPayException;
 use App\Helpers\WeChatLib\WxPayJsApiPay;
 use App\Helpers\WeChatLib\WxPayOrderQuery;
@@ -14,6 +15,7 @@ use App\Http\Controllers\MobileController;
 use App\Models\Customer;
 use App\Models\CustomerAccount;
 use App\Models\CustomerPayment;
+use App\Models\CustomerWithdraw;
 use App\Models\SysLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -157,9 +159,6 @@ class WeChatController extends MobileController
         //         $price = $order->amt * 100; // 微信支付金额单位为分
         $price = 1; // 测试环境
 
-//        $sign = md5($order->id.env('SIGN_KEY'));
-
-//        $notify_url = env('WECHATPAY_NOTIFY_URL').'?order_id='.$order->id.'&_sign='.$sign;
         $notify_url = env('WECHATPAY_NOTIFY_URL') . '/' . Crypt::encrypt($order->id);
 
         $input->SetBody($body);
@@ -205,11 +204,60 @@ class WeChatController extends MobileController
         return $parameters;
     }
 
+    /*
+     * 企业向个人付款
+     */
+    protected function epPay($withdraw){
+        $input = new WxPayEnterprise();
+
+        $input->setOpenid($withdraw->customer->openid);
+        $input->setCheck_name('NO_CHECK');
+        $input->setPartner_trade_no($withdraw->sn);
+        $input->setAmount($withdraw->amt*100);
+        $input->setDesc(env('PROJECT_NAME').'账户提现');
+
+        $pay = new WeChatPay();
+        $result = $pay->enterprisePay($input);
+
+        $utl = new Utl();
+        $utl->addLog($result, '企业向个人付款接口', $input);
+
+        return $result;
+    }
+
+    public function withdraw(Request $request){
+        $amt = $request->input('amt',0);
+        $user = Auth::guard('mobile')->user();
+
+        $data = [
+            'sn' => 'T'. date('YmdHis') . $user->id . random_int(1000, 9999),
+            'customer_id' => $user->id,
+            'amt' => $amt,
+            'remark' => env('PROJECT_NAME').'账户提现'
+        ];
+
+        $fieldErrors = $this->validateFields($data,[],new CustomerWithdraw());
+
+        if (!empty($fieldErrors)) {
+            return $this->fail_result($fieldErrors);
+        }
+
+        $withdraw = CustomerWithdraw::create($data);
+
+        $result = $this->epPay($withdraw);
+        $withdraw->outer_order_sn = $result['payment_no'];
+        $withdraw->save();
+
+        return $this->success_result('已提交提现申请，系统会尽快为您处理');
+    }
+
     public function test(){
-        $order = CustomerPayment::find(112);
-        $re = $this->orderQuery($order);
-        $order->status = 2;
-        $order->save();
-        dd($re);
+//        $order = CustomerPayment::find(112);
+//        $re = $this->orderQuery($order);
+//        $order->status = 2;
+//        $order->save();
+//        dd($re);
+        $this->epPay(1);
+
     }
 }

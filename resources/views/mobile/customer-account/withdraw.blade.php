@@ -1,6 +1,10 @@
 @extends('mobile.layouts.app')
 @section('css')
-
+    <style>
+        #form-id{
+            margin-top: 2rem;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="page page-current" id="customer-account-withdraw">
@@ -23,26 +27,37 @@
                         </div>
                     </li>
                 </ul>
-            </div>
 
+                <form id="form-id" action="/mobile/wechat-payment/withdraw">
+                    {{ csrf_field() }}
+                    <ul>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media"><i class="iconfont icon-tixian"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">提现金额</div>
+                                    <div class="item-input">
+                                        <input type="number" name="amt" placeholder="请输入您要提现的金额">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
 
             <div class="content-padded">
                 <p>每个账户每天只能提现三次。</p>
             </div>
 
-            <form id="form-id" action="/mobile/wechat-payment/create-order" style="display: none">
-                {{ csrf_field() }}
-                <input type="text" name="amt" value="">
-                <input type="text" name="payment_channel" value="1">
-                <input type="text" name="type" value="3">
-            </form>
-
             <div class="content-block">
                 <div class="row">
                     <div class="col-50">
-                        <a href="/mobile/customer-account/index" class="button button-big button-fill button-danger ">返回</a>
+                        <a href="/mobile/customer-account/index"
+                           class="button button-big button-fill button-danger ">返回</a>
                     </div>
-                    <div class="col-50"><a class="button button-big button-fill button-success form-submit">申请提现</a></div>
+                    <div class="col-50"><a class="button button-big button-fill button-success form-submit">申请提现</a>
+                    </div>
                 </div>
             </div>
 
@@ -56,6 +71,8 @@
             seajs.use('mobile/customer_account_withdraw.js', function (app) {
                 app.index($);
             });
+
+
         });
     </script>
 @endsection

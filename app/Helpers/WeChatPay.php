@@ -102,6 +102,34 @@ class WeChatPay
         return $result;
     }
 
+    /*
+ 	 * 企业向个人付款
+ 	 * $amount 金额
+ 	 * $series_pay 商户订单号
+ 	 * $openid 用户openid
+ 	 * $desc  描述信息
+ 	 */
+
+    public function enterprisePay($inputObj,$timeOut=6){
+        $url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers";
+
+        $inputObj->SetAppid(env('WECHAT_APPID'));//公众账号ID
+        $inputObj->SetMch_id(env('WECHAT_MCHID'));//商户号
+        $inputObj->SetNonce_str(self::getNonceStr());//随机字符串
+        $inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip
+
+        $inputObj->SetSign();//签名
+        $xml = $inputObj->ToXml();
+
+        $startTimeStamp = self::getMillisecond();//请求开始时间
+        $response = self::postXmlCurl($xml, $url, true, $timeOut);
+
+        $result = WxPayResults::Init($response);
+        self::reportCostTime($url, $startTimeStamp, $result);//上报请求花费时间
+
+        return $result;
+    }
+
     /**
      *
      * 关闭订单，WxPayCloseOrder中out_trade_no必填

@@ -92,6 +92,23 @@ class UmbrelladbTable extends Migration
         });
 
         /*
+         * 提现纪录
+         */
+        Schema::create('customer_withdraws', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('sn',100)->unique()->comment('内部单号 系统内部的单号');
+            $table->string('outer_order_sn',100)->nullable()->comment('外部单号 微信生成的单号');
+            $table->integer('customer_id')->comment('customer id');
+            $table->integer('status')->comment('1-成功 2-失败');
+            $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
+            $table->longText('remark')->comment('备注');
+            $table->integer('creator_id')->default(0)->comment('创建用户id');
+            $table->integer('modifier_id')->default(0)->comment('修改用户id');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        /*
          * 共享伞
          */
         Schema::create('umbrellas', function (Blueprint $table) {
@@ -285,6 +302,7 @@ EOD;
         Schema::dropIfExists('customer_accounts');
         Schema::dropIfExists('customer_account_records');
         Schema::dropIfExists('customer_payments');
+        Schema::dropIfExists('customer_withdraws');
         Schema::dropIfExists('customer_hires');
         Schema::dropIfExists('umbrellas');
         Schema::dropIfExists('umbrella_hires');
