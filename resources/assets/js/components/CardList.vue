@@ -62,16 +62,19 @@
                 header: function (item) {
 
                 },
-                nodata : false
+                nodata : false,
+                base_ajax_url : ''
             }
         },
         methods: {
             init: function () {
                 this.load();
                 var self = this;
+                self.base_ajax_url = self.options.ajax
                 self.initRefresh();
                 self.initScroll();
-
+                self.initSearchReset();
+                self.initSearch();
             },
             initScroll : function () {
                 var self = this;
@@ -112,6 +115,7 @@
                 this.ajaxPostData(this.options.ajax, this.options.ajaxParams, function (res) {
                     if (res.data.length==0){
                         self.nodata = true;
+                        self.loading = false;
                         return
                     }
                     self.draw++;
@@ -170,6 +174,22 @@
                 ];
                 var groups = [btns, cancel];
                 $.actions(groups);
+            },
+            initSearchReset: function () {
+                var self = this;
+                $(document).on('click','#'+self.options.resetBtnId,function () {
+                    self.options.ajax = self.base_ajax_url;
+                    $('#'+self.options.searchFormId)[0].reset()
+                    self.reload();
+                })
+
+            },
+            initSearch: function () {
+                var self = this;
+                $(document).on('click','#'+self.options.searchBtnId,function () {
+                    self.options.ajax = self.base_ajax_url+'?'+$('#'+self.options.searchFormId).serialize();
+                    self.reload();
+                })
             }
         }
     }

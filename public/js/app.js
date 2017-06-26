@@ -1775,7 +1775,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             items: {},
             loading: false,
             header: function header(item) {},
-            nodata: false
+            nodata: false,
+            base_ajax_url: ''
         };
     },
 
@@ -1783,6 +1784,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         init: function init() {
             this.load();
             var self = this;
+            self.base_ajax_url = self.options.ajax;
             self.initRefresh();
             self.initScroll();
             self.initSearchReset();
@@ -1825,6 +1827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.ajaxPostData(this.options.ajax, this.options.ajaxParams, function (res) {
                 if (res.data.length == 0) {
                     self.nodata = true;
+                    self.loading = false;
                     return;
                 }
 
@@ -1882,7 +1885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         initSearchReset: function initSearchReset() {
             var self = this;
             $(document).on('click', '#' + self.options.resetBtnId, function () {
-                self.options.ajax = '/mobile/customer-payment/pagination';
+                self.options.ajax = self.base_ajax_url;
                 $('#' + self.options.searchFormId)[0].reset();
                 self.reload();
             });
@@ -1964,7 +1967,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             items: {},
             loading: false,
             header: function header(item) {},
-            nodata: false
+            nodata: false,
+            base_ajax_url: ''
         };
     },
 
@@ -1972,8 +1976,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         init: function init() {
             this.load();
             var self = this;
+            self.base_ajax_url = self.options.ajax;
             self.initRefresh();
             self.initScroll();
+            self.initSearchReset();
+            self.initSearch();
         },
         initScroll: function initScroll() {
             var self = this;
@@ -2012,6 +2019,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.ajaxPostData(this.options.ajax, this.options.ajaxParams, function (res) {
                 if (res.data.length == 0) {
                     self.nodata = true;
+                    self.loading = false;
                     return;
                 }
                 self.draw++;
@@ -2064,6 +2072,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }];
             var groups = [btns, cancel];
             $.actions(groups);
+        },
+        initSearchReset: function initSearchReset() {
+            var self = this;
+            $(document).on('click', '#' + self.options.resetBtnId, function () {
+                self.options.ajax = self.base_ajax_url;
+                $('#' + self.options.searchFormId)[0].reset();
+                self.reload();
+            });
+        },
+        initSearch: function initSearch() {
+            var self = this;
+            $(document).on('click', '#' + self.options.searchBtnId, function () {
+                self.options.ajax = self.base_ajax_url + '?' + $('#' + self.options.searchFormId).serialize();
+                self.reload();
+            });
         }
     }
 });

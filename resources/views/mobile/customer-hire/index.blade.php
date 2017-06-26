@@ -29,26 +29,11 @@
                     <ul>
                         <li>
                             <div class="item-content">
-                                <div class="item-media"><i class="iconfont icon-zhifu"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title label">类别</div>
-                                    <div class="item-input">
-                                        <select name="filter[][type]">
-                                            <option value="">请选择</option>
-                                            <option value="1">账户充值</option>
-                                            <option value="2">押金支付</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item-content">
                                 <div class="item-media"><i class="iconfont icon-kaishi"></i></div>
                                 <div class="item-inner">
-                                    <div class="item-title label">开始日期</div>
+                                    <div class="item-title label">借伞网点</div>
                                     <div class="item-input">
-                                        <input type="date" name="filter[][start_date]" value="">
+                                        <input type="text" name="filter[][hire_site]" value="">
                                     </div>
                                 </div>
                             </div>
@@ -57,9 +42,9 @@
                             <div class="item-content">
                                 <div class="item-media"><i class="iconfont icon-jieshu"></i></div>
                                 <div class="item-inner">
-                                    <div class="item-title label">结束日期</div>
+                                    <div class="item-title label">还伞网点</div>
                                     <div class="item-input">
-                                        <input type="date" name="filter[][end_date]" value="">
+                                        <input type="text" name="filter[][return_site]" value="">
                                     </div>
                                 </div>
                             </div>

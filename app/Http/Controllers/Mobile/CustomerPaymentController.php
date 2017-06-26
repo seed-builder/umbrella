@@ -40,9 +40,10 @@ class CustomerPaymentController extends MobileController
 
                 if ($k=='start_date')
                     $queryBuilder->where('created_at', '>=', $v);
-
-                if ($k=='end_date')
+                else if ($k=='end_date')
                     $queryBuilder->where('created_at', '<=', $v);
+                else
+                    $queryBuilder->where($k, 'like binary', '%' . $v . '%');
             }
         }
     }

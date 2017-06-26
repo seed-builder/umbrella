@@ -36,7 +36,7 @@
                     <li class="item-content">
                         <div class="item-media"><i class="iconfont icon-chongzhidingdanhao"></i></div>
                         <div class="item-inner">
-                            <div class="item-title">单号</div>
+                            <div class="item-title">订单号</div>
                             <div class="item-after">{{$entity->sn}}</div>
                         </div>
                     </li>

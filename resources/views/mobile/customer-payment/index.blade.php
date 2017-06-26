@@ -44,6 +44,17 @@
                         </li>
                         <li>
                             <div class="item-content">
+                                <div class="item-media"><i class="iconfont icon-chongzhidingdanhao"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title label">订单号</div>
+                                    <div class="item-input">
+                                        <input type="text" name="filter[][sn]" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
                                 <div class="item-media"><i class="iconfont icon-kaishi"></i></div>
                                 <div class="item-inner">
                                     <div class="item-title label">开始日期</div>
