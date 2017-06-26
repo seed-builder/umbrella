@@ -1,4 +1,6 @@
-
+/*
+ * grid 
+ */
 .grid {
     width: 100%;
     text-align: center;
@@ -10,8 +12,9 @@
     margin-bottom: 1rem;
 }
 .amt-select{
-    color: white;
-    background: #4cd964;
+    color: #f97e7e;
+    font-weight: bold;
+    border: 3px solid #f97e7e !important;
 }
 .amt-input{
     height: 2.4rem;
@@ -19,15 +22,21 @@
     line-height: 2.3rem;
     border-radius: .25rem;
 }
+.amt-item{
+    /*border-color: #ccc8c8;*/
+    border: 3px solid #ccc8c8;
+    padding: 0 .5rem;
+}
 
 
-/*
- *  地图
- */
+
 #map{
     height: 102.5%;
 }
 
+/*
+ *  map buttons
+ */
 #QR{
     margin-bottom: 2rem;
     width: 8rem;
@@ -71,7 +80,7 @@
 
 
 /*
- * 卡片列表
+ * card-list
  */
 .card-content-item {
     padding-top: 1.4rem;

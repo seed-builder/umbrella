@@ -36,12 +36,13 @@ class CustomerPayment extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'amt' => 'required|numeric',
+        'amt' => 'required|numeric|min:1',
     ];
 
     public $validateMessages = [
         'amt.required' => "请选择一个金额",
         'amt.numeric' => '金额只能为数字',
+        'amt.min' => '每次充值最低1元哦~',
     ];
 
     public function customer(){
@@ -65,13 +66,10 @@ class CustomerPayment extends BaseModel
     public function type(){
         switch ($this->type){
             case 1:{
-                return '充值';
+                return '账户充值';
             }
             case 2:{
-                return '提现';
-            }
-            default : {
-                return '充值';
+                return '押金支付';
             }
         }
     }

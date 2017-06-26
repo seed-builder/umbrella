@@ -50,19 +50,19 @@
             <div class="grid">
                 <div class="row">
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="5">¥ 5</a>
+                        <a class="button button-big button-success amt-item amt" data-value="5">¥ 5元</a>
                     </div>
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="10">¥ 10</a>
+                        <a class="button button-big button-success amt-item amt" data-value="10">¥ 10元</a>
                     </div>
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="15">¥ 15</a>
+                        <a class="button button-big button-success amt-item amt" data-value="15">¥ 15元</a>
                     </div>
                     <div class="col-50">
-                        <a class="button button-big button-success amt-item amt" data-value="20">¥ 20</a>
+                        <a class="button button-big button-success amt-item amt" data-value="20">¥ 20元</a>
                     </div>
                     <div class="col-50">
-                        <input type="number" class="amt-input col-100" placeholder="其他">
+                        <input type="number" class="amt-item amt-input col-100" placeholder="其他">
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
 
             <form id="form-id" action="/mobile/wechat-payment/create-order" style="display: none">
                 {{ csrf_field() }}
-                <input type="text" name="amt" value="">
+                <input id="amt" type="text" name="amt" value="">
                 <input type="text" name="payment_channel" value="1">
                 <input type="text" name="type" value="3">
             </form>

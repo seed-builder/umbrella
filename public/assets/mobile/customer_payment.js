@@ -28,6 +28,15 @@ define(function (require, exports, module) {
                             render : function (item) {
                                 return item.amt
                             }
+                        },
+                        {
+                            name : '订单类别',
+                            render : function (item) {
+                                if (item.type==1)
+                                    return '账户充值'
+                                else
+                                    return '押金支付'
+                            }
                         }
                     ],
                     footer: function (data) {

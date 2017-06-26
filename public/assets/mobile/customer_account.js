@@ -12,6 +12,11 @@ define(function (require, exports, module) {
             $("input[name='amt']").val($(this).data('value'))
         })
 
+        $('.amt-input').on('change',function () {
+            var amt = $(this).val()
+            $("input[name='amt']").val(amt)
+        })
+
 
         $(".form-submit").on('click', function (e) {
             e.preventDefault();
