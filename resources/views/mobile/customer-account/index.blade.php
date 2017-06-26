@@ -75,7 +75,7 @@
                 {{ csrf_field() }}
                 <input id="amt" type="text" name="amt" value="">
                 <input type="text" name="payment_channel" value="1">
-                <input type="text" name="type" value="3">
+                <input type="text" name="type" value="1">
             </form>
 
             <div class="content-block">
