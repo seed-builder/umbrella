@@ -207,14 +207,15 @@ class WeChatController extends MobileController
     /*
      * 企业向个人付款
      */
-    protected function epPay($withdraw){
+    protected function epPay($withdraw)
+    {
         $input = new WxPayEnterprise();
 
         $input->setOpenid($withdraw->customer->openid);
         $input->setCheck_name('NO_CHECK');
         $input->setPartner_trade_no($withdraw->sn);
-        $input->setAmount($withdraw->amt*100);
-        $input->setDesc(env('PROJECT_NAME').'账户提现');
+        $input->setAmount($withdraw->amt * 100);
+        $input->setDesc(env('PROJECT_NAME') . '账户提现');
 
         $pay = new WeChatPay();
         $result = $pay->enterprisePay($input);
@@ -225,18 +226,20 @@ class WeChatController extends MobileController
         return $result;
     }
 
-    public function withdraw(Request $request){
-        $amt = $request->input('amt',0);
+    public function withdraw(Request $request)
+    {
+        $amt = $request->input('amt', 0);
         $user = Auth::guard('mobile')->user();
 
         $data = [
-            'sn' => 'T'. date('YmdHis') . $user->id . random_int(1000, 9999),
+            'sn' => 'T' . date('YmdHis') . $user->id . random_int(1000, 9999),
             'customer_id' => $user->id,
             'amt' => $amt,
-            'remark' => env('PROJECT_NAME').'账户提现'
+            'remark' => env('PROJECT_NAME') . '账户提现',
+            'status' => 1,
         ];
 
-        $fieldErrors = $this->validateFields($data,[],new CustomerWithdraw());
+        $fieldErrors = $this->validateFields($data, [], new CustomerWithdraw());
 
         if (!empty($fieldErrors)) {
             return $this->fail_result($fieldErrors);
@@ -245,13 +248,22 @@ class WeChatController extends MobileController
         $withdraw = CustomerWithdraw::create($data);
 
         $result = $this->epPay($withdraw);
+        if (!empty($result['payment_no'])){
+            $withdraw->status = 3;
+            $withdraw->save();
+
+            return $this->fail_result('提交提现申请失败，请联系客服人员处理');
+        }
+
         $withdraw->outer_order_sn = $result['payment_no'];
+        $withdraw->status = 2;
         $withdraw->save();
 
         return $this->success_result('已提交提现申请，系统会尽快为您处理');
     }
 
-    public function test(){
+    public function test()
+    {
 //        $order = CustomerPayment::find(112);
 //        $re = $this->orderQuery($order);
 //        $order->status = 2;
