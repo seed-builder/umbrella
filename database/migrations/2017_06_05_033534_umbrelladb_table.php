@@ -242,6 +242,7 @@ class UmbrelladbTable extends Migration
             $table->string('module')->comment('模块名 （表名|请求接口名）');
             $table->string('action')->comment('操作');
             $table->longText('content')->comment('内容');
+            $table->integer('status')->default(3)->comment('1-成功 2-失败 3-未知');
 
             $table->integer('creator_id')->default(0)->comment('创建用户id');
             $table->integer('modifier_id')->default(0)->comment('修改用户id');

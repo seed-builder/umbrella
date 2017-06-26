@@ -98,7 +98,7 @@ class Utl
             'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
         ];
         if (!empty($rs->errcode) || !empty($rs->err_code)) {
-            //$log['status'] = 2;
+            $log['status'] = 2;
         }
 
         SysLog::create($log);
