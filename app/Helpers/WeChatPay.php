@@ -584,9 +584,9 @@ class WeChatPay
             //设置证书
             //使用证书：cert 与 key 分别属于两个.pem文件
             curl_setopt($ch, CURLOPT_SSLCERTTYPE, 'PEM');
-            curl_setopt($ch, CURLOPT_SSLCERT, env('WECHAT_CERTPATH'));
+            curl_setopt($ch, CURLOPT_SSLCERT, storage_path().env('WECHAT_CERTPATH'));
             curl_setopt($ch, CURLOPT_SSLKEYTYPE, 'PEM');
-            curl_setopt($ch, CURLOPT_SSLKEY, env('WECHAT_KEYPATH'));
+            curl_setopt($ch, CURLOPT_SSLKEY, storage_path().env('WECHAT_KEYPATH'));
         }
         //post提交方式
         curl_setopt($ch, CURLOPT_POST, TRUE);

@@ -248,7 +248,7 @@ class WeChatController extends MobileController
         $withdraw = CustomerWithdraw::create($data);
 
         $result = $this->epPay($withdraw);
-        if (!empty($result['payment_no'])){
+        if (empty($result['payment_no'])){
             $withdraw->status = 3;
             $withdraw->save();
 
@@ -269,6 +269,7 @@ class WeChatController extends MobileController
 //        $order->status = 2;
 //        $order->save();
 //        dd($re);
+        dd(storage_path().env('WECHAT_CERTPATH'));
         $this->epPay(1);
 
     }
