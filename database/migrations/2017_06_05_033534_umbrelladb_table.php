@@ -45,7 +45,8 @@ class UmbrelladbTable extends Migration
             $table->string('sn',100)->unique()->comment('账户号');
             $table->integer('customer_id')->comment('customers id');
             $table->decimal('balance_amt', 12, 2)->default("0.00")->comment('余额');
-            $table->decimal('freeze_amt', 12, 2)->default("0.00")->comment('冻结金额');
+            $table->decimal('deposit', 12, 2)->default("0.00")->comment('押金余额');
+            $table->decimal('freeze_deposit', 12, 2)->default("0.00")->comment('冻结押金');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
             $table->timestamps();

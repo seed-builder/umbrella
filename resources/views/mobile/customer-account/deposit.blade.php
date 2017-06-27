@@ -10,7 +10,7 @@
         <div class="content">
             <div class="buttons-tab">
                 <a href="#tab1" class="tab-link button {{$tab=='withdraw'?'active':''}}">押金提现</a>
-                <a href="#tab2" class="tab-link button {{$tab=='deposit'?'active':''}}" >押金充值</a>
+                <a href="#tab2" class="tab-link button {{$tab=='deposit'?'active':''}}">押金充值</a>
             </div>
             <div class="content-block">
                 <div class="tabs">
@@ -24,14 +24,15 @@
                                     <div class="item-media"><i class="iconfont icon-xuehua"></i></div>
                                     <div class="item-inner">
                                         <div class="item-title">押金总额</div>
-                                        <div class="item-after">¥{{$user->account->freeze_amt}}</div>
+                                        <div class="item-after">
+                                            ¥{{$user->account->deposit+$user->account->freeze_deposit}}</div>
                                     </div>
                                 </li>
                                 <li class="item-content">
                                     <div class="item-media"><i class="iconfont icon-qian"></i></div>
                                     <div class="item-inner">
                                         <div class="item-title">可提现押金</div>
-                                        <div class="item-after">¥0.00</div>
+                                        <div class="item-after">¥{{$user->account->deposit}}</div>
                                     </div>
                                 </li>
                             </ul>

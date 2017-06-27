@@ -33,7 +33,7 @@
                         <div class="item-media"><i class="iconfont icon-xuehua"></i></div>
                         <div class="item-inner ajax-link" data-url="/mobile/customer-account/deposit">
                             <div class="item-title">押金</div>
-                            <div class="item-after">¥{{$user->account->freeze_amt}}</div>
+                            <div class="item-after">¥{{$user->account->deposit+$user->account->freeze_deposit}}</div>
                         </div>
                     </li>
                     <li class="item-content item-link">

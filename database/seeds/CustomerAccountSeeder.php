@@ -19,12 +19,13 @@ class CustomerAccountSeeder extends Seeder
         $customer_ids = Customer::all()->pluck('id')->toArray();
 
         $data = [];
-        for ($i=0;$i<100;$i++){
+        foreach ($customer_ids as $customer_id){
             $data[] = [
                 'sn' => $faker->numerify('##############'),
-                'customer_id' => $faker->randomElement($customer_ids),
+                'customer_id' => $customer_id,
                 'balance_amt' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 20, $max = 500),
-                'freeze_amt' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 20, $max = 100),
+                'deposit' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 20, $max = 100),
+                'freeze_deposit' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 20, $max = 100),
                 'creator_id' => $faker->randomElement($user_ids),
                 'modifier_id' => $faker->randomElement($user_ids),
             ];

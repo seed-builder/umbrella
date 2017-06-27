@@ -79,7 +79,8 @@ class CustomerAccountController extends BaseController
             'customer_accounts.id as id',
             'customer_accounts.sn',
             'customer_accounts.balance_amt',
-            'customer_accounts.freeze_amt',
+            'customer_accounts.freeze_deposit',
+            'customer_accounts.deposit',
             'customer_accounts.created_at',
             'customers.nickname'
         );

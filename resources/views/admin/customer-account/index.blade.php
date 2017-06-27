@@ -72,9 +72,9 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">冻结金额</label>
+                                        <label class="col-md-3 control-label">押金余额</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][freeze_amt]">
+                                            <input type="text" class="form-control" name="filter[][deposit]">
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                 <th>账户号</th>
                                 <th>微信昵称</th>
                                 <th>余额</th>
-                                <th>冻结金额</th>
+                                <th>押金余额</th>
                                 <th>创建时间</th>
                             </tr>
                             </thead>

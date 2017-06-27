@@ -73,7 +73,7 @@ class CustomerPayment extends BaseModel
             if ($model->type == 1)
                 $account->balance_amt = $account->balance_amt + $model->amt;
             else if ($model->type == 2)
-                $account->freeze_amt = $account->freeze_amt + $model->amt;
+                $account->deposit = $account->deposit + $model->amt;
 
             $account->save();
 
