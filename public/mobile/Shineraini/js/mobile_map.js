@@ -15,6 +15,7 @@ var MapTool = function () {
                 panControl: false,
                 mapTypeControl: false
             }
+
             map = new qq.maps.Map(document.getElementById("map"), options);
 
             this.h5Location();
@@ -85,6 +86,10 @@ var MapTool = function () {
             map.controls[qq.maps.ControlPosition.BOTTOM_CENTER].push(QRButton);
         },
         scanQR:function () {
+            if (!enough_deposit){
+                $.router.loadPage("/mobile/customer-account/deposit?index=deposit");
+                return
+            }
             wx.scanQRCode({
                 desc: 'scanQRCode desc',
                 needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
