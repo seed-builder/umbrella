@@ -5,12 +5,12 @@ $(document).on("pageInit", function(e, pageId, $page) {
         seajs.use('mobile/customer.js', function (app) {
             app.index($);
         });
-    }else if(pageId == 'customer-account-index'){
+    }else if(pageId == 'customer-account-index'){ //钱包
         seajs.use('mobile/customer_account.js', function (app) {
             app.index($);
         });
-    }else if(pageId == 'customer-account-withdraw'){
-        seajs.use('mobile/customer_account_withdraw.js', function (app) {
+    }else if(pageId == 'customer-account-deposit'){ //押金
+        seajs.use('mobile/customer_account_deposit.js', function (app) {
             app.index($);
         });
     }else if(pageId == 'customer-account-record-index'){ //资金流水列表

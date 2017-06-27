@@ -20,7 +20,7 @@ $config = $helper->getSignPackage();
     <link rel="stylesheet" href="/mobile/Shineraini/css/icon.css">
     <link rel="stylesheet" href="/mobile/layer_mobile/need/layer.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//at.alicdn.com/t/font_f1mtd2s190um1jor.css" rel="stylesheet">
+    <link href="//at.alicdn.com/t/font_r8jjis3vhhhncdi.css" rel="stylesheet">
 
     @yield('css')
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>

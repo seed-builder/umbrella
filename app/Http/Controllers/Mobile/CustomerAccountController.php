@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Http\Controllers\MobileController;
 use App\Models\Customer;
 use App\Models\CustomerAccount;
+use App\Models\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -22,9 +23,12 @@ class CustomerAccountController extends MobileController
         return view('mobile.customer-account.index',compact('user'));
     }
 
-    public function withdraw(){
+    public function deposit(Request $request){
         $user = Auth::guard('mobile')->user();
+        $deposit = Price::query()->where('status',1)->first();
 
-        return view('mobile.customer-account.withdraw',compact('user'));
+        $tab = $request->input('index','withdraw');
+        return view('mobile.customer-account.deposit',compact('user','deposit','tab'));
     }
+
 }

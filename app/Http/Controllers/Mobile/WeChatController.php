@@ -87,7 +87,7 @@ class WeChatController extends MobileController
         }
 
         $order = CustomerPayment::create([
-            'sn' => 'O' . date('YmdHis') . $user->id . random_int(1000, 9999),
+            'sn' => $this->newEntity()->snFlag($data['type']) . date('YmdHis') . $user->id . random_int(1000, 9999),
             'customer_id' => $user->id,
             'payment_channel' => 1,
             'amt' => $data['amt'],

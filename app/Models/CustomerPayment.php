@@ -107,5 +107,17 @@ class CustomerPayment extends BaseModel
         }
     }
 
+    public function snFlag($type)
+    {
+        switch ($type) {
+            case 1: {
+                return 'O';
+            }
+            case 2: {
+                return 'Y';
+            }
+        }
+    }
+
 
 }
