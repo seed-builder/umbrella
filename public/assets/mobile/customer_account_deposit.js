@@ -3,12 +3,17 @@
  */
 define(function (require, exports, module) {
     exports.index = function ($) {
+        var jsApiParams;
+
         $(".form-submit").on('click', function () {
             App.ajaxForm('#form-id')
         })
 
         $(".deposit-form-submit").on('click', function () {
-            App.ajaxForm('#deposit-form-id')
+            App.ajaxForm('#deposit-form-id',function (data) {
+                jsApiParams = data;
+                callpay();
+            })
         })
 
         var jsApiCall = function () {
