@@ -43,46 +43,7 @@
                     <div class="portlet-body form">
                         <form class="form-horizontal search-form">
                             <div class="form-body">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">颜色</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][color]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">创建时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][created_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">设备号</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][equipment_sn]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">伞名称</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">网点</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][site_name]">
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">伞编号</label>
@@ -91,6 +52,56 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">出厂设备号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][birth_ep_sn]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">出厂网点</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][birth_site_name]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">出厂网点地址</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][birth_site_address]">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">当前设备号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][current_ep_sn]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">当前网点</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][current_site_name]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">当前网点地址</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][current_site_address]">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">状态</label>
@@ -102,6 +113,15 @@
                                                 <option value="3">借出中</option>
                                                 <option value="4">失效</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">创建时间</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][created_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -141,10 +161,12 @@
                                 <th></th>
                                 <th width="10%">操作</th>
                                 <th>伞编号</th>
-                                <th>雨伞名称</th>
-                                <th>颜色</th>
-                                <th>所属网点</th>
-                                <th>所属设备</th>
+                                <th>出厂网点</th>
+                                <th>出厂设备号</th>
+                                <th>出厂网点地址</th>
+                                <th>当前网点</th>
+                                <th>当前设备号</th>
+                                <th>当前网点地址</th>
                                 <th>状态</th>
                                 <th>创建时间</th>
                             </tr>

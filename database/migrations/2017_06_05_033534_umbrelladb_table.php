@@ -115,6 +115,8 @@ class UmbrelladbTable extends Migration
         Schema::create('umbrellas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sn')->unique()->default('')->comment('伞编号');
+            $table->integer('birth_equipment_id')->nullable()->comment('初始设备号equipments id');
+            $table->integer('birth_site_id')->nullable()->comment('初始网点sites id');
             $table->integer('equipment_id')->nullable()->comment('equipments id');
             $table->integer('site_id')->nullable()->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）');
@@ -290,7 +292,45 @@ LEFT JOIN sites AS return_site ON return_site.id = customer_hires.return_site_id
 
 EOD;
 
+        /**
+         * 伞视图
+         */
+        $view_umbrellas = <<<EOD
+CREATE 
+VIEW `view_umbrella`AS 
+SELECT 
+umbrellas.id as id,
+umbrellas.sn,
+umbrellas.equipment_id,
+umbrellas.site_id,
+umbrellas.birth_equipment_id,
+umbrellas.birth_site_id,
+umbrellas.status,
+umbrellas.name,
+umbrellas.color,
+umbrellas.logo,
+umbrellas.created_at,
+
+current_ep.sn AS current_ep_sn,
+current_site.name AS current_site_name,
+current_site.address AS current_site_address,
+
+birth_ep.sn AS birth_ep_sn,
+birth_site.name AS birth_site_name,
+birth_site.address AS birth_site_address
+
+FROM umbrellas
+
+LEFT JOIN equipments AS current_ep ON current_ep.id = umbrellas.equipment_id
+LEFT JOIN equipments AS birth_ep ON birth_ep.id = umbrellas.birth_equipment_id
+LEFT JOIN sites AS current_site ON current_site.id = umbrellas.site_id
+LEFT JOIN sites AS birth_site ON birth_site.id = umbrellas.birth_site_id 
+
+
+EOD;
+
         DB::statement($view_customer_hires);
+        DB::statement($view_umbrellas);
     }
 
     /**
@@ -314,6 +354,7 @@ EOD;
 	    Schema::dropIfExists('sites');
 	    Schema::dropIfExists('sys_logs');
         DB::statement('drop view view_customer_hire');
+        DB::statement('drop view view_umbrella');
 
     }
 

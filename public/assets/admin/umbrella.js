@@ -38,18 +38,21 @@ define(function (require, exports, module) {
                         <li>
                             <a class="csx-delete" data-url="/admin/umbrella/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
                         </li>
-                        <li>
-                            <a href="/admin/umbrella/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>
-                        </li>
+
                     </ul>
                 </div>`;
+                //<li><a href="/admin/umbrella/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a></li>
                     }
                 },
                 {'data': 'sn'},
-                {'data': 'name'},
-                {'data': 'color'},
-                {'data': 'site_name'},
-                {'data': 'equipment_sn'},
+                {'data': 'birth_site_name'},
+                {'data': 'birth_ep_sn'},
+                {'data': 'birth_site_address'},
+
+                {'data': 'current_site_name'},
+                {'data': 'current_ep_sn'},
+                {'data': 'current_site_address'},
+
                 {
                     'data': 'status',
                     render: function (data, type, full) {

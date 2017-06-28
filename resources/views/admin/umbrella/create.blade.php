@@ -7,7 +7,7 @@
     <div class="page-content">
         <div class="page-head">
             <div class="page-title">
-                <h1>top module
+                <h1>共享伞管理
                     <small>共享伞新增</small>
                 </h1>
             </div>
@@ -38,9 +38,13 @@
                             <div class="form-body">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">颜色</label>
+                                        <label class="col-md-3 control-label">伞编号区间</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="color">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="start_index" />
+                                                <span class="input-group-addon">---</span>
+                                                <input type="text" class="form-control" name="end_index"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -49,33 +53,15 @@
                                         <label class="col-md-3 control-label">初始设备</label>
                                         <div class="col-md-9">
                                             <select class="form-control" name="equipment_id">
+                                                <option value="">不分配至设备</option>
                                                 @foreach($equipments as $equipment)
-                                                    <option value="{{$equipment->id}}">{{$equipment->sn}}</option>
+                                                    <option value="{{$equipment->id}}">{{$equipment->site->name.'---'.$equipment->sn}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">伞名称</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="name" placeholder="不填将自动生成">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">初始网点</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control" name="site_id">
-                                                @foreach($sites as $site)
-                                                    <option value="{{$site->id}}">{{$site->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">状态</label>
@@ -83,7 +69,7 @@
                                             <select class="form-control" name="status">
                                                 <option value="1">未发放</option>
                                                 <option value="2">待借中</option>
-                                                <option value="3">借出中</option>
+                                                {{--<option value="3">借出中</option>--}}
                                                 <option value="4">失效</option>
                                             </select>
                                         </div>

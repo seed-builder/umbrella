@@ -7,7 +7,7 @@
     <div class="page-content">
         <div class="page-head">
             <div class="page-title">
-                <h1>top module
+                <h1>共享伞管理
                     <small>共享伞编辑</small>
                 </h1>
             </div>
@@ -44,24 +44,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">伞名称</label>
-                                        <div class="col-md-7">
-                                            <input type="text" class="form-control" name="name"
-                                                   value="{{$entity->name}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">颜色</label>
-                                        <div class="col-md-7">
-                                            <input type="text" class="form-control" name="color"
-                                                   value="{{$entity->color}}">
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--<div class="col-md-12">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="col-md-3 control-label">伞名称</label>--}}
+                                        {{--<div class="col-md-7">--}}
+                                            {{--<input type="text" class="form-control" name="name"--}}
+                                                   {{--value="{{$entity->name}}">--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-12">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<label class="col-md-3 control-label">颜色</label>--}}
+                                        {{--<div class="col-md-7">--}}
+                                            {{--<input type="text" class="form-control" name="color"--}}
+                                                   {{--value="{{$entity->color}}">--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">当前所属设备</label>
