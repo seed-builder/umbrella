@@ -23,22 +23,7 @@ define(function (require, exports, module) {
                         return '';
                     }
                 },
-                {
-                    'data': 'id',
-                    render: function (data, type, full) {
-                        return `<div class="btn-group">
-                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog"></i>
-                        <i class="fa fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a class="csx-delete" data-url="/admin/customer-hire/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
-                        </li>
-                    </ul>
-                </div>`;
-                    }
-                },
+
                 {'data': 'umbrella_sn'},
                 {'data': 'customer_name'},
                 {'data': 'hire_site_name'},

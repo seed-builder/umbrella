@@ -196,7 +196,6 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th width="10%">操作</th>
                                 <th>共享伞编号</th>
                                 <th>用户</th>
 
