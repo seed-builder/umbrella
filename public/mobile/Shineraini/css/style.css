@@ -2,6 +2,30 @@
     background: #4cd9d7 !important;
 }
 
+.panel {
+    box-shadow: -3px 3px 3px rgba(0,0,0,.2) !important;
+    background: rgb(255, 255, 255) !important;
+}
+.panel .item-content{
+    background: rgb(255, 255, 255) !important;
+}
+
+.panel i{
+    width: 16.27px !important;
+}
+.panel-header{
+    padding-left: 30%;
+    padding-right: 30%;
+    text-align: center;
+}
+
+.panel-header-img img{
+    width: 80%;
+}
+.panel-header-text{
+
+    text-align: center;
+}
 /*
  * grid 
  */
@@ -49,10 +73,10 @@
  */
 #QR{
     margin-bottom: 2rem;
-    width: 8rem;
+    /*width: 8rem;*/
     /*width: 10rem;*/
     /*line-height: 2rem;*/
-    border-radius: 50px;
+    border-radius: 1.1rem;
     background: black;
 }
 
