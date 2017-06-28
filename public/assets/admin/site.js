@@ -12,7 +12,7 @@ define(function (require, exports, module) {
             processing: true,
             serverSide: true,
             searching: false,
-            select: false,
+            select: true,
             paging: true,
             rowId: "id",
             ajax: '/admin/site/pagination',
@@ -38,9 +38,6 @@ define(function (require, exports, module) {
                         <li>
                             <a class="csx-delete" data-url="/admin/site/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
                         </li>
-                        <li>
-                            <a href="/admin/site/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>
-                        </li>
                     </ul>
                 </div>`;
                     }
@@ -53,12 +50,14 @@ define(function (require, exports, module) {
                 {
                     'data': 'type',
                     render: function (data, type, full) {
-                        if (data==1)
+                        if (data == 1)
                             return '设备网点'
                         else
                             return '还伞网点'
                     }
                 },
+                {'data': 'longitude'},
+                {'data': 'latitude'},
                 {'data': 'created_at'},
 
             ],
@@ -102,6 +101,35 @@ define(function (require, exports, module) {
             });
         })
 
+
+        var map = new AMap.Map("map", {
+            resizeEnable: true
+        });
+
+        table.on('select', rowSelect).on('deselect', rowSelect);
+
+        var markers = [];
+        function rowSelect() {
+            map.remove(markers);
+
+            var row = table.rows('.selected').data();
+            if (row.length<1)
+                return
+
+            if (row){
+                row = row[0]
+                if (row.longitude!=null && row.latitude!=null) {
+                    var marker = new AMap.Marker({
+                        map: map,
+                        position: [row.longitude, row.latitude]
+                    });
+
+                    markers.push(marker);
+                }
+            }
+
+
+        }
 
     }
 

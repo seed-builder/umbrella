@@ -1,6 +1,12 @@
 @extends('admin.layouts.main')
 @section('styles')
     @include('admin.layouts.datatable-css')
+    <style>
+        #map {
+            height: 300px;
+            width: 100%;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -110,6 +116,25 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-search"></i>
+                            <span class="caption-subject font-dark sbold uppercase">网点地图显示</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse"> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="portlet light bordered">
                     <div id="alert-id"></div>
@@ -136,6 +161,8 @@
                                 <th>地址</th>
                                 <th>网点名称</th>
                                 <th>网点类别</th>
+                                <th>经度</th>
+                                <th>纬度</th>
                                 <th>创建时间</th>
 
                             </tr>
@@ -152,6 +179,7 @@
 @endsection
 @section('scripts')
     @include('admin.layouts.datatable-js')
+    <script type="text/javascript" src = 'http://webapi.amap.com/maps?v=1.3&key=3e3dbb3d6dce66cd3b9fd70e234bb050&plugin=AMap.Autocomplete,AMap.Geocoder'></script>
     <script type="text/javascript">
         $(function () {
             seajs.use('admin/site.js', function (app) {

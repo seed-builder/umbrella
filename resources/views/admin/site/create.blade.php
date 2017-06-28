@@ -12,7 +12,7 @@
     <div class="page-content">
         <div class="page-head">
             <div class="page-title">
-                <h1>top module
+                <h1>网点管理
                     <small>网点新增</small>
                 </h1>
             </div>
@@ -117,25 +117,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">区域</label>
+                                        <label class="col-md-3 control-label">关键字搜索</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" id="region">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">地点</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" id="poi">
+                                            <input type="text" class="form-control" id="tipinput">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-actions right">
-                                <button type="button" class="btn green map-search">地图搜索</button>
-                            </div>
-                            <hr>
                             <div id="map"></div>
 
 
@@ -154,31 +142,66 @@
 
 @endsection
 @section('scripts')
-    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
-    <script type='text/javascript' src='/mobile/Shineraini/js/web_map.js' charset='utf-8'></script>
-    <script>
+    <script type="text/javascript" src = 'http://webapi.amap.com/maps?v=1.3&key=3e3dbb3d6dce66cd3b9fd70e234bb050&plugin=AMap.Autocomplete,AMap.Geocoder'></script>
+    <script type="text/javascript">
         $('.form-submit').on('click', function (e) {
             e.preventDefault();
             App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
         });
 
-        var mapTool = new Map();
-        mapTool.key("{{env('QQ_MAP_KEY')}}")
-        mapTool.init();
-        mapTool.mapClick(function (data) {
-            $("#province").val(data.address_component.province);
-            $("#city").val(data.address_component.city);
-            $("#district").val(data.address_component.district);
-            $("#address").val(data.address_component.street_number);
-            $("#latitude").val(data.ad_info.location.lat);
-            $("#longitude").val(data.ad_info.location.lng);
-        })
+        var map = new AMap.Map("map", {
+            resizeEnable: true
+        });
+        var markers = [];
 
-        $(".map-search").on('click',function () {
-            mapTool.searchMap('#region','#poi');
-        })
+        map.on('click', function(e) {
+            var lng = e.lnglat.lng;
+            var lat = e.lnglat.lat;
 
+            map.remove(markers);
+            getAddress([lng,lat]);
+        });
 
+        var auto = new AMap.Autocomplete({
+            input: "tipinput"
+        });
+
+        AMap.event.addListener(auto, "select", function (e) {
+            if (e.poi && e.poi.location) {
+                map.setZoom(15);
+                map.setCenter(e.poi.location);
+            }
+        });
+
+        function getAddress(point) {
+            var geocoder = new AMap.Geocoder({
+                radius: 1000,
+                extensions: "all"
+            });
+            geocoder.getAddress(point, function(status, result) {
+                $("#longitude").val(point[0])
+                $("#latitude").val(point[1])
+                if (status === 'complete' && result.info === 'OK') {
+                    getAddressCallback(result);
+                }
+            });
+
+            var marker = new AMap.Marker({
+                map: map,
+                position: point
+            });
+            markers.push(marker);
+            map.setFitView();
+        }
+        function getAddressCallback(data) {
+            var ad = data.regeocode.addressComponent;
+
+            $("#province").val(ad.province)
+            $("#city").val(ad.city)
+            $("#district").val(ad.district)
+            $("#address").val(ad.street+ad.streetNumber)
+
+        }
     </script>
 
 @endsection
