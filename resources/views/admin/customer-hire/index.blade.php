@@ -9,8 +9,8 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>top module
-                    <small>customer_hires</small>
+                <h1>共享伞管理
+                    <small>租用纪录</small>
                 </h1>
             </div>
             <!-- END PAGE TITLE -->
@@ -23,7 +23,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span id="breadcrumb" class="active">customer_hires</span>
+                <span id="breadcrumb" class="active">租用纪录</span>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
@@ -34,7 +34,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search"></i>
-                            <span class="caption-subject font-dark sbold uppercase">customer_hires搜索</span>
+                            <span class="caption-subject font-dark sbold uppercase">租用纪录搜索</span>
                         </div>
                         <div class="tools">
                             <a href="" class="collapse"> </a>
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">伞编号</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][umbrella_id]">
+                                            <input type="text" class="form-control" name="filter[][umbrella_sn]">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">用户</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][customer_id]">
+                                            <input type="text" class="form-control" name="filter[][customer_name]">
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">借伞设备号</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][hire_equipment_id]">
+                                            <input type="text" class="form-control" name="filter[][hire_equ_sn]">
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">借伞网点</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][hire_site_id]">
+                                            <input type="text" class="form-control" name="filter[][hire_site_name]">
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                         <label class="col-md-3 control-label">还伞设备</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control"
-                                                   name="filter[][return_equipment_id]">
+                                                   name="filter[][return_equ_sn]">
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +144,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">还伞网点</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][return_site_id]">
+                                            <input type="text" class="form-control" name="filter[][return_site_name]">
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-th-list"></i>
-                            <span class="caption-subject bold uppercase font-dark">customer_hires</span>
+                            <span class="caption-subject bold uppercase font-dark">租用纪录</span>
                         </div>
                         <div class="tools">
                             <a href="" class="collapse"> </a>
@@ -199,19 +199,27 @@
                                 <th width="10%">操作</th>
                                 <th>共享伞编号</th>
                                 <th>用户</th>
-                                <th>借伞时间</th>
-                                <th>到期时间</th>
-                                <th>有效期（天）</th>
-                                <th>租借费用</th>
-                                <th>租用时长</th>
-                                <th>借伞设备</th>
+
                                 <th>借伞网点</th>
-                                <th>缴纳的保证金</th>
-                                <th>还伞时间</th>
-                                <th>还伞设备</th>
+                                <th>借伞设备</th>
+                                <th>借伞时间</th>
+
                                 <th>还伞网点</th>
+                                <th>还伞设备</th>
+                                <th>还伞时间</th>
+
+                                <th>押金</th>
+                                <th>有效期（天）</th>
+                                <th>到期时间</th>
+                                <th>租用时长</th>
+                                <th>租借费用</th>
                                 <th>状态</th>
+
                                 <th>创建时间</th>
+                                <th>修改时间</th>
+
+
+
                             </tr>
                             </thead>
                         </table>

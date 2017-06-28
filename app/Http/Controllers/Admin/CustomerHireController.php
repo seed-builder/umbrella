@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ViewCustomerHire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\CustomerHire;
@@ -74,37 +75,7 @@ class CustomerHireController extends BaseController
 
     public function entityQuery()
     {
-        $query = CustomerHire::query();
-        $query->select(
-            'customer_hires.id as id',
-            'customer_hires.customer_id',
-            'customer_hires.umbrella_id',
-            'customer_hires.hire_equipment_id',
-            'customer_hires.hire_site_id',
-            'customer_hires.hire_at',
-            'customer_hires.margin_amt',
-            'customer_hires.return_equipment_id',
-            'customer_hires.return_site_id',
-            'customer_hires.return_at',
-            'customer_hires.expire_day',
-            'customer_hires.expired_at',
-            'customer_hires.hire_day',
-            'customer_hires.hire_amt',
-            'customer_hires.status',
-            'customer_hires.created_at',
-            'customers.nickname',
-            'customers.nickname'
-        );
-
-        $query->leftJoin('customers', function ($join) {
-            $join->on('customers.id', '=', 'customer_accounts.customer_id');
-        });
-
-        $query->leftJoin('equipments as return_equipment', function ($join) {
-            $join->on('return_equipment.id', '=', 'customer_hires.return_equipment_id');
-        });
-
-        return $query;
+        return ViewCustomerHire::query();
     }
 
 }

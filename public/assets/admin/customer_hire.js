@@ -33,53 +33,54 @@ define(function (require, exports, module) {
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="/admin/customer-hire/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
-                        </li>
-                        <li>
                             <a class="csx-delete" data-url="/admin/customer-hire/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
-                        </li>
-                        <li>
-                            <a href="/admin/customer-hire/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>
                         </li>
                     </ul>
                 </div>`;
                     }
                 },
-                {'data': 'created_at'},
-                {'data': 'creator_id'},
-                {'data': 'customer_id'},
-                {'data': 'deleted_at'},
-                {'data': 'expired_at'},
-                {'data': 'expire_day'},
-                {'data': 'hire_amt'},
+                {'data': 'umbrella_sn'},
+                {'data': 'customer_name'},
+                {'data': 'hire_site_name'},
+                {'data': 'hire_equ_sn'},
                 {'data': 'hire_at'},
-                {'data': 'hire_day'},
-                {'data': 'hire_equipment_id'},
-                {'data': 'hire_site_id'},
-                {'data': 'id'},
-                {'data': 'margin_amt'},
-                {'data': 'modifier_id'},
+                {'data': 'return_site_name'},
+                {'data': 'return_equ_sn'},
                 {'data': 'return_at'},
-                {'data': 'return_equipment_id'},
-                {'data': 'return_site_id'},
-                {'data': 'status'},
-                {'data': 'umbrella_id'},
+                {'data': 'deposit_amt'},
+                {'data': 'expire_day'},
+                {'data': 'expired_at'},
+                {'data': 'hire_day'},
+                {'data': 'hire_amt'},
+                {
+                    'data': 'status',
+                    render: function (data, type, full) {
+                        if(data==1)
+                            return '租借中'
+                        else if(data==2)
+                            return '已完成'
+                        else if(data==3)
+                            return '逾期未归还'
+                        else if(data==4)
+                            return '待支付租金'
+                    }
+                },
+                {'data': 'created_at'},
                 {'data': 'updated_at'},
-
             ],
             columnDefs: [
                 {
-                    'targets': [0],
+                    'targets': [14,15],
                     "visible": false
                 }
             ],
 
             buttons: [
-                {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/customer-hire/create"
-                }
-                },
+                // {
+                //     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
+                //     window.location.href = "/admin/customer-hire/create"
+                // }
+                // },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}

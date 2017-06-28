@@ -8,7 +8,7 @@ use App\Models\BaseModel;
 class ViewUmbrella extends Model
 {
 	//
-	protected $table = 'view_umbrella';
+	protected $table = 'view_umbrellas';
 	protected $guarded = ['id'];
 
     public $validateRules = [

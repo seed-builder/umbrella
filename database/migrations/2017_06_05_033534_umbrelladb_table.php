@@ -258,7 +258,7 @@ class UmbrelladbTable extends Migration
          */
         $view_customer_hires = <<<EOD
 CREATE 
-VIEW `view_customer_hire`AS 
+VIEW `view_customer_hires`AS 
 SELECT 
 customer_hires.id,
 customer_hires.customer_id,
@@ -280,14 +280,17 @@ customer_hires.updated_at,
 hire_equ.sn AS hire_equ_sn,
 hire_site.name AS hire_site_name,
 return_equ.sn AS return_equ_sn,
-return_site.name AS return_site_name
+return_site.name AS return_site_name,
+customers.nickname AS customer_name,
+umbrellas.sn AS umbrella_sn
 
 FROM customer_hires
 LEFT JOIN customers ON customers.id = customer_hires.customer_id
 LEFT JOIN equipments AS hire_equ ON hire_equ.id = customer_hires.hire_equipment_id
 LEFT JOIN sites AS hire_site ON hire_site.id = customer_hires.hire_site_id
 LEFT JOIN equipments AS return_equ ON return_equ.id = customer_hires.return_equipment_id
-LEFT JOIN sites AS return_site ON return_site.id = customer_hires.return_site_id ;
+LEFT JOIN sites AS return_site ON return_site.id = customer_hires.return_site_id 
+LEFT JOIN umbrellas ON umbrellas.id = customer_hires.umbrella_id 
 
 
 EOD;
@@ -297,7 +300,7 @@ EOD;
          */
         $view_umbrellas = <<<EOD
 CREATE 
-VIEW `view_umbrella`AS 
+VIEW `view_umbrellas`AS 
 SELECT 
 umbrellas.id as id,
 umbrellas.sn,
@@ -353,8 +356,8 @@ EOD;
         Schema::dropIfExists('equipment_maintains');
 	    Schema::dropIfExists('sites');
 	    Schema::dropIfExists('sys_logs');
-        DB::statement('drop view view_customer_hire');
-        DB::statement('drop view view_umbrella');
+        DB::statement('drop view view_customer_hires');
+        DB::statement('drop view view_umbrellas');
 
     }
 
