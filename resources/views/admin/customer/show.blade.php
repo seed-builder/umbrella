@@ -80,7 +80,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">头像:</label>
                                             <div class="col-md-9">
-                                                <p class="form-control-static"> <img src="{{$entity->head_img_url}}"> </p>
+                                                <p class="form-control-static" > <img src="{{$entity->head_img_url}}" style="width: 150px"> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -108,13 +108,33 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label class="control-label col-md-3">省份:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{$entity->province}} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">城市:</label>
+                                            <div class="col-md-9">
+                                                <p class="form-control-static"> {{$entity->city}} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label class="control-label col-md-3">地址:</label>
                                             <div class="col-md-9">
                                                 <p class="form-control-static"> {{$entity->address}} </p>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
+                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label col-md-3">创建时间:</label>
@@ -123,7 +143,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                             </div>

@@ -53,6 +53,8 @@ define(function (require, exports, module) {
                     }
                 },
                 {'data': 'mobile'},
+                {'data': 'province'},
+                {'data': 'city'},
                 {'data': 'created_at'},
 
             ],

@@ -181,7 +181,7 @@ abstract class DataTableController extends Controller
 
         $total = $queryBuilder->count();
 
-
+        $queryBuilder->orderBy('created_at','desc');
         if ($conditionCall != null && is_callable($conditionCall)) {
             $conditionCall($queryBuilder);
         }

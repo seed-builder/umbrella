@@ -1,19 +1,20 @@
 <?php
 $user = Auth::user();
-$loginUserName = empty($user->nick_name) ? $loginUser->name: $user->nick_name;
-$tops = \App\Models\Permission::where('pid',0)->orderBy('sort')->get();
+$loginUserName = empty($user->nick_name) ? $loginUser->name : $user->nick_name;
+$tops = \App\Models\Permission::where('pid', 0)->orderBy('sort')->get();
 
-function createLi($user, $m){
-	$curUrl =  url( Route::getCurrentRoute()->uri() );
+function createLi($user, $m)
+{
+    $curUrl = '/' . Route::getCurrentRoute()->uri();
 
-	$html = '';
-	if($m->type == 'm' && $user->can($m->name)){
-		$url = $m->url ? url($m->url) : '';
-		$display = $m->display_name;
-		$icon = $m->icon;
-		$selectedSpan = str_contains($curUrl, $m->url) ? '<span class="selected"></span>':'';
-		if(!empty($m->children) && count($m->children) > 0){
-			$html = <<<EOD
+    $html = '';
+    if ($m->type == 'm' && $user->can($m->name)) {
+        $url = $m->url ? url($m->url) : '';
+        $display = $m->display_name;
+        $icon = $m->icon;
+        $selectedSpan = $curUrl== $m->url ? '<span class="selected"></span>' : '';
+        if (!empty($m->children) && count($m->children) > 0) {
+            $html = <<<EOD
 <li class="nav-item">
    <a href="$url" class="nav-link nav-toggle">
        <i class="$icon"></i>
@@ -23,18 +24,17 @@ function createLi($user, $m){
    </a>
    <ul class="sub-menu">
 EOD;
-			$childrenHtml = [];
-			foreach ($m->children  as $child)
-			{
-				$childrenHtml[] = createLi($user, $child);
-			}
-			$html = $html . implode('', $childrenHtml) . '</ul>';
+            $childrenHtml = [];
+            foreach ($m->children as $child) {
+                $childrenHtml[] = createLi($user, $child);
+            }
+            $html = $html . implode('', $childrenHtml) . '</ul>';
 
-		}else{
-			$html = '<li class="nav-item"><a href="'.$url.'"  class="nav-link"><i class="'.$icon.'"></i><span class="title">'.$display.'</span>'.$selectedSpan.'</a></li>';
-		}
-	}
-	return $html;
+        } else {
+            $html = '<li class="nav-item"><a href="' . $url . '"  class="nav-link"><i class="' . $icon . '"></i><span class="title">' . $display . '</span>' . $selectedSpan . '</a></li>';
+        }
+    }
+    return $html;
 }
 ?>
 
@@ -53,7 +53,7 @@ EOD;
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
             @forelse($tops as $top)
-		        <?php echo createLi($user, $top); ?>
+                <?php echo createLi($user, $top); ?>
             @empty
             @endforelse
         </ul>
@@ -67,21 +67,21 @@ EOD;
      *    根据当前url选中菜单
      *    设置导航栏
      **/
-$(function () {
-    $(".selected").each(function (i, obj) {
-        $(obj).parents("li").each(function (j, li) {
-            $(li).addClass('start active open');
-            $('.arrow',li).addClass('open');
+    $(function () {
+        $(".selected").each(function (i, obj) {
+            $(obj).parents("li").each(function (j, li) {
+                $(li).addClass('start active open');
+                $('.arrow', li).addClass('open');
+            });
+            $(obj).parents("ul.sub-menu").css('display', "block");
+
+            var t = $(obj).parent().parent().parent().parent().find('.title').get(0);
+            var m = $(t).text();
+            var n = $(obj).siblings('.title').text();
+
+            var title = '<h1>' + m + '<small>' + n + '</small></h1>'
+            $('.page-title').html(title);
+            $('#breadcrumb').html(n);
         });
-        $(obj).parents("ul.sub-menu").css('display', "block");
-
-        var t = $(obj).parent().parent().parent().parent().find('.title').get(0);
-        var m = $(t).text();
-        var n = $(obj).siblings('.title').text();
-
-        var title = '<h1>'+m+'<small>'+n+'</small></h1>'
-        $('.page-title').html(title);
-        $('#breadcrumb').html(n);
     });
-});
 </script>

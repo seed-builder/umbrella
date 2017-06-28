@@ -60,6 +60,23 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">省份</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][province]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">城市</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][city]">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">手机号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][mobile]">
@@ -113,6 +130,8 @@
                                 <th>微信昵称</th>
                                 <th>性别</th>
                                 <th>手机号</th>
+                                <th>省份</th>
+                                <th>城市</th>
                                 <th>创建时间</th>
                             </tr>
                             </thead>
