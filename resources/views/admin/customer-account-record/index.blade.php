@@ -135,6 +135,7 @@
                                 <th>金额</th>
                                 <th>类型</th>
                                 <th>状态</th>
+                                <th>备注</th>
                                 <th>创建时间</th>
                             </tr>
                             </thead>

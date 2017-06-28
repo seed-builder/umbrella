@@ -50,6 +50,7 @@ define(function (require, exports, module) {
                             return '取消'
                     }
                 },
+                {'data': 'remark'},
                 {'data': 'created_at'},
 
             ],

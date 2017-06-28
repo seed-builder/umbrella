@@ -23,7 +23,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span id="breadcrumb" class="active">customer_payments</span>
+                <span id="breadcrumb" class="active">用户支付纪录</span>
             </li>
         </ul>
         <!-- END PAGE BREADCRUMB -->
@@ -34,7 +34,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-search"></i>
-                            <span class="caption-subject font-dark sbold uppercase">customer_payments搜索</span>
+                            <span class="caption-subject font-dark sbold uppercase">用户支付纪录搜索</span>
                         </div>
                         <div class="tools">
                             <a href="" class="collapse"> </a>
@@ -115,7 +115,7 @@
                                             <select class="form-control" name="filter[][type]">
                                                 <option value="">请选择</option>
                                                 <option value="1">充值</option>
-                                                <option value="2">提现</option>
+                                                <option value="2">押金支付</option>
                                             </select>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-th-list"></i>
-                            <span class="caption-subject bold uppercase font-dark">customer_payments</span>
+                            <span class="caption-subject bold uppercase font-dark">用户支付纪录</span>
                         </div>
                         <div class="tools">
                             <a href="" class="collapse"> </a>

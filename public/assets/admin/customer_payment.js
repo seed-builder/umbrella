@@ -40,8 +40,10 @@ define(function (require, exports, module) {
                             return '未支付'
                         else if(data==2)
                             return '已支付'
-                        else
+                        else if(data==3)
                             return '支付失败'
+                        else
+                            return '已关闭'
                     }
                 },
                 {
@@ -50,7 +52,7 @@ define(function (require, exports, module) {
                         if (data==1)
                             return '充值'
                         else if(data==2)
-                            return '提现'
+                            return '押金支付'
                     }
                 },
                 {'data': 'created_at'},

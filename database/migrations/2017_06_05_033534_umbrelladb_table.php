@@ -82,7 +82,7 @@ class UmbrelladbTable extends Migration
             $table->integer('payment_channel')->default(1)->comment('支付渠道 1-微信支付 2-支付宝');
             $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
             $table->longText('remark')->comment('备注');
-			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败）');
+			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败 4-已关闭）');
 			$table->integer('type')->default(0)->comment('类型(1-账户充值, 2-押金支付');
 			$table->integer('reference_id')->nullable()->comment('关联表id');
 			$table->string('reference_type')->nullable()->comment('关联表类型');

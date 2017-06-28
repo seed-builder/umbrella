@@ -27,6 +27,7 @@ define(function (require, exports, module) {
                 {'data': 'nickname',},
                 {'data': 'balance_amt'},
                 {'data': 'deposit'},
+                {'data': 'freeze_deposit'},
                 {'data': 'created_at'},
 
             ],
