@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 	    $this->call(Umbrella::class);
 	    $this->call(CustomerHireSeeder::class);
 	    $this->call(PriceSeeder::class);
+	    $this->call(EquipmentLogSeeder::class);
 
 	    $this->call(PermissionSeeder::class);
 	    $this->call(RoleSeeder::class);
