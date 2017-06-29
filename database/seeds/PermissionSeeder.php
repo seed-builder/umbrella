@@ -15,6 +15,8 @@ class PermissionSeeder extends Seeder
     {
         $this->customers();
         $this->umbrella();
+        $this->price();
+
         $this->site();
         $this->equipment();
         $this->permission();
@@ -265,5 +267,21 @@ class PermissionSeeder extends Seeder
             $model->fill($d);
             $model->save();
         }
+    }
+
+    /*
+     * 押金规则
+     */
+    public function price(){
+        $rs = \App\Models\Permission::create([
+            'pid' => 0,
+            'icon' => 'fa fa-circle-o',
+            'name' => 'price',
+            'display_name' => '押金规则管理',
+            'description' => '押金规则管理',
+            'type' => 'm',
+            'url' => '/admin/price',
+        ]);
+
     }
 }

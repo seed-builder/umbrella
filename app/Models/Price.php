@@ -35,10 +35,22 @@ class Price extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+        'name' => 'required',
+        'deposit_cash' => 'required|numeric',
+        'hire_day_cash' => 'required|numeric',
+        'hire_free_days' => 'required|numeric',
+        'hire_expire_days' => 'required|numeric',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+        'name.required' => "押金规则名称不能为空",
+        'deposit_cash.required' => "押金金额不能为空",
+        'deposit_cash.numeric' => "押金金额必须为数值",
+        'hire_day_cash.required' => "日租金不能为空",
+        'hire_day_cash.numeric' => "日租金必须为数值",
+        'hire_free_days.required' => "租借免费天数不能为空",
+        'hire_free_days.numeric' => "租借免费天数必须为数值",
+        'hire_expire_days.required' => "租借免费天数不能为空",
+        'hire_expire_days.numeric' => "租借免费天数必须为数值",
     ];
 }
