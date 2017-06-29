@@ -36,4 +36,12 @@ class EquipmentMaintain extends BaseModel
     public $validateMessages = [
         'id.required' => "id不能为空",
     ];
+
+    public function equipment(){
+        return $this->hasOne(Equipment::class,'id','equipment_id');
+    }
+
+    public function site(){
+        return $this->hasOne(Site::class,'id','site_id');
+    }
 }
