@@ -149,7 +149,7 @@ abstract class MobileController extends Controller
 
         $result = [
             'draw' => $draw,
-            'data' => $entities
+            'data' => $entities,
         ];
         return response()->json($result);
     }

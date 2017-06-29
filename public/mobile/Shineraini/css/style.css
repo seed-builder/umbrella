@@ -135,3 +135,30 @@
 .amt-out {
     color: red;
 }
+
+/**
+ * map infoWindow
+ */
+.amap-ui-smp-ifwn-content-body{
+    width: 11rem;
+    padding: 0.6rem !important;
+    border-radius: 1rem !important;
+    font-size: 13px;
+    font-family: 'YouYuan';
+    -webkit-box-shadow: 3px 3px 3px rgba(0,0,0,.2) !important;
+}
+
+.have-count{
+    font-weight: bold;
+    color: #fd5858;
+}
+.info-title{
+    font-weight: bold;
+}
+.repay-count{
+    font-weight: bold;
+    color: green;
+}
+.amap-ui-infowindow-close{
+    display: none;
+}

@@ -26,12 +26,13 @@ use App\Models\BaseModel;
  * @SWG\Property(name="province", type="string", description="省份")
  * @SWG\Property(name="type", type="integer", description="网点类别 1-设备网点 2-还伞网点")
  * @SWG\Property(name="updated_at", type="string", description="")
-  */
+ */
 class Site extends BaseModel
 {
-	//
-	protected $table = 'sites';
-	protected $guarded = ['id'];
+    //
+    protected $table = 'sites';
+    protected $guarded = ['id'];
+    protected $appends = ['umbrella_hava', 'umbrella_capacity', 'umbrella_repay'];
 
     public $validateRules = [
         'name' => 'required',
@@ -49,17 +50,38 @@ class Site extends BaseModel
         'address.required' => "详细地址不能为空",
     ];
 
-    public function type(){
-        switch ($this->type){
-            case 1:{
+    public function type()
+    {
+        switch ($this->type) {
+            case 1: {
                 return '设备网点';
             }
-            case 2:{
+            case 2: {
                 return '还伞网点';
             }
             default : {
                 return '设备网点';
             }
         }
+    }
+
+    public function equipments()
+    {
+        return $this->hasMany(Equipment::class, 'site_id', 'id');
+    }
+
+    public function getUmbrellaHavaAttribute()
+    {
+        return $this->equipments()->sum('have');
+    }
+
+    public function getUmbrellaCapacityAttribute()
+    {
+        return $this->equipments()->sum('capacity');
+    }
+
+    public function getUmbrellaRepayAttribute()
+    {
+        return $this->getUmbrellaCapacityAttribute() - $this->getUmbrellaHavaAttribute();
     }
 }

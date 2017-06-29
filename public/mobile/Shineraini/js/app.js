@@ -63,19 +63,11 @@ var App = function () {
                 url: url,
                 dataType: "json",
                 success: function (res) {
-                    if (res.error) {
-
-                        if (error_callback !== undefined) {
-                            error_callback();
-                        }
-                    }
-
-                    if (res.success) {
+                    if (res.data) {
                         if (success_callback !== undefined) {
                             success_callback(res.data);
                         }
                     }
-
                 },
 
                 error: function (jqXHR, textStatus, errorThrown) {
