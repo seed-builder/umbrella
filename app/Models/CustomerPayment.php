@@ -57,7 +57,7 @@ class CustomerPayment extends BaseModel
 
             if ($model->status != 1)
                 return ;
-            
+
             $customer = Customer::find($model->customer_id);
             $account = $customer->account;
 
