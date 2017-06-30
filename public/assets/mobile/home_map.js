@@ -88,6 +88,7 @@ define(function (require, exports, module) {
             controlUI.innerHTML = '<div class="map-btn" id="location"><img src="/images/icon/icon_location.png"></div>';
 
             controlUI.onclick = function () {
+                loactionMarker.setMap(null);
                 wechatLocation();
             }
             createControl(controlUI);
@@ -98,7 +99,7 @@ define(function (require, exports, module) {
          */
         var loactionMarker ;
         var wechatLocation = function () {
-            loactionMarker.setMap(null);
+            // loactionMarker.setMap(null);
             wx.getLocation({
                 type: 'gcj02',
                 success: function (res) {
