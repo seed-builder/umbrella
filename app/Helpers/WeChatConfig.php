@@ -72,11 +72,11 @@ class WeChatConfig
         return $ticket;
     }
 
-    public function getAccessToken($refreshToken = false)
+    public function getAccessToken()
     {
         $access_token = Cache::get('wxAccessToken');
 
-        if (empty($access_token)||$refreshToken){
+        if (empty($access_token)){
             $url = "https://api.weixin.qq.com/cgi-bin/token";
             $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]); // (修复证书为空SSL报错问题)
             $response = $client->request('GET', $url, [
