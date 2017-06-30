@@ -7,7 +7,7 @@
     <div class="page page-current" id="home-map">
         <div id="map"></div>
 
-        <div class="panel panel-left panel-cover" id='my-panel'>
+        <div class="panel panel-right panel-cover" id='my-panel'>
             <div class="content-block">
                 <div class="panel-header">
                     <div class="panel-header-img">

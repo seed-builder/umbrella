@@ -7,7 +7,7 @@ define(function (require, exports, module) {
         var map, sites;
 
         map = new AMap.Map('map', {
-            zoom: 10,
+            zoom: 12,
             resizeEnable: true
         });
 
@@ -96,18 +96,21 @@ define(function (require, exports, module) {
         /**
          * 微信jssdk定位
          */
+        var loactionMarker ;
         var wechatLocation = function () {
+            loactionMarker.setMap(null);
             wx.getLocation({
                 type: 'gcj02',
                 success: function (res) {
                     var latitude = res.latitude;
                     var longitude = res.longitude;
 
-                    map.setZoomAndCenter(14, [longitude, latitude]);
-                    var marker = new AMap.Marker({
-                        map: map,
+                    map.setZoomAndCenter(12, [longitude, latitude]);
+
+                    loactionMarker = new AMap.Marker({
                         position: [longitude, latitude]
                     });
+                    loactionMarker.setMap(map)
                 },
                 cancel: function (res) {
                     layer.open({
