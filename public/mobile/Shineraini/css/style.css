@@ -162,3 +162,6 @@
 .amap-ui-infowindow-close{
     display: none;
 }
+.amap-icon img{
+    width: 30px;
+}

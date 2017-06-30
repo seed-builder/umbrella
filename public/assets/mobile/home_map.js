@@ -146,7 +146,8 @@ define(function (require, exports, module) {
             }
 
             var marker = new AMap.Marker({
-                icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                // icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                icon: "/images/icon/icon_site.png",
                 position: point
             });
             marker.setMap(map);
