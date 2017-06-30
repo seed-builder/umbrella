@@ -207,6 +207,7 @@ define(function (require, exports, module) {
 
             map.on('click', function(e) {
                 $(".amap-ui-infowindow-close").trigger('click');
+                $.closePanel("#my-panel");
             });
 
         }
