@@ -89,6 +89,11 @@ class WeChatConfig
 
 
             $token = json_decode($response->getBody());
+            if (empty($token->access_token)){
+                $utl = new Utl();
+                $utl->addLog(json_encode($token),'获取token',[]);
+            }
+
 
             $access_token = $token->access_token;
 
