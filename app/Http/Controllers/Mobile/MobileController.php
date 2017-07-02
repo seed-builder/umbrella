@@ -166,6 +166,8 @@ abstract class MobileController extends Controller
 
         if ($validator->fails()) {
             $fieldErrors = implode('<br/>', $validator->errors()->all());
+        }else{
+            $fieldErrors = '';
         }
 
         return $fieldErrors;

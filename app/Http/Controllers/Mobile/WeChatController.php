@@ -240,6 +240,9 @@ class WeChatController extends MobileController
         ];
 
         $fieldErrors = $this->validateFields($data, [], new CustomerWithdraw());
+        if ($user->account->deposit<$data['amt']){
+            $fieldErrors.='您当前可提现押金只有'.$user->account->deposit.'元,不能超过哦！';
+        }
 
         if (!empty($fieldErrors)) {
             return $this->fail_result($fieldErrors);
@@ -261,6 +264,7 @@ class WeChatController extends MobileController
 
         return $this->success_result('已提交提现申请，系统会尽快为您处理');
     }
+
 
     public function test()
     {

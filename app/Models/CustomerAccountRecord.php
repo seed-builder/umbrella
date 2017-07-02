@@ -38,4 +38,27 @@ class CustomerAccountRecord extends BaseModel
     public $validateMessages = [
         'id.required' => "id不能为空",
     ];
+
+    public function type(){
+        switch ($this->type) {
+            case 1: {
+                return '账户充值';
+            }
+            case 2: {
+                return '押金充值';
+            }
+            case 3: {
+                return '押金支出';
+            }
+            case 4: {
+                return '押金退回';
+            }
+            case 5: {
+                return '伞费支出';
+            }
+            case 6: {
+                return '账户提现';
+            }
+        }
+    }
 }
