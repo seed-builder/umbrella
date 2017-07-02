@@ -1741,6 +1741,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -1776,7 +1782,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loading: false,
             header: function header(item) {},
             nodata: false,
-            base_ajax_url: ''
+            base_ajax_url: '',
+            itemsnull: function itemsnull(items) {
+                return items.length == 0;
+            }
         };
     },
 
@@ -1939,6 +1948,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -1968,7 +1983,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loading: false,
             header: function header(item) {},
             nodata: false,
-            base_ajax_url: ''
+            base_ajax_url: '',
+            itemsnull: function itemsnull(items) {
+                return items.length == 0;
+            }
         };
     },
 
@@ -32230,7 +32248,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return (_vm.itemsnull(_vm.items)) ? _c('div', {
     staticClass: "pull-to-refresh-content",
     attrs: {
       "id": _vm.options.refreshId,
@@ -32272,7 +32290,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "infinite-scroll-preloader"
   }, [_c('div', {
     staticClass: "preloader"
-  })]) : _vm._e()])])
+  })]) : _vm._e()])]) : _c('div', {
+    staticClass: "content null-data"
+  }, [_c('svg', {
+    staticClass: "icon",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_c('use', {
+    attrs: {
+      "xlink:href": "#icon-zanwuneirong-"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "content-text"
+  }, [_vm._v("暂无数据")])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "pull-to-refresh-layer"
@@ -32324,7 +32355,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return (_vm.itemsnull(_vm.items)) ? _c('div', {
     staticClass: "pull-to-refresh-content",
     attrs: {
       "id": _vm.options.refreshId,
@@ -32378,7 +32409,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "infinite-scroll-preloader"
   }, [_c('div', {
     staticClass: "preloader"
-  })]) : _vm._e()])])
+  })]) : _vm._e()])]) : _c('div', {
+    staticClass: "content null-data"
+  }, [_c('svg', {
+    staticClass: "icon",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_c('use', {
+    attrs: {
+      "xlink:href": "#icon-zanwuneirong-"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "content-text"
+  }, [_vm._v("暂无数据")])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "pull-to-refresh-layer"

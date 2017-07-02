@@ -26,6 +26,14 @@
 
     text-align: center;
 }
+
+.null-data{
+    padding-top: 2rem;
+    text-align: center !important;
+}
+.content-text{
+    width: 100%;
+}
 /*
  * grid 
  */
