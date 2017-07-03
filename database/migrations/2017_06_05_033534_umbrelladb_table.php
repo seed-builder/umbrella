@@ -114,7 +114,7 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('umbrellas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sn')->unique()->default('')->comment('伞编号');
+            $table->string('sn')->unique()->comment('伞编号');
             $table->integer('birth_equipment_id')->nullable()->comment('初始设备号equipments id');
             $table->integer('birth_site_id')->nullable()->comment('初始网点sites id');
             $table->integer('equipment_id')->nullable()->comment('equipments id');
@@ -165,11 +165,11 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('equipments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sn')->unique()->comment('设备编号');
+            $table->string('sn')->unique()->comment('设备编号（E/M + 邮编 + 序列号(4位数字，不足补0)）');
             $table->integer('site_id')->comment('sites id');
             $table->integer('capacity')->default(50)->comment('容量（伞数量）');
             $table->integer('have')->default(0)->comment('当前还有数（伞数量）');
-            $table->integer('type')->default(1)->comment('设备类型 1-伞机设备 2-手持设备');
+            $table->integer('type')->default(1)->comment('设备类型 1-伞机设备(E) 2-手持设备(M)');
             $table->string('ip')->nullable()->comment('ip');
             $table->integer('status')->default(0)->comment('状态（1-未启用, 2-启用, 3-系统故障）');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
@@ -220,7 +220,7 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('sites', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique()->default('')->comment('网点名');
+            $table->string('name')->unique()->comment('网点名');
             $table->string('province')->default('')->comment('省份');
             $table->string('city')->default('')->comment('城市');
             $table->string('district')->default('')->comment('区域');
