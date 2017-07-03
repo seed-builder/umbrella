@@ -40,6 +40,7 @@ class Site extends BaseModel
         'city' => 'required',
         'district' => 'required',
         'address' => 'required',
+        'code' => 'required',
     ];
 
     public $validateMessages = [
@@ -48,6 +49,7 @@ class Site extends BaseModel
         'city.required' => "城市不能为空",
         'district.required' => "区域不能为空",
         'address.required' => "详细地址不能为空",
+        'code.required' => "编码不能为空",
     ];
 
     public function type()

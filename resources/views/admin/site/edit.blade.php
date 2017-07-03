@@ -93,6 +93,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">区域编号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="code" id="code" value="{{$entity->code}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="map_selected" style="display: none;">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -202,6 +210,7 @@
             $("#city").val(ad.city)
             $("#district").val(ad.district)
             $("#address").val(ad.street+ad.streetNumber)
+            $("#code").val(ad.adcode)
 
         }
     </script>

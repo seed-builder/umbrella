@@ -227,6 +227,7 @@ class UmbrelladbTable extends Migration
             $table->string('address')->default('')->comment('详细地址');
             $table->string('longitude')->default('')->comment('经度');
             $table->string('latitude')->default('')->comment('纬度');
+            $table->string('code')->default('')->comment('邮编');
             $table->integer('type')->default(1)->comment('网点类别 1-设备网点 2-还伞网点');
 
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
