@@ -43,6 +43,10 @@ $config = $helper->getSignPackage();
 <script type='text/javascript' src='/mobile/layer_mobile/layer.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/Shineraini/js/page.js' charset='utf-8'></script>
 <script>
+    layer.open({
+        content: '曾华洋是只猪！'
+        , btn: '是的！他还是智障！'
+    });
     $(document).on('click','.link',function () {
         var url = $(this).data('url')
         if (url!=null){
