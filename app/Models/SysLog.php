@@ -22,7 +22,7 @@ use App\Models\BaseModel;
  * @SWG\Property(name="module", type="string", description="模块名 （表名|请求接口名）")
  * @SWG\Property(name="updated_at", type="string", description="")
   */
-class SysLog extends BaseModel
+class SysLog extends Model
 {
 	//
 	protected $table = 'sys_logs';
