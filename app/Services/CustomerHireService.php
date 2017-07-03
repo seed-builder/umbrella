@@ -9,9 +9,11 @@
 namespace App\Services;
 
 
+use App\Models\CustomerAccount;
 use App\Models\CustomerAccountRecord;
 use App\Models\CustomerHire;
 use App\Models\SysLog;
+use App\Models\Umbrella;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 
@@ -37,6 +39,18 @@ class CustomerHireService
                 ->update([
                     'status' => 3
                 ]);
+
+            foreach ($hires as $hire){
+                //账户冻结金额中扣除对应押金
+                $account = CustomerAccount::query()->where('customer_id',$hire->customer_id)->first();
+                $account->freeze_deposit = $account->freeze_deposit - $hire->deposit_amt;
+                $account->save();
+
+                //伞变更为未归还状态
+                $umbrella = Umbrella::find($hire->umbrella_id);
+                $umbrella->status = 4;
+                $umbrella->save();
+            }
 
             DB::commit();
 
