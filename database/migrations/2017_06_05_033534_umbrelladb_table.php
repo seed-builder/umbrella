@@ -220,8 +220,7 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('sites', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique()->default('')->comment('网点名');
-            $table->string('sn')->unique()->default('')->comment('网点编码（S+邮编+序列号（4位数字，不足前面补0））');
+            $table->string('name')->unique()->comment('网点名');
             $table->string('province')->default('')->comment('省份');
             $table->string('city')->default('')->comment('城市');
             $table->string('district')->default('')->comment('区域');
