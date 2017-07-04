@@ -98,7 +98,9 @@ class Utl
         if (is_array($rs)){
             if (!empty($rs['errcode']) || !empty($rs['err_code'])) {
                 $log['status'] = 2;
-            }else if (!empty($rs->errcode) || !empty($rs->err_code)) {
+            }
+        }else{
+            if (!empty($rs->errcode) || !empty($rs->err_code)) {
                 $log['status'] = 2;
             }
         }
