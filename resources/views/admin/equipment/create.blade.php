@@ -38,6 +38,14 @@
                             <div class="form-body">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">设备号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="sn">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">伞容量</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="capacity">
