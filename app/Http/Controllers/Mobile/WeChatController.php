@@ -15,7 +15,6 @@ use App\Http\Controllers\MobileController;
 use App\Models\Customer;
 use App\Models\CustomerAccount;
 use App\Models\CustomerPayment;
-use App\Models\CustomerWithdraw;
 use App\Models\SysLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +77,6 @@ class WeChatController extends MobileController
     public function createOrder(Request $request)
     {
         $data = $request->all();
-        $user = Auth::guard('mobile')->user();
 
         $fieldErrors = $this->validateFields($data);
 
@@ -86,14 +84,7 @@ class WeChatController extends MobileController
             return $this->fail_result($fieldErrors);
         }
 
-        $order = CustomerPayment::create([
-            'sn' => $this->newEntity()->snFlag($data['type']) . date('YmdHis') . $user->id . random_int(1000, 9999),
-            'customer_id' => $user->id,
-            'payment_channel' => 1,
-            'amt' => $data['amt'],
-            'status' => 1,
-            'type' => $data['type'],
-        ]);
+        $order = $this->newEntity()->createPayment($data);
 
         $result = $this->wxpay($order);
         return $this->result(0, '', json_decode($result));
@@ -226,20 +217,20 @@ class WeChatController extends MobileController
         return $result;
     }
 
+    /**
+     * 提现
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function withdraw(Request $request)
     {
-        $amt = $request->input('amt', 0);
+        $data = $request->all();
         $user = Auth::guard('mobile')->user();
 
-        $data = [
-            'sn' => 'T' . date('YmdHis') . $user->id . random_int(1000, 9999),
-            'customer_id' => $user->id,
-            'amt' => $amt,
-            'remark' => env('PROJECT_NAME') . '账户提现',
-            'status' => 1,
-        ];
+        $data['type'] = 6;
 
-        $fieldErrors = $this->validateFields($data, [], new CustomerWithdraw());
+        $fieldErrors = $this->validateFields($data);
+
         if ($user->account->deposit<$data['amt']){
             $fieldErrors.='您当前可提现押金只有'.$user->account->deposit.'元,不能超过哦！';
         }
@@ -248,7 +239,7 @@ class WeChatController extends MobileController
             return $this->fail_result($fieldErrors);
         }
 
-        $withdraw = CustomerWithdraw::create($data);
+        $withdraw = $this->newEntity()->createPayment($data);
 
         $result = $this->epPay($withdraw);
         if (empty($result['payment_no'])){

@@ -36,15 +36,15 @@
                         <li class="item-content link" data-url="/mobile/customer-payment/index">
                             <div class="item-media"><i class="iconfont icon-dingdan"></i></div>
                             <div class="item-inner">
-                                <div class="item-title">我的订单</div>
+                                <div class="item-title">资金纪录</div>
                             </div>
                         </li>
-                        <li class="item-content link" data-url="/mobile/customer-account-record/index">
-                            <div class="item-media"><i class="iconfont icon-qianbao1"></i></div>
-                            <div class="item-inner">
-                                <div class="item-title">我的资金</div>
-                            </div>
-                        </li>
+                        {{--<li class="item-content link" data-url="/mobile/customer-account-record/index">--}}
+                            {{--<div class="item-media"><i class="iconfont icon-qianbao1"></i></div>--}}
+                            {{--<div class="item-inner">--}}
+                                {{--<div class="item-title">我的资金</div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
                         <li class="item-content link" data-url="/mobile/customer-hire/index">
                             <div class="item-media"><i class="iconfont icon-emisan"></i></div>
                             <div class="item-inner">

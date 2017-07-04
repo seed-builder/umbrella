@@ -70,6 +70,7 @@
 
                 },
                 nodata : false,
+                loadingmax : false,
                 base_ajax_url : '',
                 itemsnull : function (items) {
                     return items.length==0
@@ -93,7 +94,7 @@
                     var scrollTop = $(this)[0].scrollTop
                     var elHeight = $(this).height();
                     if (scrollHeight - (scrollTop + elHeight) < 50) {
-                        if (self.loading) return;
+                        if (self.loading||self.loadingmax) return;
                         self.loading = true;
                         self.load();
                     }
@@ -126,6 +127,7 @@
                     if (res.data.length==0){
                         self.nodata = true;
                         self.loading = false;
+                        self.loadingmax = true;
                         return
                     }
                     self.draw++;

@@ -97,25 +97,11 @@ class PermissionSeeder extends Seeder
                 'url' => '/admin/customer-account',
             ],
             [
-                'name' => 'customer_account_record_index',
-                'display_name' => '用户资金流水记录',
-                'description' => '用户资金流水记录',
-                'type' => 'm',
-                'url' => '/admin/customer-account-record',
-            ],
-            [
                 'name' => 'customer_payment_index',
-                'display_name' => '用户订单记录',
-                'description' => '用户订单记录',
+                'display_name' => '用户资金记录',
+                'description' => '用户资金记录',
                 'type' => 'm',
                 'url' => '/admin/customer-payment',
-            ],
-            [
-                'name' => 'customer_withdraw_index',
-                'display_name' => '用户提现记录',
-                'description' => '用户提现记录',
-                'type' => 'm',
-                'url' => '/admin/customer-withdraw',
             ],
         ];
 

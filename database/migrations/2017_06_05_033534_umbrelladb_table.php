@@ -56,53 +56,80 @@ class UmbrelladbTable extends Migration
 	    /*
 		 * 客户资金流水记录
 		 */
-	    Schema::create('customer_account_records', function (Blueprint $table) {
-		    $table->increments('id');
-		    $table->integer('customer_account_id')->comment('accounts id');
-		    $table->integer('customer_id')->comment('customer id');
-		    $table->decimal('amt', 12, 2)->default(0)->comment('流水金额');
-		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入）， 2-押金充值， 3-押金支出， 4-押金退回（收入)， 5-租金支出， 6-提现支出');
-		    $table->integer('status')->default(0)->comment('状态(1-未完成，2-已完成, 3-取消)');
-		    $table->string('remark')->comment('备注');
-		    $table->integer('creator_id')->default(0)->comment('创建用户id');
-		    $table->integer('modifier_id')->default(0)->comment('修改用户id');
-		    $table->timestamps();
-		    $table->softDeletes();
-	    });
-
+//	    Schema::create('customer_account_records', function (Blueprint $table) {
+//		    $table->increments('id');
+//		    $table->integer('customer_account_id')->comment('accounts id');
+//		    $table->integer('customer_id')->comment('customer id');
+//		    $table->decimal('amt', 12, 2)->default(0)->comment('流水金额');
+//		    $table->integer('type')->default(1)->comment('流水类型 1-充值（收入）， 2-押金充值， 3-押金支出， 4-押金退回（收入)， 5-租金支出， 6-提现支出');
+//		    $table->integer('status')->default(0)->comment('状态(1-未完成，2-已完成, 3-取消)');
+//		    $table->string('remark')->comment('备注');
+//		    $table->integer('creator_id')->default(0)->comment('创建用户id');
+//		    $table->integer('modifier_id')->default(0)->comment('修改用户id');
+//		    $table->timestamps();
+//		    $table->softDeletes();
+//	    });
+//
+//
+//        /*
+//         * 客户订单记录
+//         */
+//        Schema::create('customer_payments', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('sn',100)->unique()->unique()->comment('内部订单号 系统内部的订单号');
+//            $table->string('outer_order_sn',100)->nullable()->comment('外部订单号 支付宝|微信生成的订单号');
+//            $table->integer('customer_id')->comment('customer id');
+//            $table->integer('payment_channel')->default(1)->comment('支付渠道 1-微信支付 2-支付宝');
+//            $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
+//            $table->longText('remark')->comment('备注');
+//			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败 4-已关闭）');
+//			$table->integer('type')->default(0)->comment('类型(1-账户充值, 2-押金支付');
+//			$table->integer('reference_id')->nullable()->comment('关联表id');
+//			$table->string('reference_type')->nullable()->comment('关联表类型');
+//	        $table->integer('creator_id')->default(0)->comment('创建用户id');
+//	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
+//            $table->timestamps();
+//            $table->softDeletes();
+//        });
+//
+//        /*
+//         * 提现纪录
+//         */
+//        Schema::create('customer_withdraws', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->string('sn',100)->unique()->comment('内部单号 系统内部的单号');
+//            $table->string('outer_order_sn',100)->nullable()->comment('外部单号 微信生成的单号');
+//            $table->integer('customer_id')->comment('customer id');
+//            $table->integer('status')->comment('1-提现申请中 2-提现成功 3-提现失败' );
+//            $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
+//            $table->longText('remark')->comment('备注');
+//            $table->integer('creator_id')->default(0)->comment('创建用户id');
+//            $table->integer('modifier_id')->default(0)->comment('修改用户id');
+//            $table->timestamps();
+//            $table->softDeletes();
+//        });
 
         /*
-         * 客户订单记录
-         */
+		 * 客户资金流水记录
+		 */
         Schema::create('customer_payments', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('customer_account_id')->comment('accounts id');
+            $table->integer('customer_id')->comment('customer id');
+
             $table->string('sn',100)->unique()->unique()->comment('内部订单号 系统内部的订单号');
             $table->string('outer_order_sn',100)->nullable()->comment('外部订单号 支付宝|微信生成的订单号');
-            $table->integer('customer_id')->comment('customer id');
-            $table->integer('payment_channel')->default(1)->comment('支付渠道 1-微信支付 2-支付宝');
-            $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
-            $table->longText('remark')->comment('备注');
-			$table->integer('status')->default(0)->comment('支付状态（1-未支付, 2-已支付, 3-支付失败 4-已关闭）');
-			$table->integer('type')->default(0)->comment('类型(1-账户充值, 2-押金支付');
-			$table->integer('reference_id')->nullable()->comment('关联表id');
-			$table->string('reference_type')->nullable()->comment('关联表类型');
-	        $table->integer('creator_id')->default(0)->comment('创建用户id');
-	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
-            $table->timestamps();
-            $table->softDeletes();
-        });
+            $table->integer('payment_channel')->nullable()->default(0)->comment('支付渠道 1-微信支付 2-支付宝');
 
-        /*
-         * 提现纪录
-         */
-        Schema::create('customer_withdraws', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('sn',100)->unique()->comment('内部单号 系统内部的单号');
-            $table->string('outer_order_sn',100)->nullable()->comment('外部单号 微信生成的单号');
-            $table->integer('customer_id')->comment('customer id');
-            $table->integer('status')->comment('1-提现申请中 2-提现成功 3-提现失败' );
-            $table->decimal('amt', 12, 2)->default(0)->comment('订单金额');
-            $table->longText('remark')->comment('备注');
+            $table->decimal('amt', 12, 2)->default(0)->comment('流水金额');
+            $table->integer('type')->default(1)->comment('流水类型 1-充值（收入）， 2-押金充值， 3-押金支出， 4-押金退回， 5-借伞租金支出， 6-账户提现');
+            $table->integer('status')->default(0)->comment('状态(1-未完成，2-已完成, 3-用户取消 )');
+            $table->string('remark')->comment('备注');
+
+            $table->integer('reference_id')->nullable()->comment('关联表id');
+            $table->string('reference_type')->nullable()->comment('关联表类型');
+
             $table->integer('creator_id')->default(0)->comment('创建用户id');
             $table->integer('modifier_id')->default(0)->comment('修改用户id');
             $table->timestamps();
@@ -256,6 +283,8 @@ class UmbrelladbTable extends Migration
 	        $table->softDeletes();
         });
 
+
+
         /*
          * 借伞纪录视图
          */
@@ -348,12 +377,11 @@ EOD;
     {
         Schema::dropIfExists('customers');
         Schema::dropIfExists('customer_accounts');
-        Schema::dropIfExists('customer_account_records');
+//        Schema::dropIfExists('customer_account_records');
         Schema::dropIfExists('customer_payments');
-        Schema::dropIfExists('customer_withdraws');
+//        Schema::dropIfExists('customer_withdraws');
         Schema::dropIfExists('customer_hires');
         Schema::dropIfExists('umbrellas');
-        Schema::dropIfExists('umbrella_hires');
         Schema::dropIfExists('equipments');
         Schema::dropIfExists('equipment_logs');
         Schema::dropIfExists('equipment_maintains');

@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\MobileController;
-use App\Models\CustomerAccountRecord;
 use App\Models\CustomerHire;
 use App\Models\ViewCustomerHire;
 use Illuminate\Http\Request;
@@ -32,7 +31,7 @@ class CustomerHireController extends MobileController
         $user = Auth::guard('mobile')->user();
 
 
-        return ViewCustomerHire::query()->where('customer_id',$user->id);
+        return ViewCustomerHire::query()->where('customer_id',$user->id)->orderBy('status','desc');
     }
 
     public function pagination(Request $request, $with = [], $conditionCall = null, $dataHandleCall = null)

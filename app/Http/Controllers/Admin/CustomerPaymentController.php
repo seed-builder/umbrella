@@ -69,7 +69,12 @@ class CustomerPaymentController extends BaseController
     public function pagination(Request $request, $searchCols = [], $with = [], $conditionCall = null, $dataHandleCall = null, $all_columns = false)
     {
         $searchCols = ["outer_order_sn", "reference_type", "remark", "sn"];
-        return parent::pagination($request, $searchCols, $with, $conditionCall, $dataHandleCall, true);
+        return parent::pagination($request, $searchCols, $with, $conditionCall, function($entities){
+            foreach ($entities as $entity){
+                $entity->status_name = $entity->status();
+                $entity->type_name = $entity->type();
+            }
+        }, true);
     }
 
     public function entityQuery()

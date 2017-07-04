@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\MobileController;
-use App\Models\CustomerAccountRecord;
 use App\Models\CustomerPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
