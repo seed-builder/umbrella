@@ -17,12 +17,13 @@ class EquipmentSeeder extends Seeder
 
         $data = [];
         for ($i=0;$i<100;$i++){
+            $type = $faker->randomElement([1,2]);
             $data[] = [
-                'sn' => 'E'.$faker->date('YmdHis').$faker->lexify('???'),
+                'sn' => $type==1 ? 'E'.$faker->date('YmdHis').$faker->lexify('???') : 'M'.$faker->date('YmdHis').$faker->lexify('???'),
                 'site_id' => $faker->randomElement($site_ids),
                 'capacity' => $faker->randomElement([50,100,150,200]),
                 'have' => $faker->randomNumber($nbDigits = NULL),
-                'type' => $faker->randomElement([1,2]),
+                'type' => $type,
                 'ip' => $faker->ipv4,
                 'status' => $faker->randomElement([1,2,3]),
             ];
