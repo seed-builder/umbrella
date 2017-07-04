@@ -25,18 +25,11 @@ define(function (require, exports, module) {
                         },
                         {
                             name : '交易金额',
-                            render : function (item) {
-                                return item.amt
-                            }
+                            value : 'amt'
                         },
                         {
                             name : '订单类别',
-                            render : function (item) {
-                                if (item.type==1)
-                                    return '账户充值'
-                                else
-                                    return '押金支付'
-                            }
+                            value : 'type_name'
                         }
                     ],
                     footer: function (data) {

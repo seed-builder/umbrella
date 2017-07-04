@@ -1,5 +1,11 @@
 <template>
-    <div v-if="itemsnull(items)" class="pull-to-refresh-content" :id="options.refreshId" data-ptr-distance="20">
+    <div v-if="itemsnull(items)" class="content null-data">
+        <svg class="" aria-hidden="true">
+            <use xlink:href="#icon-zanwuneirong-"></use>
+        </svg>
+        <div class="content-text">暂无数据</div>
+    </div>
+    <div v-else class="pull-to-refresh-content" :id="options.refreshId" data-ptr-distance="20">
         <div class="content infinite-scroll infinite-scroll-bottom"
              :id="options.scrollId">
             <div class="pull-to-refresh-layer">
@@ -33,12 +39,7 @@
             </div>
         </div>
     </div>
-    <div v-else class="content null-data">
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-zanwuneirong-"></use>
-        </svg>
-        <div class="content-text">暂无数据</div>
-    </div>
+
 </template>
 
 <script>

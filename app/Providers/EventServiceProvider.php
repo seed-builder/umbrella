@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ModelUpdatedEvent' => [
             'App\Listeners\ModelUpdatedHandler',
         ],
+        'App\Events\WechatApiEvent' => [
+            'App\Listeners\WechatApiHandler',
+        ],
     ];
 
     /**

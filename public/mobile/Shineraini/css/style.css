@@ -1,3 +1,9 @@
+.iconfont-svg {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 .button-lightblue{
     background: #4cd9d7 !important;
 }
@@ -33,6 +39,19 @@
 }
 .content-text{
     width: 100%;
+}
+
+.card-content-inner{
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+}
+.card-header{
+    font-size: .80rem !important;
+}
+.iconfont-svg{
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
+    vertical-align: middle;
 }
 /*
  * grid 

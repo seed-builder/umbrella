@@ -18,18 +18,28 @@ define(function (require, exports, module) {
                     itemUrl: function (item) {
                         return '/mobile/customer-hire/view/' + item.id
                     },
+                    header : function (item) {
+                        return '<a></a>'+item.status_name+'<i class="fa fa-angle-right" aria-hidden="true"></i>';
+                    },
                     columns : [
                         {
-                            name : '借伞网点',
-                            value : 'hire_site_name'
+                            render : function (item) {
+                                return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-shijian1"></use></svg>'+item.updated_at
+                            }
                         },
                         {
-                            name : '还伞网点',
-                            value : 'return_site_name'
+                            render : function (item) {
+                                return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-normal"></use></svg>'+item.hire_site_name
+                            }
+                        },
+                        {
+                            render : function (item) {
+                                return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-zhuangtai"></use></svg>'+item.return_site_name
+                            }
                         },
                     ],
-
                 },
+
             },
             methods: {
 

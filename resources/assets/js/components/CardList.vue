@@ -1,5 +1,11 @@
 <template>
-    <div v-if="itemsnull(items)" class="pull-to-refresh-content" :id="options.refreshId" data-ptr-distance="20">
+    <div v-if="itemsnull(items)" class="content null-data">
+        <svg class="" aria-hidden="true">
+            <use xlink:href="#icon-zanwuneirong-"></use>
+        </svg>
+        <div class="content-text">暂无数据</div>
+    </div>
+    <div v-else class="pull-to-refresh-content" :id="options.refreshId" data-ptr-distance="20">
         <div class="content infinite-scroll infinite-scroll-bottom"
              :id="options.scrollId">
             <div class="pull-to-refresh-layer">
@@ -12,14 +18,14 @@
                      :data-url="options.itemUrl?options.itemUrl(item):''"
                      v-for="item in items"
                 >
-                    <div class="card-header" v-if="options.header">{{options.header(item)}}</div>
+                    <div class="card-header" v-if="options.header" v-html="options.header(item)"></div>
                     <div class="card-content" @click="options.itemBtns?showBtns(item):''">
                         <div class="card-content-inner" v-for="col in options.columns">
-                            <span v-if="col.value">{{col.name+'：'+itemVal(item,col.value)}}</span>
-                            <span v-if="col.render">{{col.name+'：'+col.render(item)}}</span>
+                            <div v-if="col.value">{{col.name+'：'+itemVal(item,col.value)}}</div>
+                            <div v-if="col.render" v-html="col.render(item)"></div>
                         </div>
                     </div>
-                    <div class="card-footer" v-if="options.footer">{{options.footer(item)}}</div>
+                    <div class="card-footer" v-if="options.footer" v-html="options.footer(item)"></div>
                 </div>
 
 
@@ -29,12 +35,7 @@
             </div>
         </div>
     </div>
-    <div v-else class="content null-data">
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-zanwuneirong-"></use>
-        </svg>
-        <div class="content-text">暂无数据</div>
-    </div>
+
 </template>
 
 <script>

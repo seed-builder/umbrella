@@ -62,6 +62,12 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-100"><a class="button button-big button-fill button-success form-submit">支付</a></div>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -1747,6 +1747,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -1915,6 +1916,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -32249,6 +32251,18 @@ module.exports = Component.exports
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return (_vm.itemsnull(_vm.items)) ? _c('div', {
+    staticClass: "content null-data"
+  }, [_c('svg', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_c('use', {
+    attrs: {
+      "xlink:href": "#icon-zanwuneirong-"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "content-text"
+  }, [_vm._v("暂无数据")])]) : _c('div', {
     staticClass: "pull-to-refresh-content",
     attrs: {
       "id": _vm.options.refreshId,
@@ -32259,7 +32273,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": _vm.options.scrollId
     }
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "pull-to-refresh-layer"
+  }, [_c('div', {
+    staticClass: "preloader"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pull-to-refresh-arrow"
+  })]), _vm._v(" "), _c('div', {
     staticClass: "card-container"
   }, _vm._l((_vm.items), function(item) {
     return _c('div', {
@@ -32271,8 +32291,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-url": _vm.options.itemUrl ? _vm.options.itemUrl(item) : ''
       }
     }, [(_vm.options.header) ? _c('div', {
-      staticClass: "card-header"
-    }, [_vm._v(_vm._s(_vm.options.header(item)))]) : _vm._e(), _vm._v(" "), _c('div', {
+      staticClass: "card-header",
+      domProps: {
+        "innerHTML": _vm._s(_vm.options.header(item))
+      }
+    }) : _vm._e(), _vm._v(" "), _c('div', {
       staticClass: "card-content",
       on: {
         "click": function($event) {
@@ -32282,37 +32305,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, _vm._l((_vm.options.columns), function(col) {
       return _c('div', {
         staticClass: "card-content-inner"
-      }, [(col.value) ? _c('span', [_vm._v(_vm._s(col.name + '：' + _vm.itemVal(item, col.value)))]) : _vm._e(), _vm._v(" "), (col.render) ? _c('span', [_vm._v(_vm._s(col.name + '：' + col.render(item)))]) : _vm._e()])
+      }, [(col.value) ? _c('div', [_vm._v(_vm._s(col.name + '：' + _vm.itemVal(item, col.value)))]) : _vm._e(), _vm._v(" "), (col.render) ? _c('div', {
+        domProps: {
+          "innerHTML": _vm._s(col.render(item))
+        }
+      }) : _vm._e()])
     })), _vm._v(" "), (_vm.options.footer) ? _c('div', {
-      staticClass: "card-footer"
-    }, [_vm._v(_vm._s(_vm.options.footer(item)))]) : _vm._e()])
+      staticClass: "card-footer",
+      domProps: {
+        "innerHTML": _vm._s(_vm.options.footer(item))
+      }
+    }) : _vm._e()])
   })), _vm._v(" "), (_vm.loading) ? _c('div', {
     staticClass: "infinite-scroll-preloader"
   }, [_c('div', {
     staticClass: "preloader"
-  })]) : _vm._e()])]) : _c('div', {
-    staticClass: "content null-data"
-  }, [_c('svg', {
-    staticClass: "icon",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_c('use', {
-    attrs: {
-      "xlink:href": "#icon-zanwuneirong-"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "content-text"
-  }, [_vm._v("暂无数据")])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "pull-to-refresh-layer"
-  }, [_c('div', {
-    staticClass: "preloader"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "pull-to-refresh-arrow"
-  })])
-}]}
+  })]) : _vm._e()])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -32356,6 +32365,18 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return (_vm.itemsnull(_vm.items)) ? _c('div', {
+    staticClass: "content null-data"
+  }, [_c('svg', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_c('use', {
+    attrs: {
+      "xlink:href": "#icon-zanwuneirong-"
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "content-text"
+  }, [_vm._v("暂无数据")])]) : _c('div', {
     staticClass: "pull-to-refresh-content",
     attrs: {
       "id": _vm.options.refreshId,
@@ -32366,7 +32387,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": _vm.options.scrollId
     }
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "pull-to-refresh-layer"
+  }, [_c('div', {
+    staticClass: "preloader"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "pull-to-refresh-arrow"
+  })]), _vm._v(" "), _c('div', {
     staticClass: "card-container"
   }, _vm._l((_vm.items), function(item) {
     return _c('div', {
@@ -32409,29 +32436,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "infinite-scroll-preloader"
   }, [_c('div', {
     staticClass: "preloader"
-  })]) : _vm._e()])]) : _c('div', {
-    staticClass: "content null-data"
-  }, [_c('svg', {
-    staticClass: "icon",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_c('use', {
-    attrs: {
-      "xlink:href": "#icon-zanwuneirong-"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "content-text"
-  }, [_vm._v("暂无数据")])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "pull-to-refresh-layer"
-  }, [_c('div', {
-    staticClass: "preloader"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "pull-to-refresh-arrow"
-  })])
-}]}
+  })]) : _vm._e()])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

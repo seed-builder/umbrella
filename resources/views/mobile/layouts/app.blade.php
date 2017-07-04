@@ -20,7 +20,7 @@ $config = $helper->getSignPackage();
     <link rel="stylesheet" href="/mobile/Shineraini/css/icon.css">
     <link rel="stylesheet" href="/mobile/layer_mobile/need/layer.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//at.alicdn.com/t/font_du1thdwu0hdrt3xr.css" rel="stylesheet">
+    <link href="//at.alicdn.com/t/font_jtalqbllc090ms4i.css" rel="stylesheet">
 
     @yield('css')
     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
@@ -37,7 +37,7 @@ $config = $helper->getSignPackage();
 </div>
 
 
-<script type='text/javascript' src='//at.alicdn.com/t/font_du1thdwu0hdrt3xr.js' charset='utf-8'></script>
+<script type='text/javascript' src='//at.alicdn.com/t/font_f3r3aylselsdcxr.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/light7/js/light7.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/Shineraini/js/app.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/layer_mobile/layer.js' charset='utf-8'></script>
