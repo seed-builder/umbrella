@@ -117,7 +117,8 @@ class UmbrelladbTable extends Migration
             $table->string('sn')->unique()->comment('伞编号');
             $table->integer('birth_equipment_id')->nullable()->comment('初始设备号equipments id');
             $table->integer('birth_site_id')->nullable()->comment('初始网点sites id');
-            $table->integer('equipment_id')->nullable()->comment('equipments id');
+            $table->integer('equipment_id')->nullable()->comment('设备 id');
+            $table->integer('equipment_channel_num')->nullable()->comment('设备通道序号');
             $table->integer('site_id')->nullable()->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）');
             $table->string('name')->default('')->comment('伞名称');
