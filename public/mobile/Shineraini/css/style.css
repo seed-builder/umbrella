@@ -43,13 +43,16 @@
     background: #fff;
     padding: 1rem;
 }
-.amt{
-
+.grid input{
+    width: 100% !important;;
+     margin-left: 0% !important;
 }
 .amt-select{
-    color: #f97e7e !important;
+    color: #f60 !important;
     font-weight: bold;
-    border: 3px solid #f97e7e !important;
+    /*border: 3px solid #f97e7e !important;*/
+    border: 1px solid #f60 !important;
+    background: url(/images/on.png) no-repeat right bottom !important;
 }
 .amt-input{
     height: 2.4rem;
@@ -66,7 +69,7 @@
     line-height: 2.3rem;
     border-radius: .25rem;
 
-    border: 3px solid #ccc8c8;
+    border: 1px solid #ccc8c8;
     padding: 0 .5rem;
 }
 
