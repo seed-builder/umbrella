@@ -114,7 +114,6 @@ class WeChatController extends MobileController
         if ($order->status != 1)
             dd('SUCCESS');
 
-        Log::info($order->status);
         $order->status = 2;
         $order->save();
 
