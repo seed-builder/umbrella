@@ -71,6 +71,7 @@ class CustomerPayment extends BaseModel
     {
         if ($model->status != 2)
             return;
+        Log::info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
         $customer = Customer::find($model->customer_id);
         $account = $customer->account;
