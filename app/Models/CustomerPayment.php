@@ -71,7 +71,6 @@ class CustomerPayment extends BaseModel
     {
         if ($model->status != 2)
             return;
-        Log::info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
         $customer = Customer::find($model->customer_id);
         $account = $customer->account;
@@ -80,18 +79,22 @@ class CustomerPayment extends BaseModel
             case 1: {
                 //账户充值
                 $account->balance_amt = $account->balance_amt + $model->amt;
+                break;
             }
             case 2: {
                 //押金充值
                 $account->deposit = $account->deposit + $model->amt;
+                break;
             }
             case 3: {
                 //押金支出
                 $account->deposit = $account->deposit - $model->amt;
+                break;
             }
             case 4: {
                 //押金退回
                 $account->deposit = $account->deposit + $model->amt;
+                break;
             }
             case 5: {
                 //借伞租金支出
@@ -100,6 +103,7 @@ class CustomerPayment extends BaseModel
             case 6: {
                 //账户提现
                 $account->deposit = $account->deposit - $model->amt;
+                break;
             }
         }
 
