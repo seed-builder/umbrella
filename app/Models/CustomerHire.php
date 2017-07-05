@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\PaymentEvent;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
 
@@ -32,12 +33,12 @@ use App\Models\BaseModel;
  * @SWG\Property(name="status", type="integer", description="状态(1-正常出租, 2-按时归还, 3-逾期未归还)")
  * @SWG\Property(name="umbrella_id", type="integer", description="umbrellas id")
  * @SWG\Property(name="updated_at", type="string", description="")
-  */
+ */
 class CustomerHire extends BaseModel
 {
-	//
-	protected $table = 'customer_hires';
-	protected $guarded = ['id'];
+    //
+    protected $table = 'customer_hires';
+    protected $guarded = ['id'];
 
     public $validateRules = [
         'id' => 'required',
@@ -46,4 +47,39 @@ class CustomerHire extends BaseModel
     public $validateMessages = [
         'id.required' => "id不能为空",
     ];
+
+    public function payment()
+    {
+        return $this->morphOne(User::class, 'reference');
+    }
+
+    /**
+     * 完成租借订单
+     * @param $id
+     * @return int
+     */
+    public function finishHire($id)
+    {
+        $hire = CustomerHire::find($id);
+        if ($hire->status != 1 && $hire->status != 4){
+            return false;
+        }
+
+        $hire->status = 2;
+        $hire->save();
+
+        //创建押金退回资金纪录
+        $payment = new CustomerPayment();
+        $payment->createPayment([
+            'type' => 4,
+            'amt' => $hire->deposit_amt,
+            'customer_id' => $hire->customer_id,
+            'reference_id' => $hire->id,
+            'reference_type' => 'App\Models\CustomerHire',
+        ]);
+
+        $account = CustomerAccount::query()->where('customer_id',$hire->customer_id)->first();
+        $account->deposit = $account->deposit + $hire->deposit_amt;
+        $account->save();
+    }
 }

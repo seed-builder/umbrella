@@ -73,6 +73,8 @@
                 loadingmax : false,
                 base_ajax_url : '',
                 itemsnull : function (items) {
+                    if (!items.length)
+                        return true
                     return items.length==0
                 }
             }

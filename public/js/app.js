@@ -1783,6 +1783,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loading: false,
             header: function header(item) {},
             nodata: false,
+            loadingmax: false,
             base_ajax_url: '',
             itemsnull: function itemsnull(items) {
                 return items.length == 0;
@@ -1838,6 +1839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (res.data.length == 0) {
                     self.nodata = true;
                     self.loading = false;
+                    self.loadingmax = true;
                     return;
                 }
 
@@ -1988,6 +1990,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loadingmax: false,
             base_ajax_url: '',
             itemsnull: function itemsnull(items) {
+                if (!items.length) return true;
                 return items.length == 0;
             }
         };

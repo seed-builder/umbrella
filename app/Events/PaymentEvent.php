@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
+use App\Models\CustomerPayment;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ModelUpdatedEvent
+class PaymentEvent
 {
     use InteractsWithSockets, SerializesModels;
     public $model;
@@ -20,9 +20,8 @@ class ModelUpdatedEvent
      *
      * @return void
      */
-    public function __construct(Model $model)
+    public function __construct(CustomerPayment $model)
     {
-        //
         $this->model = $model;
     }
 

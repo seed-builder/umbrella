@@ -5,21 +5,17 @@ use App\Helpers\Utl;
 use App\Helpers\WeChatApi;
 use App\Helpers\WeChatLib\WxPayApi;
 use App\Helpers\WeChatLib\WxPayEnterprise;
-use App\Helpers\WeChatLib\WxPayException;
-use App\Helpers\WeChatLib\WxPayJsApiPay;
 use App\Helpers\WeChatLib\WxPayOrderQuery;
 use App\Helpers\WeChatLib\WxPayUnifiedOrder;
 use App\Helpers\WeChatPay;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\MobileController;
 use App\Models\Customer;
 use App\Models\CustomerAccount;
+use App\Models\CustomerHire;
 use App\Models\CustomerPayment;
-use App\Models\SysLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Log;
 use Session;
 
 class WeChatController extends MobileController
@@ -30,6 +26,11 @@ class WeChatController extends MobileController
         return new CustomerPayment();
     }
 
+    /**
+     * 微信登陆
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function authLogin(Request $request)
     {
         $code = $request->input('code', '');
@@ -72,8 +73,10 @@ class WeChatController extends MobileController
         }
     }
 
-    /*
-     * 创建订单
+    /**
+     * 通用创建订单（资金纪录）方法
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createOrder(Request $request)
     {
@@ -102,8 +105,9 @@ class WeChatController extends MobileController
         dd($out_order);
     }
 
-    /*
-     * 支付成功 异步回调
+    /**
+     * 支付成功 异步通知
+     * @param $sign
      */
     public function paymentNotify($sign)
     {
@@ -123,10 +127,90 @@ class WeChatController extends MobileController
         dd('SUCCESS');
     }
 
-    /*
-     * 微信订单查询
+    /**
+     * 提现
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function orderQuery($order)
+    public function withdraw(Request $request)
+    {
+        $data = $request->all();
+        $user = Auth::guard('mobile')->user();
+
+        $data['type'] = 6;
+
+        $fieldErrors = $this->validateFields($data);
+
+        if ($user->account->deposit < $data['amt']) {
+            $fieldErrors .= '您当前可提现押金只有' . $user->account->deposit . '元,不能超过哦！';
+        }
+
+        if (!empty($fieldErrors)) {
+            return $this->fail_result($fieldErrors);
+        }
+
+        $withdraw = $this->newEntity()->createPayment($data);
+
+        $result = $this->epPay($withdraw);
+        if (empty($result['payment_no'])) {
+            $withdraw->status = 3;
+            $withdraw->save();
+
+            return $this->fail_result('提交提现申请失败，请联系客服人员处理');
+        }
+
+        $withdraw->outer_order_sn = $result['payment_no'];
+        $withdraw->status = 2;
+        $withdraw->save();
+
+        return $this->success_result('已提交提现申请，系统会尽快为您处理');
+    }
+
+
+    /**
+     * 租金支付
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function hirePay(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $fieldErrors = $this->validateFields($data);
+        if (!empty($fieldErrors)) {
+            return $this->fail_result($fieldErrors);
+        }
+
+        $user = Auth::guard('mobile')->user();
+        $account = $user->account;
+        $hire = CustomerHire::find($id);
+
+        $data['type'] = 5;
+        $data['reference_id'] = $id;
+        $data['reference_type'] = 'App\Models\CustomerHire';
+
+        if ($account->balance_amt >= $data['amt']){
+            $this->newEntity()->createPayment($data,2);
+
+            $hire->finishHire($hire->id);
+            return $this->result(0, '', []);
+        }else{
+            $order = $this->newEntity()->createPayment($data);
+            $result = $this->wxpay($order);
+
+            return $this->result(0, '', json_decode($result));
+        }
+
+
+    }
+
+    /**
+     * 调用接口 - 微信订单查询
+     * @param $order
+     * @return \App\Helpers\WeChatLib\成功时返回
+     */
+    protected function orderQuery($order)
     {
         $input = new WxPayOrderQuery();
         $input->SetOut_trade_no($order->sn);
@@ -140,8 +224,10 @@ class WeChatController extends MobileController
         return $response;
     }
 
-    /*
-     * 微信下单 获取jsApiParams
+    /**
+     * 调用接口 - 微信生成订单 获取支付JsApiParameters
+     * @param $order
+     * @return string
      */
     protected function wxpay($order)
     {
@@ -166,38 +252,16 @@ class WeChatController extends MobileController
         $pay = new WeChatPay();
         $out_order = $pay->unifiedOrder($input);
 
-        $jsApiParams = $this->GetJsApiParameters($out_order);
+        $jsApiParams = $pay->GetJsApiParameters($out_order);
 
 
         return $jsApiParams;
     }
 
-    /*
-     * 获取微信支付JsApi参数
-     */
-    protected function GetJsApiParameters($UnifiedOrderResult)
-    {
-        if (!array_key_exists("appid", $UnifiedOrderResult)
-            || !array_key_exists("prepay_id", $UnifiedOrderResult)
-            || $UnifiedOrderResult['prepay_id'] == ""
-        ) {
-            throw new WxPayException("参数错误");
-        }
-        $jsapi = new WxPayJsApiPay();
-        $jsapi->SetAppid($UnifiedOrderResult["appid"]);
-        $timeStamp = time();
-        $jsapi->SetTimeStamp("$timeStamp");
-        $wxPayApi = new WxPayApi();
-        $jsapi->SetNonceStr($wxPayApi->getNonceStr());
-        $jsapi->SetPackage("prepay_id=" . $UnifiedOrderResult['prepay_id']);
-        $jsapi->SetSignType("MD5");
-        $jsapi->SetPaySign($jsapi->MakeSign());
-        $parameters = json_encode($jsapi->GetValues());
-        return $parameters;
-    }
-
-    /*
-     * 企业向个人付款
+    /**
+     * 调用接口 - 企业向个人付款
+     * @param $withdraw
+     * @return array
      */
     protected function epPay($withdraw)
     {
@@ -218,44 +282,6 @@ class WeChatController extends MobileController
         return $result;
     }
 
-    /**
-     * 提现
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function withdraw(Request $request)
-    {
-        $data = $request->all();
-        $user = Auth::guard('mobile')->user();
-
-        $data['type'] = 6;
-
-        $fieldErrors = $this->validateFields($data);
-
-        if ($user->account->deposit<$data['amt']){
-            $fieldErrors.='您当前可提现押金只有'.$user->account->deposit.'元,不能超过哦！';
-        }
-
-        if (!empty($fieldErrors)) {
-            return $this->fail_result($fieldErrors);
-        }
-
-        $withdraw = $this->newEntity()->createPayment($data);
-
-        $result = $this->epPay($withdraw);
-        if (empty($result['payment_no'])){
-            $withdraw->status = 3;
-            $withdraw->save();
-
-            return $this->fail_result('提交提现申请失败，请联系客服人员处理');
-        }
-
-        $withdraw->outer_order_sn = $result['payment_no'];
-        $withdraw->status = 2;
-        $withdraw->save();
-
-        return $this->success_result('已提交提现申请，系统会尽快为您处理');
-    }
 
 
     public function test()
@@ -265,7 +291,7 @@ class WeChatController extends MobileController
 //        $order->status = 2;
 //        $order->save();
 //        dd($re);
-        dd(storage_path().env('WECHAT_CERTPATH'));
+        dd(storage_path() . env('WECHAT_CERTPATH'));
         $this->epPay(1);
 
     }

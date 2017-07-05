@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Helpers\WeChatLib\WxPayException;
+use App\Helpers\WeChatLib\WxPayJsApiPay;
 use App\Helpers\WeChatLib\WxPayReport;
 use App\Helpers\WeChatLib\WxPayResults;
 use App\Helpers\WeChatLib\WxPayUnifiedOrder;
@@ -462,6 +463,32 @@ class WeChatPay
     }
 
     /**
+     * 获取支付JsApiParameters
+     * @param WxPayUnifiedOrder $UnifiedOrderResult
+     * @return string
+     * @throws WxPayException
+     */
+    public function GetJsApiParameters($UnifiedOrderResult)
+    {
+        if (!array_key_exists("appid", $UnifiedOrderResult)
+            || !array_key_exists("prepay_id", $UnifiedOrderResult)
+            || $UnifiedOrderResult['prepay_id'] == ""
+        ) {
+            throw new WxPayException("参数错误");
+        }
+        $jsapi = new WxPayJsApiPay();
+        $jsapi->SetAppid($UnifiedOrderResult["appid"]);
+        $timeStamp = time();
+        $jsapi->SetTimeStamp("$timeStamp");
+        $jsapi->SetNonceStr($this->getNonceStr());
+        $jsapi->SetPackage("prepay_id=" . $UnifiedOrderResult['prepay_id']);
+        $jsapi->SetSignType("MD5");
+        $jsapi->SetPaySign($jsapi->MakeSign());
+        $parameters = json_encode($jsapi->GetValues());
+        return $parameters;
+    }
+
+    /**
      *
      * 产生随机字符串，不长于32位
      * @param int $length
@@ -615,23 +642,6 @@ class WeChatPay
         $time2 = explode(".", $time);
         $time = $time2[0];
         return $time;
-    }
-
-    /**
-     * 将xml转为array
-     * @param string $xml
-     * @throws WxPayException
-     */
-    public function init($xml)
-    {
-        $input = new WxPayUnifiedOrder();
-        $input->fromXml($xml);
-        //fix bug 2015-06-29
-        if ($input->values['return_code'] != 'SUCCESS') {
-            return $input->getValues();
-        }
-        $input->checkSign();
-        return $input->getValues();
     }
 
 }

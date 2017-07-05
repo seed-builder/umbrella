@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\WechatApiEvent' => [
             'App\Listeners\WechatApiHandler',
         ],
+        'App\Events\PaymentEvent' => [
+            'App\Listeners\PaymentHandler',
+        ],
     ];
 
     /**

@@ -15,7 +15,7 @@
                         <div class="item-media"><i class="iconfont icon-kaishishijian"></i></div>
                         <div class="item-inner">
                             <div class="item-title">借伞时间</div>
-                            <div class="item-after">{{$entity->hire_at}}</div>
+                            <div class="item-after">{{date('m月d日 H:i',strtotime($entity->hire_at))}}</div>
                         </div>
                     </li>
                     <li class="item-content" style="">
@@ -29,7 +29,7 @@
                         <div class="item-media"><i class="iconfont icon-jieshushijian"></i></div>
                         <div class="item-inner">
                             <div class="item-title">还伞时间</div>
-                            <div class="item-after">{{$entity->return_at}}</div>
+                            <div class="item-after">{{date('m月d日 H:i',strtotime($entity->return_at))}}</div>
                         </div>
                     </li>
                     <li class="item-content" style="">
@@ -43,7 +43,7 @@
                         <div class="item-media"><i class="iconfont icon-yanchi"></i></div>
                         <div class="item-inner">
                             <div class="item-title">最迟还伞时间</div>
-                            <div class="item-after">{{$entity->expired_at}}</div>
+                            <div class="item-after">{{date('m月d日 H:i',strtotime($entity->expired_at))}}</div>
                         </div>
                     </li>
                     <li class="item-content" style="">
@@ -60,19 +60,25 @@
                             <div class="item-after">{{$entity->status()}}</div>
                         </div>
                     </li>
+                    <li class="item-content">
+                        <div class="item-media"><i class="iconfont icon-49"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">押金</div>
+                            <div class="item-after">¥{{$entity->deposit_amt}}</div>
+                        </div>
+                    </li>
                 </ul>
             </div>
-            <form id="form-id" action="/mobile/wechat-payment/create-order" style="display: none">
+
+            <form id="form-id" action="/mobile/wechat-payment/hire-pay/{{$entity->id}}" style="display: none">
                 {{ csrf_field() }}
-                <input id="amt" type="text" name="amt" value="">
-                <input type="text" name="payment_channel" value="1">
-                <input type="text" name="type" value="1">
+                <input id="amt" type="text" name="amt" value="{{$entity->hire_amt}}">
             </form>
 
             @if($entity->status==4)
             <div class="content-block">
                 <div class="row">
-                    <div class="col-100"><a class="button button-big button-fill button-success form-submit">支付租金</a></div>
+                    <div class="col-100"><a class="button button-big button-fill button-success form-submit">等待支付 ¥{{$entity->hire_amt}} 元</a></div>
                 </div>
             </div>
             @endif
@@ -85,5 +91,10 @@
 
 @section('javascript')
     <script type="text/javascript">
+        $(function () {
+            seajs.use('mobile/customer_hire_view.js', function (app) {
+                app.index($);
+            });
+        });
     </script>
 @endsection

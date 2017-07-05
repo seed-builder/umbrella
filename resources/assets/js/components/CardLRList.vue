@@ -80,6 +80,7 @@
 
                 },
                 nodata : false,
+                loadingmax : false,
                 base_ajax_url : '',
                 itemsnull : function (items) {
                     return items.length==0
@@ -95,7 +96,6 @@
                 self.initScroll();
                 self.initSearchReset();
                 self.initSearch();
-
             },
             initScroll : function () {
                 var self = this;
@@ -137,6 +137,7 @@
                     if (res.data.length==0){
                         self.nodata = true;
                         self.loading = false;
+                        self.loadingmax = true;
                         return
                     }
 
