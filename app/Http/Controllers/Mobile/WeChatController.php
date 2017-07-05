@@ -19,6 +19,7 @@ use App\Models\SysLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 use Session;
 
 class WeChatController extends MobileController
@@ -113,6 +114,7 @@ class WeChatController extends MobileController
         if ($order->status != 1)
             dd('SUCCESS');
 
+        Log::info($order->status);
         $order->status = 2;
         $order->save();
 
