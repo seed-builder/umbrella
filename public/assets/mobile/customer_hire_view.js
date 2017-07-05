@@ -10,16 +10,21 @@ define(function (require, exports, module) {
         $(".form-submit").on('click', function (e) {
             e.preventDefault();
             App.ajaxForm('#form-id',function (data) {
-                if (data){
+                if (data!=null){
                     jsApiParams = data;
                     callpay();
+
                 }else {
                     layer.open({
                         content: '支付成功'
                         , btn: '我知道了'
+                        ,yes: function(index){
+                            location.reload();
+                            layer.close(index);
+                        }
                     });
+
                 }
-                // $.router.loadPage("/mobile/customer-payment/pay/"+data.id)
             })
         })
 

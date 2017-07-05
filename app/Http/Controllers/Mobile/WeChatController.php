@@ -178,24 +178,28 @@ class WeChatController extends MobileController
         $data = $request->all();
 
         $fieldErrors = $this->validateFields($data);
+
+        $hire = CustomerHire::find($id);
+        if ($hire->status == 2) {
+            $fieldErrors .= '该订单已完成';
+        }
+
         if (!empty($fieldErrors)) {
             return $this->fail_result($fieldErrors);
         }
 
         $user = Auth::guard('mobile')->user();
         $account = $user->account;
-        $hire = CustomerHire::find($id);
 
         $data['type'] = 5;
         $data['reference_id'] = $id;
         $data['reference_type'] = 'App\Models\CustomerHire';
 
-        if ($account->balance_amt >= $data['amt']){
-            $this->newEntity()->createPayment($data,2);
+        if ($account->balance_amt >= $data['amt']) {
+            $this->newEntity()->createPayment($data, 2);
 
-            $hire->finishHire($hire->id);
-            return $this->result(0, '', []);
-        }else{
+            return $this->result(0, '', null);
+        } else {
             $order = $this->newEntity()->createPayment($data);
             $result = $this->wxpay($order);
 
@@ -281,7 +285,6 @@ class WeChatController extends MobileController
 
         return $result;
     }
-
 
 
     public function test()
