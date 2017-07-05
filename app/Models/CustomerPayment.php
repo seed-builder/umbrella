@@ -7,6 +7,7 @@ use App\Events\ModelUpdatedEvent;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * model description
@@ -68,6 +69,7 @@ class CustomerPayment extends BaseModel
 
     protected function updateAccountBalance($model)
     {
+        Log::info('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.');
         if ($model->status == 2)
             return;
 
