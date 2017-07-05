@@ -69,7 +69,7 @@ class CustomerPayment extends BaseModel
 
     protected function updateAccountBalance($model)
     {
-        Log::info('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.');
+        Log::info($model->status);
         if ($model->status == 2)
             return;
 
