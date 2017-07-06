@@ -92,7 +92,7 @@ class UmbrelladbTable extends Migration
             $table->integer('equipment_id')->nullable()->comment('设备 id');
             $table->integer('equipment_channel_num')->nullable()->comment('设备通道序号');
             $table->integer('site_id')->nullable()->comment('sites id');
-            $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）');
+            $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间） 5-异常');
             $table->string('name')->default('')->comment('伞名称');
             $table->string('model')->default('')->comment('型号');
             $table->string('color')->nullable()->default('')->comment('颜色');
