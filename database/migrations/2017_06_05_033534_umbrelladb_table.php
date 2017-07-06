@@ -90,7 +90,7 @@ class UmbrelladbTable extends Migration
             $table->integer('birth_equipment_id')->nullable()->comment('初始设备号equipments id');
             $table->integer('birth_site_id')->nullable()->comment('初始网点sites id');
             $table->integer('equipment_id')->nullable()->comment('设备 id');
-            $table->integer('equipment_channel_num')->nullable()->comment('设备通道序号');
+            $table->tinyInteger('equipment_channel_num')->nullable()->comment('设备通道序号');
             $table->integer('site_id')->nullable()->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间） 5-异常');
             $table->string('name')->default('')->comment('伞名称');
@@ -140,7 +140,7 @@ class UmbrelladbTable extends Migration
             $table->increments('id');
             $table->string('sn')->unique()->comment('设备编号（E/M + 邮编 + 序列号(4位数字，不足补0)）');
             $table->integer('site_id')->comment('sites id');
-            $table->integer('channels')->default(10)->comment('通道数量');
+            $table->tinyInteger('channels')->default(10)->comment('通道数量');
             $table->integer('capacity')->default(50)->comment('容量（伞数量）');
             $table->integer('have')->default(0)->comment('当前还有数（伞数量）');
             $table->integer('type')->default(1)->comment('设备类型 1-伞机设备(E) 2-手持设备(M)');
