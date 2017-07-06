@@ -114,7 +114,7 @@ class PaymentHandler implements ShouldQueue
         $account = $customer->account;
 
         $hire = CustomerHire::find($model->reference_id);
-        if ($hire->status != 2)
+        if ($hire->status != 3)
             return;
 
         $account->deposit = $account->deposit + $model->amt;
@@ -137,7 +137,7 @@ class PaymentHandler implements ShouldQueue
         $account->save();
 
         $hire = CustomerHire::find($model->reference_id);
-        $hire->status = 2;
+        $hire->status = 3;
         $hire->save();
     }
 

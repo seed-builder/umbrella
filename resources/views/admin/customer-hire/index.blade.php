@@ -155,8 +155,9 @@
                                             <select class="form-control" name="filter[][status]">
                                                 <option value="">请选择</option>
                                                 <option value="1">正常出租</option>
-                                                <option value="2">按时归还</option>
-                                                <option value="3">逾期未归还</option>
+                                                <option value="2">待支付租金</option>
+                                                <option value="3">已完成</option>
+                                                <option value="4">逾期未归还</option>
                                             </select>
                                         </div>
                                     </div>
