@@ -125,7 +125,7 @@ class UmbrelladbTable extends Migration
             $table->timestamp('expired_at')->nullable()->comment('到期时间');
             $table->integer('hire_day')->default(0)->comment('租用时长');
             $table->decimal('hire_amt', 12, 2)->default('0.00')->comment('租借费用');
-            $table->integer('status')->default(1)->comment('状态(1-租借中, 2-已完成, 3-逾期未归还 4-待支付租金)');
+            $table->integer('status')->default(1)->comment('状态(1-租借中, 2-待支付租金 3-已完成, 4-逾期未归还)');
 
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
