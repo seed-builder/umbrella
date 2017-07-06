@@ -75,4 +75,21 @@ class CustomerHire extends BaseModel
         });
     }
 
+    public function status(){
+        switch ($this->status) {
+            case 1: {
+                return '租借中';
+            }
+            case 2: {
+                return '待支付租金';
+            }
+            case 3: {
+                return '已完成';
+            }
+            case 4: {
+                return '逾期未归还';
+            }
+        }
+    }
+
 }
