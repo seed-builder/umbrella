@@ -20,7 +20,7 @@ define(function (require, exports, module) {
                     },
                     header : function (item) {
                         if (item.status==4)
-                            return '<a></a>'+'<span style="color: #ffa842">'+item.status_name+'</span>'+'<i class="fa fa-angle-right" aria-hidden="true"></i>';
+                            return '<a></a>'+'<span style="color: orangered">'+item.status_name+'</span>'+'<i class="fa fa-angle-right" aria-hidden="true"></i>';
                         else
                             return '<a></a>'+item.status_name+'<i class="fa fa-angle-right" aria-hidden="true"></i>';
                     },
