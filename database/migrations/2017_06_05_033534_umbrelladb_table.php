@@ -145,7 +145,7 @@ class UmbrelladbTable extends Migration
             $table->integer('have')->default(0)->comment('当前还有数（伞数量）');
             $table->integer('type')->default(1)->comment('设备类型 1-伞机设备(E) 2-手持设备(M)');
             $table->string('ip')->nullable()->comment('ip');
-            $table->integer('status')->default(0)->comment('状态（1-未启用, 2-启用, 3-系统故障）');
+            $table->integer('status')->default(0)->comment('状态（1-未启用, 2-启用, 3-在线, 4-离线, 5-系统故障）');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
             $table->timestamps();
