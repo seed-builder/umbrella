@@ -40,7 +40,7 @@ class WeChatController extends MobileController
             $response = $api->getUserByCode($code);
 
             $data = [
-//                'nickname' => $response->nickname,
+                'nickname' => $response->nickname,
                 'head_img_url' => $response->headimgurl,
                 'gender' => $response->sex,
                 'city' => $response->city,
