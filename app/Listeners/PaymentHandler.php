@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\PaymentEvent;
 use App\Models\Customer;
 use App\Models\CustomerHire;
+use App\Models\CustomerPayment;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -31,7 +32,7 @@ class PaymentHandler implements ShouldQueue
     {
         $model = $event->model;
 
-        if ($model->status != 2)
+        if ($model->status != CustomerPayment::STATUS_SUCCESS)
             return;
 
         switch ($model->type) {
@@ -112,10 +113,6 @@ class PaymentHandler implements ShouldQueue
     {
         $customer = Customer::find($model->customer_id);
         $account = $customer->account;
-
-        $hire = CustomerHire::find($model->reference_id);
-        if ($hire->status != CustomerHire::STATUS_COMPLETE) //判断租借单是否已完成
-            return;
 
         $account->deposit = $account->deposit + $model->amt;
         $account->save();

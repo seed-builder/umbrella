@@ -161,13 +161,13 @@ class CustomerPayment extends BaseModel
     public function status()
     {
         switch ($this->status) {
-            case 1: {
+            case CustomerPayment::STATUS_INIT: {
                 return '未完成';
             }
-            case 2: {
+            case CustomerPayment::STATUS_SUCCESS: {
                 return '已完成';
             }
-            case 3: {
+            case CustomerPayment::STATUS_FAIL: {
                 return '已取消';
             }
             default : {
@@ -185,22 +185,22 @@ class CustomerPayment extends BaseModel
     public function snFlag($type)
     {
         switch ($type) {
-            case 1: {
+            case CustomerPayment::TYPE_IN_CHARGE: {
                 return 'AC';
             }
-            case 2: {
+            case CustomerPayment::TYPE_IN_DEPOSIT: {
                 return 'YC';
             }
-            case 3: {
+            case CustomerPayment::TYPE_OUT_DEPOSIT: {
                 return 'YO';
             }
-            case 4: {
+            case CustomerPayment::TYPE_INT_DEPOSIT_BACK: {
                 return 'YB';
             }
-            case 5: {
+            case CustomerPayment::TYPE_OUT_RENT: {
                 return 'HO';
             }
-            case 6: {
+            case CustomerPayment::TYPE_OUT_WITHDRAW: {
                 return 'AW';
             }
         }
@@ -212,7 +212,7 @@ class CustomerPayment extends BaseModel
      * @param int $status
      * @return mixed
      */
-    public function createPayment($data, $status = 1)
+    public function createPayment($data, $status = CustomerPayment::STATUS_INIT)
     {
         if (empty($data['customer_id'])) {
             $customer = Auth::guard('mobile')->user();

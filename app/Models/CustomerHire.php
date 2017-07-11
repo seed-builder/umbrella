@@ -88,14 +88,18 @@ class CustomerHire extends BaseModel
         });
         static::updated(function ($model) {
             event(new ModelUpdatedEvent($model));
+
+            if ($model->status != CustomerHire::STATUS_COMPLETE) //判断租借单是否已完成
+                return ;
+
             $payment = new CustomerPayment();
             $payment->createPayment([
-                'type' => 4,
+                'type' => CustomerPayment::TYPE_INT_DEPOSIT_BACK,
                 'amt' => $model->deposit_amt,
                 'customer_id' => $model->customer_id,
                 'reference_id' => $model->id,
                 'reference_type' => 'App\Models\CustomerHire',
-            ],2);
+            ],CustomerPayment::STATUS_SUCCESS);
 
         });
     }

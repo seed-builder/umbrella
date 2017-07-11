@@ -115,10 +115,10 @@ class WeChatController extends MobileController
         $result = $this->orderQuery($order);
         $order->outer_order_sn = $result['transaction_id'];
 
-        if ($order->status != 1)
+        if ($order->status != CustomerPayment::STATUS_INIT)
             dd('SUCCESS');
 
-        $order->status = 2;
+        $order->status = CustomerPayment::STATUS_SUCCESS;
         $order->save();
 
         $utl = new Utl();
@@ -137,7 +137,7 @@ class WeChatController extends MobileController
         $data = $request->all();
         $user = Auth::guard('mobile')->user();
 
-        $data['type'] = 6;
+        $data['type'] = CustomerPayment::TYPE_OUT_WITHDRAW;
 
         $fieldErrors = $this->validateFields($data);
 
@@ -153,14 +153,14 @@ class WeChatController extends MobileController
 
         $result = $this->epPay($withdraw);
         if (empty($result['payment_no'])) {
-            $withdraw->status = 3;
+            $withdraw->status = CustomerPayment::STATUS_FAIL;
             $withdraw->save();
 
             return $this->fail_result('提交提现申请失败，请联系客服人员处理');
         }
 
         $withdraw->outer_order_sn = $result['payment_no'];
-        $withdraw->status = 2;
+        $withdraw->status = CustomerPayment::STATUS_SUCCESS;
         $withdraw->save();
 
         return $this->success_result('已提交提现申请，系统会尽快为您处理');
@@ -191,12 +191,12 @@ class WeChatController extends MobileController
         $user = Auth::guard('mobile')->user();
         $account = $user->account;
 
-        $data['type'] = 5;
+        $data['type'] = CustomerPayment::TYPE_OUT_RENT;
         $data['reference_id'] = $id;
         $data['reference_type'] = 'App\Models\CustomerHire';
 
         if ($account->balance_amt >= $data['amt']) {
-            $this->newEntity()->createPayment($data, 2);
+            $this->newEntity()->createPayment($data, CustomerPayment::STATUS_SUCCESS);
 
             return $this->result(0, '', null);
         } else {
