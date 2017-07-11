@@ -33,18 +33,8 @@ define(function (require, exports, module) {
                     }
                 },
                 {'data': 'amt'},
-                {
-                    'data': 'status',
-                    render: function (data, type, full) {
-                        return full.status_name
-                    }
-                },
-                {
-                    'data': 'type',
-                    render: function (data, type, full) {
-                        return full.type_name
-                    }
-                },
+                {'data': 'status_name'},
+                {'data': 'type_name'},
                 {'data': 'created_at'},
             ],
             columnDefs: [
@@ -77,15 +67,6 @@ define(function (require, exports, module) {
             table.ajax.url("/admin/customer-payment/pagination").load();
         })
 
-        $("table").on('click', '.csx-delete', function () {
-            var url = $(this).data('url')
-            layer.confirm("确定删除该记录吗?", function (result) {
-                App.ajaxLink(url, '#' + alertId, '#' + tableId, function () {
-                    table.ajax.reload();
-                    layer.closeAll();
-                })
-            });
-        })
 
 
     }

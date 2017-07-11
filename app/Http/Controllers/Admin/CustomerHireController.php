@@ -70,7 +70,11 @@ class CustomerHireController extends BaseController
     public function pagination(Request $request, $searchCols = [], $with = [], $conditionCall = null, $dataHandleCall = null, $all_columns = false)
     {
         $searchCols = [];
-        return parent::pagination($request, $searchCols, $with, $conditionCall, $dataHandleCall,true);
+        return parent::pagination($request, $searchCols, $with, $conditionCall, function($entities){
+            foreach ($entities as $entity){
+                $entity->status_name = $entity->status();
+            }
+        },true);
 	}
 
     public function entityQuery()

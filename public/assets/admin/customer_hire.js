@@ -37,19 +37,7 @@ define(function (require, exports, module) {
                 {'data': 'expired_at'},
                 {'data': 'hire_day'},
                 {'data': 'hire_amt'},
-                {
-                    'data': 'status',
-                    render: function (data, type, full) {
-                        if(data==1)
-                            return '租借中'
-                        else if(data==2)
-                            return '已完成'
-                        else if(data==3)
-                            return '逾期未归还'
-                        else if(data==4)
-                            return '待支付租金'
-                    }
-                },
+                {'data': 'status_name'},
                 {'data': 'created_at'},
                 {'data': 'updated_at'},
             ],
@@ -83,15 +71,6 @@ define(function (require, exports, module) {
             table.ajax.url("/admin/customer-hire/pagination").load();
         })
 
-        $("table").on('click', '.csx-delete', function () {
-            var url = $(this).data('url')
-            layer.confirm("确定删除该记录吗?", function (result) {
-                App.ajaxLink(url, '#' + alertId, '#' + tableId, function () {
-                    table.ajax.reload();
-                    layer.closeAll();
-                })
-            });
-        })
 
 
     }
