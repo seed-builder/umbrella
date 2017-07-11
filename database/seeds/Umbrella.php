@@ -18,7 +18,7 @@ class Umbrella extends Seeder
         $data = [];
         for ($i=0;$i<100;$i++){
             $data[] = [
-                'sn' => 'S'.$faker->date('Ym').$faker->lexify('????'),
+                'sn' => 'S'.$faker->numerify('######'),
                 'birth_equipment_id' => $faker->randomElement($eq_ids),
                 'birth_site_id' => $faker->randomElement($site_ids),
                 'equipment_id' => $faker->randomElement($eq_ids),
