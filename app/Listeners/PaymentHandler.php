@@ -114,7 +114,7 @@ class PaymentHandler implements ShouldQueue
         $account = $customer->account;
 
         $hire = CustomerHire::find($model->reference_id);
-        if ($hire->status != 3)
+        if ($hire->status != CustomerHire::STATUS_COMPLETE) //判断租借单是否已完成
             return;
 
         $account->deposit = $account->deposit + $model->amt;
@@ -137,7 +137,7 @@ class PaymentHandler implements ShouldQueue
         $account->save();
 
         $hire = CustomerHire::find($model->reference_id);
-        $hire->status = 3;
+        $hire->status = CustomerHire::STATUS_COMPLETE; //变更租借单为已完成
         $hire->save();
     }
 

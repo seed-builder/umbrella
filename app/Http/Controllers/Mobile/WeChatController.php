@@ -180,7 +180,7 @@ class WeChatController extends MobileController
         $fieldErrors = $this->validateFields($data);
 
         $hire = CustomerHire::find($id);
-        if ($hire->status == 3) {
+        if ($hire->status == CustomerHire::STATUS_COMPLETE) {
             $fieldErrors .= '该订单已完成';
         }
 
