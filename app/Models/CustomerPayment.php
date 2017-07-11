@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\ModelCreatedEvent;
 use App\Events\ModelUpdatedEvent;
 use App\Events\PaymentEvent;
+use App\Helpers\Utl;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BaseModel;
 use Illuminate\Support\Facades\Auth;
@@ -113,7 +114,12 @@ class CustomerPayment extends BaseModel
         });
         static::updated(function ($model) {
             event(new ModelUpdatedEvent($model));
+
+            $utl = new Utl();
+            $utl->addLog($model, '更新订单中', CustomerPayment::STATUS_SUCCESS);
+
             event(new PaymentEvent($model));
+
         });
     }
 
