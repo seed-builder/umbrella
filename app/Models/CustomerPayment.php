@@ -113,7 +113,7 @@ class CustomerPayment extends BaseModel
             event(new PaymentEvent($model));
         });
         static::updated(function ($model) {
-            event(new ModelUpdatedEvent($model));
+//            event(new ModelUpdatedEvent($model));
 
             $utl = new Utl();
             $utl->addLog($model, '微信支付回调-更新订单中-进入事件监听', CustomerPayment::STATUS_SUCCESS);
