@@ -103,15 +103,21 @@ class CustomerHire extends BaseModel
     public function status(){
         switch ($this->status) {
             case 1: {
-                return '租借中';
+                return '初始';
             }
             case 2: {
-                return '待支付租金';
+                return '未拿伞租借失败';
             }
             case 3: {
-                return '已完成';
+                return '租借中';
             }
             case 4: {
+                return '还伞完毕，待支付租金';
+            }
+            case 5: {
+                return '已完成';
+            }
+            case 6: {
                 return '逾期未归还';
             }
         }
