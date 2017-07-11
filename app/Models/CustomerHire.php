@@ -32,12 +32,37 @@ use App\Models\BaseModel;
  * @SWG\Property(name="return_at", type="string", description="还伞时间")
  * @SWG\Property(name="return_equipment_id", type="integer", description="equipments id 还伞设备id")
  * @SWG\Property(name="return_site_id", type="integer", description="sites id 还伞网点id")
- * @SWG\Property(name="status", type="integer", description="状态(1-正常出租, 2-按时归还, 3-逾期未归还)")
+ * @SWG\Property(name="status", type="integer", description="状态(1-初始，2-未拿伞租借失败，3-租借中, 4-还伞完毕，待支付租金 5-已完成, 6-逾期未归还)")
  * @SWG\Property(name="umbrella_id", type="integer", description="umbrellas id")
  * @SWG\Property(name="updated_at", type="string", description="")
  */
 class CustomerHire extends BaseModel
 {
+	/**
+	 * 租借状态：1-初始
+	 */
+	const STATUS_INIT = 1;
+	/**
+	 * 租借状态：2-未拿伞,租借失败
+	 */
+	const STATUS_FAIL = 2;
+	/**
+	 * 租借状态：3-租借中
+	 */
+	const STATUS_HIRING = 3;
+	/**
+	 * 租借状态：4-还伞完毕，待支付租金
+	 */
+	const STATUS_PAYING = 4;
+	/**
+	 * 租借状态：5-已完成
+	 */
+	const STATUS_COMPLETE = 5;
+	/**
+	 * 租借状态： 6-逾期未归还
+	 */
+	const STATUS_EXPIRED = 6;
+
     //
     protected $table = 'customer_hires';
     protected $guarded = ['id'];

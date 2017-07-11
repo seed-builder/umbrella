@@ -29,6 +29,15 @@ use App\Models\BaseModel;
  */
 class Site extends BaseModel
 {
+	/**
+	 * 网点类别 1-设备网点
+	 */
+	const TYPE_EQUIPMENT = 1;
+	/**
+	 * 网点类别 2-还伞网点
+	 */
+	const TYPE_RESTORE = 2;
+
     //
     protected $table = 'sites';
     protected $guarded = ['id'];

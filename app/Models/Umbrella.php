@@ -23,11 +23,33 @@ use App\Models\BaseModel;
  * @SWG\Property(name="name", type="string", description="伞名称")
  * @SWG\Property(name="site_id", type="integer", description="sites id")
  * @SWG\Property(name="sn", type="string", description="伞编号")
- * @SWG\Property(name="status", type="integer", description="状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）")
+ * @SWG\Property(name="status", type="integer", description="状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间） 5-异常")
  * @SWG\Property(name="updated_at", type="string", description="")
   */
 class Umbrella extends BaseModel
 {
+	/**
+	 * 状态 1-未发放
+	 */
+	const STATUS_INIT = 1;
+	/**
+	 * 状态 2-待借中
+	 */
+	const STATUS_WAITING = 2;
+	/**
+	 * 状态 3-借出中
+	 */
+	const STATUS_HIRING = 3;
+	/**
+	 * 状态 4-失效（超过还伞时间）
+	 */
+	const STATUS_EXPIRED = 4;
+	/**
+	 * 状态 5-异常
+	 */
+	const STATUS_EXCEPTION = 5;
+
+
 	//
 	protected $table = 'umbrellas';
 	protected $guarded = ['id'];

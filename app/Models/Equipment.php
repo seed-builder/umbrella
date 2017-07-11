@@ -25,12 +25,42 @@ use App\Models\BaseModel;
  * @SWG\Property(name="modifier_id", type="integer", description="修改用户id")
  * @SWG\Property(name="site_id", type="integer", description="sites id")
  * @SWG\Property(name="sn", type="string", description="设备编号")
- * @SWG\Property(name="status", type="integer", description="状态（1-未启用, 2-启用, 3-系统故障）")
+ * @SWG\Property(name="status", type="integer", description="状态（1-未启用, 2-启用, 3-在线, 4-离线, 5-系统故障）")
  * @SWG\Property(name="type", type="integer", description="设备类型 1-伞机设备 2-手持设备")
  * @SWG\Property(name="updated_at", type="string", description="")
  */
 class Equipment extends BaseModel
 {
+	/**
+	 * 状态 1-未启用
+	 */
+	const STATUS_INIT = 1;
+	/**
+	 * 状态 2-启用
+	 */
+	const STATUS_NORMAL = 2;
+	/**
+	 * 状态 3-在线
+	 */
+	const STATUS_ONLINE = 3;
+	/**
+	 * 状态 4-离线
+	 */
+	const STATUS_OFFLINE = 4;
+	/**
+	 * 状态 5-系统故障
+	 */
+	const STATUS_BUG = 5;
+
+	/**
+	 * 设备类型 1-伞机设备
+	 */
+	const TYPE_DESK=1;
+	/**
+	 * 设备类型 2-手持设备
+	 */
+	const TYPE_HAND=2;
+
     //
     protected $table = 'equipments';
     protected $guarded = ['id'];

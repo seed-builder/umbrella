@@ -31,11 +31,51 @@ use Illuminate\Support\Facades\Log;
  * @SWG\Property(name="remark", type="string", description="备注")
  * @SWG\Property(name="sn", type="string", description="内部订单号 系统内部的订单号")
  * @SWG\Property(name="status", type="integer", description="支付状态（1-未支付, 2-已支付, 3-支付失败）")
- * @SWG\Property(name="type", type="integer", description="类型(1-定金支付, 2-租金支付, 3-账户充值支付")
+ * @SWG\Property(name="type", type="integer", description="流水类型 1-充值（收入）， 2-押金充值， 3-押金支出， 4-押金退回， 5-借伞租金支出， 6-账户提现")
  * @SWG\Property(name="updated_at", type="string", description="")
  */
 class CustomerPayment extends BaseModel
 {
+	/**
+	 * 支付状态（1-未支付）
+	 */
+	const STATUS_INIT = 1;
+	/**
+	 * 支付状态（2-已支付）
+	 */
+	const STATUS_SUCCESS=2;
+	/**
+	 * 支付状态（3-支付失败）
+	 */
+	const STATUS_FAIL=3;
+
+	/**
+	 * 流水类型 1-充值（收入）
+	 */
+	const TYPE_IN_CHARGE = 1;
+	/**
+	 * 流水类型 2-押金充值（收入）
+	 */
+	const TYPE_IN_DEPOSIT = 2;
+	/**
+	 * 流水类型 3-押金支出
+	 */
+	const TYPE_OUT_DEPOSIT = 3;
+	/**
+	 * 流水类型 4-押金退回（收入）
+	 */
+	const TYPE_INT_DEPOSIT_BACK = 4;
+	/**
+	 * 流水类型 5-借伞租金支出
+	 */
+	const TYPE_OUT_RENT = 5;
+	/**
+	 * 流水类型 6-账户提现
+	 */
+	const TYPE_OUT_WITHDRAW = 6;
+
+
+
     //
     protected $table = 'customer_payments';
     protected $guarded = ['id'];

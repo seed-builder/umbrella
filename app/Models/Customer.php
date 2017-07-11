@@ -33,6 +33,21 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
   */
 class Customer extends Authenticatable
 {
+	/**
+	 * 性别 0-未知
+	 */
+	const GENDER_UNKNOWN = 0;
+
+	/**
+	 * 性别 1-男
+	 */
+	const GENDER_MAN = 1;
+
+	/**
+	 * 性别 2-女
+	 */
+	const GENDER_FEMALE = 2;
+
 	//
 	protected $table = 'customers';
 	protected $guarded = ['id'];
