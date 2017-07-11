@@ -118,6 +118,9 @@ class WeChatController extends MobileController
         if ($order->status != CustomerPayment::STATUS_INIT)
             dd('SUCCESS');
 
+        $utl = new Utl();
+        $utl->addLog($order, '订单查询接口', '');
+
         $order->status = CustomerPayment::STATUS_SUCCESS;
         $order->save();
 

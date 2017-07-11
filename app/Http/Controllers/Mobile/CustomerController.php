@@ -35,4 +35,11 @@ class CustomerController extends MobileController
 
         return $this->success_result('保存成功');
     }
+
+
+    public function getLoginCustomer(){
+        $entity =  Auth::guard('mobile')->user();
+
+        return $this->success_result('获取用户信息成功',$entity);
+    }
 }
