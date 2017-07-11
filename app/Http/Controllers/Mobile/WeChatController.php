@@ -119,7 +119,7 @@ class WeChatController extends MobileController
             dd('SUCCESS');
 
         $utl = new Utl();
-        $utl->addLog($order, '更新订单开始', '');
+        $utl->addLog($order, '微信支付回调-更新订单开始', '');
 
         $order->status = CustomerPayment::STATUS_SUCCESS;
         $order->save();

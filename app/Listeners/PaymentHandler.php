@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\PaymentEvent;
+use App\Helpers\Utl;
 use App\Models\Customer;
 use App\Models\CustomerHire;
 use App\Models\CustomerPayment;
@@ -32,11 +33,17 @@ class PaymentHandler implements ShouldQueue
     {
         $model = $event->model;
 
+        $utl = new Utl();
+        $utl->addLog($model, '微信支付回调-更新订单-进入事件处理1', '');
+
         if ($model->status != CustomerPayment::STATUS_SUCCESS)
             return;
 
+        $utl->addLog($model, '微信支付回调-更新订单-进入事件处理2', '');
+
         switch ($model->type) {
             case 1: {
+                $utl->addLog($model, '微信支付回调-更新订单-进入事件处理3', '');
                 $this->recharge($model);
                 break;
             }
@@ -69,12 +76,15 @@ class PaymentHandler implements ShouldQueue
      */
     protected function recharge($model)
     {
+        $utl = new Utl();
+        $utl->addLog($model, '微信支付回调-更新订单-进入事件处理4', '');
         $customer = Customer::find($model->customer_id);
         $account = $customer->account;
 
         $account->balance_amt = $account->balance_amt + $model->amt;
 
         $account->save();
+        $utl->addLog($model, '微信支付回调-更新订单完成', '');
     }
 
     /**
