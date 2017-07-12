@@ -37,27 +37,27 @@ class PaymentHandler //implements ShouldQueue
             return;
 
         switch ($model->type) {
-            case 1: {
+            case CustomerPayment::TYPE_IN_CHARGE: {
                 $this->recharge($model);
                 break;
             }
-            case 2: {
+            case CustomerPayment::TYPE_IN_DEPOSIT: {
                 $this->depositRecharge($model);
                 break;
             }
-            case 3: {
+            case CustomerPayment::TYPE_OUT_DEPOSIT: {
                 $this->depositPay($model);
                 break;
             }
-            case 4: {
+            case CustomerPayment::TYPE_INT_DEPOSIT_BACK: {
                 $this->depositBack($model);
                 break;
             }
-            case 5: {
+            case CustomerPayment::TYPE_OUT_RENT: {
                 $this->hirePay($model);
                 break;
             }
-            case 6: {
+            case CustomerPayment::TYPE_OUT_WITHDRAW: {
                 $this->withdraw($model);
                 break;
             }
