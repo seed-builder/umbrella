@@ -14,17 +14,24 @@ class WechatApiEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $module;
     public $url;
+    public $data;
     public $result;
+    public $status;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($url,$result)
+    public function __construct($module, $url, $result = null, $data = null, $status = 1)
     {
+        $this->module = $module;
         $this->url = $url;
         $this->result = $result;
+        $this->data = $data;
+        $this->status = $status;
     }
 
     /**

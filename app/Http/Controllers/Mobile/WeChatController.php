@@ -118,9 +118,6 @@ class WeChatController extends MobileController
         if ($order->status != CustomerPayment::STATUS_INIT)
             dd('SUCCESS');
 
-        $utl = new Utl();
-        $utl->addLog($order, '微信支付回调-更新订单开始', '');
-
         $order->status = CustomerPayment::STATUS_SUCCESS;
         $order->save();
 
@@ -293,13 +290,19 @@ class WeChatController extends MobileController
 
     public function test()
     {
-//        $order = CustomerPayment::find(112);
-//        $re = $this->orderQuery($order);
+        $order = CustomerPayment::find(1);
+        $rs = $this->orderQuery($order);
 //        $order->status = 2;
 //        $order->save();
-//        dd($re);
-        dd(storage_path() . env('WECHAT_CERTPATH'));
-        $this->epPay(1);
+        dd($rs);
+        foreach ($rs as $k=> $v) {
+            if(strpos('SUCCESS', $k)!== false||strpos('SUCCESS', $v)!== false){
+                dd(123123);
+            }
+        }
+        dd(1);
+//        dd(storage_path() . env('WECHAT_CERTPATH'));
+//        $this->epPay(1);
 
     }
 }

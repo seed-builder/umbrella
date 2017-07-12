@@ -114,10 +114,6 @@ class CustomerPayment extends BaseModel
         });
         static::updated(function ($model) {
             event(new ModelUpdatedEvent($model));
-
-            $utl = new Utl();
-            $utl->addLog($model, '微信支付回调-更新订单中-进入事件监听', CustomerPayment::STATUS_SUCCESS);
-
             event(new PaymentEvent($model));
 
         });
@@ -128,22 +124,22 @@ class CustomerPayment extends BaseModel
         $type = empty($type) ? $this->type : $type;
 
         switch ($type) {
-            case 1: {
+            case CustomerPayment::TYPE_IN_CHARGE: {
                 return '账户充值';
             }
-            case 2: {
+            case CustomerPayment::TYPE_IN_DEPOSIT: {
                 return '押金充值';
             }
-            case 3: {
+            case CustomerPayment::TYPE_OUT_DEPOSIT: {
                 return '押金支出';
             }
-            case 4: {
+            case CustomerPayment::TYPE_INT_DEPOSIT_BACK: {
                 return '押金退回';
             }
-            case 5: {
+            case CustomerPayment::TYPE_OUT_RENT: {
                 return '借伞租金支出';
             }
-            case 6: {
+            case CustomerPayment::TYPE_OUT_WITHDRAW: {
                 return '账户提现';
             }
         }
