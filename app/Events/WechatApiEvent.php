@@ -25,9 +25,8 @@ class WechatApiEvent
      *
      * @return void
      */
-    public function __construct($module, $url, $result = null, $data = null, $status = 1)
+    public function __construct($url, $result = null, $data = null, $status = 1)
     {
-        $this->module = $module;
         $this->url = $url;
         $this->result = $result;
         $this->data = $data;

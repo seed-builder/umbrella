@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+use App\Events\WechatApiEvent;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\URL;
@@ -90,8 +91,7 @@ class WeChatConfig
 
             $token = json_decode($response->getBody());
             if (empty($token->access_token)){
-                $utl = new Utl();
-                $utl->addLog(json_encode($token),'获取token',[]);
+                event(new WechatApiEvent('获取token', $token, ''));
             }
 
 

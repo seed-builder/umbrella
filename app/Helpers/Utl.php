@@ -44,7 +44,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        event(new WechatApiEvent('', $url, $rs, $data));
+        event(new WechatApiEvent($url, $rs, $data));
 
         if (!empty($rs->errcode)) {
             dd('系统调试中！');
@@ -66,7 +66,7 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        event(new WechatApiEvent('', $url, $rs, $data));
+        event(new WechatApiEvent($url, $rs, $data));
 
         return $rs;
     }
@@ -84,30 +84,9 @@ class Utl
 
         $rs = json_decode($response->getBody());
 
-        event(new WechatApiEvent('', $url, $rs, $data));
+        event(new WechatApiEvent($url, $rs, $data));
 
         return $rs;
-    }
-
-    public function addLog($rs, $url, $data, $api = '微信')
-    {
-        $log = [
-            'module' => '调用' . $api . '接口',
-            'action' => $url,
-            'content' => '【请求接口数据】：' . json_encode($data) . '【接口返回结果】：' . json_encode($rs),
-        ];
-        if (is_array($rs)) {
-            if (!empty($rs['errcode']) || !empty($rs['err_code'])) {
-                $log['status'] = 2;
-            }
-        } else {
-            if (!empty($rs->errcode) || !empty($rs->err_code)) {
-                $log['status'] = 2;
-            }
-        }
-
-
-        SysLog::create($log);
     }
 
     /*

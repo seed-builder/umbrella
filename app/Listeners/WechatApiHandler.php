@@ -28,7 +28,7 @@ class WechatApiHandler
     public function handle(WechatApiEvent $event)
     {
         $log = [
-            'module' => '微信接口-' . $event->module,
+            'module' => '微信',
             'action' => $event->url,
         ];
 

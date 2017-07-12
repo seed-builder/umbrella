@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Mobile;
 
+use App\Events\WechatApiEvent;
 use App\Helpers\Utl;
 use App\Helpers\WeChatApi;
 use App\Helpers\WeChatLib\WxPayApi;
@@ -118,12 +119,10 @@ class WeChatController extends MobileController
         if ($order->status != CustomerPayment::STATUS_INIT)
             dd('SUCCESS');
 
+        event(new WechatApiEvent('支付异步回调', $result, $order));
+
         $order->status = CustomerPayment::STATUS_SUCCESS;
         $order->save();
-
-
-        $utl = new Utl();
-        $utl->addLog($sign, '微信支付异步回调', '');
 
         dd('SUCCESS');
     }
@@ -223,8 +222,7 @@ class WeChatController extends MobileController
         $api = new WxPayApi();
         $response = $api->orderQuery($input);
 
-        $utl = new Utl();
-        $utl->addLog($response, '订单查询接口', $order->sn);
+        event(new WechatApiEvent('订单查询', $response, $order->sn));
 
         return $response;
     }
@@ -281,8 +279,7 @@ class WeChatController extends MobileController
         $pay = new WeChatPay();
         $result = $pay->enterprisePay($input);
 
-        $utl = new Utl();
-        $utl->addLog($result, '企业向个人付款接口', $input);
+        event(new WechatApiEvent('企业向个人付款', $result, $input));
 
         return $result;
     }
@@ -294,6 +291,7 @@ class WeChatController extends MobileController
         $rs = $this->orderQuery($order);
 //        $order->status = 2;
 //        $order->save();
+        event(new WechatApiEvent('', 'xx', $rs, 'x'));
         dd($rs);
         foreach ($rs as $k=> $v) {
             if(strpos('SUCCESS', $k)!== false||strpos('SUCCESS', $v)!== false){
