@@ -7,9 +7,9 @@ use App\Models\SysLog;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ModelUpdatedHandler implements ShouldQueue
+class ModelUpdatedHandler //implements ShouldQueue
 {
-    use InteractsWithQueue;
+    //use InteractsWithQueue;
     /**
      * Create the event listener.
      *

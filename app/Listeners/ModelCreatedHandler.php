@@ -7,7 +7,7 @@ use App\Models\SysLog;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ModelCreatedHandler implements ShouldQueue
+class ModelCreatedHandler //implements ShouldQueue
 {
     /**
      * Create the event listener.
