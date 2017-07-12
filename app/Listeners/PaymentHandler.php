@@ -10,7 +10,7 @@ use App\Models\CustomerPayment;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PaymentHandler implements ShouldQueue
+class PaymentHandler //implements ShouldQueue
 {
 //    use InteractsWithQueue;
     /**
