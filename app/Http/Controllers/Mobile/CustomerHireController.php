@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mobile;
 use App\Http\Controllers\MobileController;
 use App\Models\CustomerHire;
 use App\Models\CustomerPayment;
+use App\Models\Equipment;
 use App\Models\Price;
 use App\Models\ViewCustomerHire;
 use Illuminate\Http\Request;
@@ -49,10 +50,20 @@ class CustomerHireController extends MobileController
 
     public function store(Request $request, $only = [], $extraFields = [], $successMsg = null)
     {
+        $hire_equipment_id = $request->input('hire_equipment_id',0);
+
+        if (empty($hire_equipment_id))
+            return $this->fail_result('参数错误');
+
+        $equipment = Equipment::find($hire_equipment_id);
+        $hire_site_id = $equipment->site_id;
+
         $user = Auth::guard('mobile')->user();
         $price = new Price();
+
         $extraFields = [
             'customer_id' => $user->id,
+            'hire_site_id' => $hire_site_id,
             'hire_at' => date('Y-m-d H:i:s'),
             'deposit_amt' => $price->getUsingPrice()->deposit_cash
         ];
