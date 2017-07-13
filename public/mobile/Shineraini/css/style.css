@@ -195,3 +195,26 @@
 .amap-icon img{
     width: 30px;
 }
+
+/**
+ * tip
+ */
+#customer-hire-tip {
+    background: white;
+}
+.tip-title{
+    width: 100%;
+    margin-top: 10rem;
+    text-align: center;
+}
+.tip-title .fa-umbrella{
+    color: coral;
+}
+
+.tip-text{
+    width: 100%;
+    margin-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+}

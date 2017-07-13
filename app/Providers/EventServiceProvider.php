@@ -31,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PaymentEvent' => [
             'App\Listeners\PaymentHandler',
         ],
+        'App\Events\HireEvent' => [
+            'App\Listeners\HireHandler',
+        ],
     ];
 
     /**

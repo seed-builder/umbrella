@@ -52,18 +52,30 @@ define(function (require, exports, module) {
 
             controlUI.innerHTML = '<a href="#" id="QR" class="button button-big button-fill" ><img src="/images/icon/icon_scanQR_white.png">扫码借伞</a>';
 
+            var self = this;
+
             controlUI.onclick = function () {
                 if (!enough_deposit) {
                     $.router.loadPage("/mobile/customer-account/deposit?index=deposit");
                     return
                 }
+
+
                 wx.scanQRCode({
                     desc: 'scanQRCode desc',
                     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                     success: function (res) {
-                        // 回调
-                        alert(res)
+                        App.ajaxLink(res.resultStr,function (data) {
+                            layer.open({
+                                type: 2,
+                                shadeClose: false
+                                , content: '系统正在出伞，请稍等15秒左右...'
+                            });
+                            timer = setInterval(function () {
+                                checkHire(data.id);
+                            }, 8000);
+                        })
                     },
                     error: function (res) {
                         if (res.errMsg.indexOf('function_not_exist') > 0) {
@@ -145,6 +157,11 @@ define(function (require, exports, module) {
             map.addControl(homeControl);
         }
 
+        /**
+         * 创建标注
+         * @param point
+         * @returns {AMap.Marker}
+         */
         var createMarker = function (point) {
             if (!point) {
                 return;
@@ -174,6 +191,11 @@ define(function (require, exports, module) {
             })
         }
 
+        /**
+         * 信息窗口
+         * @param marker
+         * @param data
+         */
         var infoWindow = function (marker, data) {
             AMapUI.defineTpl("ui/overlay/SimpleInfoWindow/tpl/container.html", [], function () {
                 return document.getElementById('info-window').innerHTML;
@@ -200,6 +222,24 @@ define(function (require, exports, module) {
             });
 
         }
+
+        var checkHire = function (id) {
+            $.get('/mobile/customer-hire/check/'+id,{},function (data) {
+                if (data.code==0){
+                    layer.closeAll();
+                    clearInterval(timer);
+                    layer.open({
+                        content:'出伞成功，请到机器上领取您的伞'
+                        , btn: '我知道了'
+                    });
+                }
+            })
+        }
+
+        /**
+         * 定时器
+         */
+        var timer;
 
         /**
          * 初始化

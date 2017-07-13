@@ -55,7 +55,7 @@ class UmbrellaController extends BaseController
         for ($i = $data['start_index']; $i <= $data['end_index']; $i++) {
             $umbrellas[] = [
                 'sn' => $i,
-                'birth_site_id' => $ep->site_id,
+                'birth_site_id' => !empty($ep->site_id) ? $ep->site_id : 0,
                 'birth_equipment_id' => $data['equipment_id'],
                 'status' => $data['status'],
                 'created_at' => date('Y-m-d H:i:s'),

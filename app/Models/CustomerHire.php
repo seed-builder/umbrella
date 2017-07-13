@@ -38,41 +38,41 @@ use App\Models\BaseModel;
  */
 class CustomerHire extends BaseModel
 {
-	/**
-	 * 租借状态：1-初始
-	 */
-	const STATUS_INIT = 1;
-	/**
-	 * 租借状态：2-未拿伞,租借失败
-	 */
-	const STATUS_FAIL = 2;
-	/**
-	 * 租借状态：3-租借中
-	 */
-	const STATUS_HIRING = 3;
-	/**
-	 * 租借状态：4-还伞完毕，待支付租金
-	 */
-	const STATUS_PAYING = 4;
-	/**
-	 * 租借状态：5-已完成
-	 */
-	const STATUS_COMPLETE = 5;
-	/**
-	 * 租借状态： 6-逾期未归还
-	 */
-	const STATUS_EXPIRED = 6;
+    /**
+     * 租借状态：1-初始
+     */
+    const STATUS_INIT = 1;
+    /**
+     * 租借状态：2-未拿伞,租借失败
+     */
+    const STATUS_FAIL = 2;
+    /**
+     * 租借状态：3-租借中
+     */
+    const STATUS_HIRING = 3;
+    /**
+     * 租借状态：4-还伞完毕，待支付租金
+     */
+    const STATUS_PAYING = 4;
+    /**
+     * 租借状态：5-已完成
+     */
+    const STATUS_COMPLETE = 5;
+    /**
+     * 租借状态： 6-逾期未归还
+     */
+    const STATUS_EXPIRED = 6;
 
     //
     protected $table = 'customer_hires';
     protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+//        'id' => 'required',
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+//        'id.required' => "id不能为空",
     ];
 
     public function payment()
@@ -89,22 +89,30 @@ class CustomerHire extends BaseModel
         static::updated(function ($model) {
             event(new ModelUpdatedEvent($model));
 
-            if ($model->status != CustomerHire::STATUS_COMPLETE) //判断租借单是否已完成
-                return ;
-
             $payment = new CustomerPayment();
-            $payment->createPayment([
-                'type' => CustomerPayment::TYPE_INT_DEPOSIT_BACK,
-                'amt' => $model->deposit_amt,
-                'customer_id' => $model->customer_id,
-                'reference_id' => $model->id,
-                'reference_type' => 'App\Models\CustomerHire',
-            ],CustomerPayment::STATUS_SUCCESS);
+            switch ($model->status) {
+
+                case CustomerHire::STATUS_COMPLETE: { //完成租借 退还押金
+                    $payment->createPayment([
+                        'type' => CustomerPayment::TYPE_INT_DEPOSIT_BACK,
+                        'amt' => $model->deposit_amt,
+                        'customer_id' => $model->customer_id,
+                        'reference_id' => $model->id,
+                        'reference_type' => 'App\Models\CustomerHire',
+                    ], CustomerPayment::STATUS_SUCCESS);
+
+                    break ;
+                }
+                default : {
+                    break ;
+                }
+            }
 
         });
     }
 
-    public function status(){
+    public function status()
+    {
         switch ($this->status) {
             case 1: {
                 return '初始';

@@ -53,4 +53,8 @@ class Price extends BaseModel
         'hire_expire_days.required' => "租借免费天数不能为空",
         'hire_expire_days.numeric' => "租借免费天数必须为数值",
     ];
+
+    public function getUsingPrice(){
+        return Price::query()->where('status',1)->first();
+    }
 }
