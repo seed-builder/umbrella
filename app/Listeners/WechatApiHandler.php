@@ -44,18 +44,18 @@ class WechatApiHandler
 
         $rs = $event->result;
 
-        if (is_array($rs)){
-            foreach ($rs as $k => $v) {
-                if (!empty($rs['errcode']) || !empty($rs['err_code'])) {
-                    $log['status'] = 2;
-                }else {
-                    if (strpos('SUCCESS', $k) !== false || strpos('SUCCESS', $v) !== false) {
-                        $log['status'] = 1;
-                    }
-                }
-            }
-
-        }
+//        if (is_array($rs)){
+//            foreach ($rs as $k => $v) {
+//                if (!empty($rs['errcode']) || !empty($rs['err_code'])) {
+//                    $log['status'] = 2;
+//                }else {
+//                    if (strpos('SUCCESS', $k) !== false || strpos('SUCCESS', $v) !== false) {
+//                        $log['status'] = 1;
+//                    }
+//                }
+//            }
+//
+//        }
 
         SysLog::create($log);
     }
