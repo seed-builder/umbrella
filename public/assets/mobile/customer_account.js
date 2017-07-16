@@ -36,7 +36,11 @@ define(function (require, exports, module) {
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
                     layer.open({
                         content: '充值成功'
-                        , btn: '我知道了'
+                        , btn: '我知道了',
+                        yes: function () {
+                            layer.closeAll();
+                            $.router.loadPage("/mobile/customer-account/index")
+                        }
                     });
                 } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
                     layer.open({
