@@ -40,6 +40,7 @@ class CustomerHireSeeder extends Seeder
                 'hire_day' => $hire_day,
                 'hire_amt' => $hire_day*0.5,
                 'status' => $faker->randomElement([1,2,3]),
+                'created_at' => date('Y-m-d H:i:s')
             ];
         }
 

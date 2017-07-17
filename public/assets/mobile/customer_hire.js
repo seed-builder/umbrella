@@ -20,24 +20,27 @@ define(function (require, exports, module) {
                     },
                     header : function (item) {
                         if (item.status==4)
-                            return '<a></a>'+'<span style="color: orangered">'+item.status_name+'</span>'+'<i class="fa fa-angle-right" aria-hidden="true"></i>';
+                            return '<span><i class="iconfont icon-qian4"></i>  '+item.hire_amt+'</span>'+'<span style="color: red">'+item.status_name+'</span>';
                         else
-                            return '<a></a>'+item.status_name+'<i class="fa fa-angle-right" aria-hidden="true"></i>';
+                            return '<span><i class="iconfont icon-qian4"></i>  '+item.hire_amt+'</span>'+'<span style="color: grey">'+item.status_name+'</span>';
+                    },
+                    footer : function (item) {
+                        return '<i class="iconfont icon-shijian"></i> '+item.updated_at+'</span>'
                     },
                     columns : [
+                        // {
+                        //     render : function (item) {
+                        //         return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-shijian1"></use></svg>'+item.updated_at
+                        //     }
+                        // },
                         {
                             render : function (item) {
-                                return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-shijian1"></use></svg>'+item.updated_at
+                                return '<span class="hire-item-text">借</span>'+item.hire_site_name
                             }
                         },
                         {
                             render : function (item) {
-                                return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-normal"></use></svg>'+item.hire_site_name
-                            }
-                        },
-                        {
-                            render : function (item) {
-                                return '<svg class="iconfont-svg" aria-hidden="true"><use xlink:href="#icon-zhuangtai"></use></svg>'+item.return_site_name
+                                return '<span class="hire-item-text">还</span>'+item.return_site_name
                             }
                         },
                     ],

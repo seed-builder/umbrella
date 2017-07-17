@@ -67,6 +67,15 @@
                             <div class="item-after">¥{{$entity->deposit_amt}}</div>
                         </div>
                     </li>
+                    @if($entity->status!=4)
+                        <li class="item-content">
+                            <div class="item-media"><i class="iconfont icon-qian"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title">租借费用</div>
+                                <div class="item-after">¥{{$entity->hire_amt}}</div>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
             </div>
 

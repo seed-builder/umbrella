@@ -218,3 +218,12 @@
     padding-right: 2rem;
     text-align: center;
 }
+
+/*
+ * hire
+ */
+.hire-item-text{
+    font-size: 19px;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
