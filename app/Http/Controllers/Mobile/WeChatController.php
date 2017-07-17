@@ -218,7 +218,11 @@ class WeChatController extends MobileController
             $order = $this->newEntity()->createPayment($data);
             $result = $this->wxpay($order);
 
-            return $this->result(0, '', json_decode($result));
+            return $this->result(0, '', [
+                'order_id' => $order->id,
+                'js_params' => json_decode($result)
+            ]);
+//            return $this->result(0, '', json_decode($result));
         }
 
 
