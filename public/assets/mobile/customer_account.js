@@ -36,15 +36,16 @@ define(function (require, exports, module) {
                 jsApiParams,
             function(res){
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                    App.ajaxLink('/mobile/wechat-payment/pay-success/'+order_id)
-                    layer.open({
-                        content: '充值成功'
-                        , btn: '我知道了',
-                        yes: function () {
-                            layer.closeAll();
-                            $.router.loadPage("/mobile/customer-account/index")
-                        }
-                    });
+                    App.ajaxLink('/mobile/wechat-payment/pay-success/'+order_id,function () {
+                        layer.open({
+                            content: '充值成功'
+                            , btn: '我知道了',
+                            yes: function () {
+                                layer.closeAll();
+                                $.router.loadPage("/mobile/customer-account/index")
+                            }
+                        })
+                    })
                 } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
                     layer.open({
                         content: '用户取消支付'
