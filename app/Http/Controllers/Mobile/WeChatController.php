@@ -92,18 +92,33 @@ class WeChatController extends MobileController
         $order = $this->newEntity()->createPayment($data);
 
         $result = $this->wxpay($order);
-        return $this->result(0, '', json_decode($result));
+        return $this->result(0, '', [
+            'order_id' => $order->id,
+            'js_params' => json_decode($result)
+        ]);
     }
 
-    /*
+    /**
      * 支付成功 - 同步地址
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function paymentSuccess($id)
     {
         $order = CustomerPayment::find($id);
 
-        $out_order = $this->orderQuery($order);
-        dd($out_order);
+        $result = $this->orderQuery($order);
+        $order->outer_order_sn = $result['transaction_id'];
+
+        if ($order->status != CustomerPayment::STATUS_INIT)
+            return $this->success_result('');
+
+        event(new WechatApiEvent('支付同步回调', $result, $order));
+
+        $order->status = CustomerPayment::STATUS_SUCCESS;
+        $order->save();
+
+        return $this->success_result('');
     }
 
     /**

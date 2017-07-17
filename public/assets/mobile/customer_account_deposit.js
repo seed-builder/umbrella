@@ -4,6 +4,7 @@
 define(function (require, exports, module) {
     exports.index = function ($) {
         var jsApiParams;
+        var order_id;
 
         $(".form-submit").on('click', function () {
             App.ajaxForm('#form-id')
@@ -11,7 +12,8 @@ define(function (require, exports, module) {
 
         $(".deposit-form-submit").on('click', function () {
             App.ajaxForm('#deposit-form-id',function (data) {
-                jsApiParams = data;
+                jsApiParams = data.js_params;
+                order_id = data.order_id
                 callpay();
             })
         })
@@ -22,6 +24,7 @@ define(function (require, exports, module) {
                 jsApiParams,
                 function (res) {
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        App.ajaxLink('wechat-payment/pay-success/'+order_id)
                         layer.open({
                             content: '充值押金成功'
                             , btn: '去借伞',

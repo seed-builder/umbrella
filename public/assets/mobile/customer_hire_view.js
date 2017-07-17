@@ -6,12 +6,14 @@ define(function (require, exports, module) {
 
 
         var jsApiParams;
+        var order_id;
 
         $(".form-submit").on('click', function (e) {
             e.preventDefault();
             App.ajaxForm('#form-id',function (data) {
                 if (data!=null){
-                    jsApiParams = data;
+                    jsApiParams = data.js_params;
+                    order_id = data.order_id
                     callpay();
 
                 }else {
@@ -35,6 +37,7 @@ define(function (require, exports, module) {
                 jsApiParams,
                 function(res){
                     if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        App.ajaxLink('wechat-payment/pay-success/'+order_id)
                         layer.open({
                             content: '支付成功'
                             , btn: '我知道了'

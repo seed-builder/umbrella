@@ -4,6 +4,7 @@
 define(function (require, exports, module) {
     exports.index = function ($) {
         var jsApiParams;
+        var order_id;
 
         $(".amt-item").on('click',function () {
             $(".amt-item").removeClass('amt-select')
@@ -21,7 +22,8 @@ define(function (require, exports, module) {
         $(".form-submit").on('click', function (e) {
             e.preventDefault();
             App.ajaxForm('#form-id',function (data) {
-                jsApiParams = data;
+                jsApiParams = data.js_params;
+                order_id = data.order_id
                 callpay();
                 // $.router.loadPage("/mobile/customer-payment/pay/"+data.id)
             })
@@ -34,6 +36,7 @@ define(function (require, exports, module) {
                 jsApiParams,
             function(res){
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    App.ajaxLink('wechat-payment/pay-success/'+order_id)
                     layer.open({
                         content: '充值成功'
                         , btn: '我知道了',
