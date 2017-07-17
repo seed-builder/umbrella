@@ -36,7 +36,7 @@ define(function (require, exports, module) {
                 jsApiParams,
             function(res){
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                    App.ajaxLink('wechat-payment/pay-success/'+order_id)
+                    App.ajaxLink('/mobile/wechat-payment/pay-success/'+order_id)
                     layer.open({
                         content: '充值成功'
                         , btn: '我知道了',
