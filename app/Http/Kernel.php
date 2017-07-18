@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
 		    \Illuminate\Routing\Middleware\SubstituteBindings::class,
 	    ],
         'api' => [
+	        \Barryvdh\Cors\HandleCors::class,
             'throttle:60,1',
             'bindings',
         ],
