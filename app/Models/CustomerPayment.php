@@ -50,6 +50,11 @@ class CustomerPayment extends BaseModel
 	 */
 	const STATUS_FAIL=3;
 
+    /**
+     * 支付状态（4-已关闭）
+     */
+    const STATUS_CLOSE=4;
+
 	/**
 	 * 流水类型 1-充值（收入）
 	 */

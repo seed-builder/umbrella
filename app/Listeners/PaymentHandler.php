@@ -102,6 +102,7 @@ class PaymentHandler //implements ShouldQueue
         $account = $customer->account;
 
         $account->deposit = $account->deposit - $model->amt;
+        $account->freeze_deposit = $account->freeze_deposit + $model->amt;
 
         $account->save();
     }
@@ -116,6 +117,7 @@ class PaymentHandler //implements ShouldQueue
         $account = $customer->account;
 
         $account->deposit = $account->deposit + $model->amt;
+        $account->freeze_deposit = $account->freeze_deposit - $model->amt;
         $account->save();
     }
 

@@ -28,18 +28,14 @@ class CustomerHireService
         try {
             $hires = CustomerHire::query()
                 ->where('expired_at', '<', date('Y-m-d H:i:s'))
-                ->where('status', 1)
+                ->where('status', CustomerHire::STATUS_HIRING)
                 ->get();
 
-            //状态变更为逾期
-            CustomerHire::query()
-                ->where('expired_at', '<', date('Y-m-d H:i:s'))
-                ->where('status', 1)
-                ->update([
-                    'status' => 3
-                ]);
-
             foreach ($hires as $hire){
+                //状态变更为逾期
+                $hire->status = CustomerHire::STATUS_EXPIRED;
+                $hire->save();
+
                 //账户冻结金额中扣除对应押金
                 $account = CustomerAccount::query()->where('customer_id',$hire->customer_id)->first();
                 $account->freeze_deposit = $account->freeze_deposit - $hire->deposit_amt;
@@ -47,7 +43,7 @@ class CustomerHireService
 
                 //伞变更为未归还状态
                 $umbrella = Umbrella::find($hire->umbrella_id);
-                $umbrella->status = 4;
+                $umbrella->status = Umbrella::STATUS_EXPIRED;
                 $umbrella->save();
             }
 
