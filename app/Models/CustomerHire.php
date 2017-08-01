@@ -32,36 +32,32 @@ use App\Models\BaseModel;
  * @SWG\Property(name="return_at", type="string", description="还伞时间")
  * @SWG\Property(name="return_equipment_id", type="integer", description="equipments id 还伞设备id")
  * @SWG\Property(name="return_site_id", type="integer", description="sites id 还伞网点id")
- * @SWG\Property(name="status", type="integer", description="状态(1-初始，2-未拿伞租借失败，3-租借中, 4-还伞完毕，待支付租金 5-已完成, 6-逾期未归还)")
+ * @SWG\Property(name="status", type="integer", description="状态(1-初始(未支付押金)，2-租借中, 3-还伞完毕，待支付租金 4-已完成, 5-逾期未归还)")
  * @SWG\Property(name="umbrella_id", type="integer", description="umbrellas id")
  * @SWG\Property(name="updated_at", type="string", description="")
  */
 class CustomerHire extends BaseModel
 {
     /**
-     * 租借状态：1-初始
+     * 租借状态：1-初始(未支付押金)
      */
     const STATUS_INIT = 1;
     /**
-     * 租借状态：2-未拿伞,租借失败
+     * 租借状态：2-租借中
      */
-    const STATUS_FAIL = 2;
+    const STATUS_HIRING = 2;
     /**
-     * 租借状态：3-租借中
+     * 租借状态：3-还伞完毕，待支付租金
      */
-    const STATUS_HIRING = 3;
+    const STATUS_PAYING = 3;
     /**
-     * 租借状态：4-还伞完毕，待支付租金
+     * 租借状态：4-已完成
      */
-    const STATUS_PAYING = 4;
+    const STATUS_COMPLETE = 4;
     /**
-     * 租借状态：5-已完成
+     * 租借状态： 5-逾期未归还
      */
-    const STATUS_COMPLETE = 5;
-    /**
-     * 租借状态： 6-逾期未归还
-     */
-    const STATUS_EXPIRED = 6;
+    const STATUS_EXPIRED = 5;
 
     //
     protected $table = 'customer_hires';
@@ -115,21 +111,18 @@ class CustomerHire extends BaseModel
     {
         switch ($this->status) {
             case 1: {
-                return '初始';
+                return '初始(未支付押金)';
             }
             case 2: {
-                return '未拿伞租借失败';
-            }
-            case 3: {
                 return '租借中';
             }
-            case 4: {
+            case 3: {
                 return '还伞完毕，待支付租金';
             }
-            case 5: {
+            case 4: {
                 return '已完成';
             }
-            case 6: {
+            case 5: {
                 return '逾期未归还';
             }
         }
