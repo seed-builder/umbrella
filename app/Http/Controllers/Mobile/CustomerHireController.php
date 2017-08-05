@@ -73,7 +73,7 @@ class CustomerHireController extends MobileController
     public function check($id)
     {
         $hire = CustomerHire::find($id);
-        if ($hire->status == 3){
+        if ($hire->status == CustomerHire::STATUS_HIRING){
             $payment = new CustomerPayment();
             $payment->createPayment([
                 'type' => CustomerPayment::TYPE_OUT_DEPOSIT,
