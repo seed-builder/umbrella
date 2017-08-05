@@ -86,7 +86,7 @@ class CustomerHireController extends MobileController
             return $this->success_result('出伞成功',$hire);
         }
 
-        else if ($hire->status == 2){
+        else if ($hire->status == CustomerHire::STATUS_INIT){
             return $this->fail_result('用户未拿伞');
         }else{
             return $this->fail_result('');
