@@ -84,7 +84,7 @@
                 <input id="amt" type="text" name="amt" value="{{$entity->hire_amt}}">
             </form>
 
-            @if($entity->status==4)
+            @if($entity->status==\App\Models\CustomerHire::STATUS_PAYING)
             <div class="content-block">
                 <div class="row">
                     <div class="col-100"><a class="button button-big button-fill button-success form-submit">等待支付 ¥{{$entity->hire_amt}} 元</a></div>
