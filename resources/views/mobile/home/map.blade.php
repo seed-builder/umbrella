@@ -71,7 +71,7 @@
 
     <script type="text/javascript">
         $(function () {
-            seajs.use('mobile/home_map.js', function (app) {
+            seajs.use('mobile/home_map.js?d={{uniqid()}}', function (app) {
                 app.index($);
             });
         });
