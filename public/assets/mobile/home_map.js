@@ -68,7 +68,7 @@ define(function (require, exports, module) {
                     success: function (res) {
                         var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
                         alert(url);
-                        $.get(url,{},function (data) {
+                        $.post(url,{},function (data) {
                             layer.open({
                                 type: 2,
                                 shadeClose: false
