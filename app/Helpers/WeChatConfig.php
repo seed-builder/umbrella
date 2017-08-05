@@ -78,7 +78,7 @@ class WeChatConfig
         $access_token = Cache::get('wxAccessToken');
 
         if (empty($access_token)){
-            $url = "https://101.226.212.27/cgi-bin/token";
+            $url = "https://api.weixin.qq.com/cgi-bin/token";
             $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]); // (修复证书为空SSL报错问题)
             $response = $client->request('GET', $url, [
                 'query' => [
