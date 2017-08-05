@@ -62,6 +62,8 @@
 @section('javascript')
     <script>
         var enough_deposit = {{ $user->account->deposit >= $price->deposit_cash ? 1 : 0  }};
+        var customer_id = {{Auth::guard('mobile')->user()->id}}
+
     </script>
     <script type="text/javascript" src = 'http://webapi.amap.com/maps?v=1.3&key=3e3dbb3d6dce66cd3b9fd70e234bb050'></script>
     <script src="//webapi.amap.com/ui/1.0/main.js"></script>

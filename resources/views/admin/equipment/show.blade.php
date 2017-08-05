@@ -134,7 +134,8 @@
                                             <label class="control-label col-md-3">设备二维码:</label>
                                             <div class="col-md-9">
                                                 <p class="form-control-static">
-                                                    {!! QrCode::size(300)->generate(url('mobile/customer-hire/store?hire_equipment_id='.$entity->id)) !!}
+{{--                                                    {!! QrCode::size(300)->generate(url('mobile/customer-hire/store?hire_equipment_id='.$entity->id)) !!}--}}
+                                                    {!! QrCode::size(300)->generate($entity->sn) !!}
                                                 </p>
                                             </div>
                                         </div>

@@ -5,6 +5,7 @@ define(function (require, exports, module) {
     exports.index = function ($) {
 
         var map, sites;
+        var golang_host = 'http://119.23.214.176:4000/'
 
         map = new AMap.Map('map', {
             zoom: 12,
@@ -60,22 +61,28 @@ define(function (require, exports, module) {
                     return
                 }
 
-
                 wx.scanQRCode({
                     desc: 'scanQRCode desc',
                     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                     success: function (res) {
-                        App.ajaxLink(res.resultStr,function (data) {
+                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
+                        $.get(url,{},function (data) {
                             layer.open({
                                 type: 2,
                                 shadeClose: false
                                 , content: '系统正在出伞，请稍等15秒左右...'
                             });
-                            timer = setInterval(function () {
-                                checkHire(data.id);
-                            }, 8000);
+                            if (success){
+                                timer = setInterval(function () {
+                                    checkHire(data.hire_id);
+                                }, 8000);
+                            }
                         })
+                        // App.ajaxLink(res.resultStr,function (data) {
+                        //
+                        //
+                        // })
                     },
                     error: function (res) {
                         if (res.errMsg.indexOf('function_not_exist') > 0) {
