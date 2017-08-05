@@ -67,6 +67,7 @@ define(function (require, exports, module) {
                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                     success: function (res) {
                         var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
+                        alert(url);
                         layer.open({
                             type: 2,
                             shadeClose: false
