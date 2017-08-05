@@ -67,13 +67,14 @@ define(function (require, exports, module) {
                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                     success: function (res) {
                         var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
-                        alert(url);
                         layer.open({
                             type: 2,
                             shadeClose: false
                             , content: '系统正在出伞，请稍等15秒左右...'
                         });
                         $.post(url,{},function (data) {
+                            alert(data)
+                            alert(data.hire_id)
                             if (data.success){
                                 timer = setInterval(function () {
                                     checkHire(data.hire_id);
