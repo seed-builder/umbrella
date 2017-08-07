@@ -61,38 +61,76 @@ define(function (require, exports, module) {
                     return
                 }
 
-                wx.scanQRCode({
-                    desc: 'scanQRCode desc',
-                    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-                    scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-                    success: function (res) {
-                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
+                layer.open({
+                    content: '共享伞解锁'
+                    ,btn: ['手动输入','扫码借伞']
+                    ,skin: 'footer'
+                    ,yes: function(index){
+                        layer.closeAll()
+                        // $.popup('.unlock-umbrella')
                         layer.open({
-                            type: 2,
-                            shadeClose: false
-                            , content: '系统正在出伞，请稍等15秒左右...'
-                        });
-                        $.post(url,{},function (data) {
-                            if (data.success){
-                                timer = setInterval(function () {
-                                    checkHire(data.hire_id);
-                                }, 8000);
+                            type: 1
+                            ,content: '<div class="content-block unblock-content">' +
+                            '<input type="number" id="umbrella-sn" placeholder="请输入伞柄上的数字"/>' +
+                            '<input type="button" id="unlock-submit" value="立即用伞">' +
+                            '</div>'
+                            ,anim: 'up'
+                            ,style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
+                            ,success:function () {
+                                $("#umbrella-sn").focus()
                             }
-                        })
-                        // App.ajaxLink(res.resultStr,function (data) {
-                        //
-                        //
-                        // })
+                        });
                     },
-                    error: function (res) {
-                        if (res.errMsg.indexOf('function_not_exist') > 0) {
-                            alert('版本过低请升级')
-                        }
+                    no : function(index){
+                        wx.scanQRCode({
+                            desc: 'scanQRCode desc',
+                            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                            success: function (res) {
+                                var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
+                                layer.open({
+                                    type: 2,
+                                    shadeClose: false
+                                    , content: '系统正在出伞，请稍等15秒左右...'
+                                });
+                                $.post(url,{},function (data) {
+                                    if (data.success){
+                                        timer = setInterval(function () {
+                                            checkHire(data.hire_id);
+                                        }, 8000);
+                                    }
+                                })
+                            },
+                            error: function (res) {
+                                if (res.errMsg.indexOf('function_not_exist') > 0) {
+                                    alert('版本过低请升级')
+                                }
+                            }
+                        });
+                        layer.closeAll()
                     }
                 });
+
             }
             createControl(controlUI);
         }
+
+        $(document).on('click','#unlock-submit',function (e) {
+            e.preventDefault();
+            var sn = $("#umbrella-sn").val()
+            if (!sn){
+                layer.open({
+                    content: '请输入伞柄上的数字'
+                    ,btn: '我知道了'
+                });
+                return ;
+            }
+            layer.open({
+                type: 2
+                , content: '解锁中...'
+            });
+            App.ajaxLink('/mobile/umbrella/unlock?sn='+sn)
+        })
 
         /**
          * 自定义控件-定位
