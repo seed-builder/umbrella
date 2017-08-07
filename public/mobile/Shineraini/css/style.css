@@ -4,6 +4,34 @@
     fill: currentColor;
     overflow: hidden;
 }
+header{
+    background:  #FFD700 !important;
+    transition: all .25s ease-in-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    border-bottom: 0px solid #e7e7e7 !important;
+}
+header h1{
+    color: white !important;
+}
+header a{
+    color: white !important;
+}
+.button{
+    color: #fff !important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    background:  #FFD700 !important;
+}
+.button-black{
+    background:  black !important;
+}
+.button-lemon{
+    background : black;
+}
+
+.button-lightblue{
+    background: #4cd9d7 !important;
+}
+
 .button-lightblue{
     background: #4cd9d7 !important;
 }

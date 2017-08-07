@@ -4,6 +4,10 @@
 @endsection
 @section('content')
     <div class="page page-current" id="customer-edit">
+        <header class="bar bar-nav">
+            <a class="icon icon-left pull-left back" ></a>
+            <h1 class='title'>个人信息完善</h1>
+        </header>
         <div class="content">
             <form id="form-id" action="/mobile/customer/edit">
                 {{ csrf_field() }}
@@ -61,13 +65,7 @@
                     </ul>
                 </div>
                 <div class="content-block">
-                    <div class="row">
-                        <div class="col-50"><a href="/mobile/customer/view"
-                                               class="button button-big button-fill button-danger">返回</a>
-                        </div>
-                        <div class="col-50"><a class="button button-big button-fill button-success form-submit">保存</a>
-                        </div>
-                    </div>
+                    <div class="col-100"><a class="button button-big button-fill form-submit">保存</a></div>
                 </div>
             </form>
         </div>

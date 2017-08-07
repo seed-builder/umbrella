@@ -4,7 +4,7 @@
 @section('content')
     <div class="page page-current" id="customer-account-deposit">
         <header class="bar bar-nav">
-            <a href="/mobile/customer-account/index" class="icon icon-left pull-left"></a>
+            <a class="icon icon-left pull-left back"></a>
             <h1 class='title'>我的押金</h1>
         </header>
         <div class="content">
@@ -62,14 +62,7 @@
                         </div>
 
                         <div class="content-block">
-                            <div class="row">
-                                <div class="col-50">
-                                    <a href="/mobile/customer-account/index"
-                                       class="button button-big button-fill button-danger ">返回</a>
-                                </div>
-                                <div class="col-50"><a
-                                            class="button button-big button-fill button-lightblue form-submit">申请提现</a>
-                                </div>
+                            <div class="col-100"><a class="button button-big button-fill button-lightblue form-submit">申请提现</a>
                             </div>
                         </div>
                     </div>
@@ -102,14 +95,8 @@
                         </div>
 
                         <div class="content-block">
-                            <div class="row">
-                                <div class="col-50">
-                                    <a href="/mobile/customer-account/index"
-                                       class="button button-big button-fill button-danger ">返回</a>
-                                </div>
-                                <div class="col-50"><a
-                                            class="button button-big button-fill button-success deposit-form-submit">充押金</a>
-                                </div>
+                            <div class="col-100"><a
+                                        class="button button-big button-fill deposit-form-submit">充押金</a>
                             </div>
                         </div>
                     </div>

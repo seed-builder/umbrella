@@ -51,7 +51,7 @@ define(function (require, exports, module) {
             controlUI.style.width = '50%';
             controlUI.style.zIndex = '300';
 
-            controlUI.innerHTML = '<a href="#" id="QR" class="button button-big button-fill" ><img src="/images/icon/icon_scanQR_white.png">扫码借伞</a>';
+            controlUI.innerHTML = '<a href="#" id="QR" class="button button-black button-big button-fill" ><img src="/images/icon/icon_scanQR_white.png">扫码借伞</a>';
 
             var self = this;
 

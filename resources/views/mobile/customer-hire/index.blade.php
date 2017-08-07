@@ -58,7 +58,7 @@
                                                class="button button-big button-fill button-danger close-popup" >重置</a>
                         </div>
                         <div class="col-50"><a id="form-search"
-                                    class="button button-big button-fill button-success close-popup" >搜索</a>
+                                    class="button button-big button-fill close-popup" >搜索</a>
                         </div>
                     </div>
                 </div>

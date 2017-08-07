@@ -56,7 +56,7 @@
                         <a href="/mobile/customer-account/index"
                            class="button button-big button-fill button-danger ">返回</a>
                     </div>
-                    <div class="col-50"><a class="button button-big button-fill button-success form-submit">申请提现</a>
+                    <div class="col-50"><a class="button button-big button-fill form-submit">申请提现</a>
                     </div>
                 </div>
             </div>

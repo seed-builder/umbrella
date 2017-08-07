@@ -4,8 +4,11 @@
 @endsection
 @section('content')
     <div class="page page-current" id="customer-account-index">
+        <header class="bar bar-nav" >
+            <a class="icon icon-left pull-left link" data-url="/mobile/home/map"></a>
+            <h1 class='title'>账户信息</h1>
+        </header>
         <div class="content">
-            <div class="content-block-title">账户信息</div>
             <div class="list-block">
                 <ul>
                     <li class="item-content">
@@ -79,12 +82,7 @@
             </form>
 
             <div class="content-block">
-                <div class="row">
-                    <div class="col-50">
-                        <div data-url="/mobile/home/map" class="button button-big button-fill button-danger link">返回</div>
-                    </div>
-                    <div class="col-50"><a class="button button-big button-fill button-success form-submit">充值</a></div>
-                </div>
+                <div class="col-100"><a class="button button-big button-fill form-submit">充值</a></div>
             </div>
 
         </div>
