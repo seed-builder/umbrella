@@ -16,7 +16,7 @@ $config = $helper->getSignPackage();
     <meta name="_token" content="{{csrf_token()}}">
 
     <link rel="stylesheet" href="/mobile/light7/css/light7.css">
-    <link rel="stylesheet" href="/mobile/Shineraini/css/style.css">
+    <link rel="stylesheet" href="/mobile/Shineraini/css/style.css?d={{uniqid()}}">
     <link rel="stylesheet" href="/mobile/Shineraini/css/icon.css">
     <link rel="stylesheet" href="/mobile/layer_mobile/need/layer.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
