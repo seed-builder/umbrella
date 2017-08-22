@@ -14,17 +14,17 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 	    $this->call(UserSeeder::class);
-	    $this->call(CustomerSeeder::class);
-	    $this->call(CustomerAccountSeeder::class);
-	    $this->call(CustomerPayment::class);
-	    $this->call(SiteSeeder::class);
-	    $this->call(EquipmentSeeder::class);
-	    $this->call(Umbrella::class);
-	    $this->call(CustomerHireSeeder::class);
-	    $this->call(PriceSeeder::class);
-	    $this->call(EquipmentLogSeeder::class);
-	    $this->call(EquipmentMaintainSeeder::class);
-
+//	    $this->call(CustomerSeeder::class);
+//	    $this->call(CustomerAccountSeeder::class);
+//	    $this->call(CustomerPayment::class);
+//	    $this->call(SiteSeeder::class);
+//	    $this->call(EquipmentSeeder::class);
+//	    $this->call(Umbrella::class);
+//	    $this->call(CustomerHireSeeder::class);
+//	    $this->call(PriceSeeder::class);
+//	    $this->call(EquipmentLogSeeder::class);
+//	    $this->call(EquipmentMaintainSeeder::class);
+//
 	    $this->call(PermissionSeeder::class);
 	    $this->call(RoleSeeder::class);
 	    $this->call(PermissionRoleSeeder::class);
