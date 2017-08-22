@@ -86,17 +86,18 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('umbrellas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sn')->unique()->comment('伞编号');
+            $table->string('number')->unique()->comment('伞编号');
+            $table->string('sn')->unique()->comment('伞编号（十六进制）');
             $table->integer('birth_equipment_id')->nullable()->comment('初始设备号equipments id');
             $table->integer('birth_site_id')->nullable()->comment('初始网点sites id');
             $table->integer('equipment_id')->nullable()->comment('设备 id');
             $table->tinyInteger('equipment_channel_num')->nullable()->comment('设备通道序号');
             $table->integer('site_id')->nullable()->comment('sites id');
             $table->integer('status')->default(1)->comment('状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间） 5-异常');
-            $table->string('name')->default('')->comment('伞名称');
-            $table->string('model')->default('')->comment('型号');
-            $table->string('color')->nullable()->default('')->comment('颜色');
-            $table->string('logo')->default('')->comment('logo');
+//            $table->string('name')->default('')->comment('伞名称');
+//            $table->string('model')->default('')->comment('型号');
+//            $table->string('color')->nullable()->default('')->comment('颜色');
+//            $table->string('logo')->default('')->comment('logo');
             $table->integer('price_id')->nullable()->comment('价格id');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
