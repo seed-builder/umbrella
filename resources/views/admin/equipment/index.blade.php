@@ -9,7 +9,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>top module
+                <h1>设备管理
                     <small>设备信息</small>
                 </h1>
             </div>

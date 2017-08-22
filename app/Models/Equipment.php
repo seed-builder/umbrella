@@ -111,13 +111,19 @@ class Equipment extends BaseModel
     public function status()
     {
         switch ($this->status) {
-            case 1: {
+            case Equipment::STATUS_INIT: {
                 return '未启用';
             }
-            case 2: {
+            case Equipment::STATUS_NORMAL: {
                 return '启用';
             }
-            case 3: {
+            case Equipment::STATUS_ONLINE: {
+                return '在线';
+            }
+            case Equipment::STATUS_OFFLINE: {
+                return '离线';
+            }
+            case Equipment::STATUS_BUG: {
                 return '系统故障';
             }
             default : {
@@ -129,10 +135,10 @@ class Equipment extends BaseModel
     public function type()
     {
         switch ($this->type) {
-            case 1: {
+            case Equipment::TYPE_DESK: {
                 return '伞机设备';
             }
-            case 2: {
+            case Equipment::TYPE_HAND: {
                 return '手持设备';
             }
             default : {

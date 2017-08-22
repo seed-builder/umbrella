@@ -7,7 +7,7 @@
     <div class="page-content">
         <div class="page-head">
             <div class="page-title">
-                <h1>top module
+                <h1>设备管理
                     <small>设备新增</small>
                 </h1>
             </div>

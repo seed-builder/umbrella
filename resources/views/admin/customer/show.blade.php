@@ -7,7 +7,7 @@
     <div class="page-content">
         <div class="page-head">
             <div class="page-title">
-                <h1>top module
+                <h1>微信用户管理
                     <small>微信用户详情</small>
                 </h1>
             </div>
