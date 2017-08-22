@@ -19,9 +19,9 @@ class UmbrellaController extends MobileController
 	}
 
 	public function unlock(Request $request){
-	    $sn = $request->input('sn','');
+	    $sn = $request->input('number','');
 
-	    $umbrella = Umbrella::where('sn',$sn)->where('status',Umbrella::STATUS_WAITING)->first();
+	    $umbrella = Umbrella::where('number',$sn)->where('status',Umbrella::STATUS_WAITING)->first();
 	    if (empty($umbrella))
 	        return $this->fail_result('伞编码输入不正确，请核对后重试！');
 

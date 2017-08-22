@@ -117,7 +117,7 @@ define(function (require, exports, module) {
 
         $(document).on('click','#unlock-submit',function (e) {
             e.preventDefault();
-            var sn = $("#umbrella-sn").val()
+            var number = $("#umbrella-sn").val()
             if (!sn){
                 layer.open({
                     content: '请输入伞柄上的数字'
@@ -129,7 +129,7 @@ define(function (require, exports, module) {
                 type: 2
                 , content: '解锁中...'
             });
-            App.ajaxLink('/mobile/umbrella/unlock?sn='+sn)
+            App.ajaxLink('/mobile/umbrella/unlock?number='+number)
         })
 
         /**
