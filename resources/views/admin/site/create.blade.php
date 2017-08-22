@@ -97,7 +97,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">区域编号</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="code" id="code" readonly>
+                                            <input type="text" class="form-control" name="postal_code" id="code" readonly>
                                         </div>
                                     </div>
                                 </div>
