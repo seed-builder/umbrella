@@ -37,7 +37,7 @@ class CustomerAccountController extends MobileController
 
         $price = Price::query()->where('status',1)->first();
 
-        $hiring_count = CustomerHire::where('status',3)->count();
+        $hiring_count = CustomerHire::whereIn('status',[CustomerHire::STATUS_HIRING,CustomerHire::STATUS_PAYING])->count();
         if ($hiring_count>0){
             return $this->fail_result('您当前还有伞未还，请先将租借中的伞归还');
         }
