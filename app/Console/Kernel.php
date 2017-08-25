@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Models\Equipment;
+use App\Models\EquipmentLog;
 use App\Services\CustomerHireService;
 use App\Services\OrderService;
 use Illuminate\Console\Scheduling\Schedule;
@@ -35,6 +37,18 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function(CustomerHireService $customerHireService){
             $customerHireService->due();
+        })->everyFiveMinutes();
+
+        $schedule->call(function(){
+            $danger_eqs = Equipment::where('have','<',5);
+            foreach ($danger_eqs as $danger_eq){
+                $log = new EquipmentLog([
+                    'code' => 50001,
+                    'type' => '异常',
+                    'content' => '【网点】'.$danger_eq->site->name.'【设备】'.$danger_eq->sn.'的伞量已不足五把，请尽快补充',
+                ]);
+                $log->save();
+            }
         })->everyFiveMinutes();
     }
 

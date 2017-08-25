@@ -165,6 +165,7 @@ class UmbrelladbTable extends Migration
             $table->longText('content')->comment('报警内容');
             $table->integer('equipment_id')->default(0)->comment('equipments id');
             $table->integer('site_id')->default(0)->comment('equipments id');
+            $table->integer('status')->default(1)->comment('1-未解决 2-已解决');
 
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
