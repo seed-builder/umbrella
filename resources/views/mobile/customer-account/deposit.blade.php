@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="content-block">
-                            <div class="col-100"><a class="button button-big button-fill button-lightblue form-submit">申请提现</a>
+                            <div class="col-100"><a class="button button-big button-fill form-submit">申请提现</a>
                             </div>
                         </div>
                     </div>
