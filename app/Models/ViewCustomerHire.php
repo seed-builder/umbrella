@@ -7,7 +7,6 @@ use App\Models\BaseModel;
 
 class ViewCustomerHire extends Model
 {
-	//
 	protected $table = 'view_customer_hires';
 	protected $guarded = ['id'];
 
@@ -21,17 +20,20 @@ class ViewCustomerHire extends Model
 
     public function status(){
         switch ($this->status){
-            case 1 : {
-                return '用伞中';
+            case CustomerHire::STATUS_INIT : {
+                return '初始';
             }
-            case 2 : {
-                return '用伞完成';
+            case CustomerHire::STATUS_HIRING : {
+                return '租借中';
             }
-            case 3 : {
-                return '逾期未还';
+            case CustomerHire::STATUS_PAYING : {
+                return '还伞完毕，待支付租金';
             }
-            case 4 : {
-                return '待支付租金';
+            case CustomerHire::STATUS_COMPLETE : {
+                return '已完成';
+            }
+            case CustomerHire::STATUS_EXPIRED : {
+                return '逾期未归还';
             }
         }
     }
