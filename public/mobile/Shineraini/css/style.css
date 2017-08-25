@@ -21,7 +21,7 @@ header a{
 }
 .buttons-tab .button{
     color: #5f646e !important;
-    color: white;
+    background: white !important;
 }
 .button{
     color: #fff ;
