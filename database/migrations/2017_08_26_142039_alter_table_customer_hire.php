@@ -16,6 +16,7 @@ class AlterTableCustomerHire extends Migration
         Schema::table('customer_hires', function (Blueprint $table) {
             //
 	        $table->integer("price_id")->default(0)->comment('价格id');
+	        $table->decimal("hire_day")->default(0)->comment('租借天数')->change();
         });
     }
 
