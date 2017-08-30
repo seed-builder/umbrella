@@ -41,7 +41,7 @@ WECHAT_CERTPATH=/wechatcert/pro/apiclient_cert.pem
 WECHAT_KEYPATH=/wechatcert/pro/apiclient_key.pem
 WECHAT_IP=39.108.180.41
 #WECHATPAY_NOTIFY_URL = http://www.7tsk.com/mobile/wechat-payment/notify
-WECHATPAY_NOTIFY_URL = http://www.7tsk.chenshuxun.com.com/mobile/wechat-payment/notify
+WECHATPAY_NOTIFY_URL = http://7tsk.chenshuxun.com/mobile/wechat-payment/notify
 
 REPORT_LEVENL = 1;
 CURL_PROXY_HOST = "0.0.0.0";
