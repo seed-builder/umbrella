@@ -8,7 +8,7 @@ define(function (require, exports, module) {
         var golang_host = 'http://119.23.214.176:4000/'
 
         map = new AMap.Map('map', {
-            zoom: 20,
+            zoom: 16,
             resizeEnable: true
         });
 
@@ -226,7 +226,7 @@ define(function (require, exports, module) {
                     var latitude = res.latitude;
                     var longitude = res.longitude;
 
-                    map.setZoomAndCenter(20, [longitude, latitude]);
+                    map.setZoomAndCenter(16, [longitude, latitude]);
 
                     loactionMarker = new AMap.Marker({
                         position: [longitude, latitude]
