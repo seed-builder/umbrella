@@ -3,7 +3,8 @@ APP_ENV=local
 APP_KEY=base64:1YZCS5PKBEzZxeJ58Lii+h4GzI/PdsQopxMWxRFYp+c=
 APP_DEBUG=true
 APP_LOG_LEVEL=debug
-APP_URL=http://www.7tsk.com
+APP_URL=http://7tsk.chenshuxun.com
+#APP_URL=http://www.7tsk.com
 
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -39,7 +40,8 @@ WECHAT_MCHKEY=xiamenqitiansankezenghuayangpro8
 WECHAT_CERTPATH=/wechatcert/pro/apiclient_cert.pem
 WECHAT_KEYPATH=/wechatcert/pro/apiclient_key.pem
 WECHAT_IP=39.108.180.41
-WECHATPAY_NOTIFY_URL = http://www.7tsk.com/mobile/wechat-payment/notify
+#WECHATPAY_NOTIFY_URL = http://www.7tsk.com/mobile/wechat-payment/notify
+WECHATPAY_NOTIFY_URL = http://www.7tsk.chenshuxun.com.com/mobile/wechat-payment/notify
 
 REPORT_LEVENL = 1;
 CURL_PROXY_HOST = "0.0.0.0";
