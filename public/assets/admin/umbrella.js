@@ -44,6 +44,7 @@ define(function (require, exports, module) {
                 //<li><a href="/admin/umbrella/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a></li>
                     }
                 },
+                {'data': 'number'},
                 {'data': 'sn'},
                 {'data': 'birth_site_name'},
                 {'data': 'birth_ep_sn'},
