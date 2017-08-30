@@ -256,8 +256,10 @@ class WeChatController extends MobileController
         $input = new WxPayUnifiedOrder();
 
         $body = env('PROJECT_NAME') . $order->type();
-        //         $price = $order->amt * 100; // 微信支付金额单位为分
-        $price = 1; // 测试环境
+        if(env('APP_DEBUG'))
+            $price = 1; // 测试环境
+        else
+            $price = $order->amt * 100;
 
         $notify_url = env('WECHATPAY_NOTIFY_URL') . '/' . Crypt::encrypt($order->id);
 
