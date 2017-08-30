@@ -74,14 +74,14 @@ class CustomerHireController extends MobileController
     {
         $hire = CustomerHire::find($id);
         if ($hire->status == CustomerHire::STATUS_HIRING){
-            $payment = new CustomerPayment();
-            $payment->createPayment([
-                'type' => CustomerPayment::TYPE_OUT_DEPOSIT,
-                'amt' => $hire->deposit_amt,
-                'customer_id' => $hire->customer_id,
-                'reference_id' => $hire->id,
-                'reference_type' => 'App\Models\CustomerHire',
-            ], CustomerPayment::STATUS_SUCCESS);
+//            $payment = new CustomerPayment();
+//            $payment->createPayment([
+//                'type' => CustomerPayment::TYPE_OUT_DEPOSIT,
+//                'amt' => $hire->deposit_amt,
+//                'customer_id' => $hire->customer_id,
+//                'reference_id' => $hire->id,
+//                'reference_type' => 'App\Models\CustomerHire',
+//            ], CustomerPayment::STATUS_SUCCESS);
 
             return $this->success_result('出伞成功',$hire);
         }
