@@ -51,6 +51,9 @@ class UmbrellaController extends MobileController
             'reference_type' => 'App\Models\CustomerHire',
         ],CustomerPayment::STATUS_SUCCESS);
 
+        $umbrella->status = 3 ;
+        $umbrella->save();
+
         return $this->success_result('借伞成功',$hire);
     }
 
