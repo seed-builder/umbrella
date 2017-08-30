@@ -226,7 +226,7 @@ define(function (require, exports, module) {
                     var latitude = res.latitude;
                     var longitude = res.longitude;
 
-                    map.setZoomAndCenter(12, [longitude, latitude]);
+                    map.setZoomAndCenter(20, [longitude, latitude]);
 
                     loactionMarker = new AMap.Marker({
                         position: [longitude, latitude]
