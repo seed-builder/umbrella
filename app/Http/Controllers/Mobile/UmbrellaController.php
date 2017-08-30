@@ -32,7 +32,7 @@ class UmbrellaController extends MobileController
 	    $hire = new CustomerHire([
 	        'customer_id' => $user->id,
 	        'umbrella_id' => $umbrella->id,
-	        'hire_equipment_id' => $umbrella->equipment_id,
+	        'hire_equipment_id' => !empty($umbrella->equipment_id) ? $umbrella->equipment_id : 0 ,
 	        'hire_site_id' => $umbrella->site_id,
 	        'hire_at' => date('Y-m-d H:i:s'),
 	        'status' => CustomerHire::STATUS_HIRING,
