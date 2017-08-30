@@ -180,7 +180,7 @@ define(function (require, exports, module) {
         $(document).on('click','#unlock-submit',function (e) {
             e.preventDefault();
             var number = $("#umbrella-sn").val()
-            if (!sn){
+            if (!number){
                 layer.open({
                     content: '请输入伞柄上的数字'
                     ,btn: '我知道了'
