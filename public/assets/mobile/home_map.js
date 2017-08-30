@@ -8,7 +8,7 @@ define(function (require, exports, module) {
         var golang_host = 'http://119.23.214.176:4000/'
 
         map = new AMap.Map('map', {
-            zoom: 12,
+            zoom: 20,
             resizeEnable: true
         });
 
