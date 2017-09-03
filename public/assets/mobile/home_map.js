@@ -103,7 +103,7 @@ define(function (require, exports, module) {
                                     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                                     success: function (res) {
-                                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr+'?sign='+md5(res.resultStr+key);
+                                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr+'?sign='+md5(customer_id+res.resultStr+key);
                                         layer.open({
                                             type: 2,
                                             shadeClose: false
