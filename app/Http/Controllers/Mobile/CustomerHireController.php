@@ -36,13 +36,14 @@ class CustomerHireController extends MobileController
         $user = Auth::guard('mobile')->user();
 
 
-        return ViewCustomerHire::query()->where('customer_id', $user->id)->orderBy('status', 'desc');
+        return ViewCustomerHire::query()->where('customer_id', $user->id);
     }
 
     public function pagination(Request $request, $with = [], $conditionCall = null, $dataHandleCall = null)
     {
         return parent::pagination($request, $with, function($query){
-            $query->orderBy('created_at','desc');
+            $query->orderBy('status', 'asc');
+            $query->orderBy('updated_at','desc');
 
         }, function ($entities) {
             foreach ($entities as $entity) {
