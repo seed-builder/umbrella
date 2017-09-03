@@ -111,8 +111,8 @@ define(function (require, exports, module) {
                                             , content: '系统正在出伞，请稍等15秒左右...'
                                         });
                                         $.post(url,{},function (data) {
-                                            alert(data.hire_id)
-                                            if (data.err){
+                                            alert(data.err)
+                                            if (data.success){
                                                 timer = setInterval(function () {
                                                     checkHire(data.hire_id);
                                                 }, 4000);
