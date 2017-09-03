@@ -40,7 +40,7 @@ define(function (require, exports, module) {
                         },
                         {
                             render : function (item) {
-                                return '<span class="hire-item-text">还</span>'+item.return_site_name
+                                return '<span class="hire-item-text">还</span>'+(item.return_site_name!=null?item.return_site_name:'暂未还伞')
                             }
                         },
                     ],
