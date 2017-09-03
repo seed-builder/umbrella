@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Mobile;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Sms;
+use App\Http\Controllers\Controller;
 
 class UtlController extends Controller
 {
