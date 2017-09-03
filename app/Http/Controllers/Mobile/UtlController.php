@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mobile;
 
+use App\Http\Controllers\Controller;
 use Sms;
 
 class UtlController extends Controller
