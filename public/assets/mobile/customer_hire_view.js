@@ -21,7 +21,6 @@ define(function (require, exports, module) {
                         content: '支付成功'
                         , btn: '我知道了'
                         ,yes : function () {
-                            alert(1);
                             location.reload();
                             layer.close(index);
                         }
@@ -42,6 +41,10 @@ define(function (require, exports, module) {
                             layer.open({
                                 content: '支付成功'
                                 , btn: '我知道了'
+                                ,yes : function () {
+                                    location.reload();
+                                    layer.close(index);
+                                }
                             })
                         })
                     } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
