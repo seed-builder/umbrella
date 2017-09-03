@@ -230,7 +230,7 @@ class CustomerPayment extends BaseModel
             'customer_account_id' => $customer->account->id,
             'customer_id' => $customer->id,
             'sn' => $this->snFlag($data['type']) . sprintf("%05d", $customer->id) . date('YmdHis'),
-            'payment_channel' => 1,
+            'payment_channel' => !empty($data['payment_channel']) ? $data['payment_channel'] : 1,
             'amt' => $data['amt'],
             'type' => $data['type'],
             'status' => $status,

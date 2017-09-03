@@ -212,6 +212,8 @@ class WeChatController extends MobileController
         $data['reference_type'] = 'customer_hire';
 
         if ($account->balance_amt >= $data['amt']) {
+            $data['payment_channel'] = 3;
+
             $this->newEntity()->createPayment($data, CustomerPayment::STATUS_SUCCESS);
 
             return $this->result(0, '', null);

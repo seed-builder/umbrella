@@ -130,11 +130,11 @@ class PaymentHandler //implements ShouldQueue
         $customer = Customer::find($model->customer_id);
         $account = $customer->account;
 
-        if ($account->balance_amt < $model->amt)
-            return ;
+        if ($account->balance_amt > $model->amt && $model->payment_channel == 3){
+            $account->balance_amt = $account->balance_amt - $model->amt;
+            $account->save();
 
-        $account->balance_amt = $account->balance_amt - $model->amt;
-        $account->save();
+        }
 
         $hire = CustomerHire::find($model->reference_id);
         $hire->status = CustomerHire::STATUS_COMPLETE; //变更租借单为已完成
