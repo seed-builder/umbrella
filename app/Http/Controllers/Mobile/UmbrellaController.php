@@ -72,9 +72,9 @@ class UmbrellaController extends MobileController
             ->where('created_at','<=',$end)
             ->count();
 
-//        if ($no_finsh_count>3){
-//            return $this->fail_result('您今日还未还的伞已超过3把，请先将租借中的伞归还');
-//        }
+        if ($no_finsh_count>=3){
+            return $this->fail_result('您今日还未还的伞已超过3把，请先将租借中的伞归还');
+        }
 
         if ($user->account->deposit < $price->deposit_cash)
             return $this->fail_result('当前押金不足，请先充值押金',501);
