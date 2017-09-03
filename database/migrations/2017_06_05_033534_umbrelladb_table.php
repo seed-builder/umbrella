@@ -115,12 +115,12 @@ class UmbrelladbTable extends Migration
 
             $table->integer('hire_equipment_id')->comment('equipments id 借伞设备id');
             $table->integer('hire_site_id')->comment('sites id 借伞网点id');
-            $table->timestamp('hire_at')->comment('借伞时间');
+            $table->timestamp('hire_at')->nullable()->comment('借伞时间');
             $table->decimal('deposit_amt',12, 2)->default(0)->comment('缴纳的保证金');
 
             $table->integer('return_equipment_id')->comment('equipments id 还伞设备id');
             $table->integer('return_site_id')->comment('sites id 还伞网点id');
-            $table->timestamp('return_at')->comment('还伞时间');
+            $table->timestamp('return_at')->nullable()->comment('还伞时间');
 
             $table->integer('expire_day')->default(15)->comment('有效期（天）');
             $table->timestamp('expired_at')->nullable()->comment('到期时间');

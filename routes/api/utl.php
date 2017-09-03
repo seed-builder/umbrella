@@ -1,11 +1,11 @@
 <?php
 /**
  * @SWG\Resource(
- *  resourcePath="/price",
- *  description="Price"
+ *  resourcePath="/utl",
+ *  description="utl"
  * )
  */
-Route::group(['prefix' => 'utl', 'middleware' => 'api.sign'], function () {
+Route::group(['prefix' => 'utl'], function () {
 
 	/**
 	 * @SWG\Api(
