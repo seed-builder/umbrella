@@ -29,7 +29,8 @@
                         <div class="item-media"><i class="iconfont icon-jieshushijian"></i></div>
                         <div class="item-inner">
                             <div class="item-title">还伞时间</div>
-                            <div class="item-after">{{date('m月d日 H:i',strtotime($entity->return_at))}}</div>
+                            <div class="item-after">
+                                {{$entity->return_at=='0000-00-00 00:00:00'? '暂未还伞':date('m月d日 H:i',strtotime($entity->return_at))}}</div>
                         </div>
                     </li>
                     <li class="item-content" style="">
