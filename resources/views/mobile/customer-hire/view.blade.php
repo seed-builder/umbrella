@@ -36,7 +36,7 @@
                         <div class="item-media"><i class="iconfont icon-guihuan"></i></div>
                         <div class="item-inner">
                             <div class="item-title">还伞网点</div>
-                            <div class="item-after">{{$entity->return_site_name}}</div>
+                            <div class="item-after">{{!empty($entity->return_site_name)?$entity->return_site_name:'暂未还伞'}}</div>
                         </div>
                     </li>
                     <li class="item-content" style="">
