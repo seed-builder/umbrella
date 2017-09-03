@@ -8,3 +8,4 @@
 
 Route::get('home/index', ['uses' => 'HomeController@index']);
 Route::get('home/map', ['uses' => 'HomeController@map']);
+Route::get('send', ['uses' => 'UtlController@sendVerifyCode']);

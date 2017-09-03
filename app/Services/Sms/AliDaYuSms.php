@@ -61,9 +61,9 @@ class AliDaYuSms implements ISmsSvr
 		$c->appkey = $this->appKey;
 		$c->secretKey = $this->secretKey;
 		$req = new AlibabaAliqinFcSmsNumSendRequest;
-		$req->setExtend("柒天伞客");
+		$req->setExtend("柒天闪客");
 		$req->setSmsType("normal");
-		$req->setSmsFreeSignName("柒天伞客");
+		$req->setSmsFreeSignName("柒天闪客");
 		$req->setSmsParam(json_encode($data));
 		$req->setRecNum(implode(',',$phones));
 		$req->setSmsTemplateCode($templateCode);
