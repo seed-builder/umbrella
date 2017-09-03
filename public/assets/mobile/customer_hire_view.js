@@ -20,7 +20,7 @@ define(function (require, exports, module) {
                     layer.open({
                         content: '支付成功'
                         , btn: '我知道了'
-                        ,yes: function(index){
+                        ,no : function () {
                             location.reload();
                             layer.close(index);
                         }
