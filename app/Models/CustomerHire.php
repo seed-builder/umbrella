@@ -94,7 +94,8 @@ class CustomerHire extends BaseModel
                         'amt' => $model->deposit_amt,
                         'customer_id' => $model->customer_id,
                         'reference_id' => $model->id,
-                        'reference_type' => 'App\Models\CustomerHire',
+//                        'reference_type' => 'App\Models\CustomerHire',
+                        'reference_type' => 'customer_hire',
                     ], CustomerPayment::STATUS_SUCCESS);
 
                     break ;

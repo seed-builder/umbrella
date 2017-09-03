@@ -234,7 +234,8 @@ class CustomerPayment extends BaseModel
             'amt' => $data['amt'],
             'type' => $data['type'],
             'status' => $status,
-            'remark' => env('PROJECT_NAME') . $this->type($data['type']),
+//            'remark' => env('PROJECT_NAME') . $this->type($data['type']),
+            'remark' => $this->type($data['type']),
         ];
 
         if (!empty($data['reference_id']) && !empty($data['reference_type'])) {

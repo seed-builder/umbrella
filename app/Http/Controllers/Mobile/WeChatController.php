@@ -208,7 +208,8 @@ class WeChatController extends MobileController
 
         $data['type'] = CustomerPayment::TYPE_OUT_RENT;
         $data['reference_id'] = $id;
-        $data['reference_type'] = 'App\Models\CustomerHire';
+//        $data['reference_type'] = 'App\Models\CustomerHire';
+        $data['reference_type'] = 'customer_hire';
 
         if ($account->balance_amt >= $data['amt']) {
             $this->newEntity()->createPayment($data, CustomerPayment::STATUS_SUCCESS);

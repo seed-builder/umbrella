@@ -48,7 +48,8 @@ class UmbrellaController extends MobileController
             'amt' => $hire->deposit_amt,
             'customer_id' => $hire->customer_id,
             'reference_id' => $hire->id,
-            'reference_type' => 'App\Models\CustomerHire',
+//            'reference_type' => 'App\Models\CustomerHire',
+            'reference_type' => 'customer_hire',
         ],CustomerPayment::STATUS_SUCCESS);
 
         $umbrella->status = 3 ;
