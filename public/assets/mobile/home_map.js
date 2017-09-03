@@ -61,12 +61,14 @@ define(function (require, exports, module) {
                 //     return
                 // }
 
-                $.get('/mobile/customer-account/check',{},function (data) {
+                // $.get('/mobile/customer-account/check',{},function (data) {
+                $.get('/mobile/umbrella/unlock-check',{},function (data) {
                     if (data.code==500){
                         layer.open({
                             content: data.message
                             , btn: '我知道了'
                         });
+                        return
                     }else if(data.code==501){
                         $.router.loadPage("/mobile/customer-account/deposit?index=deposit");
                         return
@@ -107,7 +109,7 @@ define(function (require, exports, module) {
                                             if (data.success){
                                                 timer = setInterval(function () {
                                                     checkHire(data.hire_id);
-                                                }, 8000);
+                                                }, 4000);
                                             }
                                         })
                                     },

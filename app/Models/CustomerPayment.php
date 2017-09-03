@@ -37,49 +37,48 @@ use Illuminate\Support\Facades\Log;
  */
 class CustomerPayment extends BaseModel
 {
-	/**
-	 * 支付状态（1-未支付）
-	 */
-	const STATUS_INIT = 1;
-	/**
-	 * 支付状态（2-已支付）
-	 */
-	const STATUS_SUCCESS=2;
-	/**
-	 * 支付状态（3-支付失败）
-	 */
-	const STATUS_FAIL=3;
+    /**
+     * 支付状态（1-未支付）
+     */
+    const STATUS_INIT = 1;
+    /**
+     * 支付状态（2-已支付）
+     */
+    const STATUS_SUCCESS = 2;
+    /**
+     * 支付状态（3-支付失败）
+     */
+    const STATUS_FAIL = 3;
 
     /**
      * 支付状态（4-已关闭）
      */
-    const STATUS_CLOSE=4;
+    const STATUS_CLOSE = 4;
 
-	/**
-	 * 流水类型 1-充值（收入）
-	 */
-	const TYPE_IN_CHARGE = 1;
-	/**
-	 * 流水类型 2-押金充值（收入）
-	 */
-	const TYPE_IN_DEPOSIT = 2;
-	/**
-	 * 流水类型 3-押金支出
-	 */
-	const TYPE_OUT_DEPOSIT = 3;
-	/**
-	 * 流水类型 4-押金退回（收入）
-	 */
-	const TYPE_INT_DEPOSIT_BACK = 4;
-	/**
-	 * 流水类型 5-借伞租金支出
-	 */
-	const TYPE_OUT_RENT = 5;
-	/**
-	 * 流水类型 6-账户提现
-	 */
-	const TYPE_OUT_WITHDRAW = 6;
-
+    /**
+     * 流水类型 1-充值（收入）
+     */
+    const TYPE_IN_CHARGE = 1;
+    /**
+     * 流水类型 2-押金充值（收入）
+     */
+    const TYPE_IN_DEPOSIT = 2;
+    /**
+     * 流水类型 3-押金支出
+     */
+    const TYPE_OUT_DEPOSIT = 3;
+    /**
+     * 流水类型 4-押金退回（收入）
+     */
+    const TYPE_INT_DEPOSIT_BACK = 4;
+    /**
+     * 流水类型 5-借伞租金支出
+     */
+    const TYPE_OUT_RENT = 5;
+    /**
+     * 流水类型 6-账户提现
+     */
+    const TYPE_OUT_WITHDRAW = 6;
 
 
     //
@@ -230,7 +229,7 @@ class CustomerPayment extends BaseModel
         $payment = [
             'customer_account_id' => $customer->account->id,
             'customer_id' => $customer->id,
-            'sn' => $this->snFlag($data['type']) . date('YmdHis') . sprintf("%06d", $customer->id) ,
+            'sn' => $this->snFlag($data['type']) . sprintf("%05d", $customer->id) . date('YmdHis'),
             'payment_channel' => 1,
             'amt' => $data['amt'],
             'type' => $data['type'],

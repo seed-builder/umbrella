@@ -57,4 +57,28 @@ class UmbrellaController extends MobileController
         return $this->success_result('借伞成功',$hire);
     }
 
+    public function unlockCheck(){
+        $user = Auth::guard('mobile')->user();
+
+        $price = Price::query()->where('status',1)->first();
+
+        $date = date('Y-m-d');
+        $start = $date.': 00:00:00';
+        $end= $date.': 23:59:59';
+
+        $no_finsh_count = CustomerHire::whereIn('status',[CustomerHire::STATUS_HIRING,CustomerHire::STATUS_PAYING])
+            ->where('created_at','>=',$start)
+            ->where('created_at','<=',$end)
+            ->count();
+
+//        if ($no_finsh_count>3){
+//            return $this->fail_result('您今日还未还的伞已超过3把，请先将租借中的伞归还');
+//        }
+
+        if ($user->account->deposit < $price->deposit_cash)
+            return $this->fail_result('当前押金不足，请先充值押金',501);
+
+        return $this->success_result('');
+    }
+
 }

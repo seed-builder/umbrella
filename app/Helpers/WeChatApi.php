@@ -69,4 +69,52 @@ class WeChatApi
         return $path;
     }
 
+    /**
+     * 微信消息推送
+     * @param $template_type
+     * @param $data
+     * @param $openId
+     * @param null $url
+     */
+    public function wxSend($template_id, $data, $open_id, $url = null)
+    {
+        $data = [
+            'touser' => $open_id,
+            'template_id' => $this->template($template_id), // 模板id
+            'data' => $data
+        ];
+
+        if (!empty($url))
+            $data['url'] = $url;
+
+        $this->send($data);
+    }
+
+    /**
+     * 推送
+     * @param $data
+     */
+    protected function send($data)
+    {
+        $token = $this->utl()->config()['token'];
+
+        $curl = curl_init();
+        $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=$token";
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // 设置post变量
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl); // 执行
+        curl_close($curl);
+    }
+
+    protected function template($id)
+    {
+        $data = [
+            'rf' => '1jpgnu05QiAIA-9IRyXaZcACCQraPjuQcuerIr57IP4',
+        ];
+
+        return $data[$id];
+    }
+
 }

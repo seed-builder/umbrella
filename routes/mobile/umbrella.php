@@ -7,3 +7,4 @@
  */
 
 Route::get('umbrella/unlock', ['uses' => 'UmbrellaController@unlock']);
+Route::get('umbrella/unlock-check', ['uses' => 'UmbrellaController@unlockCheck']);
