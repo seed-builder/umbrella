@@ -23,6 +23,23 @@ define(function (require, exports, module) {
             wechatLocation();
         });
 
+        var checkNoPayOrder = function () {
+            $.get('/mobile/home/check-npo', {}, function (data) {
+                if (data.code != 0){
+                    layer.open({
+                        content: data.message
+                        , btn: ['去支付', '先借伞']
+                        , yes: function () {
+                            window.location.href='/mobile/customer-hire/index'
+                        }, no: function () {
+                            layer.closeAll()
+                        }
+                    });
+                }
+            })
+        }
+        checkNoPayOrder();
+
 
         /**
          * 自定义控件-个人中心
@@ -66,51 +83,55 @@ define(function (require, exports, module) {
                 //     return
                 // }
                 // $.get('/mobile/customer-account/check',{},function (data) {
-                $.get('/mobile/umbrella/unlock-check',{},function (data) {
-                    if (data.code==500){
+                $.get('/mobile/umbrella/unlock-check', {}, function (data) {
+                    if (data.code == 500) {
                         layer.open({
                             content: data.message
                             , btn: '我知道了'
                         });
                         return
-                    }else if(data.code==501){
+                    } else if (data.code == 501) {
                         $.router.loadPage("/mobile/customer-account/deposit?index=deposit");
                         return
-                    }else {
+                    } else {
                         layer.open({
                             content: '共享伞解锁'
-                            ,btn: ['手动输入','扫码借伞']
-                            ,skin: 'footer'
-                            ,yes: function(index){
+                            , btn: ['手动输入', '扫码借伞']
+                            , skin: 'footer'
+                            , yes: function (index) {
                                 layer.closeAll()
                                 // $.popup('.unlock-umbrella')
                                 layer.open({
                                     type: 1
-                                    ,content: '<div class="content-block unblock-content">' +
+                                    ,
+                                    content: '<div class="content-block unblock-content">' +
                                     '<input type="number" id="umbrella-sn" placeholder="请输入伞柄上的数字"/>' +
                                     '<input type="button" id="unlock-submit" value="立即用伞">' +
                                     '</div>'
-                                    ,anim: 'up'
-                                    ,style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
-                                    ,success:function () {
+                                    ,
+                                    anim: 'up'
+                                    ,
+                                    style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
+                                    ,
+                                    success: function () {
                                         $("#umbrella-sn").focus()
                                     }
                                 });
                             },
-                            no : function(index){
+                            no: function (index) {
                                 wx.scanQRCode({
                                     desc: 'scanQRCode desc',
                                     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                                     success: function (res) {
-                                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr+'?sign='+md5(customer_id+res.resultStr+key);
+                                        var url = golang_host + 'customer/' + customer_id + '/hire/' + res.resultStr + '?sign=' + md5(customer_id + res.resultStr + key);
                                         layer.open({
                                             type: 2,
                                             shadeClose: false
                                             , content: '系统正在出伞，请稍等15秒左右...'
                                         });
-                                        $.post(url,{},function (data) {
-                                            if (data.success){
+                                        $.post(url, {}, function (data) {
+                                            if (data.success) {
                                                 timer = setInterval(function () {
                                                     checkHire(data.hire_id);
                                                 }, 4000);
@@ -183,21 +204,21 @@ define(function (require, exports, module) {
             createControl(controlUI);
         }
 
-        $(document).on('click','#unlock-submit',function (e) {
+        $(document).on('click', '#unlock-submit', function (e) {
             e.preventDefault();
             var number = $("#umbrella-sn").val()
-            if (!number){
+            if (!number) {
                 layer.open({
                     content: '请输入伞柄上的数字'
-                    ,btn: '我知道了'
+                    , btn: '我知道了'
                 });
-                return ;
+                return;
             }
             layer.open({
                 type: 2
                 , content: '解锁中...'
             });
-            App.ajaxLink('/mobile/umbrella/unlock?number='+number)
+            App.ajaxLink('/mobile/umbrella/unlock?number=' + number)
         })
 
         /**
@@ -223,7 +244,7 @@ define(function (require, exports, module) {
         /**
          * 微信jssdk定位
          */
-        var loactionMarker ;
+        var loactionMarker;
         var wechatLocation = function () {
             // loactionMarker.setMap(null);
             wx.getLocation({
@@ -299,7 +320,7 @@ define(function (require, exports, module) {
                 for (i in data) {
                     var marker = createMarker([data[i].longitude, data[i].latitude])
 
-                    infoWindow(marker,data[i]);
+                    infoWindow(marker, data[i]);
                 }
             })
         }
@@ -337,12 +358,12 @@ define(function (require, exports, module) {
         }
 
         var checkHire = function (id) {
-            $.get('/mobile/customer-hire/check/'+id,{},function (data) {
-                if (data.code==0){
+            $.get('/mobile/customer-hire/check/' + id, {}, function (data) {
+                if (data.code == 0) {
                     layer.closeAll();
                     clearInterval(timer);
                     layer.open({
-                        content:'出伞成功，请到机器上领取您的伞'
+                        content: '出伞成功，请到机器上领取您的伞'
                         , btn: '我知道了'
                     });
                 }
@@ -363,7 +384,7 @@ define(function (require, exports, module) {
             wechatLocationControl();
             getSites();
 
-            map.on('click', function(e) {
+            map.on('click', function (e) {
                 $(".amap-ui-infowindow-close").trigger('click');
                 $.closePanel("#my-panel");
             });
