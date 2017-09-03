@@ -41,7 +41,10 @@ class CustomerHireController extends MobileController
 
     public function pagination(Request $request, $with = [], $conditionCall = null, $dataHandleCall = null)
     {
-        return parent::pagination($request, $with, $conditionCall, function ($entities) {
+        return parent::pagination($request, $with, function($query){
+            $query->orderBy('created_at','desc');
+
+        }, function ($entities) {
             foreach ($entities as $entity) {
                 $entity->status_name = $entity->status();
             }
