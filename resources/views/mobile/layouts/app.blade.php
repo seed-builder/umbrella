@@ -27,6 +27,8 @@ $config = $helper->getSignPackage();
 
     <script type='text/javascript' src='/js/app.js' charset='utf-8'></script>
     <script src="/assets/sea.js"></script>
+    <script src="/assets/sea.config.js"></script>
+
 </head>
 <body>
 <div class="page-group"  id="app">
@@ -36,7 +38,7 @@ $config = $helper->getSignPackage();
         {{--@include('mobile.layouts.toolbar')--}}
 </div>
 
-
+<script type='text/javascript' src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>
 <script type='text/javascript' src='//at.alicdn.com/t/font_l7crty2wczqwipb9.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/light7/js/light7.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='/mobile/Shineraini/js/app.js' charset='utf-8'></script>

@@ -2,10 +2,15 @@
  * Created by dell on 2017/6/20.
  */
 define(function (require, exports, module) {
+    var api = require('api')
+
+
     exports.index = function ($) {
 
         var map, sites;
-        var golang_host = 'http://119.23.214.176:4000/'
+        var golang_host = api.config.host
+        var key = api.config.sign_key
+
 
         map = new AMap.Map('map', {
             zoom: 16,
@@ -60,7 +65,6 @@ define(function (require, exports, module) {
                 //     $.router.loadPage("/mobile/customer-account/deposit?index=deposit");
                 //     return
                 // }
-
                 // $.get('/mobile/customer-account/check',{},function (data) {
                 $.get('/mobile/umbrella/unlock-check',{},function (data) {
                     if (data.code==500){
@@ -99,7 +103,7 @@ define(function (require, exports, module) {
                                     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                                     scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                                     success: function (res) {
-                                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr;
+                                        var url = golang_host+'customer/'+customer_id+'/hire/'+res.resultStr+'?sign='+md5(res.resultStr+key);
                                         layer.open({
                                             type: 2,
                                             shadeClose: false
