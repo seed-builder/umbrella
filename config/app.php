@@ -179,6 +179,7 @@ return [
 	    Zizaco\Entrust\EntrustServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 	    Barryvdh\Cors\ServiceProvider::class,
+	    GsJohn\Dysms\DysmsProvider::class,
 
     ],
 
@@ -231,6 +232,7 @@ return [
 	    'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 	    'Sms' => \App\Facades\SmsFacade::class,
+	    'Dysms' => GsJohn\Dysms\DysmsFacade::class,
     ],
 
 ];
