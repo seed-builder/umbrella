@@ -68,6 +68,7 @@ class UmbrellaController extends MobileController
         $end= $date.': 23:59:59';
 
         $no_finsh_count = CustomerHire::whereIn('status',[CustomerHire::STATUS_HIRING,CustomerHire::STATUS_PAYING])
+            ->where('customer_id',$user->id)
             ->where('created_at','>=',$start)
             ->where('created_at','<=',$end)
             ->count();
