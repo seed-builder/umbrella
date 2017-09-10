@@ -70,6 +70,9 @@ class WeChatController extends MobileController
 
             Auth::guard('mobile')->login($user);
 
+            if (empty($user->mobile))
+                return redirect(url('mobile/register'));
+
             return redirect(url('mobile/home/map'));
         }
     }

@@ -8,6 +8,7 @@ use App\Models\Price;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Dysms;
 
 class HomeController extends MobileController
 {
@@ -18,6 +19,26 @@ class HomeController extends MobileController
 
     public function index(){
         return view('mobile.home.index');
+    }
+
+
+    public function showRegister(){
+        return view('mobile.home.register');
+    }
+
+    public function register(Request $request){
+        $phone = $request->input('phone');
+        $code = $request->input('code');
+        $resp = Dysms::checkVerifyCode($phone, $code);
+
+        if (!$resp)
+            return $this->fail_result('验证码错误！');
+
+        $user = Auth::guard('mobile')->user();
+        $user->mobile = $phone;
+        $user->save();
+
+        return redirect(url('mobile/home/map'));
     }
 
     public function map(){
