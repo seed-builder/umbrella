@@ -34,7 +34,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">验证码</div>
                                     <div class="item-input">
-                                        <input type="text" name="code" value="">
+                                        <input type="number" name="code" value="">
                                     </div>
                                     <div class="item-input">
                                         <button type="button" class="button button-fill" id="send_code">发送验证码</button>

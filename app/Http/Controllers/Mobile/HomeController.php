@@ -27,7 +27,7 @@ class HomeController extends MobileController
     }
 
     public function register(Request $request){
-        $phone = $request->input('phone');
+        $phone = $request->input('mobile');
         $code = $request->input('code');
         $resp = Dysms::checkVerifyCode($phone, $code);
 
