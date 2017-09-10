@@ -57,7 +57,9 @@
     <script>
         $(".form-submit").on('click', function (e) {
             e.preventDefault();
-            App.ajaxForm('#form-id');
+            App.ajaxForm('#form-id',function(){
+                window.location.href = '/mobile/home/map'
+            });
         })
 
         var sending = false;

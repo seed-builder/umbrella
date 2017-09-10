@@ -38,7 +38,9 @@ class HomeController extends MobileController
         $user->mobile = $phone;
         $user->save();
 
-        return redirect(url('mobile/home/map'));
+        return $this->success_result('');
+
+//        return redirect(url('mobile/home/map'));
     }
 
     public function map(){
