@@ -61,9 +61,9 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="control-label col-md-3">颜色:</label>
+                                            <label class="control-label col-md-3">当前设备:</label>
                                             <div class="col-md-9">
-                                                <p class="form-control-static"> {{$entity->color}} </p>
+                                                <p class="form-control-static"> {{!empty($entity->equipment) ? $entity->equipment->sn : '暂无'}} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -71,20 +71,13 @@
                                 <div class="row">
 
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3">当前设备:</label>
-                                            <div class="col-md-9">
-                                                <p class="form-control-static"> {{$entity->equipment->sn}} </p>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label col-md-3">当前网点:</label>
                                             <div class="col-md-9">
-                                                <p class="form-control-static"> {{$entity->site->name}} </p>
+                                                <p class="form-control-static"> {{!empty($entity->site) ? $entity->site->name : '暂无'}} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -97,8 +90,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+
 
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -108,6 +100,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+
+
 
                                     <div class="col-md-4">
                                         <div class="form-group">
