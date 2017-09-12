@@ -74,7 +74,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">当前所属网点</label>
                                         <div class="col-md-7">
-                                            <p class="form-control-static"> {{empty($entity->site) ? $entity->site->name ? '暂无'}} </p>
+                                            <p class="form-control-static"> {{!empty($entity->site) ? $entity->site->name : '暂无'}} </p>
                                         </div>
                                     </div>
                                 </div>
