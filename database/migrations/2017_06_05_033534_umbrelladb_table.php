@@ -158,15 +158,8 @@ class UmbrelladbTable extends Migration
          */
         Schema::create('equipment_logs', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->string('api_name')->comment('模块名 （表名|请求接口名）');
-            $table->string('code')->comment('报警返回码');
-            $table->string('type')->comment('超时|异常');
-            $table->longText('content')->comment('报警内容');
-            $table->integer('equipment_id')->default(0)->comment('equipments id');
-            $table->integer('site_id')->default(0)->comment('equipments id');
-            $table->integer('status')->default(1)->comment('1-未解决 2-已解决');
-
+	        $table->integer('level')->default(0)->comment("日志级别（0-CRITICAL, 1-ERROR, 2-WARNING,3-NOTICE,4-INFO,5-DEBUG）");
+            $table->longText('content')->comment('日志内容');
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
 	        $table->integer('modifier_id')->default(0)->comment('修改用户id');
             $table->timestamps();
