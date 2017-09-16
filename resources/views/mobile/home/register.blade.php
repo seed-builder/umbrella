@@ -4,12 +4,27 @@
         .send-code-disabled {
             background: grey !important;
         }
+        .check-register{
+            text-align: center;
+        }
+        .check-register{
+            text-align: center;
+            font-size: 13px;
+            margin-top: .5rem;
+        }
+        .check-register input{
+            margin: .5rem;
+        }
+        .register-text{
+            color: #FFD700;
+            margin-left: 5px;
+        }
     </style>
 @endsection
 @section('content')
 
     <div class="page page-current" id="register">
-        <header class="bar bar-nav">
+        <header class="bar bar-nav " >
             <h1 class='title'>柒天伞客</h1>
         </header>
         <div class="content">
@@ -47,6 +62,10 @@
                 </div>
                 <div class="content-block">
                     <div class="col-100"><a class="button button-big button-fill form-submit ">开始用伞</a></div>
+                    <div class="col-100 check-register"><input type="checkbox" checked disabled>我已阅读
+                        <span class="register-text link" data-url="/html/register.html">《用户注册协议》</span>
+                    </div>
+
                 </div>
             </form>
         </div>
