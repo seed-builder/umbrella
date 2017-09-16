@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ViewCustomerHire;
+use App\Services\ExcelService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\CustomerHire;
@@ -80,6 +81,36 @@ class CustomerHireController extends BaseController
     public function entityQuery()
     {
         return ViewCustomerHire::query();
+    }
+
+    public function export($entities)
+    {
+        $result[0] = [
+//            '共享伞编号',
+            '用户',
+            '借伞网点',
+            '借伞时间',
+            '还伞网点',
+            '还伞时间',
+            '到期时间',
+            '租用时长',
+            '租借费用',
+        ];
+        foreach ($entities as $entity){
+            $result[] = [
+                $entity->customer_name,
+                $entity->hire_site_name,
+                $entity->hire_at,
+                $entity->return_site_name,
+                $entity->return_at,
+                $entity->expired_at,
+                $entity->hire_day,
+                $entity->hire_amt,
+            ];
+        }
+
+        $excel = new ExcelService();
+        $excel->export($result, date('Ymd') . '_客户租借单');
     }
 
 }

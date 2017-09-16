@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Services\ExcelService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\CustomerPayment;
@@ -75,6 +76,8 @@ class CustomerPaymentController extends BaseController
             foreach ($entities as $entity){
                 $entity->status_name = $entity->status();
                 $entity->type_name = $entity->type();
+                $entity->channel_name = $entity->channel();
+
             }
         }, true);
     }
@@ -101,5 +104,32 @@ class CustomerPaymentController extends BaseController
         });
 
         return $query;
+    }
+
+    public function export($entities)
+    {
+        $result[0] = [
+            '订单号',
+            '用户',
+            '支付渠道',
+            '金额',
+            '支付状态',
+            '支付类别',
+            '时间',
+        ];
+        foreach ($entities as $entity){
+            $result[] = [
+                $entity->sn,
+                $entity->customer->nickname,
+                $entity->channel(),
+                $entity->amt,
+                $entity->status(),
+                $entity->type(),
+                $entity->created_at,
+            ];
+        }
+
+        $excel = new ExcelService();
+        $excel->export($result, date('Ymd') . '_客户资金流水');
     }
 }

@@ -56,6 +56,15 @@ define(function (require, exports, module) {
                 // },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
+                {
+                    text: '导出EXCEL <i class="fa fa-file-excel-o"></i>',
+                    className: 'btn',
+                    action: function () {
+                        $(".search-form").attr('action', '/admin/customer-hire/export-excel')
+                        $(".search-form").submit();
+                        $(".search-form").attr('action', '')
+                    }
+                },
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ]
         });
