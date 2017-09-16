@@ -12,3 +12,5 @@ Route::get('home/check-npo', ['uses' => 'HomeController@checkNoPayOrder']);
 Route::get('send', ['uses' => 'UtlController@sendVerifyCode']);
 Route::get('register', ['uses' => 'HomeController@showRegister']);
 Route::post('register', ['uses' => 'HomeController@Register']);
+Route::get('scan/{sn}', ['uses' => 'HomeController@scan']);
+

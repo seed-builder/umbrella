@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Mobile;
 
 use App\Events\WechatApiEvent;
@@ -35,6 +36,7 @@ class WeChatController extends MobileController
     public function authLogin(Request $request)
     {
         $code = $request->input('code', '');
+        $state = $request->input('state', '');
 
         if (!empty($code)) {
             $api = new WeChatApi();
@@ -72,6 +74,12 @@ class WeChatController extends MobileController
 
             if (empty($user->mobile))
                 return redirect(url('mobile/register'));
+
+            if ($state != 'CC') {
+                $url = str_replace("AA", "/", $state);
+
+                return redirect(url($url));
+            }
 
             return redirect(url('mobile/home/map'));
         }
@@ -318,8 +326,8 @@ class WeChatController extends MobileController
 //        $order->save();
         event(new WechatApiEvent('', 'xx', $rs, 'x'));
         dd($rs);
-        foreach ($rs as $k=> $v) {
-            if(strpos('SUCCESS', $k)!== false||strpos('SUCCESS', $v)!== false){
+        foreach ($rs as $k => $v) {
+            if (strpos('SUCCESS', $k) !== false || strpos('SUCCESS', $v) !== false) {
                 dd(123123);
             }
         }
