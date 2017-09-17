@@ -60,11 +60,11 @@ class WeChatApi
 
         $url = 'https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token=' . $this->utl()->config()['token'] . '&media_id=' . $id;
 
-        if (!file_exists(env('FILE_STORAGE_PATH') )) {
-            mkdir(env('FILE_STORAGE_PATH') , 0777, true);
+        if (!file_exists(storage_path() . '/wechat-images/')) {
+            mkdir(storage_path() . '/wechat-images/', 0777, true);
         }
 
-        $path = env('FILE_STORAGE_PATH') . '/' . date("YmdHis") . uniqid() . $mimetype;
+        $path = storage_path('/wechat-images/ ' . date("YmdHis") . uniqid() . $mimetype);
 
         $client->get($url, ['save_to' => $path]);
 
