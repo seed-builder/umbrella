@@ -1,9 +1,10 @@
 <?php
 $user = Auth::user();
-$logs = \App\Models\EquipmentLog::where('status',1)->orderBy('created_at','desc')->get();
-foreach ($logs as $log){
-    $log->time = time_tran($log->created_at);
-}
+$logs=collect([]);
+//$logs = \App\Models\EquipmentLog::where('status',1)->orderBy('created_at','desc')->get();
+//foreach ($logs as $log){
+//    $log->time = time_tran($log->created_at);
+//}
 
 function time_tran($the_time) {
     $now_time = date("Y-m-d H:i:s", time());
