@@ -49,7 +49,7 @@ class WeChatApi
     public function downResource($id)
     {
         $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]);
-        $response = $client->request('GET', 'https://qyapi.weixin.qq.com/cgi-bin/media/get', [
+        $response = $client->request('GET', 'https://api.weixin.qq.com/cgi-bin/media/get', [
             'query' => [
                 'access_token' => $this->utl()->token(),
                 'media_id' => $id
@@ -58,7 +58,7 @@ class WeChatApi
 
         $mimetype = $this->utl()->mimetype($response->getHeaders());
 
-        $url = 'https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token=' . $this->utl()->config()['token'] . '&media_id=' . $id;
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' . $this->utl()->config()['token'] . '&media_id=' . $id;
 
         if (!file_exists(storage_path() . '/wechat-images/')) {
             mkdir(storage_path() . '/wechat-images/', 0777, true);

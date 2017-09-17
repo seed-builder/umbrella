@@ -30,7 +30,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">手机号</div>
                                     <div class="item-input">
-                                        <input type="text" name="mobile" value="{{$entity->mobile}}">
+                                        {{$entity->mobile}}
                                     </div>
                                 </div>
                             </div>
