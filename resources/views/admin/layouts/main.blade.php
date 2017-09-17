@@ -261,7 +261,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script type="text/javascript">
     $(function () {
         seajs.use('admin/message.js', function (app) {
-            setInterval(function(){ app.roll($); }, 50000);
+            setInterval(function(){ app.roll($); }, 5000);
         });
     });
 </script>

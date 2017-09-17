@@ -43,7 +43,7 @@
                 <div class="portlet-body form">
                     <form class="form-horizontal search-form">
                         <div class="form-body">
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">category</label>
                                         <div class="col-md-9">
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">channel</label>
                                         <div class="col-md-9">
@@ -59,7 +59,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">content</label>
                                         <div class="col-md-9">
@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">created_at</label>
                                         <div class="col-md-9">
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">creator_id</label>
                                         <div class="col-md-9">
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">deleted_at</label>
                                         <div class="col-md-9">
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">equipment_id</label>
                                         <div class="col-md-9">
@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">id</label>
                                         <div class="col-md-9">
@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">level</label>
                                         <div class="col-md-9">
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">modifier_id</label>
                                         <div class="col-md-9">
@@ -123,7 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">read</label>
                                         <div class="col-md-9">
@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">site_id</label>
                                         <div class="col-md-9">
@@ -139,7 +139,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
+                            <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">updated_at</label>
                                         <div class="col-md-9">
@@ -147,10 +147,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                                    </div>
+                        </div>
                         <div class="row"></div>
-
-
                         <div class="form-actions right">
                             <button type="button" class="btn green table-search">查询</button>
                             <button type="button" class="btn red table-reset">重置</button>
@@ -181,20 +179,19 @@
                         <tr>
                             <th></th>
                             <th width="10%">操作</th>
-                                                            <th>category</th>
-                                                            <th>channel</th>
-                                                            <th>content</th>
-                                                            <th>created_at</th>
-                                                            <th>creator_id</th>
-                                                            <th>deleted_at</th>
-                                                            <th>equipment_id</th>
-                                                            <th>id</th>
-                                                            <th>level</th>
-                                                            <th>modifier_id</th>
-                                                            <th>read</th>
-                                                            <th>site_id</th>
-                                                            <th>updated_at</th>
-                            
+                            <th>category</th>
+                            <th>channel</th>
+                            <th>content</th>
+                            <th>created_at</th>
+                            <th>creator_id</th>
+                            <th>deleted_at</th>
+                            <th>equipment_id</th>
+                            <th>id</th>
+                            <th>level</th>
+                            <th>modifier_id</th>
+                            <th>read</th>
+                            <th>site_id</th>
+                            <th>updated_at</th>
                         </tr>
                         </thead>
                     </table>
