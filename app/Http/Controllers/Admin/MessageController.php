@@ -1,26 +1,16 @@
-<?php echo $BEGIN_PHP; ?>
-
 <?php
-		$searchCols = [];
-		foreach ($columns as $col){
-			if($col->data_type == 'string'){
-				$searchCols[] = $col->name;
-			}
-		}
-
-?>
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
-use App\Models\<?php echo e($model); ?>;
+use App\Models\Message;
 
-class <?php echo e($model); ?>Controller extends BaseController
+class MessageController extends BaseController
 {
 	public function newEntity(array $attributes = [])
 	{
 		// TODO: Implement newEntity() method.
-		return new <?php echo e($model); ?>($attributes);
+		return new Message($attributes);
 	}
 
 	/**
@@ -31,7 +21,7 @@ class <?php echo e($model); ?>Controller extends BaseController
 	public function index()
 	{
 		//
-		return view('admin.<?php echo e(snake_case($model,'-')); ?>.index');
+		return view('admin.message.index');
 	}
 
 	/**
@@ -41,7 +31,7 @@ class <?php echo e($model); ?>Controller extends BaseController
 	*/
 	public function create()
 	{
-		return view('admin.<?php echo e(snake_case($model,'-')); ?>.create');
+		return view('admin.message.create');
 	}
 
 	/**
@@ -52,8 +42,8 @@ class <?php echo e($model); ?>Controller extends BaseController
 	*/
 	public function edit($id)
 	{
-		$entity = <?php echo e($model); ?>::find($id);
-		return view('admin.<?php echo e(snake_case($model,'-')); ?>.edit', ['entity' => $entity]);
+		$entity = Message::find($id);
+		return view('admin.message.edit', ['entity' => $entity]);
 	}
 
 	/**
@@ -64,8 +54,8 @@ class <?php echo e($model); ?>Controller extends BaseController
 	*/
 	public function show($id)
 	{
-		$entity = <?php echo e($model); ?>::find($id);
-		return view('admin.<?php echo e(snake_case($model,'-')); ?>.show', ['entity' => $entity]);
+		$entity = Message::find($id);
+		return view('admin.message.show', ['entity' => $entity]);
 	}
 
 	/**
@@ -77,8 +67,20 @@ class <?php echo e($model); ?>Controller extends BaseController
 	* @return  \Illuminate\Http\JsonResponse
 	*/
 	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
-		$searchCols = <?php echo json_encode($searchCols); ?>;
+		$searchCols = ["content"];
 		return parent::pagination($request, $searchCols);
 	}
+
+	public function getTops(Request $request){
+        $params = $request->all();
+        $query = Message::query();
+        if(!empty($params)){
+            foreach ($params as $col => $val){
+                $query->where($col, $val);
+            }
+        }
+        $messages = $query->orderBy('updated_at', 'desc')->take(10);
+        return $this->success($messages);
+    }
 
 }

@@ -6,34 +6,7 @@ $logs=collect([]);
 //    $log->time = time_tran($log->created_at);
 //}
 
-function time_tran($the_time) {
-    $now_time = date("Y-m-d H:i:s", time());
-    //echo $now_time;
-    $now_time = strtotime($now_time);
-    $show_time = strtotime($the_time);
-    $dur = $now_time - $show_time;
-    if ($dur < 0) {
-        return $the_time;
-    } else {
-        if ($dur < 60) {
-            return $dur . '秒前';
-        } else {
-            if ($dur < 3600) {
-                return floor($dur / 60) . '分钟前';
-            } else {
-                if ($dur < 86400) {
-                    return floor($dur / 3600) . '小时前';
-                } else {
-                    if ($dur < 259200) {//3天内
-                        return floor($dur / 86400) . '天前';
-                    } else {
-                        return '3天前';
-                    }
-                }
-            }
-        }
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <!-- 
@@ -190,7 +163,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <ul class="dropdown-menu">
                             <li class="external">
                                 <h3>
-                                    当前有<span class="bold">{{$logs->count()}}</span> 条报警记录</h3>
+                                    当前有<span class="bold">{{$logs->count()}}</span> 条消息记录</h3>
                                 <a href="{{url('admin/equipment-log')}}">查看所有</a>
                             </li>
                             <li>

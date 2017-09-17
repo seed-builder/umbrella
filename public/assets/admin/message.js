@@ -1,21 +1,3 @@
-<?php
-
-function exclude($column){
-	$arr = ['id', 'created_at', 'updated_at'];
-	return in_array($column->name , $arr);
-}
-function showEditorType($column){
-	if(empty($column))
-		return '';
-
-	switch ($column->name){
-		case 'created_at':
-		case 'updated_at':
-			return "'type':'datetime'";
-	}
-}
-?>
-
 /**
 *
 */
@@ -33,7 +15,7 @@ define(function(require, exports, module) {
             select: false,
             paging: true,
             rowId: "id",
-            ajax: '/admin/<?php echo e(snake_case($model,'-')); ?>/pagination',
+            ajax: '/admin/message/pagination',
             columns: [
             {
                 'data': 'id',
@@ -51,23 +33,32 @@ define(function(require, exports, module) {
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="/admin/<?php echo e(snake_case($model,'-')); ?>/edit/`+data+`"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
+                            <a href="/admin/message/edit/`+data+`"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
                         </li>
                         <li>
-                            <a class="csx-delete" data-url="/admin/<?php echo e(snake_case($model,'-')); ?>/delete/`+data+`" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
+                            <a class="csx-delete" data-url="/admin/message/delete/`+data+`" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
                         </li>
                         <li>
-                            <a href="/admin/<?php echo e(snake_case($model,'-')); ?>/show/`+data+`"> 详情 <i class="fa fa-file-o"></i> </a>
+                            <a href="/admin/message/show/`+data+`"> 详情 <i class="fa fa-file-o"></i> </a>
                         </li>
                     </ul>
                 </div>`;
                 }
             },
-        <?php $__empty_1 = true; $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $col): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-            {  'data': '<?php echo e($col->name); ?>' },
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-        <?php endif; ?>
-
+                    {  'data': 'category' },
+                    {  'data': 'channel' },
+                    {  'data': 'content' },
+                    {  'data': 'created_at' },
+                    {  'data': 'creator_id' },
+                    {  'data': 'deleted_at' },
+                    {  'data': 'equipment_id' },
+                    {  'data': 'id' },
+                    {  'data': 'level' },
+                    {  'data': 'modifier_id' },
+                    {  'data': 'read' },
+                    {  'data': 'site_id' },
+                    {  'data': 'updated_at' },
+        
     ],
     columnDefs: [
         {
@@ -78,7 +69,7 @@ define(function(require, exports, module) {
 
             buttons: [
                 { text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href="/admin/<?php echo e(snake_case($model,'-')); ?>/create"
+                    window.location.href="/admin/message/create"
                 }  },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
@@ -89,12 +80,12 @@ define(function(require, exports, module) {
         $(".table-search").on('click',function(){
             var data = $(this).parents('.search-form').serializeArray()
             var arr = $.param(data)
-            table.ajax.url("/admin/<?php echo e(snake_case($model,'-')); ?>/pagination?" + arr).load();
+            table.ajax.url("/admin/message/pagination?" + arr).load();
         })
 
         $(".table-reset").on('click',function(){
             $(this).parents('.search-form')[0].reset();
-            table.ajax.url("/admin/<?php echo e(snake_case($model,'-')); ?>/pagination").load();
+            table.ajax.url("/admin/message/pagination").load();
         })
 
         $("table").on('click','.csx-delete',function(){
@@ -108,6 +99,10 @@ define(function(require, exports, module) {
         })
 
 
+    }
+
+    exports.roll = function ($, ) {
+        
     }
 
 });
