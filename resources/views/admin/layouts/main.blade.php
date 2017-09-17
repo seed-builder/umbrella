@@ -1,6 +1,6 @@
 <?php
 $user = Auth::user();
-$logs=[];
+$logs=collect([]);
 //$logs = \App\Models\EquipmentLog::where('status',1)->orderBy('created_at','desc')->get();
 //foreach ($logs as $log){
 //    $log->time = time_tran($log->created_at);
