@@ -64,7 +64,7 @@ class WeChatApi
             mkdir(storage_path() . '/wechat-images/', 0777, true);
         }
 
-        $path = storage_path('/wechat-images/ ' . date("YmdHis") . uniqid() . $mimetype);
+        $path = storage_path('wechat-images/' . date("YmdHis") . uniqid() . $mimetype);
 
         $client->get($url, ['save_to' => $path]);
 
