@@ -60,4 +60,10 @@ class HomeController extends MobileController
 
         return $this->success_result('');
     }
+
+    public function scan($sn){
+        $user = Auth::guard('mobile')->user();
+
+        return view('mobile.home.scan',compact('user','sn'));
+    }
 }

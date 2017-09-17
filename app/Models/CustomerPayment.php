@@ -159,7 +159,7 @@ class CustomerPayment extends BaseModel
                 return '支付宝';
             }
             default : {
-                return '微信支付';
+                return '无';
             }
         }
     }

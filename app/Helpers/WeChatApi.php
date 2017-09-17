@@ -9,6 +9,7 @@
 namespace App\Helpers;
 
 
+use App\Models\Resource;
 use App\Models\SysLog;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
@@ -48,25 +49,32 @@ class WeChatApi
     public function downResource($id)
     {
         $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]);
-
         $response = $client->request('GET', 'https://qyapi.weixin.qq.com/cgi-bin/media/get', [
             'query' => [
-                'access_token' => $this->utl()->config()['token'],
+                'access_token' => $this->utl()->token(),
                 'media_id' => $id
             ]
         ]);
+
         $mimetype = $this->utl()->mimetype($response->getHeaders());
 
         $url = 'https://qyapi.weixin.qq.com/cgi-bin/media/get?access_token=' . $this->utl()->config()['token'] . '&media_id=' . $id;
 
-        if (!file_exists(env('FILE_STORAGE_PATH') . '/customer-image')) {
-            mkdir(env('FILE_STORAGE_PATH') . '/customer-image', 0777, true);
+        if (!file_exists(env('FILE_STORAGE_PATH') )) {
+            mkdir(env('FILE_STORAGE_PATH') , 0777, true);
         }
 
-        $path = env('FILE_STORAGE_PATH') . '/customer-image' . '/' . date("YmdHis") . uniqid() . $mimetype;
+        $path = env('FILE_STORAGE_PATH') . '/' . date("YmdHis") . uniqid() . $mimetype;
+
         $client->get($url, ['save_to' => $path]);
 
-        return $path;
+        $file = new Resource([
+            'name' => $id,
+            'mimetype' => $mimetype,
+            'path' => $path,
+        ]);
+        $file->save();
+        return $file->id;
     }
 
     /**

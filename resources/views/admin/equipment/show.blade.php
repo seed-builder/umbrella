@@ -134,8 +134,13 @@
                                             <label class="control-label col-md-3">设备二维码:</label>
                                             <div class="col-md-9">
                                                 <p class="form-control-static">
+                                                    @php
+                                                    $base = env('WECHAT_AUTH_LOGIN');
+                                                    $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.$base.'&response_type=code&scope=snsapi_userinfo&state=mobileAAscanAA'.$entity->sn.'#wechat_redirect'
+                                                    @endphp
 {{--                                                    {!! QrCode::size(300)->generate(url('mobile/customer-hire/store?hire_equipment_id='.$entity->id)) !!}--}}
-                                                    {!! QrCode::size(300)->generate($entity->sn) !!}
+                                                    {!! QrCode::size(300)->generate($url) !!}
+{{--                                                    {!! QrCode::size(300)->generate($entity->sn) !!}--}}
                                                 </p>
                                             </div>
                                         </div>

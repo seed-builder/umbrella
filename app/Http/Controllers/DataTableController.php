@@ -226,6 +226,41 @@ abstract class DataTableController extends Controller
         return response()->json($result);
     }
 
+    public function exportExcel(Request $request, $searchCols = [], $with = [], $conditionCall = null)
+    {
+        $filters = $request->input('filter', []);
+
+        $queryBuilder = $this->entityQuery(); //$this->newEntity()->newQuery();
+
+        if (!empty($with)) {
+            $queryBuilder->with($with);
+        }
+
+        $queryBuilder->orderBy('created_at','desc');
+        if ($conditionCall != null && is_callable($conditionCall)) {
+            $conditionCall($queryBuilder);
+        }
+
+        $this->filterQuery($filters, $queryBuilder);
+
+        //模糊查询
+        if (!empty($searchCols) && !empty($search['value'])) {
+            $queryBuilder->where(function ($query) use ($search, $searchCols) {
+                foreach ($searchCols as $sc) {
+                    $query->orWhere($sc, 'like binary', '%' . $search['value'] . '%');
+                }
+            });
+        }
+
+        $entities = $queryBuilder->get();
+
+        $this->export($entities);
+    }
+
+    public function export($entities){
+        throw new \Exception("need implement");
+    }
+
     protected function validateFields($data, $rules=[])
     {
         $fieldErrors = [];

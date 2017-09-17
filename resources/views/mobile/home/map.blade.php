@@ -51,6 +51,12 @@
                                 <div class="item-title">用伞纪录</div>
                             </div>
                         </li>
+                        <li class="item-content link" data-url="/mobile/comment/create">
+                            <div class="item-media"><i class="iconfont icon-yijianfankui"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title">我要反馈</div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
