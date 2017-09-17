@@ -19,6 +19,10 @@
             color: #FFD700;
             margin-left: 5px;
         }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            font-size:14px;
+            color: #d4d4d4;
+        }
     </style>
 @endsection
 @section('content')
@@ -38,7 +42,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">手机号</div>
                                     <div class="item-input">
-                                        <input type="tel" name="mobile" id="phone" value="" placeholder="请输入您的手机号">
+                                        <input type="tel" name="mobile" id="phone" value="" placeholder="输入手机号">
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +53,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">验证码</div>
                                     <div class="item-input">
-                                        <input type="number" name="code" value=""  >
+                                        <input type="number" name="code" value=""  placeholder="输入验证码">
                                     </div>
                                     <div class="item-input">
                                         <button type="button" class="button button-fill" id="send_code">发送验证码</button>

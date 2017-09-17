@@ -64,12 +64,7 @@ define(function (require, exports, module) {
                 {
                     'data': 'status',
                     render: function (data, type, full) {
-                        if(data==1)
-                            return '未启用'
-                        else if(data==2)
-                            return '启用'
-                        else
-                            return '系统故障'
+                        return full.status_name
                     }
                 },
                 {'data': 'created_at'},

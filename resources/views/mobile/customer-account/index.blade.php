@@ -18,13 +18,13 @@
                             <div class="item-after">{{$user->nickname}}</div>
                         </div>
                     </li>
-                    <li class="item-content">
-                        <div class="item-media"><i class="fa fa-credit-card" aria-hidden="true"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title">账户号</div>
-                            <div class="item-after">{{$user->account->sn}}</div>
-                        </div>
-                    </li>
+                    {{--<li class="item-content">--}}
+                        {{--<div class="item-media"><i class="fa fa-credit-card" aria-hidden="true"></i></div>--}}
+                        {{--<div class="item-inner">--}}
+                            {{--<div class="item-title">账户号</div>--}}
+                            {{--<div class="item-after">{{$user->account->sn}}</div>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                     <li class="item-content">
                         <div class="item-media"><i class="iconfont icon-qian"></i></div>
                         <div class="item-inner">

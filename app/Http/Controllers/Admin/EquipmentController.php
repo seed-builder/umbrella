@@ -72,7 +72,11 @@ class EquipmentController extends BaseController
     public function pagination(Request $request, $searchCols = [], $with = [], $conditionCall = null, $dataHandleCall = null, $all_columns = false)
     {
         $searchCols = ["ip", "sn"];
-        return parent::pagination($request, $searchCols, ['site']);
+        return parent::pagination($request, $searchCols, ['site'],$conditionCall,function($entities){
+            foreach ($entities as $entity){
+                $entity->status_name = $entity->status();
+            }
+        });
     }
 
 }
