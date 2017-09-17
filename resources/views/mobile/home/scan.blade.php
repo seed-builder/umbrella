@@ -49,18 +49,28 @@
             })
 
             var timer;
+            var check_count = 0;
 
             var checkHire = function (id) {
+                check_count += 1;
+                if (check_count == 5){
+                    layer.closeAll();
+                    clearInterval(timer);
+                    check_count = 0;
+                    layer.open({
+                        content: '借伞失败，请联系客服人员'
+                        , btn: '我知道了'
+                    });
+                }
+
                 $.get('/mobile/customer-hire/check/' + id, {}, function (data) {
                     if (data.code == 0) {
                         layer.closeAll();
                         clearInterval(timer);
+                        check_count = 0;
                         layer.open({
                             content: '出伞成功，请到机器上领取您的伞'
                             , btn: '我知道了'
-                            , yes: function () {
-                                window.location.href = '/mobile/home/map'
-                            }
                         });
                     }
                 })

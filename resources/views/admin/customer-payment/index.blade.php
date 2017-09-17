@@ -139,6 +139,70 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 bordered">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span data-counter="counterup">{{$all_recharge_amt}}</span>
+                                <small class="font-green-sharp">¥</small>
+                            </h3>
+                            <small>总充值金额</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 bordered">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-red-haze">
+                                <span data-counter="counterup">{{$all_withdraw_amt}}</span>
+                                <small class="font-red-haze">¥</small>
+                            </h3>
+                            <small>总提现金额</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 bordered">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span data-counter="counterup">{{$today_recharge_amt}}</span>
+                                <small class="font-green-sharp">¥</small>
+                            </h3>
+                            <small>今日充值金额</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 bordered">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-red-haze">
+                                <span data-counter="counterup">{{$today_withdraw_amt}}</span>
+                                <small class="font-red-haze">¥</small>
+                            </h3>
+                            <small>今日提现金额</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12 col-sm-12">
                 <div class="portlet light bordered">
                     <div id="alert-id"></div>

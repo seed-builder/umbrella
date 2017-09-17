@@ -25,12 +25,12 @@ define(function (require, exports, module) {
 
         var checkNoPayOrder = function () {
             $.get('/mobile/home/check-npo', {}, function (data) {
-                if (data.code != 0){
+                if (data.code != 0) {
                     layer.open({
                         content: data.message
                         , btn: ['去支付', '先借伞']
                         , yes: function () {
-                            window.location.href='/mobile/customer-hire/index'
+                            window.location.href = '/mobile/customer-hire/index'
                         }, no: function () {
                             layer.closeAll()
                         }
@@ -64,7 +64,7 @@ define(function (require, exports, module) {
         var cutEquSn = function (str) {
             var state_index = str.indexOf('state')
             var end_index = str.indexOf('#wechat_redirect');
-            var sn = str.substring(state_index+20,end_index)  //state=mobileAAscanAA length = 20
+            var sn = str.substring(state_index + 20, end_index)  //state=mobileAAscanAA length = 20
 
             return sn;
         }
@@ -313,10 +313,22 @@ define(function (require, exports, module) {
         }
 
         var checkHire = function (id) {
+            check_count += 1;
+            if (check_count == 5){
+                layer.closeAll();
+                clearInterval(timer);
+                check_count = 0;
+                layer.open({
+                    content: '借伞失败，请联系客服人员'
+                    , btn: '我知道了'
+                });
+            }
+
             $.get('/mobile/customer-hire/check/' + id, {}, function (data) {
                 if (data.code == 0) {
                     layer.closeAll();
                     clearInterval(timer);
+                    check_count = 0;
                     layer.open({
                         content: '出伞成功，请到机器上领取您的伞'
                         , btn: '我知道了'
@@ -329,6 +341,7 @@ define(function (require, exports, module) {
          * 定时器
          */
         var timer;
+        var check_count = 0;
 
         /**
          * 初始化
