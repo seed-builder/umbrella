@@ -79,8 +79,13 @@ class MessageController extends BaseController
                 $query->where($col, $val);
             }
         }
-        $messages = $query->orderBy('updated_at', 'desc')->take(10);
-        return $this->success($messages);
+        $messages = $query->orderBy('updated_at', 'desc')->take(10)->get();
+        if(!empty($messages)){
+            foreach ($messages as &$msg){
+                $msg->time_desc = time_tran($msg->updated_at);
+            }
+        }
+        return response()->json(['data' => $messages, 'cancelled' => 0]);
     }
 
 }

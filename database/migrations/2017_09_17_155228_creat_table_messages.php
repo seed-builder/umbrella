@@ -20,7 +20,8 @@ class CreatTableMessages extends Migration
             $table->integer('site_id')->default(0)->comment('site id');
             $table->integer('equipment_id')->default(0)->comment('设备Id');
             $table->integer('channel')->default(0)->comment('通道号');
-            $table->text('content')->null();
+            $table->string('title')->nullable()->comment('标题');
+            $table->text('content')->nullable()->comment('内容');
             $table->integer('read')->default(0)->comment('是否已读( 0-未读， 1-已读)');
 
             $table->integer('creator_id')->default(0)->comment('创建用户id');
