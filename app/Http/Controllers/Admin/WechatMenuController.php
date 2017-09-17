@@ -47,7 +47,13 @@ class WechatMenuController extends Controller
                             "type" => "view",
                             "name" => "伞客",
                             'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf104b58057f98c74&redirect_uri=http%3A%2F%2F7t.chenshuxun.com%2Fmobile%2Fauth-login&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
-                        ]
+                        ],
+//                        [
+//                            "type" => "click",
+//                            "name" => "客服电话",
+//                            "key" => "phone",
+//                            'text' => '111111111'
+//                        ]
                     ]
                 ],
             ]

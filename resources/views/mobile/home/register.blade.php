@@ -38,7 +38,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">手机号</div>
                                     <div class="item-input">
-                                        <input type="tel" name="mobile" id="phone" value="">
+                                        <input type="tel" name="mobile" id="phone" value="" placeholder="请输入您的手机号">
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">验证码</div>
                                     <div class="item-input">
-                                        <input type="number" name="code" value="">
+                                        <input type="number" name="code" value=""  >
                                     </div>
                                     <div class="item-input">
                                         <button type="button" class="button button-fill" id="send_code">发送验证码</button>

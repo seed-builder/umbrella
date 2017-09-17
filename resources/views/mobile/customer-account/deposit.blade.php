@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="content-padded">
-                            <p>请先阅读<a class="link" data-url="/html/recharge.html">《押金充值协议》</a></p>
+                            <input type="checkbox" class="confirm-recharge" checked> <p>请先阅读<a class="link" data-url="/html/recharge.html">《押金充值协议》</a></p>
                         </div>
 
                         <div class="content-block">

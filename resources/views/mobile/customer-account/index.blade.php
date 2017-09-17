@@ -71,7 +71,7 @@
             </div>
 
             <div class="content-padded">
-                <p>点击充值，代表已接受<a class="link" data-url="/html/recharge.html">《充值协议》</a></p>
+                <p><input class="confirm-recharge" type="checkbox" checked> 点击充值，代表已接受<a class="link" data-url="/html/recharge.html">《充值协议》</a></p>
             </div>
 
             <form id="form-id" action="/mobile/wechat-payment/create-order" style="display: none">

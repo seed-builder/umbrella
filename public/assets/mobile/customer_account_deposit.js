@@ -7,6 +7,16 @@ define(function (require, exports, module) {
         var order_id;
 
         $(".form-submit").on('click', function () {
+            var confirm = $(".confirm-recharge").is(':checked')
+
+            if(!confirm){
+                layer.open({
+                    content: '请勾选同意充值协议'
+                    , btn: '我知道了'
+                });
+                return ;
+            }
+
             App.ajaxForm('#form-id')
         })
 
