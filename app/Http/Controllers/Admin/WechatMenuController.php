@@ -60,4 +60,48 @@ class WechatMenuController extends Controller
         ]);
         dd($result);
     }
+
+    public function proStore()
+    {
+        $utl = new Utl();
+        $result = $utl->post_zh('https://api.weixin.qq.com/cgi-bin/menu/create', [
+            'button' => [
+                [
+                    "type" => "scancode_push",
+                    'name' => "扫码借伞",
+                    'key' => "scan",
+                    //扫码url state scanAAeq_sn
+                ],
+                [
+                    "type" => "view",
+                    'name' => "共享地图",
+                    'key' => "index",
+                    'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/auth-login&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
+                ],
+                [
+                    "name" => "了解更多",
+                    'key' => "center",
+                    'sub_button' => [
+                        [
+                            "type" => "view",
+                            "name" => "帮助中心",
+                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/auth-login&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
+                        ],
+                        [
+                            "type" => "view",
+                            "name" => "伞客",
+                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/auth-login&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
+                        ],
+//                        [
+//                            "type" => "click",
+//                            "name" => "客服电话",
+//                            "key" => "phone",
+//                            'text' => '111111111'
+//                        ]
+                    ]
+                ],
+            ]
+        ]);
+        dd($result);
+    }
 }
