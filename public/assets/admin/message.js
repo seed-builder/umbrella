@@ -101,8 +101,25 @@ define(function(require, exports, module) {
 
     }
 
-    exports.roll = function ($, ) {
-        
+    var audioPlayed = false;
+    exports.roll = function ($) {
+        $.get('/admin/message/get-tops', {read:0}, function (result) {
+            if(result.cancelled ==0 && result.data.length > 0){
+                $("#message_count").velocity("fadeOut", {duration: 500}).velocity("fadeIn", {duration: 500});
+                if (!audioPlayed) {
+                    document.getElementById('audioObj').play();
+                    audioPlayed = true;
+                }
+                var messages = result.data;
+                $('.message-count').text(messages.length);
+                $('#MessageContent').html('');
+                for(var i = 0; i < messages.length; i++){
+                    var msg = messages[i];
+                    $('<li><a href="javascript:;"><span class="time">'+msg['time_desc']+'</span><span class="details"><span class="label label-sm label-icon label-danger">'+
+                    // '<i class="fa fa-bolt"></i>'+
+                    '</span> '+ msg['content'] + '</span></a></li>').appendTo('#MessageContent');
+                }
+            }
+        });
     }
-
 });
