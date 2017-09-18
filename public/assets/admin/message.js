@@ -117,7 +117,7 @@ define(function(require, exports, module) {
                     var msg = messages[i];
                     $('<li><a href="javascript:;"><span class="time">'+msg['time_desc']+'</span><span class="details"><span class="label label-sm label-icon label-danger">'+
                     '<i class="fa fa-bullhorn"></i>'+
-                    '</span> '+ msg['content'] + '</span></a></li>').appendTo('#MessageContent');
+                    '</span> '+ msg['title'] + '</span></a></li>').appendTo('#MessageContent');
                 }
             }
         });
