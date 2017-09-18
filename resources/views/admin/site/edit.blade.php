@@ -1,5 +1,6 @@
 @extends('admin.layouts.main')
 @section('styles')
+    <link href="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css">
     <style>
         #map {
             height: 300px;
@@ -101,6 +102,34 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label class="control-label col-md-3">网点照片</label>
+                                        <div class="col-md-9">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail"
+                                                     style="width: 200px; height: 150px;">
+                                                    @if(!empty($entity->photo_id))
+                                                        <img src="{{ url('admin/show-image/'.$entity->photo_id) }}"
+                                                             alt=""/>
+                                                    @endif
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail"
+                                                     style="max-width: 200px; max-height: 150px;">
+                                                </div>
+                                                <div>
+                                                                    <span class="btn default btn-file">
+                                                                        <span class="fileinput-new"> 选择图片 </span>
+                                                                        <span class="fileinput-exists"> 重新上传 </span>
+                                                                        <input type="file" name="photo_id">
+                                                                    </span>
+                                                    <a href="javascript:;"
+                                                       class="btn red-sunglo fileinput-exists"
+                                                       data-dismiss="fileinput"> 删除图片 </a>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
                                 <div id="map_selected" style="display: none;">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -150,11 +179,12 @@
 
 @endsection
 @section('scripts')
+    <script src="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
     <script type="text/javascript" src = 'http://webapi.amap.com/maps?v=1.3&key=3e3dbb3d6dce66cd3b9fd70e234bb050&plugin=AMap.Autocomplete,AMap.Geocoder'></script>
     <script type="text/javascript">
         $('.form-submit').on('click', function (e) {
             e.preventDefault();
-            App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
+            App.ajaxFormWithFile('#form-id', '#alert-id', '#blockui-id');
         });
 
         var map = new AMap.Map("map", {

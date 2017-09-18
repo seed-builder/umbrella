@@ -71,6 +71,18 @@ class CustomerHire extends BaseModel
 //        'id.required' => "id不能为空",
     ];
 
+    public function customer(){
+        return $this->hasOne(Customer::class,'id','customer_id');
+    }
+
+    public function umbrella(){
+        return $this->hasOne(Umbrella::class,'id','umbrella_id');
+    }
+
+    public function hire_site(){
+        return $this->hasOne(Site::class,'id','hire_site_id');
+    }
+
     public function payment()
     {
         return $this->morphOne(User::class, 'reference');

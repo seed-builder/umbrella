@@ -13,7 +13,7 @@ define(function (require, exports, module) {
 
 
         map = new AMap.Map('map', {
-            zoom: 16,
+            zoom: 10,
             resizeEnable: true
         });
 
@@ -57,6 +57,25 @@ define(function (require, exports, module) {
 
             controlUI.onclick = function () {
                 $.openPanel("#my-panel");
+            }
+            createControl(controlUI);
+        }
+
+        /**
+         * 自定义控件-用户反馈
+         */
+        var commentControl = function () {
+            var controlUI = document.createElement("DIV");
+
+            controlUI.style.position = 'absolute';
+            controlUI.style.right = '1%';
+            controlUI.style.top = '84.5%';
+            controlUI.style.zIndex = '300';
+
+            controlUI.innerHTML = '<div class="map-btn"><img src="/images/icon/icon_comment.png"></div>';
+
+            controlUI.onclick = function () {
+                window.location.href = '/mobile/comment/create'
             }
             createControl(controlUI);
         }
@@ -294,6 +313,7 @@ define(function (require, exports, module) {
                     site_name: data.name,
                     have: data.umbrella_hava,
                     repay: data.umbrella_repay,
+                    photo: data.photo,
 
                     //基点指向marker的头部位置
                     offset: new AMap.Pixel(0, -30)
@@ -305,6 +325,7 @@ define(function (require, exports, module) {
 
                 //marker 点击时打开
                 AMap.event.addListener(marker, 'click', function () {
+                    console.log(data)
                     openInfoWin();
                 });
 
@@ -313,22 +334,11 @@ define(function (require, exports, module) {
         }
 
         var checkHire = function (id) {
-            check_count += 1;
-            if (check_count == 5){
-                layer.closeAll();
-                clearInterval(timer);
-                check_count = 0;
-                layer.open({
-                    content: '借伞失败，请联系客服人员'
-                    , btn: '我知道了'
-                });
-            }
 
             $.get('/mobile/customer-hire/check/' + id, {}, function (data) {
                 if (data.code == 0) {
                     layer.closeAll();
                     clearInterval(timer);
-                    check_count = 0;
                     layer.open({
                         content: '出伞成功，请到机器上领取您的伞'
                         , btn: '我知道了'
@@ -349,6 +359,7 @@ define(function (require, exports, module) {
         var init = function () {
             myControl();
             qrControl();
+            commentControl();
             wechatLocationControl();
             getSites();
 

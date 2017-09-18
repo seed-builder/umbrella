@@ -57,6 +57,12 @@
                                 <div class="item-title">我要反馈</div>
                             </div>
                         </li>
+                        <li class="item-content link" data-url="/mobile/help/index">
+                            <div class="item-media"><i class="iconfont icon-bangzhu"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title">帮助中心</div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -93,6 +99,10 @@
                 <div class="info-text">
                     <p><i class="iconfont icon-san"></i> 可用雨伞 <span class="have-count"><%= have %></span> 把 </p>
                     <p><i class="iconfont icon-yusan"></i> 可还伞位 <span class="repay-count"><%= repay %></span> 把</p>
+                </div>
+                <hr>
+                <div class="info-image">
+                    <img src="<%= photo %>" />
                 </div>
             </div>
             <div class="amap-ui-smp-ifwn-combo-sharp"></div>

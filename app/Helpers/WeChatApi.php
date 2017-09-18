@@ -84,45 +84,45 @@ class WeChatApi
      * @param $openId
      * @param null $url
      */
-    public function wxSend($template_id, $data, $open_id, $url = null)
+    public function wxSend($template_id, $messages, $open_id, $url = null)
     {
+        foreach ($messages as $k=>$message){
+            $messages[$k] = [
+                'value' => $message
+            ];
+        }
+
         $data = [
             'touser' => $open_id,
             'template_id' => $this->template($template_id), // 模板id
-            'data' => $data
+            'data' => $messages
         ];
 
-        if (!empty($url))
-            $data['url'] = $url;
+//        if (!empty($url)){
+//            $real = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b0fecc759183d45&redirect_uri=http://'.env('APP_URL').'&response_type=code&scope=snsapi_userinfo&state='.$url.'#wechat_redirect';
+//            $data['url'] = $real;
+//        }
 
-        $this->send($data);
+        $this->utl()->post('https://api.weixin.qq.com/cgi-bin/message/template/send', $data);
     }
+
+
 
     /**
-     * 推送
-     * @param $data
+     * 消息模板
+     * @param $id
+     * @return mixed
      */
-    protected function send($data)
-    {
-        $token = $this->utl()->config()['token'];
-
-        $curl = curl_init();
-        $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=$token";
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // 设置post变量
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($curl); // 执行
-        curl_close($curl);
-    }
-
     protected function template($id)
     {
         $data = [
-            'rf' => '1jpgnu05QiAIA-9IRyXaZcACCQraPjuQcuerIr57IP4',
+            'expired' => env('EXPIRED'),
+            'borrow' => env('WT_BORROW'),
+//            'ordering' => env('WT_ORDERING'),
         ];
 
         return $data[$id];
     }
+
 
 }

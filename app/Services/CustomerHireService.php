@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\Helpers\WeChatApi;
 use App\Models\CustomerAccount;
 use App\Models\CustomerHire;
 use App\Models\SysLog;
@@ -45,6 +46,14 @@ class CustomerHireService
                 $umbrella = Umbrella::find($hire->umbrella_id);
                 $umbrella->status = Umbrella::STATUS_EXPIRED;
                 $umbrella->save();
+
+//                $api = new WeChatApi();
+//                $api->wxSend('expired', [
+//                    'first' => '您所借的共享雨伞，伞编号：'.$hire->umbrella->number.'，已超过您的最迟还伞期限！',
+//                    'keyword1' => 'H'.$hire->customer->id.date('YmdHis',strtotime($hire->hire_at)),
+//                    'keyword2' => date('Y年m月d日 H:i:s',strtotime($hire->hire_at)),
+//                    'remark' => '押金已经从您的账户里扣除，感谢您的使用！'
+//                ], $hire->customer->openid);
             }
 
             DB::commit();

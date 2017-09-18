@@ -1273,7 +1273,7 @@ var App = function () {
                             });
 
                             if(success_callback !== undefined ){
-                                success_callback();
+                                success_callback(res);
                             }
                         }
                     }

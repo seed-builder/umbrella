@@ -5,16 +5,19 @@
     overflow: hidden;
 }
 header{
-    background:  #FFD700 !important;
+    /*background:  #FFD700 !important;*/
+    background:  #ffff8d !important;
     transition: all .25s ease-in-out;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     border-bottom: 0px solid #e7e7e7 !important;
 }
 header h1{
-    color: white !important;
+    /*color: white !important;*/
+    color: black !important;
 }
 header a{
-    color: white !important;
+    /*color: white !important;*/
+    color: black !important;
 }
 .buttons-tab .button.active{
     border-color: #c3c3bd !important;
@@ -24,12 +27,15 @@ header a{
     background: white !important;
 }
 .button{
-    color: #fff ;
+    /*color: white !important;*/
+    color: black !important;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-    background:  #FFD700 !important;
+    /*background:  #FFD700 !important;*/
+    background:  #ffff8d !important;
 }
 .button-black{
     background:  black !important;
+    color: white !important;
 }
 .button-lemon{
     background : black;
@@ -205,12 +211,12 @@ header a{
  * map infoWindow
  */
 .amap-ui-smp-ifwn-content-body{
-    width: 11rem;
+    width: 14rem;
     padding: 0.6rem !important;
-    border-radius: 1rem !important;
+    /*border-radius: 1rem !important;*/
     font-size: 13px;
     font-family: 'YouYuan';
-    -webkit-box-shadow: 3px 3px 3px rgba(0,0,0,.2) !important;
+    -webkit-box-shadow: 10px 10px 3px rgba(0,0,0,.2) !important;
 }
 
 .have-count{
@@ -219,6 +225,14 @@ header a{
 }
 .info-title{
     font-weight: bold;
+}
+.info-text p{
+    margin-top: 0em !important;
+    margin-bottom: 0em !important;
+}
+.info-image img{
+    width: 100%;
+    height: 100px;
 }
 .repay-count{
     font-weight: bold;

@@ -197,6 +197,7 @@ class UmbrelladbTable extends Migration
             $table->string('longitude')->default('')->comment('经度');
             $table->string('latitude')->default('')->comment('纬度');
             $table->string('postal_code')->default('')->comment('邮编');
+            $table->string('photo_id')->default('')->comment('网点图片');
             $table->integer('type')->default(1)->comment('网点类别 1-设备网点 2-还伞网点');
 
 	        $table->integer('creator_id')->default(0)->comment('创建用户id');
@@ -240,7 +241,20 @@ class UmbrelladbTable extends Migration
 	        $table->softDeletes();
         });
 
+        /*
+         * 帮助中心
+         */
+        Schema::create('helps', function (Blueprint $table) {
+            $table->increments('id');
 
+            $table->string('name')->comment('名称');
+            $table->longText('content')->comment('内容');
+
+            $table->integer('creator_id')->default(0)->comment('创建用户id');
+            $table->integer('modifier_id')->default(0)->comment('修改用户id');
+            $table->timestamps();
+            $table->softDeletes();
+        });
 
         /*
          * 借伞纪录视图

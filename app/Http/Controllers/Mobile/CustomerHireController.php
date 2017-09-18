@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers\Mobile;
 
+use App\Helpers\WeChatApi;
 use App\Http\Controllers\MobileController;
 use App\Models\CustomerHire;
 use App\Models\CustomerPayment;
@@ -41,9 +43,9 @@ class CustomerHireController extends MobileController
 
     public function pagination(Request $request, $with = [], $conditionCall = null, $dataHandleCall = null)
     {
-        return parent::pagination($request, $with, function($query){
+        return parent::pagination($request, $with, function ($query) {
             $query->orderBy('status', 'asc');
-            $query->orderBy('updated_at','desc');
+            $query->orderBy('updated_at', 'desc');
 
         }, function ($entities) {
             foreach ($entities as $entity) {
@@ -79,7 +81,7 @@ class CustomerHireController extends MobileController
     public function check($id)
     {
         $hire = CustomerHire::find($id);
-        if ($hire->status == CustomerHire::STATUS_HIRING){
+        if ($hire->status == CustomerHire::STATUS_HIRING) {
 //            $payment = new CustomerPayment();
 //            $payment->createPayment([
 //                'type' => CustomerPayment::TYPE_OUT_DEPOSIT,
@@ -89,12 +91,18 @@ class CustomerHireController extends MobileController
 //                'reference_type' => 'App\Models\CustomerHire',
 //            ], CustomerPayment::STATUS_SUCCESS);
 
-            return $this->success_result('出伞成功',$hire);
-        }
+//            $api = new WeChatApi();
+//            $api->wxSend('borrow', [
+//                'first' => '您成功借了一把共享雨伞，伞编号：'.$hire->umbrella->number.'，请好好爱护您的伞哦，记得按时归还！',
+//                'keyword1' => 'H'.$hire->customer->id.date('YmdHis',strtotime($hire->hire_at)),
+//                'keyword2' => date('Y年m月d日 H:i:s'),
+//                'keyword3' => $hire->amt . '元',
+//            ], $hire->customer->openid);
 
-        else if ($hire->status == CustomerHire::STATUS_INIT){
+            return $this->success_result('出伞成功', $hire);
+        } else if ($hire->status == CustomerHire::STATUS_INIT) {
             return $this->fail_result('用户未拿伞');
-        }else{
+        } else {
             return $this->fail_result('');
         }
     }
