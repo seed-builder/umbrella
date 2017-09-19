@@ -68,7 +68,13 @@ class MessageController extends BaseController
 	*/
 	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
 		$searchCols = ["content"];
-		return parent::pagination($request, $searchCols);
+		return parent::pagination($request, $searchCols,$with,$conditionCall,function ($entities){
+		    foreach ($entities as $entity){
+                $entity->site_name = $entity->site->name;
+                $entity->equ_name = $entity->equipment->sn;
+                $entity->category_name = $entity->category();
+            }
+        });
 	}
 
 	public function getTops(Request $request){
