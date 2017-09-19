@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Equipment;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\Message;
@@ -20,8 +22,9 @@ class MessageController extends BaseController
 	*/
 	public function index()
 	{
-		//
-		return view('admin.message.index');
+		$sites = Site::all();
+		$eqs = Equipment::all();
+		return view('admin.message.index',compact('sites','eqs'));
 	}
 
 	/**

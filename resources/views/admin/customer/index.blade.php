@@ -49,10 +49,9 @@
                                         <label class="col-md-3 control-label">性别</label>
                                         <div class="col-md-9">
                                             <select class="form-control" name="filter[][gender]">
-                                                <option value="">请选择</option>
+                                                <option value="">全部</option>
                                                 <option value="2">女</option>
                                                 <option value="1">男</option>
-                                                <option value="0">未知</option>
                                             </select>
                                         </div>
                                     </div>

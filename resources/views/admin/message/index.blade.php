@@ -28,101 +28,71 @@
         </ul>
         <!-- END PAGE BREADCRUMB -->
         <!-- BEGIN PAGE BASE CONTENT -->
-        {{--<div class="row">--}}
-            {{--<div class="col-md-12">--}}
-                {{--<div class="portlet light bordered">--}}
-                    {{--<div class="portlet-title">--}}
-                        {{--<div class="caption">--}}
-                            {{--<i class="fa fa-search"></i>--}}
-                            {{--<span class="caption-subject font-dark sbold uppercase">消息提醒搜索</span>--}}
-                        {{--</div>--}}
-                        {{--<div class="tools">--}}
-                            {{--<a href="" class="collapse"> </a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="portlet-body form">--}}
-                        {{--<form class="form-horizontal search-form">--}}
-                            {{--<div class="form-body">--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">分类</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][category]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">channel</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][channel]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">content</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][content]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">created_at</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][created_at]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">creator_id</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][creator_id]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">deleted_at</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][deleted_at]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">equipment_id</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][equipment_id]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">id</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][id]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">level</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][level]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">modifier_id</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][modifier_id]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-search"></i>
+                            <span class="caption-subject font-dark sbold uppercase">消息提醒搜索</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse"> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <form class="form-horizontal search-form">
+                            <div class="form-body">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">分类</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="filter[][category]">
+                                                <option value="">全部</option>
+                                                <option value="0">普通</option>
+                                                <option value="1">设备</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">通道号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][channel]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">内容</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][content]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">时间</label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" name="filter[][created_at]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">网点</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="filter[][site_id]">
+                                                <option value="">全部</option>
+                                                @foreach($sites as $site)
+                                                    <option value="{{$site->id}}">{{$site->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 {{--<div class="col-md-4">--}}
                                     {{--<div class="form-group">--}}
                                         {{--<label class="col-md-3 control-label">read</label>--}}
@@ -131,26 +101,19 @@
                                         {{--</div>--}}
                                     {{--</div>--}}
                                 {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-md-3 control-label">site_id</label>--}}
-                                        {{--<div class="col-md-9">--}}
-                                            {{--<input type="text" class="form-control" name="filter[][site_id]">--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="row"></div>--}}
-                            {{--<div class="form-actions right">--}}
-                                {{--<button type="button" class="btn green table-search">查询</button>--}}
-                                {{--<button type="button" class="btn red table-reset">重置</button>--}}
-                            {{--</div>--}}
 
-                        {{--</form>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+                            </div>
+                            <div class="row"></div>
+                            <div class="form-actions right">
+                                <button type="button" class="btn green table-search">查询</button>
+                                <button type="button" class="btn red table-reset">重置</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="portlet light bordered">
