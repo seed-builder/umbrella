@@ -73,14 +73,6 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">时间</label>
-                                        <div class="col-md-9">
-                                            <input type="date" class="form-control" name="filter[][created_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
                                         <label class="col-md-3 control-label">网点</label>
                                         <div class="col-md-9">
                                             <select class="form-control" name="filter[][site_id]">
