@@ -15,9 +15,9 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = 'admin')
     {
-        if (Auth::guard($guard)->check()) {
+        if (empty(Auth::user())) {
             return redirect('/admin/login');
         }
 
