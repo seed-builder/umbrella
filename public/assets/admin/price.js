@@ -46,9 +46,10 @@ define(function (require, exports, module) {
                 {'data': 'deposit_cash'},
                 {'data': 'begin'},
                 {'data': 'end'},
-                {'data': 'hire_free_days'},
-                {'data': 'hire_expire_days'},
-                {'data': 'hire_day_cash'},
+                {'data': 'hire_expire_hours'},
+                {'data': 'hire_price'},
+                {'data': 'hire_unit_hours'},
+                {'data': 'hire_free_hours'},
                 {
                     'data': 'status',
                     render: function (data, type, full) {
