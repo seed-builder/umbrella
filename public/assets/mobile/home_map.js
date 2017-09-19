@@ -153,13 +153,33 @@ define(function (require, exports, module) {
                                             shadeClose: false
                                             , content: '系统正在出伞，请稍等15秒左右...'
                                         });
-                                        $.post(url, {}, function (data) {
-                                            if (data.success) {
-                                                timer = setInterval(function () {
-                                                    checkHire(data.hire_id,data.channel);
-                                                }, 4000);
-                                            }
-                                        })
+                                        // $.post(url, {}, function (data) {
+                                        //     if (data.success) {
+                                        //         timer = setInterval(function () {
+                                        //             checkHire(data.hire_id,data.channel);
+                                        //         }, 4000);
+                                        //     }
+                                        // })
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: url,
+                                            dataType: "json",
+                                            timeout: 10000,
+                                            success: function (res) {
+                                                if (data.success) {
+                                                    timer = setInterval(function () {
+                                                        checkHire(data.hire_id,data.channel);
+                                                    }, 4000);
+                                                }else if(data.err){
+                                                    fail();
+                                                }
+                                            },
+                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                fail();
+                                            },
+
+                                        });
                                     },
                                     error: function (res) {
                                         if (res.errMsg.indexOf('function_not_exist') > 0) {
@@ -351,7 +371,6 @@ define(function (require, exports, module) {
          * 定时器
          */
         var timer;
-        var check_count = 0;
 
         /**
          * 初始化
@@ -368,6 +387,17 @@ define(function (require, exports, module) {
                 $.closePanel("#my-panel");
             });
 
+        }
+
+        /**
+         * 借伞失败
+         */
+        var fail = function(){
+            layer.closeAll();
+            layer.open({
+                content: '借伞失败，请和客服人员联系'
+                , btn: '我知道了'
+            });
         }
 
         init();

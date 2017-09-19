@@ -9,7 +9,6 @@
 
 @section('javascript')
     <script>
-
         seajs.use('/assets/api/golang.js', function (app) {
 
             $.get('/mobile/umbrella/unlock-check', {}, function (data) {
@@ -20,7 +19,6 @@
                     });
                     return
                 } else if (data.code == 501) {
-//                    $.router.loadPage("/mobile/customer-account/deposit?index=deposit");
                     window.location.href = '/mobile/customer-account/deposit?index=deposit';
                     return
                 } else {
@@ -38,15 +36,50 @@
                         , content: '系统正在出伞，请稍等15秒左右...'
                     });
 
-                    $.post(url, {}, function (data) {
-                        if (data.success) {
-                            timer = setInterval(function () {
-                                checkHire(data.hire_id,data.channel);
-                            }, 4000);
-                        }
-                    })
+//                    $.post(url, {} , function (data) {
+//                        if (data.success) {
+//                            timer = setInterval(function () {
+//                                checkHire(data.hire_id,data.channel);
+//                            }, 4000);
+//                        }else if(data.err){
+//                            fail();
+//                        }
+//                    },function(){
+//                        fail();
+//                    })
+
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        dataType: "json",
+                        timeout: 10000,
+                        success: function (res) {
+                            if (data.success) {
+                                timer = setInterval(function () {
+                                    checkHire(data.hire_id,data.channel);
+                                }, 4000);
+                            }else if(data.err){
+                                fail();
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            fail();
+                        },
+
+                    });
                 }
             })
+
+            var fail = function(){
+                layer.closeAll();
+                layer.open({
+                    content: '借伞失败，请和客服人员联系'
+                    , btn: '我知道了'
+                    , yes: function (index) {
+                        window.location.href = '/mobile/home/map'
+                    },
+                });
+            }
 
             var timer;
 
@@ -67,6 +100,7 @@
                 })
             }
         });
+
     </script>
 
 @endsection
