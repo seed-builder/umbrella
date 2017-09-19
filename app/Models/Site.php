@@ -101,6 +101,6 @@ class Site extends BaseModel
         if (!empty($this->photo_id))
             return '/admin/show-image/'.$this->photo_id;
         else
-            return '/images/site_default.png';
+            return '/images/site_default.jpg';
     }
 }
