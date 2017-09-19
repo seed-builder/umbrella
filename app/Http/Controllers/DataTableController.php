@@ -169,6 +169,7 @@ abstract class DataTableController extends Controller
         if (!empty($with)) {
             $queryBuilder->with($with);
         }
+
         $fields = [];
         $conditions = [];
         foreach ($columns as $column) {
@@ -199,7 +200,8 @@ abstract class DataTableController extends Controller
                 }
             });
         }
-        $filterCount = $queryBuilder->get()->count();
+
+        $filterCount = $queryBuilder->count();
 
         foreach ($order as $o) {
             $index = $o['column'];

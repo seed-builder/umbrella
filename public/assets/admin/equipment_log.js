@@ -23,22 +23,7 @@ define(function (require, exports, module) {
                         return '';
                     }
                 },
-                {
-                    'data': 'id',
-                    render: function (data, type, full) {
-                        return `<div class="btn-group">
-                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog"></i>
-                        <i class="fa fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="/admin/equipment-log/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>
-                        </li>
-                    </ul>
-                </div>`;
-                    }
-                },
+
                 {
                     'data': 'level',
                     render: function (data, type, full) {
