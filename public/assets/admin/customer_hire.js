@@ -36,17 +36,18 @@ define(function (require, exports, module) {
                 {'data': 'expire_hours'},
                 {'data': 'expired_at'},
                 {'data': 'hire_hours'},
+                {'data': 'real_time'},
                 {'data': 'hire_amt'},
                 {'data': 'status_name'},
                 {'data': 'created_at'},
                 {'data': 'updated_at'},
             ],
-            columnDefs: [
-                {
-                    'targets': [14,15],
-                    "visible": false
-                }
-            ],
+            // columnDefs: [
+            //     {
+            //         'targets': [14,15],
+            //         "visible": false
+            //     }
+            // ],
 
             buttons: [
                 // {
