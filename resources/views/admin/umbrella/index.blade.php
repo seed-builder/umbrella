@@ -54,6 +54,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">伞序列号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][number]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">出厂设备号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][birth_ep_sn]">
