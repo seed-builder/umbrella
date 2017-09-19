@@ -2,7 +2,8 @@
 @section('css')
     <style>
         .content{
-            background-image: url("/images/register_bg.png")
+            background-image: url("/images/register_bg.png");
+            background-size: 100%;
         }
         .logo{
             text-align: center;
