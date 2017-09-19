@@ -46,6 +46,9 @@
             font-size:14px;
             color: #e4e3e3;
         }
+        .item-content input{
+            color: white !important;
+        }
     </style>
 @endsection
 @section('content')
