@@ -156,7 +156,7 @@ define(function (require, exports, module) {
                                         $.post(url, {}, function (data) {
                                             if (data.success) {
                                                 timer = setInterval(function () {
-                                                    checkHire(data.hire_id);
+                                                    checkHire(data.hire_id,data.channel);
                                                 }, 4000);
                                             }
                                         })
@@ -333,14 +333,14 @@ define(function (require, exports, module) {
 
         }
 
-        var checkHire = function (id) {
+        var checkHire = function (id,channel) {
 
             $.get('/mobile/customer-hire/check/' + id, {}, function (data) {
                 if (data.code == 0) {
                     layer.closeAll();
                     clearInterval(timer);
                     layer.open({
-                        content: '出伞成功，请到机器上领取您的伞'
+                        content: '出伞成功，请到机器上'+channel+'号通道领取您的伞'
                         , btn: '我知道了'
                     });
                 }
