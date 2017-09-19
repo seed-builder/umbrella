@@ -134,7 +134,7 @@ class CustomerPaymentController extends BaseController
         foreach ($entities as $entity){
             $result[] = [
                 $entity->sn,
-                $entity->customer->nickname,
+                empty($entity->customer->nickname) ? '无' : $entity->customer->nickname,
                 $entity->channel(),
                 $entity->amt,
                 $entity->status(),
