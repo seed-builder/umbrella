@@ -93,7 +93,7 @@ class CustomerHireController extends BaseController
             '还伞网点',
             '还伞时间',
             '到期时间',
-            '租用时长',
+            '租用时长（小时）',
             '租借费用',
         ];
         foreach ($entities as $entity){
@@ -104,7 +104,7 @@ class CustomerHireController extends BaseController
                 $entity->return_site_name,
                 $entity->return_at,
                 $entity->expired_at,
-                $entity->hire_day,
+                $entity->hire_hours,
                 $entity->hire_amt,
             ];
         }
