@@ -47,13 +47,13 @@
                             <div class="item-after">{{date('m月d日 H:i',strtotime($entity->expired_at))}}</div>
                         </div>
                     </li>
-                    <li class="item-content" style="">
-                        <div class="item-media"><i class="iconfont icon-yituichi"></i></div>
-                        <div class="item-inner">
-                            <div class="item-title">有效期</div>
-                            <div class="item-after">{{$entity->expire_day}}天</div>
-                        </div>
-                    </li>
+                    {{--<li class="item-content" style="">--}}
+                        {{--<div class="item-media"><i class="iconfont icon-yituichi"></i></div>--}}
+                        {{--<div class="item-inner">--}}
+                            {{--<div class="item-title">有效期</div>--}}
+                            {{--<div class="item-after">{{$entity->expire_day}}天</div>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                     <li class="item-content" style="">
                         <div class="item-media"><i class="iconfont icon-icon_status"></i></div>
                         <div class="item-inner">
