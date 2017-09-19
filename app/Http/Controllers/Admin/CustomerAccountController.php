@@ -92,4 +92,37 @@ class CustomerAccountController extends BaseController
         return $query;
     }
 
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_balance_amt':{
+                        $queryBuilder->where('balance_amt','>=',$v );
+                        break ;
+                    }
+                    case 'end_balance_amt':{
+                        $queryBuilder->where('balance_amt','<=',$v );
+                        break ;
+                    }
+                    case 'start_deposit':{
+                        $queryBuilder->where('deposit','>=',$v );
+                        break ;
+                    }
+                    case 'end_deposit':{
+                        $queryBuilder->where('deposit','<=',$v );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
+    }
+
 }

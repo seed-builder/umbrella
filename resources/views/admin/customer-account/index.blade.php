@@ -64,8 +64,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">余额</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][balance_amt]">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][start_balance_amt]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][end_balance_amt]">
                                         </div>
                                     </div>
                                 </div>
@@ -73,8 +79,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">押金余额</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][deposit]">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][start_deposit]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][end_deposit]">
                                         </div>
                                     </div>
                                 </div>

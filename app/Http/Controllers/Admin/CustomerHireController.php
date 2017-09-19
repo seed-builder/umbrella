@@ -113,4 +113,61 @@ class CustomerHireController extends BaseController
         $excel->export($result, date('Ymd') . '_客户租借单');
     }
 
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_created_at':{
+                        $queryBuilder->where('created_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_created_at':{
+                        $queryBuilder->where('created_at','<=',$v );
+                        break ;
+                    }
+                    case 'start_expired_at':{
+                        $queryBuilder->where('expired_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_expired_at':{
+                        $queryBuilder->where('expired_at','<=',$v );
+                        break ;
+                    }
+                    case 'start_hire_amt':{
+                        $queryBuilder->where('hire_amt','>=',$v );
+                        break ;
+                    }
+                    case 'end_hire_amt':{
+                        $queryBuilder->where('hire_amt','<=',$v );
+                        break ;
+                    }
+                    case 'start_hire_at':{
+                        $queryBuilder->where('hire_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_hire_at':{
+                        $queryBuilder->where('hire_at','<=',$v );
+                        break ;
+                    }
+                    case 'start_return_at':{
+                        $queryBuilder->where('return_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_return_at':{
+                        $queryBuilder->where('return_at','<=',$v );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
+    }
+
 }
