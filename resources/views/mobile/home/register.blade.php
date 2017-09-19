@@ -1,6 +1,25 @@
 @extends('mobile.layouts.app')
 @section('css')
     <style>
+        .content{
+            background-image: url("/images/register_bg.png")
+        }
+        .logo{
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        .logo img {
+            width: 5rem;
+            height: 5rem;
+
+        }
+        .list-block ul{
+            background: none;
+            margin-top: 8vh;
+        }
+        .item-title{
+            color: white;
+        }
         .send-code-disabled {
             background: grey !important;
         }
@@ -12,6 +31,9 @@
             font-size: 13px;
             margin-top: .5rem;
         }
+        .check-register{
+            color: #e4e3e3;
+        }
         .check-register input{
             margin: .5rem;
         }
@@ -21,7 +43,7 @@
         }
         ::-webkit-input-placeholder { /* WebKit browsers */
             font-size:14px;
-            color: #d4d4d4;
+            color: #e4e3e3;
         }
     </style>
 @endsection
@@ -31,14 +53,17 @@
         <header class="bar bar-nav " >
             <h1 class='title'>柒天伞客</h1>
         </header>
-        <div class="content">
+        <div class="content" style="">
+            <div class="logo">
+                <img src="/images/logo1.png">
+            </div>
             <form id="form-id" action="/mobile/register">
                 {{ csrf_field() }}
                 <div class="list-block">
                     <ul>
                         <li>
                             <div class="item-content">
-                                <div class="item-media"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
+                                {{--<div class="item-media"><i class="fa fa-phone-square" aria-hidden="true"></i></div>--}}
                                 <div class="item-inner">
                                     <div class="item-title label">手机号</div>
                                     <div class="item-input">
@@ -49,7 +74,7 @@
                         </li>
                         <li>
                             <div class="item-content">
-                                <div class="item-media"><i class="fa fa-shield" aria-hidden="true"></i></div>
+                                {{--<div class="item-media"><i class="fa fa-shield" aria-hidden="true"></i></div>--}}
                                 <div class="item-inner">
                                     <div class="item-title label">验证码</div>
                                     <div class="item-input">

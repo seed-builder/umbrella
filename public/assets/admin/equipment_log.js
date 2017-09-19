@@ -39,12 +39,13 @@ define(function (require, exports, module) {
                 </div>`;
                     }
                 },
-                {'data': 'site_name'},
-                {'data': 'equipments_sn'},
-                {'data': 'api_name'},
-                {'data': 'code'},
+                {
+                    'data': 'level',
+                    render: function (data, type, full) {
+                        return '超时|异常'
+                    }
+                },
                 {'data': 'content'},
-                {'data': 'type'},
                 {'data': 'created_at'},
             ],
             columnDefs: [

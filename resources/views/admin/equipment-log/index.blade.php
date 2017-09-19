@@ -134,12 +134,8 @@
                             <tr>
                                 <th></th>
                                 <th width="10%">操作</th>
-                                <th>网点</th>
-                                <th>设备</th>
-                                <th>接口名</th>
-                                <th>报警返回码</th>
-                                <th>报警内容</th>
                                 <th>报警类别</th>
+                                <th>报警内容</th>
                                 <th>创建时间</th>
                             </tr>
                             </thead>
