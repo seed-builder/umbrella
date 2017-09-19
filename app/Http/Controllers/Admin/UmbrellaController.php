@@ -111,4 +111,29 @@ class UmbrellaController extends BaseController
         return parent::pagination($request, $searchCols, $with, $conditionCall, $dataHandleCall, true);
     }
 
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_created_at':{
+                        $queryBuilder->where('created_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_created_at':{
+                        $queryBuilder->where('created_at','<=',$v );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
+    }
+
 }

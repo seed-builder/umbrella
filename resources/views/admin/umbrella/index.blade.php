@@ -128,8 +128,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">创建时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][created_at]">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_created_at]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_created_at]">
                                         </div>
                                     </div>
                                 </div>
