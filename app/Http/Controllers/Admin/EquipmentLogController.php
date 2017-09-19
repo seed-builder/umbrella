@@ -69,7 +69,12 @@ class EquipmentLogController extends BaseController
      */
     public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
         $searchCols = ["content","level"];
-        return parent::pagination($request, $searchCols);
+        return parent::pagination($request, $searchCols,$with,$conditionCall,function($entities){
+            foreach ($entities as $entity){
+                $entity->level_name = $entity->level();
+            }
+
+        });
     }
 
 

@@ -27,8 +27,9 @@ define(function (require, exports, module) {
                 {
                     'data': 'level',
                     render: function (data, type, full) {
-                        return '超时|异常'
+                        return full.level_name;
                     }
+
                 },
                 {'data': 'content'},
                 {'data': 'created_at'},

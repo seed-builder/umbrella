@@ -39,6 +39,24 @@ class EquipmentLog extends BaseModel
         'id.required' => "id不能为空",
     ];
 
+    public function level(){
+        switch ($this->level){
+            case 0:
+                return 'CRITICAL';
+            case 1:
+                return 'ERROR';
+            case 2:
+                return 'WARNING';
+            case 3:
+                return 'NOTICE';
+            case 4:
+                return 'INFO ';
+            case 5:
+                return 'DEBUG';
+
+        }
+    }
+
 //    public function equipment(){
 //        return $this->hasOne(Equipment::class,'id','equipment_id');
 //    }
