@@ -24,6 +24,9 @@ class MessageController extends BaseController
 	{
 		$sites = Site::all();
 		$eqs = Equipment::all();
+		Message::query()->where('read',0)->update([
+		    'read' => 1
+        ]);
 		return view('admin.message.index',compact('sites','eqs'));
 	}
 

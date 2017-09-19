@@ -66,7 +66,12 @@ define(function (require, exports, module) {
                 {'data': 'channel'},
                 {'data': 'content'},
                 {'data': 'created_at'},
-                {'data': 'read'},
+                {
+                    'data': 'read',
+                    render: function (data, type, full) {
+                        return data==0 ? '未读' : '已读'
+                    }
+                },
             ],
             columnDefs: [
                 {
