@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">开始日期</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="begin">
+                                            <input type="date" class="form-control" name="begin">
                                         </div>
                                     </div>
                                 </div>
@@ -64,31 +64,52 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">结束日期</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="end">
+                                            <input type="date" class="form-control" name="end">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">日租金</label>
+                                        <label class="col-md-3 control-label">租借逾期小时数(逾期则扣除保证金)</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="hire_day_cash">
+                                            <input type="text" class="form-control" name="hire_expire_hours">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">租借逾期天数</label>
+                                        <label class="col-md-3 control-label">计费延时（秒）</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="hire_expire_days">
+                                            <input type="text" class="form-control" name="delay_seconds" value="60">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">免费租借天数</label>
+                                        <label class="col-md-3 control-label">租金价格</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="hire_free_days">
+                                            <input type="text" class="form-control" name="hire_price" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">单位(默认12小时)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="hire_unit_hours" value="12">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">租借免费小时数</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="hire_free_hours" >
                                         </div>
                                     </div>
                                 </div>
