@@ -41,8 +41,8 @@ class UmbrellaController extends MobileController
 	        'hire_at' => date('Y-m-d H:i:s'),
 	        'status' => CustomerHire::STATUS_HIRING,
 	        'deposit_amt' => $price->deposit_cash,
-	        'expire_day' => $price->hire_expire_days,
-	        'expired_at' => date('Y-m-d H:i:s',strtotime("+$price->hire_expire_days day")),
+            'expire_hours' => $price->hire_expire_hours,
+            'expired_at' => date('Y-m-d H:i:s',strtotime("+$price->hire_expire_hours hour ")),
         ]);
         $hire->save();
 
