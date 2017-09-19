@@ -103,7 +103,7 @@ class WeChatApi
 //            $data['url'] = $real;
 //        }
 
-        $this->utl()->post('https://api.weixin.qq.com/cgi-bin/message/template/send', $data);
+        return $this->utl()->post('https://api.weixin.qq.com/cgi-bin/message/template/send', $data);
     }
 
 
@@ -116,9 +116,9 @@ class WeChatApi
     protected function template($id)
     {
         $data = [
-            'expired' => env('EXPIRED'),
+            'expired' => env('WT_EXPIRED'),
             'borrow' => env('WT_BORROW'),
-//            'ordering' => env('WT_ORDERING'),
+            'return' => env('WT_RETURN'),
         ];
 
         return $data[$id];

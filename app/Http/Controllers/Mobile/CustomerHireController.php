@@ -91,13 +91,13 @@ class CustomerHireController extends MobileController
 //                'reference_type' => 'App\Models\CustomerHire',
 //            ], CustomerPayment::STATUS_SUCCESS);
 
-//            $api = new WeChatApi();
-//            $api->wxSend('borrow', [
-//                'first' => '您成功借了一把共享雨伞，伞编号：'.$hire->umbrella->number.'，请好好爱护您的伞哦，记得按时归还！',
-//                'keyword1' => 'H'.$hire->customer->id.date('YmdHis',strtotime($hire->hire_at)),
-//                'keyword2' => date('Y年m月d日 H:i:s'),
-//                'keyword3' => $hire->amt . '元',
-//            ], $hire->customer->openid);
+            $api = new WeChatApi();
+            $api->wxSend('borrow', [
+                'first' => '您成功借了一把共享雨伞，伞编号：'.$hire->umbrella->number.'，请好好爱护您的伞哦，记得按时归还！',
+                'keyword1' => 'H'.$hire->customer->id.date('YmdHis',strtotime($hire->hire_at)),
+                'keyword2' => date('Y年m月d日 H:i:s'),
+                'keyword3' => $hire->hire_amt . '元',
+            ], $hire->customer->openid);
 
             return $this->success_result('出伞成功', $hire);
         } else if ($hire->status == CustomerHire::STATUS_INIT) {
@@ -105,5 +105,23 @@ class CustomerHireController extends MobileController
         } else {
             return $this->fail_result('');
         }
+    }
+
+    public function returnWechatSend($id){
+        $hire = CustomerHire::find($id);
+
+        $api = new WeChatApi();
+        $rs = $api->wxSend('return', [
+            'first' => '您所借的共享雨伞已经归还，感谢您的使用！',
+            'keyword1' => 'H' . $hire->customer->id . date('YmdHis', strtotime($hire->hire_at)),
+            'keyword2' => date('Y年m月d日 H:i:s'),
+            'keyword3' => $hire->hire_amt . '元',
+            'keyword4' => $hire->deposit_amt . '元',
+        ], $hire->customer->openid);
+
+        if (!empty($rs->errcode))
+            return $this->fail_result($rs->errmsg);
+        else
+            return $this->success_result('success');
     }
 }
