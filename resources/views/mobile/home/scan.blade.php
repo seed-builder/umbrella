@@ -33,7 +33,7 @@
                     layer.open({
                         type: 2,
                         shadeClose: false
-                        , content: '改成请根据指示灯指示，将伞移至扫描区'
+                        , content: '请根据指示灯指示，将伞移至扫描区'
                     });
 
 //                    $.post(url, {} , function (data) {
