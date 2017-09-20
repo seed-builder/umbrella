@@ -24,12 +24,12 @@ class CustomerPaymentController extends BaseController
         $date = date('Y-m-d');
         $all = CustomerPayment::where('status',CustomerPayment::STATUS_SUCCESS)->get();
 
-        $all_recharge_amt = $all->where('type',CustomerPayment::TYPE_IN_DEPOSIT)->sum('amt');
+        $all_recharge_amt = $all->whereIn('type',CustomerPayment::TYPE_IN_DEPOSIT,CustomerPayment::TYPE_IN_CHARGE)->sum('amt');
         $all_withdraw_amt = $all->where('type',CustomerPayment::TYPE_OUT_WITHDRAW)->sum('amt');
 
-        $today_recharge_amt = $all->where('type',CustomerPayment::TYPE_IN_DEPOSIT)
-            ->where('created_at','>=',$date.' 00:00:00')
-            ->where('created_at','<=',$date.' 23:59:59')
+        $today_recharge_amt = $all->whereIn('type',CustomerPayment::TYPE_IN_DEPOSIT,CustomerPayment::TYPE_IN_CHARGE)
+            ->where('created_at','>',$date.' 00:00:00')
+            ->where('created_at','<',$date.' 23:59:59')
             ->sum('amt');
 
         $today_withdraw_amt = $all->where('type',CustomerPayment::TYPE_OUT_WITHDRAW)
