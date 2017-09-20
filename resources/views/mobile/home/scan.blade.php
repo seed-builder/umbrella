@@ -53,7 +53,11 @@
                         url: url,
                         dataType: "json",
                         timeout: 20000,
-                        success: function (res) {
+                        success: function (data) {
+                            alert(data.success);
+                            alert(data.hire_id);
+                            alert(data.err);
+                            alert(data.channel);
                             if (data.success) {
                                 timer = setInterval(function () {
                                     checkHire(data.hire_id,data.channel);
@@ -64,7 +68,6 @@
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             fail();
-                            alert(1)
                         },
                     });
                 }

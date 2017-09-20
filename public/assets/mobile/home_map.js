@@ -166,14 +166,13 @@ define(function (require, exports, module) {
                                             url: url,
                                             dataType: "json",
                                             timeout: 20000,
-                                            success: function (res) {
+                                            success: function (data) {
                                                 if (data.success) {
                                                     timer = setInterval(function () {
                                                         checkHire(data.hire_id,data.channel);
                                                     }, 4000);
                                                 }else{
                                                     fail();
-                                                    alert(1)
                                                 }
                                             },
                                             error: function (jqXHR, textStatus, errorThrown) {
