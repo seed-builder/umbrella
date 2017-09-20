@@ -54,10 +54,6 @@
                         dataType: "json",
                         timeout: 20000,
                         success: function (data) {
-                            alert(data.success);
-                            alert(data.hire_id);
-                            alert(data.err);
-                            alert(data.channel);
                             if (data.success) {
                                 timer = setInterval(function () {
                                     checkHire(data.hire_id,data.channel);
