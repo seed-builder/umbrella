@@ -53,6 +53,7 @@ define(function (require, exports, module) {
                 {'data': 'current_site_name'},
                 {'data': 'current_ep_sn'},
                 {'data': 'current_site_address'},
+                {'data': 'equipment_channel_num'},
 
                 {
                     'data': 'status',
