@@ -33,7 +33,7 @@
                     layer.open({
                         type: 2,
                         shadeClose: false
-                        , content: '系统正在出伞，请稍等15秒左右...'
+                        , content: '改成请根据指示灯指示，将伞移至扫描区'
                     });
 
 //                    $.post(url, {} , function (data) {
@@ -52,7 +52,7 @@
                         type: 'POST',
                         url: url,
                         dataType: "json",
-                        timeout: 10000,
+                        timeout: 40000,
                         success: function (res) {
                             if (data.success) {
                                 timer = setInterval(function () {
