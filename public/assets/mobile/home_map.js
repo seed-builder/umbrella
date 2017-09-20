@@ -173,6 +173,7 @@ define(function (require, exports, module) {
                                                     }, 4000);
                                                 }else{
                                                     fail();
+                                                    alert(1)
                                                 }
                                             },
                                             error: function (jqXHR, textStatus, errorThrown) {

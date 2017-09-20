@@ -64,6 +64,7 @@
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             fail();
+                            alert(1)
                         },
                     });
                 }
