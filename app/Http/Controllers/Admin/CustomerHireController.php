@@ -76,6 +76,8 @@ class CustomerHireController extends BaseController
             foreach ($entities as $entity) {
                 $entity->status_name = $entity->status();
 
+                $entity->real_time = $entity->hire_hours;
+
                 //租借单状态不为初始或者租借中时 计算租借时间
                 if ($entity->status == CustomerHire::STATUS_INIT || $entity->status == CustomerHire::STATUS_HIRING){
                     $entity->real_time = '未还伞';
@@ -87,6 +89,7 @@ class CustomerHireController extends BaseController
                     $entity->real_time = time_diff($time);
                     continue ;
                 }
+
             }
         }, true);
     }
