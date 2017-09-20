@@ -58,14 +58,13 @@
                                 timer = setInterval(function () {
                                     checkHire(data.hire_id,data.channel);
                                 }, 4000);
-                            }else if(data.err){
+                            }else{
                                 fail();
                             }
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             fail();
                         },
-
                     });
                 }
             })
