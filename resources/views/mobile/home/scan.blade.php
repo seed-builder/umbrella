@@ -52,7 +52,7 @@
                         type: 'POST',
                         url: url,
                         dataType: "json",
-                        timeout: 40000,
+                        timeout: 20000,
                         success: function (res) {
                             if (data.success) {
                                 timer = setInterval(function () {

@@ -9,7 +9,12 @@
 @section('content')
     <div class="page page-current" id="help">
         <header class="bar bar-nav " >
-            <a class="icon icon-left pull-left link" data-url="/mobile/home/map" ></a>
+            @php
+                $user = \Illuminate\Support\Facades\Auth::guard('mobile')->user();
+            @endphp
+            @if(!empty($user))
+                <a class="icon icon-left pull-left link" data-url="/mobile/home/map" ></a>
+            @endif
             <h1 class='title'>帮助中心</h1>
         </header>
         <div class="content">
