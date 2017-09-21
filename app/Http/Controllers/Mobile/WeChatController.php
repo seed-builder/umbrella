@@ -203,7 +203,8 @@ class WeChatController extends MobileController
     {
         $data = $request->all();
 
-        $fieldErrors = $this->validateFields($data);
+//        $fieldErrors = $this->validateFields($data);
+        $fieldErrors = '';
 
         $hire = CustomerHire::find($id);
         if ($hire->status == CustomerHire::STATUS_COMPLETE) {
