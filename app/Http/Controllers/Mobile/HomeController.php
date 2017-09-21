@@ -70,4 +70,8 @@ class HomeController extends MobileController
 
         return view('mobile.home.scan',compact('user','sn'));
     }
+
+    public function about(){
+        return view('mobile.home.about');
+    }
 }

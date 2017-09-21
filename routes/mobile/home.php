@@ -13,4 +13,5 @@ Route::get('send', ['uses' => 'UtlController@sendVerifyCode']);
 Route::get('register', ['uses' => 'HomeController@showRegister']);
 Route::post('register', ['uses' => 'HomeController@Register']);
 Route::get('scan/{sn}', ['uses' => 'HomeController@scan']);
+Route::get('about', ['uses' => 'HomeController@about']);
 
