@@ -165,7 +165,7 @@ define(function (require, exports, module) {
                                             type: 'POST',
                                             url: url,
                                             dataType: "json",
-                                            timeout: 30000,
+                                            timeout: 60000,
                                             success: function (data) {
                                                 if (data.success) {
                                                     timer = setInterval(function () {
