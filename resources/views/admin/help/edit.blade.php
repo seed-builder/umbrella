@@ -48,6 +48,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-3 control-label">排序值</label>
+                                    <div class="col-md-8">
+                                        <input type="text"  class="form-control" name="sort" value="{{$entity->sort}}" style="width: 375px !important;">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-3 control-label">内容</label>
                                     <div class="col-md-8">
                                         <textarea id="content" class="form-control" name="content">

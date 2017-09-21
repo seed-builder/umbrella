@@ -26,7 +26,7 @@ class HelpController extends MobileController
     }
 
     public function index(){
-        $entities = Help::all();
+        $entities = Help::query()>orderBy('sort','asc')->get();;
         return view('mobile.help.index',compact('entities'));
     }
 }

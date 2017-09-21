@@ -68,7 +68,9 @@ class HelpController extends BaseController
 	*/
 	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
 		$searchCols = ["content","name"];
-		return parent::pagination($request, $searchCols);
+		return parent::pagination($request, $searchCols,$with,function($query){
+            $query->orderBy('sort','asc');
+        });
 	}
 
 	public function store(Request $request, $only = [], $extraFields = [], $redirect_url = null)

@@ -20,8 +20,9 @@ class CustomerAccountController extends BaseController
      */
     public function index()
     {
-        //
-        return view('admin.customer-account.index');
+        $deposit = CustomerAccount::query()->sum('deposit');
+        $freeze_deposit = CustomerAccount::query()->sum('freeze_deposit');
+        return view('admin.customer-account.index',compact('deposit','freeze_deposit'));
     }
 
     /**
