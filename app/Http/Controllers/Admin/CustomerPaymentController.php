@@ -24,10 +24,16 @@ class CustomerPaymentController extends BaseController
         $date = date('Y-m-d');
         $all = CustomerPayment::where('status',CustomerPayment::STATUS_SUCCESS)->get();
 
-        $all_recharge_amt = $all->whereIn('type',CustomerPayment::TYPE_IN_DEPOSIT,CustomerPayment::TYPE_IN_CHARGE)->sum('amt');
+        $all_deposit_amt = $all->where('type',CustomerPayment::TYPE_IN_DEPOSIT)->sum('amt');
+        $all_recharge_amt = $all->where('type',CustomerPayment::TYPE_IN_CHARGE)->sum('amt');
         $all_withdraw_amt = $all->where('type',CustomerPayment::TYPE_OUT_WITHDRAW)->sum('amt');
 
-        $today_recharge_amt = $all->whereIn('type',CustomerPayment::TYPE_IN_DEPOSIT,CustomerPayment::TYPE_IN_CHARGE)
+        $today_deposit_amt = $all->where('type',CustomerPayment::TYPE_IN_DEPOSIT)
+            ->where('created_at','>',$date.' 00:00:00')
+            ->where('created_at','<',$date.' 23:59:59')
+            ->sum('amt');
+
+        $today_recharge_amt = $all->where('type',CustomerPayment::TYPE_IN_CHARGE)
             ->where('created_at','>',$date.' 00:00:00')
             ->where('created_at','<',$date.' 23:59:59')
             ->sum('amt');
@@ -37,7 +43,7 @@ class CustomerPaymentController extends BaseController
             ->where('created_at','<=',$date.' 23:59:59')
             ->sum('amt');
 
-        return view('admin.customer-payment.index',compact('all_recharge_amt','all_withdraw_amt','today_recharge_amt','today_withdraw_amt'));
+        return view('admin.customer-payment.index',compact('all_deposit_amt','all_recharge_amt','all_withdraw_amt','today_deposit_amt','today_recharge_amt','today_withdraw_amt'));
     }
 
     /**

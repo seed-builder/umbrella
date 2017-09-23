@@ -1,13 +1,18 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Equipment;
+use App\Models\Price;
 use App\Models\Site;
 use App\Models\ViewUmbrella;
+use App\Services\ExcelService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\Umbrella;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Mockery\Exception;
 
 class UmbrellaController extends BaseController
 {
@@ -114,18 +119,18 @@ class UmbrellaController extends BaseController
     public function filterQuery($filters, $queryBuilder)
     {
         foreach ($filters as $filter) {
-            foreach ($filter as $k => $v){
+            foreach ($filter as $k => $v) {
                 if (empty($v)) {
-                    continue ;
+                    continue;
                 }
-                switch ($k){
-                    case 'start_created_at':{
-                        $queryBuilder->where('created_at','>=',$v );
-                        break ;
+                switch ($k) {
+                    case 'start_created_at': {
+                        $queryBuilder->where('created_at', '>=', $v);
+                        break;
                     }
-                    case 'end_created_at':{
-                        $queryBuilder->where('created_at','<=',$v );
-                        break ;
+                    case 'end_created_at': {
+                        $queryBuilder->where('created_at', '<=', $v);
+                        break;
                     }
                     default : {
                         $queryBuilder->where($k, 'like binary', '%' . $v . '%');
@@ -134,6 +139,82 @@ class UmbrellaController extends BaseController
             }
 
         }
+    }
+
+    public function importExcel(Request $request)
+    {
+        $data = $request->all();
+        if (empty($data['excel'])) {
+            return response()->json([
+                'error' => '请选择一个文件'
+            ]);
+        }
+        $file = $data['excel'];
+
+        if (!$file) {
+            return false;
+        }
+
+        $path = storage_path() . '/app/excel-file/';
+        $filename = date("YmdHis") . uniqid() . '.xls';
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file->move(
+            $path,
+            $filename
+        );
+
+        $excel = new ExcelService();
+        $results = $excel->import($path . $filename);
+
+        if ($results[0] == ['伞编码','RFID（机器识别码）']){
+            return $this->fail_result('Excel格式不对');
+        }
+
+        if (count($results) > 2000)
+            return $this->fail_result('数量过大，尽量控制在2000条记录以内');
+            unset($results[0]);
+
+        $umbrellas = [];
+        $price = new Price();
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($results as $result) {
+                $umbrellas[] = [
+                    'number' => (string)$result[0],
+                    'sn' => $result[1],
+                    'price_id' => $price->getUsingPrice()->id,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ];
+            }
+
+            DB::table('umbrellas')->insert($umbrellas);;
+
+            DB::commit();
+        }catch (Exception $e){
+            return $this->fail_result('导入失败，Excel中有数据异常');
+            DB::rollback();
+        }
+
+
+        return $this->success_result('导入成功');
+
+    }
+
+    public function downTemplate(){
+        $excel = new ExcelService();
+
+        $data = [['伞编码','RFID（机器识别码）']];
+        for ($i=0;$i<1000;$i++){
+            $data[] = ['',''];
+        }
+        $excel->export($data,'柒天伞客共享伞导入模板');
     }
 
 }
