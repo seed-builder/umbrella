@@ -79,11 +79,6 @@ define(function (require, exports, module) {
 
             buttons: [
                 {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/umbrella/create"
-                }
-                },
-                {
                     text: '导入', action: function () {
                     $("#import-modal").modal('show')
                 }
