@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Wechat;
 
 use App\Helpers\WeChatApi;
+use App\Http\Controllers\Wechat\BaseController;
 use App\Models\CustomerAccount;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\ApiController;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Cache;
 
-class CustomerController extends ApiController
+class CustomerController extends BaseController
 {
 	//
 	public function newEntity(array $attributes = [])
@@ -24,9 +24,20 @@ class CustomerController extends ApiController
      */
     public function login()
     {
+//        $token = md5(78);
+//
+//        Cache::put($token,78, 120);
+//
+//        return $this->success_result('', [
+//            'customer' => Customer::find(78),
+//            'token' => $token
+//        ]);
+//
+//        return ;
+//
         $data = $this->request->all();
         if (empty($data['code']))
-            return $this->fail('请在微信端浏览器中打开');
+            return $this->fail_result('请在微信端浏览器中打开');
 
 
         $api = new WeChatApi();
