@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
-use App\Models\Busi\Site;
+use App\Models\Site;
 
 class SiteController extends ApiController
 {

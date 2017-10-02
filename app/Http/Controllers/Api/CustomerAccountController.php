@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
-use App\Models\Busi\CustomerAccount;
+use App\Models\CustomerAccount;
 
 class CustomerAccountController extends ApiController
 {

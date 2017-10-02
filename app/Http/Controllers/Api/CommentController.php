@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
-use App\Models\Busi\Comment;
+use App\Models\Comment;
 
 class CommentController extends ApiController
 {
