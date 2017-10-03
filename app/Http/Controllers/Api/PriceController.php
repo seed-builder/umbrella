@@ -14,4 +14,10 @@ class PriceController extends ApiController
 		// TODO: Implement newEntity() method.
 		return new Price($attributes);
 	}
+
+	public function index(Request $request, $conditionCall = null, $dataHandle = null)
+    {
+        $entity = $this->newEntity()->getUsingPrice();
+        return $this->success($entity);
+    }
 }

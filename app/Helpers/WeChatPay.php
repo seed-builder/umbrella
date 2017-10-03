@@ -7,6 +7,7 @@ use App\Helpers\WeChatLib\WxPayJsApiPay;
 use App\Helpers\WeChatLib\WxPayReport;
 use App\Helpers\WeChatLib\WxPayResults;
 use App\Helpers\WeChatLib\WxPayUnifiedOrder;
+use Illuminate\Support\Facades\Crypt;
 
 /**
  *
@@ -17,6 +18,39 @@ use App\Helpers\WeChatLib\WxPayUnifiedOrder;
  */
 class WeChatPay
 {
+    /**
+     * 调用接口 - 微信生成订单 获取支付JsApiParameters
+     * @param $order
+     * @return string
+     */
+    public function jsApiParameters($order)
+    {
+        $input = new WxPayUnifiedOrder();
+
+        $body = env('PROJECT_NAME') . $order->type();
+        $price = $order->amt * 100; // 微信支付金额单位为分
+//        $price = 1; // 测试环境
+
+        $notify_url = env('WECHATPAY_NOTIFY_URL') . '/' . Crypt::encrypt($order->id);
+
+        $input->SetBody($body);
+        $input->SetAttach($order->sn . "," . $order->customer_id);
+        $input->SetOut_trade_no($order->sn);
+        $input->SetTotal_fee($price);
+        $input->SetTime_start(date("YmdHis"));
+        $input->SetTime_expire(date("YmdHis", time() + 600));
+        $input->SetNotify_url($notify_url);
+        $input->SetTrade_type("JSAPI");
+        $input->SetOpenid($order->customer->openid);
+
+        $out_order = $this->unifiedOrder($input);
+
+        $jsApiParams = $this->GetJsApiParameters($out_order);
+
+
+        return $jsApiParams;
+    }
+
     /**
      *
      * 统一下单，WxPayUnifiedOrder中out_trade_no、body、total_fee、trade_type必填
