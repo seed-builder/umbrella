@@ -39,4 +39,21 @@ class Message extends BaseModel
     public $validateMessages = [
         'id.required' => "id不能为空",
     ];
+
+    public function site(){
+        return $this->hasOne(Site::class,'id','site_id');
+    }
+
+    public function equipment(){
+        return $this->hasOne(Equipment::class,'id','equipment_id');
+    }
+
+    public function category(){
+        switch ($this->category){
+            case 0:
+                return '普通';
+            case 1:
+                return '设备';
+        }
+    }
 }

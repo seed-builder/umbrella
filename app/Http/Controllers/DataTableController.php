@@ -109,7 +109,7 @@ abstract class DataTableController extends Controller
             return $this->fail_result($fieldErrors);
         } else {
             if (!empty($extraFields)) {
-                $props += $extraFields;
+                $props = array_merge($props,$extraFields);
             }
             $entity = $this->newEntity()->newQuery()->find($id);
             $entity->fill($props);
@@ -169,6 +169,7 @@ abstract class DataTableController extends Controller
         if (!empty($with)) {
             $queryBuilder->with($with);
         }
+
         $fields = [];
         $conditions = [];
         foreach ($columns as $column) {
@@ -199,7 +200,8 @@ abstract class DataTableController extends Controller
                 }
             });
         }
-        $filterCount = $queryBuilder->get()->count();
+
+        $filterCount = $queryBuilder->count();
 
         foreach ($order as $o) {
             $index = $o['column'];

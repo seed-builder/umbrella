@@ -21,8 +21,29 @@ class CustomerPaymentController extends BaseController
      */
     public function index()
     {
-        //
-        return view('admin.customer-payment.index');
+        $date = date('Y-m-d');
+        $all = CustomerPayment::where('status',CustomerPayment::STATUS_SUCCESS)->get();
+
+        $all_deposit_amt = $all->where('type',CustomerPayment::TYPE_IN_DEPOSIT)->sum('amt');
+        $all_recharge_amt = $all->where('type',CustomerPayment::TYPE_IN_CHARGE)->sum('amt');
+        $all_withdraw_amt = $all->where('type',CustomerPayment::TYPE_OUT_WITHDRAW)->sum('amt');
+
+        $today_deposit_amt = $all->where('type',CustomerPayment::TYPE_IN_DEPOSIT)
+            ->where('created_at','>',$date.' 00:00:00')
+            ->where('created_at','<',$date.' 23:59:59')
+            ->sum('amt');
+
+        $today_recharge_amt = $all->where('type',CustomerPayment::TYPE_IN_CHARGE)
+            ->where('created_at','>',$date.' 00:00:00')
+            ->where('created_at','<',$date.' 23:59:59')
+            ->sum('amt');
+
+        $today_withdraw_amt = $all->where('type',CustomerPayment::TYPE_OUT_WITHDRAW)
+            ->where('created_at','>=',$date.' 00:00:00')
+            ->where('created_at','<=',$date.' 23:59:59')
+            ->sum('amt');
+
+        return view('admin.customer-payment.index',compact('all_deposit_amt','all_recharge_amt','all_withdraw_amt','today_deposit_amt','today_recharge_amt','today_withdraw_amt'));
     }
 
     /**
@@ -120,7 +141,7 @@ class CustomerPaymentController extends BaseController
         foreach ($entities as $entity){
             $result[] = [
                 $entity->sn,
-                $entity->customer->nickname,
+                empty($entity->customer->nickname) ? '无' : $entity->customer->nickname,
                 $entity->channel(),
                 $entity->amt,
                 $entity->status(),
@@ -131,5 +152,38 @@ class CustomerPaymentController extends BaseController
 
         $excel = new ExcelService();
         $excel->export($result, date('Ymd') . '_客户资金流水');
+    }
+
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_created_at':{
+                        $queryBuilder->where('customer_payments.created_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_created_at':{
+                        $queryBuilder->where('customer_payments.created_at','<=',$v );
+                        break ;
+                    }
+                    case 'start_amt':{
+                        $queryBuilder->where('amt','>=',$v );
+                        break ;
+                    }
+                    case 'end_amt':{
+                        $queryBuilder->where('amt','<=',$v );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
     }
 }

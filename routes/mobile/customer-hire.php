@@ -5,3 +5,4 @@ Route::post('customer-hire/pagination', ['uses' => 'CustomerHireController@pagin
 Route::get('customer-hire/view/{id}', ['uses' => 'CustomerHireController@view']);
 Route::get('customer-hire/store', ['uses' => 'CustomerHireController@store']);
 Route::get('customer-hire/check/{id}', ['uses' => 'CustomerHireController@check']);
+Route::get('customer-hire/return-wechat-send/{id}', ['uses' => 'CustomerHireController@returnWechatSend']);

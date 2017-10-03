@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
-use App\Models\Busi\SysLog;
+use App\Models\Help;
 
-class SysLogController extends ApiController
+class HelpController extends ApiController
 {
 	//
 	public function newEntity(array $attributes = [])
 	{
 		// TODO: Implement newEntity() method.
-		return new SysLog($attributes);
+		return new Help($attributes);
 	}
 }

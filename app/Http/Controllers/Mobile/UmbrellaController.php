@@ -21,7 +21,11 @@ class UmbrellaController extends MobileController
 	public function unlock(Request $request){
 	    $sn = $request->input('number','');
 
-	    $umbrella = Umbrella::where('number',$sn)->where('status',Umbrella::STATUS_WAITING)->first();
+	    $umbrella = Umbrella::where('number',$sn)
+            ->whereNotNull('site_id')
+            ->whereNotNull('equipment_id')
+            ->where('status',Umbrella::STATUS_WAITING)
+            ->first();
 	    if (empty($umbrella))
 	        return $this->fail_result('伞编码输入不正确，请核对后重试！');
 
@@ -37,8 +41,8 @@ class UmbrellaController extends MobileController
 	        'hire_at' => date('Y-m-d H:i:s'),
 	        'status' => CustomerHire::STATUS_HIRING,
 	        'deposit_amt' => $price->deposit_cash,
-	        'expire_day' => $price->hire_expire_days,
-	        'expired_at' => date('Y-m-d H:i:s',strtotime("+$price->hire_expire_days day")),
+            'expire_hours' => $price->hire_expire_hours,
+            'expired_at' => date('Y-m-d H:i:s',strtotime("+$price->hire_expire_hours hour ")),
         ]);
         $hire->save();
 

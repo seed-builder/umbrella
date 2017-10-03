@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapAdminRoutes();
 
         $this->mapMobileRoutes();
+
+        $this->mapWechatRoutes();
         //
     }
 
@@ -138,4 +140,26 @@ class RouteServiceProvider extends ServiceProvider
 			load_routes(base_path('routes/mobile/'));
 		});
 	}
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapWechatRoutes()
+    {
+        Route::group([
+//            'middleware' => 'mobile',
+            'namespace' => $this->namespace . '\Wechat',
+            'prefix' => 'wechat',
+//            'domain' => env('MOBILE_DOMAIN','localhost')
+        ], function ($router) {
+            //require base_path('routes/admin/admin.php');
+            load_routes(base_path('routes/wechat/'));
+        });
+    }
+
+
 }

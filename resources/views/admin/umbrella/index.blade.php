@@ -54,6 +54,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">伞序列号</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="filter[][number]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">出厂设备号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][birth_ep_sn]">
@@ -120,8 +128,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">创建时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][created_at]">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_created_at]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_created_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -168,6 +182,7 @@
                                 <th>当前网点</th>
                                 <th>当前设备号</th>
                                 <th>当前网点地址</th>
+                                <th>当前通道</th>
                                 <th>状态</th>
                                 <th>创建时间</th>
                             </tr>
@@ -180,6 +195,32 @@
         <!-- END PAGE BASE CONTENT -->
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="import-modal">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Excel导入</h4>
+                </div>
+                <div class="modal-body" id="blockui-id">
+                    <div id="import-alert-id"></div>
+                    <form id="form-id" action="/admin/umbrella/import-excel">
+                        {{ csrf_field() }}
+                        <input type="file" name="excel">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                    <button type="button" class="btn btn-default form-submit">确定</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 @endsection
 @section('scripts')
@@ -189,6 +230,11 @@
             seajs.use('admin/umbrella.js', function (app) {
                 app.index($, 'moduleTable', 'alert-id');
             });
+        });
+
+        $('.form-submit').on('click', function (e) {
+            e.preventDefault();
+            App.ajaxFormWithFile('#form-id','#import-alert-id','#blockui-id');
         });
     </script>
 

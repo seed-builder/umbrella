@@ -13,7 +13,7 @@ define(function (require, exports, module) {
 
 
         map = new AMap.Map('map', {
-            zoom: 16,
+            zoom: 10,
             resizeEnable: true
         });
 
@@ -25,12 +25,12 @@ define(function (require, exports, module) {
 
         var checkNoPayOrder = function () {
             $.get('/mobile/home/check-npo', {}, function (data) {
-                if (data.code != 0){
+                if (data.code != 0) {
                     layer.open({
                         content: data.message
                         , btn: ['去支付', '先借伞']
                         , yes: function () {
-                            window.location.href='/mobile/customer-hire/index'
+                            window.location.href = '/mobile/customer-hire/index'
                         }, no: function () {
                             layer.closeAll()
                         }
@@ -61,10 +61,29 @@ define(function (require, exports, module) {
             createControl(controlUI);
         }
 
+        /**
+         * 自定义控件-用户反馈
+         */
+        var commentControl = function () {
+            var controlUI = document.createElement("DIV");
+
+            controlUI.style.position = 'absolute';
+            controlUI.style.right = '1%';
+            controlUI.style.top = '84.5%';
+            controlUI.style.zIndex = '300';
+
+            controlUI.innerHTML = '<div class="map-btn"><img src="/images/icon/icon_comment.png"></div>';
+
+            controlUI.onclick = function () {
+                window.location.href = '/mobile/comment/create'
+            }
+            createControl(controlUI);
+        }
+
         var cutEquSn = function (str) {
             var state_index = str.indexOf('state')
             var end_index = str.indexOf('#wechat_redirect');
-            var sn = str.substring(state_index+20,end_index)  //state=mobileAAscanAA length = 20
+            var sn = str.substring(state_index + 20, end_index)  //state=mobileAAscanAA length = 20
 
             return sn;
         }
@@ -132,15 +151,35 @@ define(function (require, exports, module) {
                                         layer.open({
                                             type: 2,
                                             shadeClose: false
-                                            , content: '系统正在出伞，请稍等15秒左右...'
+                                            , content: '请根据指示灯指示，将伞移至扫描区'
                                         });
-                                        $.post(url, {}, function (data) {
-                                            if (data.success) {
-                                                timer = setInterval(function () {
-                                                    checkHire(data.hire_id);
-                                                }, 4000);
-                                            }
-                                        })
+                                        // $.post(url, {}, function (data) {
+                                        //     if (data.success) {
+                                        //         timer = setInterval(function () {
+                                        //             checkHire(data.hire_id,data.channel);
+                                        //         }, 4000);
+                                        //     }
+                                        // })
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: url,
+                                            dataType: "json",
+                                            timeout: 60000,
+                                            success: function (data) {
+                                                if (data.success) {
+                                                    timer = setInterval(function () {
+                                                        checkHire(data.hire_id,data.channel);
+                                                    }, 4000);
+                                                }else{
+                                                    fail();
+                                                }
+                                            },
+                                            error: function (jqXHR, textStatus, errorThrown) {
+                                                fail();
+                                            },
+
+                                        });
                                     },
                                     error: function (res) {
                                         if (res.errMsg.indexOf('function_not_exist') > 0) {
@@ -294,6 +333,7 @@ define(function (require, exports, module) {
                     site_name: data.name,
                     have: data.umbrella_hava,
                     repay: data.umbrella_repay,
+                    photo: data.photo,
 
                     //基点指向marker的头部位置
                     offset: new AMap.Pixel(0, -30)
@@ -305,6 +345,7 @@ define(function (require, exports, module) {
 
                 //marker 点击时打开
                 AMap.event.addListener(marker, 'click', function () {
+                    console.log(data)
                     openInfoWin();
                 });
 
@@ -312,13 +353,14 @@ define(function (require, exports, module) {
 
         }
 
-        var checkHire = function (id) {
+        var checkHire = function (id,channel) {
+
             $.get('/mobile/customer-hire/check/' + id, {}, function (data) {
                 if (data.code == 0) {
                     layer.closeAll();
                     clearInterval(timer);
                     layer.open({
-                        content: '出伞成功，请到机器上领取您的伞'
+                        content: '出伞成功，请到机器上'+channel+'号通道领取您的伞'
                         , btn: '我知道了'
                     });
                 }
@@ -336,6 +378,7 @@ define(function (require, exports, module) {
         var init = function () {
             myControl();
             qrControl();
+            commentControl();
             wechatLocationControl();
             getSites();
 
@@ -344,6 +387,17 @@ define(function (require, exports, module) {
                 $.closePanel("#my-panel");
             });
 
+        }
+
+        /**
+         * 借伞失败
+         */
+        var fail = function(){
+            layer.closeAll();
+            layer.open({
+                content: '借伞失败，请和客服人员联系'
+                , btn: '我知道了'
+            });
         }
 
         init();

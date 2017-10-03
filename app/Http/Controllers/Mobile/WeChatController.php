@@ -203,7 +203,8 @@ class WeChatController extends MobileController
     {
         $data = $request->all();
 
-        $fieldErrors = $this->validateFields($data);
+//        $fieldErrors = $this->validateFields($data);
+        $fieldErrors = '';
 
         $hire = CustomerHire::find($id);
         if ($hire->status == CustomerHire::STATUS_COMPLETE) {
@@ -270,8 +271,8 @@ class WeChatController extends MobileController
         $input = new WxPayUnifiedOrder();
 
         $body = env('PROJECT_NAME') . $order->type();
-        //         $price = $order->amt * 100; // 微信支付金额单位为分
-        $price = 1; // 测试环境
+        $price = $order->amt * 100; // 微信支付金额单位为分
+//        $price = 1; // 测试环境
 
         $notify_url = env('WECHATPAY_NOTIFY_URL') . '/' . Crypt::encrypt($order->id);
 

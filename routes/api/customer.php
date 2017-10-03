@@ -130,4 +130,6 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
     */
     Route::delete('/{id}', ['as' => 'Customer.delete', 'uses' => 'CustomerController@destroy']);
 
+
+    Route::get('/customer/login', ['as' => 'Customer.login', 'uses' => 'CustomerController@login']);
 });

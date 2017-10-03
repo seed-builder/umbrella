@@ -33,6 +33,10 @@
             height: 3.5rem;
             margin-left: .5rem;
         }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            font-size:14px;
+            color: #d4d4d4;
+        }
     </style>
 @endsection
 @section('content')
@@ -65,11 +69,11 @@
                             </div>
                         </li>
                         <li>
-                            <div class="content-block-title">反馈描述</div>
+                            <div class="content-block-title">反馈内容</div>
                             <div class="item-content">
                                 <div class="item-inner">
                                     <div class="item-input">
-                                        <textarea name="content"></textarea>
+                                        <textarea name="content" placeholder="填写反馈内容"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +83,7 @@
                             <div class="item-content">
                                 <div class="item-inner">
                                     <div class="item-input">
-                                        <input type="text" name="address" value="">
+                                        <input type="text" name="address" value="" placeholder="填写事发地点（例如：万达广场1号门）">
                                     </div>
                                 </div>
                             </div>

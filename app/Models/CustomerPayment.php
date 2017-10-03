@@ -86,13 +86,13 @@ class CustomerPayment extends BaseModel
     protected $guarded = ['id'];
 
     public $validateRules = [
-        'amt' => 'required|numeric|min:1',
+        'amt' => 'required|numeric|min:0.1',
     ];
 
     public $validateMessages = [
         'amt.required' => "请选择一个金额",
         'amt.numeric' => '金额只能为数字',
-        'amt.min' => '每次充值最低1元哦~',
+        'amt.min' => '每次充值最低0.1元哦~',
     ];
 
     public function customer()

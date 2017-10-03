@@ -46,8 +46,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">创建时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][created_at]">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_created_at]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_created_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -70,40 +76,42 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">到期时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][expired_at]">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_expired_at]">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">有效期</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][expire_day]">
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_expired_at]">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">租借费用</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][hire_amt]">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][start_hire_amt]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][end_hire_amt]">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">借伞时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][hire_at]">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_hire_at]">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">租用时长</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][hire_day]">
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_hire_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -126,8 +134,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">还伞时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][return_at]">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_return_at]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_return_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -210,9 +224,10 @@
                                 <th>还伞时间</th>
 
                                 <th>押金</th>
-                                <th>有效期（天）</th>
+                                <th>有效期（小时）</th>
                                 <th>到期时间</th>
-                                <th>租用时长</th>
+                                <th>租用时长（小时）</th>
+                                <th>租用时长（精确）</th>
                                 <th>租借费用</th>
                                 <th>状态</th>
 

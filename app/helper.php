@@ -55,3 +55,20 @@ function time_tran($the_time) {
         }
     }
 }
+
+function time_diff($time){
+//    $year   = floor($time / 60 / 60 / 24 / 365);
+//    $time  -= $year * 60 * 60 * 24 * 365;
+//    $month  = floor($time / 60 / 60 / 24 / 30);
+//    $time  -= $month * 60 * 60 * 24 * 30;
+//    $week   = floor($time / 60 / 60 / 24 / 7);
+//    $time  -= $week * 60 * 60 * 24 * 7;
+//    $day    = floor($time / 60 / 60 / 24);
+//    $time  -= $day * 60 * 60 * 24;
+    $hour   = floor($time / 60 / 60);
+    $time  -= $hour * 60 * 60;
+    $minute = floor($time / 60);
+    $time  -= $minute * 60;
+
+    return $hour.'小时'.$minute.'分'.$time.'秒';
+}

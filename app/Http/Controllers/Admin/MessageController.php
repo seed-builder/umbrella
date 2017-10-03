@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Equipment;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\Message;
@@ -20,8 +22,12 @@ class MessageController extends BaseController
 	*/
 	public function index()
 	{
-		//
-		return view('admin.message.index');
+		$sites = Site::all();
+		$eqs = Equipment::all();
+		Message::query()->where('read',0)->update([
+		    'read' => 1
+        ]);
+		return view('admin.message.index',compact('sites','eqs'));
 	}
 
 	/**
@@ -68,7 +74,13 @@ class MessageController extends BaseController
 	*/
 	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
 		$searchCols = ["content"];
-		return parent::pagination($request, $searchCols);
+		return parent::pagination($request, $searchCols,$with,$conditionCall,function ($entities){
+		    foreach ($entities as $entity){
+                $entity->site_name = $entity->site->name;
+                $entity->equ_name = $entity->equipment->sn;
+                $entity->category_name = $entity->category();
+            }
+        });
 	}
 
 	public function getTops(Request $request){
@@ -88,4 +100,28 @@ class MessageController extends BaseController
         return response()->json(['data' => $messages, 'cancelled' => 0]);
     }
 
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_created_at':{
+                        $queryBuilder->where('created_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_created_at':{
+                        $queryBuilder->where('created_at','<=',$v );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
+    }
 }

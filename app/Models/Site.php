@@ -41,7 +41,7 @@ class Site extends BaseModel
     //
     protected $table = 'sites';
     protected $guarded = ['id'];
-    protected $appends = ['umbrella_hava', 'umbrella_capacity', 'umbrella_repay'];
+    protected $appends = ['umbrella_hava', 'umbrella_capacity', 'umbrella_repay','photo'];
 
     public $validateRules = [
         'name' => 'required',
@@ -94,5 +94,13 @@ class Site extends BaseModel
     public function getUmbrellaRepayAttribute()
     {
         return $this->getUmbrellaCapacityAttribute() - $this->getUmbrellaHavaAttribute();
+    }
+
+    public function getPhotoAttribute()
+    {
+        if (!empty($this->photo_id))
+            return '/admin/show-image/'.$this->photo_id;
+        else
+            return url('/images/site_default.jpg');
     }
 }

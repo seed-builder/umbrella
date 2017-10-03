@@ -41,7 +41,7 @@ define(function (require, exports, module) {
 
                     </ul>
                 </div>`;
-                //<li><a href="/admin/umbrella/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a></li>
+                        //<li><a href="/admin/umbrella/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a></li>
                     }
                 },
                 {'data': 'number'},
@@ -53,15 +53,16 @@ define(function (require, exports, module) {
                 {'data': 'current_site_name'},
                 {'data': 'current_ep_sn'},
                 {'data': 'current_site_address'},
+                {'data': 'equipment_channel_num'},
 
                 {
                     'data': 'status',
                     render: function (data, type, full) {
-                        if (data==1)
+                        if (data == 1)
                             return '未发放'
-                        else if(data==2)
+                        else if (data == 2)
                             return '待借中'
-                        else if(data==3)
+                        else if (data == 3)
                             return '借出中'
                         else
                             return '失效'
@@ -78,8 +79,13 @@ define(function (require, exports, module) {
 
             buttons: [
                 {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/umbrella/create"
+                    text: '导入', action: function () {
+                    $("#import-modal").modal('show')
+                }
+                },
+                {
+                    text: '下载导入模板', action: function () {
+                    window.location.href = '/admin/umbrella/down-template';
                 }
                 },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},

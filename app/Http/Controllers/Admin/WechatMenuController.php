@@ -85,12 +85,12 @@ class WechatMenuController extends Controller
                         [
                             "type" => "view",
                             "name" => "帮助中心",
-                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/auth-login&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
+                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/help/index&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
                         ],
                         [
                             "type" => "view",
                             "name" => "伞客",
-                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/auth-login&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
+                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.env('APP_URL').'/mobile/about&response_type=code&scope=snsapi_base&state=CC#wechat_redirect'
                         ],
 //                        [
 //                            "type" => "click",

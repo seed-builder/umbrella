@@ -68,27 +68,48 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">日租金</label>
+                                        <label class="col-md-3 control-label">租借逾期小时数(逾期则扣除保证金)</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="hire_day_cash" value="{{$entity->hire_day_cash}}">
+                                            <input type="number" class="form-control" name="hire_expire_hours" value="{{$entity->hire_expire_hours}}">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">租借逾期天数</label>
+                                        <label class="col-md-3 control-label">计费延时（秒）</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="hire_expire_days" value="{{$entity->hire_expire_days}}">
+                                            <input type="number" class="form-control" name="delay_seconds" value="{{$entity->delay_seconds}}">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">免费租借天数</label>
+                                        <label class="col-md-3 control-label">租金价格</label>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="hire_free_days" value="{{$entity->hire_free_days}}">
+                                            <input type="number" class="form-control" name="hire_price" value="{{$entity->hire_price}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">单位(默认12小时)</label>
+                                        <div class="col-md-9">
+                                            <input type="number" class="form-control" name="hire_unit_hours" value="{{$entity->hire_unit_hours}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">租借免费小时数</label>
+                                        <div class="col-md-9">
+                                            <input type="number" class="form-control" name="hire_free_hours" value="{{$entity->hire_free_hours}}">
                                         </div>
                                     </div>
                                 </div>

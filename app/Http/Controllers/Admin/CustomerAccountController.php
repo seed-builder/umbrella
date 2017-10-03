@@ -20,8 +20,9 @@ class CustomerAccountController extends BaseController
      */
     public function index()
     {
-        //
-        return view('admin.customer-account.index');
+        $deposit = CustomerAccount::query()->sum('deposit');
+        $freeze_deposit = CustomerAccount::query()->sum('freeze_deposit');
+        return view('admin.customer-account.index',compact('deposit','freeze_deposit'));
     }
 
     /**
@@ -90,6 +91,39 @@ class CustomerAccountController extends BaseController
         });
 
         return $query;
+    }
+
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_balance_amt':{
+                        $queryBuilder->where('balance_amt','>=',$v );
+                        break ;
+                    }
+                    case 'end_balance_amt':{
+                        $queryBuilder->where('balance_amt','<=',$v );
+                        break ;
+                    }
+                    case 'start_deposit':{
+                        $queryBuilder->where('deposit','>=',$v );
+                        break ;
+                    }
+                    case 'end_deposit':{
+                        $queryBuilder->where('deposit','<=',$v );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
     }
 
 }

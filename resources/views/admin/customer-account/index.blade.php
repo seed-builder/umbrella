@@ -64,8 +64,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">余额</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][balance_amt]">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][start_balance_amt]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][end_balance_amt]">
                                         </div>
                                     </div>
                                 </div>
@@ -73,8 +79,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">押金余额</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][deposit]">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][start_deposit]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" name="filter[][end_deposit]">
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +106,40 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 bordered">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span data-counter="counterup">{{$deposit}}</span>
+                                <small class="font-green-sharp">¥</small>
+                            </h3>
+                            <small>可提现押金总额</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 bordered">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span data-counter="counterup">{{$freeze_deposit}}</span>
+                                <small class="font-green-sharp">¥</small>
+                            </h3>
+                            <small>冻结押金总额</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12 col-sm-12">
                 <div class="portlet light bordered">
                     <div id="alert-id"></div>

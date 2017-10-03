@@ -43,22 +43,7 @@
                     <div class="portlet-body form">
                         <form class="form-horizontal search-form">
                             <div class="form-body">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">接口</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][api_name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">报警返回码</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][code]">
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">报警内容</label>
@@ -67,35 +52,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">时间</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][created_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">设备号</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][equipments_sn]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">网点</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][site_name]">
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">报警类别</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][type]">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">时间</label>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][start_created_at]">
+                                        </div>
+                                        <div class="col-md-1">
+                                            --
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="filter[][end_created_at]">
                                         </div>
                                     </div>
                                 </div>
@@ -133,13 +109,8 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th width="10%">操作</th>
-                                <th>网点</th>
-                                <th>设备</th>
-                                <th>接口名</th>
-                                <th>报警返回码</th>
-                                <th>报警内容</th>
                                 <th>报警类别</th>
+                                <th>报警内容</th>
                                 <th>创建时间</th>
                             </tr>
                             </thead>
