@@ -47,11 +47,11 @@ abstract class  ApiController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index(Request $request)
+	public function index(Request $request,$conditionCall=null,$dataHandle=null)
 	{
 		//
 		$page = $request->input('page', 1);
-		$pageSize = $request->input('pageSize', 10);
+		$pageSize = $request->input('pageSize', -1);
 		$sort = $request->input('sort', 'id asc');
 		$entity = $this->newEntity();
 		$query = $entity->query();
@@ -63,7 +63,19 @@ abstract class  ApiController extends Controller
 			$tmpArr = explode(' ', trim($order));
 			$query->orderBy($tmpArr[0], $tmpArr[1]);
 		}
-		$data = $query->take($pageSize)->skip(($page - 1) * $pageSize)->get();
+
+        if ($conditionCall != null && is_callable($conditionCall)) {
+            $conditionCall($query);
+        }
+
+		if($pageSize==-1)
+            $data = $query->get();
+        else
+            $data = $query->take($pageSize)->skip(($page - 1) * $pageSize)->get();
+
+        if ($dataHandle != null && is_callable($dataHandle)) {
+            $dataHandle($data);
+        }
 		//LogSvr::apiSql()->info($query->toSql());
 		return $this->success(['count' => $count, 'list' => $data, 'page' => $page, 'pageSize' => $pageSize]);
 	}

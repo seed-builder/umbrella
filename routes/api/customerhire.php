@@ -138,4 +138,22 @@ Route::group(['prefix' => 'customer-hire', 'middleware' => 'api.sign'], function
     */
     Route::delete('/{id}', ['as' => 'CustomerHire.delete', 'uses' => 'CustomerHireController@destroy']);
 
+
+    /**
+     * @SWG\Api(
+     *     path="/api/customer-hire/check-nph",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="customer-hire-check-nph",
+     *      summary="查询用户未完成租借单",
+     *      notes="查询用户未完成租借单",
+     *      type="",
+     *      @SWG\Parameters(
+     *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="query", defaultValue="****")
+     *      )
+     *  )
+     * )
+     */
+    Route::get('/check-nph', ['uses' => 'CustomerHireController@checkNoPayHires']);
+
 });
