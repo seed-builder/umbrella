@@ -1,8 +1,8 @@
 <?php
 /**
 * @SWG\Resource(
-*  resourcePath="/comment",
-*  description="Comment"
+*  resourcePath="/wechat",
+*  description="wechat"
 * )
 */
 Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
@@ -11,13 +11,11 @@ Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
      * @SWG\Api(
      *     path="/api/wechat/notify/{key}",
      *     @SWG\Operation(
-     *      method="ANY",
+     *      method="GET",
      *      nickname="wechat-notify",
      *      summary="微信支付异步回调",
      *      notes="微信支付异步回调",
      *      type="array",
-     *      @SWG\Parameters(
-     *      )
      *    )
      * )
      */
@@ -32,8 +30,6 @@ Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
      *      summary="微信支付同步回调",
      *      notes="微信支付同步回调",
      *      type="array",
-     *      @SWG\Parameters(
-     *      )
      *    )
      * )
      */
