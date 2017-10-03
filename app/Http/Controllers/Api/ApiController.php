@@ -85,8 +85,8 @@ abstract class  ApiController extends Controller
 	    	$msg = $this->formatFieldErrors($fieldErrors, $entity->fieldNames);
 		    return $this->fail($msg);
 	    }
-		$entity->save();
-		return $this->success($entity);
+		$res = $entity->save();
+		return $res ? $this->success($entity) : $this->fail('store fail');
 	}
 
 	/**
@@ -122,7 +122,7 @@ abstract class  ApiController extends Controller
 		unset($data['_sign']);
 		$entity->fill($data);
 		$re = $entity->save();
-		return $this->success($re);
+		return $re ? $this->success($re) : $this->fail('update fail!');
 	}
 
 	/**
@@ -136,7 +136,7 @@ abstract class  ApiController extends Controller
 		//
 		$entity = $this->newEntity()->newQuery()->find($id);
 		$re = $entity->delete();
-		return $this->success($re);
+		return $re ? $this->success($re) : $this->fail('destroy fail');
 	}
 
 	protected function validateFields($data, $all = false)
