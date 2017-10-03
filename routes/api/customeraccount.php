@@ -8,6 +8,25 @@
 Route::group(['prefix' => 'customer-account', 'middleware' => 'api.sign'], function () {
 
     /**
+     * @SWG\Api(
+     *     path="/api/customer-account/by-customer/{customer_id}",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="customer-account-show",
+     *      summary="信息详情",
+     *      notes="信息详情",
+     *      type="CustomerAccount",
+     *      @SWG\Parameters(
+     *          @SWG\Parameter(name="id", description="id", required=true, type="integer", paramType="path", defaultValue="1"),
+     *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="query", defaultValue="****")
+     *      )
+     *  )
+     * )
+     */
+    Route::get('/by-customer', ['as' => 'CustomerAccount.show', 'uses' => 'CustomerAccountController@showByCustomer']);
+
+    
+    /**
     * @SWG\Api(
     *     path="/api/customer-account",
     *     @SWG\Operation(
@@ -117,5 +136,6 @@ Route::group(['prefix' => 'customer-account', 'middleware' => 'api.sign'], funct
     * )
     */
     Route::delete('/{id}', ['as' => 'CustomerAccount.delete', 'uses' => 'CustomerAccountController@destroy']);
+
 
 });

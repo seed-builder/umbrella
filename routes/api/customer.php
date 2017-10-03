@@ -8,6 +8,22 @@
 Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
 
     /**
+     * @SWG\Api(
+     *     path="/api/customer/login",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="customer-login",
+     *      summary="customer-login",
+     *      notes="customer-login,
+     *      type="array",
+     *      @SWG\Parameters(
+     *      )
+     *    )
+     * )
+     */
+    Route::get('/login', ['as' => 'Customer.login', 'uses' => 'CustomerController@login']);
+
+    /**
     * @SWG\Api(
     *     path="/api/customer",
     *     @SWG\Operation(

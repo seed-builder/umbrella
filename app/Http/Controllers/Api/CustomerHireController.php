@@ -15,13 +15,13 @@ class CustomerHireController extends ApiController
 		return new CustomerHire($attributes);
 	}
 
-    public function checkNoPayHires(){
+    public function customerNoCompletes(){
 //        $customer = $this->request->customer;
 //        $count = CustomerHire::where('customer_id',$customer->id)->where('status',CustomerHire::STATUS_PAYING)->count();
         $count=2;
         if ($count>0)
-            return $this->fail_result('您当前还有 '.$count.' 把伞未还，是否要立即支付');
+            return $this->fail('您当前还有 '.$count.' 把伞未还，是否要立即支付');
 
-        return $this->success_result('');
+        return $this->success([],'');
     }
 }

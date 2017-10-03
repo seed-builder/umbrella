@@ -24,6 +24,17 @@ class CustomerController extends ApiController
      */
     public function login()
     {
+//        $token = md5(78);
+//
+//        Cache::put($token,78, 120);
+//
+//        return $this->success([
+//            'customer' => Customer::find(78),
+//            'token' => $token
+//        ],'' );
+//
+//        return ;
+//
         $data = $this->request->all();
         if (empty($data['code']))
             return $this->fail('请在微信端浏览器中打开');
@@ -63,15 +74,15 @@ class CustomerController extends ApiController
         Cache::put($token, $customer->id, 120);
 
         if (empty($customer->mobile))
-            return $this->success_result('', [
+            return $this->success( [
                 'customer' => $customer,
                 'token' => $token,
                 'url' => '/register'
-            ]);
+            ],'');
 
-        return $this->success_result('', [
+        return $this->success_result([
             'customer' => $customer,
             'token' => $token
-        ]);
+        ], '');
     }
 }
