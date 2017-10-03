@@ -180,6 +180,7 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 	    Barryvdh\Cors\ServiceProvider::class,
 	    GsJohn\Dysms\DysmsProvider::class,
+        Latrell\Swagger\SwaggerServiceProvider::class,
 
     ],
 
@@ -231,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 	    'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-	    'Sms' => \App\Facades\SmsFacade::class,
+//	    'Sms' => \App\Facades\SmsFacade::class,
 	    'Dysms' => GsJohn\Dysms\DysmsFacade::class,
     ],
 

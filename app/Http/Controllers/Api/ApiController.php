@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 abstract class  ApiController extends Controller
 {
+    protected $request;
 	//
-	public function __construct()
+	public function __construct(Request $request)
 	{
+	    $this->request = $request;
 	}
 
 	public abstract function newEntity(array $attributes = []);
@@ -63,7 +65,7 @@ abstract class  ApiController extends Controller
 		}
 		$data = $query->take($pageSize)->skip(($page - 1) * $pageSize)->get();
 		//LogSvr::apiSql()->info($query->toSql());
-		return response(['count' => $count, 'list' => $data, 'page' => $page, 'pageSize' => $pageSize], 200);
+		return $this->success(['count' => $count, 'list' => $data, 'page' => $page, 'pageSize' => $pageSize]);
 	}
 
 	/**
@@ -81,13 +83,10 @@ abstract class  ApiController extends Controller
 	    $fieldErrors = $this->validateFields($data);
 	    if (!empty($fieldErrors)) {
 	    	$msg = $this->formatFieldErrors($fieldErrors, $entity->fieldNames);
-		    return response($msg, 400);
+		    return $this->fail($msg);
 	    }
-		//$entity = Entity::create($data);
-		$re = $entity->save();
-		//LogSvr::Sync()->info('ModelCreated : '.json_encode($entity));
-		$status = $re ? 200 : 400;
-		return response($entity, $status);
+		$entity->save();
+		return $this->success($entity);
 	}
 
 	/**
@@ -100,11 +99,11 @@ abstract class  ApiController extends Controller
 	{
 		//
 		if ($id == 0) {
-			return response('{}', 404);
+			return $this->fail('id is empty');
 		} else {
 			$entity = $this->newEntity()->newQuery()->find($id);
 			// var_dump($entity);
-			return response($entity, 200);
+			return $this->success($entity);
 		}
 	}
 
@@ -119,17 +118,11 @@ abstract class  ApiController extends Controller
 	{
 		//
 		$entity = $this->newEntity()->newQuery()->find($id);
-		//$entity = Entity::find($id);
-		//var_dump($entity);
-
 		$data = $request->all();
-		//var_dump($data);
 		unset($data['_sign']);
 		$entity->fill($data);
 		$re = $entity->save();
-		//LogSvr::update()->info(json_encode($re));
-		$status = $re ? 200 : 401;
-		return response(['success' => $re], $status);
+		return $this->success($re);
 	}
 
 	/**
@@ -142,10 +135,8 @@ abstract class  ApiController extends Controller
 	{
 		//
 		$entity = $this->newEntity()->newQuery()->find($id);
-		//var_dump($entity);
 		$re = $entity->delete();
-		$status = $re ? 200 : 401;
-		return response(['success' => $re], $status);
+		return $this->success($re);
 	}
 
 	protected function validateFields($data, $all = false)
@@ -191,43 +182,11 @@ abstract class  ApiController extends Controller
 	}
 
 	public function success($data, $msg = ''){
-		return response(['data' => $data, 'code' => 200, 'msg' => $msg, 'success' => true]);
+		return response()->json(['data' => $data, 'code' => 200, 'msg' => $msg, 'success' => true]);
 	}
 
 	public function fail($msg){
-		return response(['data' => null, 'code' => 401, 'msg' => $msg, 'success' => false]);
+		return response()->json(['data' => null, 'code' => 401, 'msg' => $msg, 'success' => false]);
 	}
 
-    /**
-     * 成功时返回
-     * @param $msg
-     * @param array $data
-     * @param null $redirect_url
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function success_result($msg, $data = [])
-    {
-        $result = [];
-
-        $result['result_code'] = 0;
-        $result['result_msg'] = $msg;
-        $result['data'] = $data;
-
-        return response()->json($result);
-    }
-
-    /**
-     * 失败时返回
-     * @param $msg
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function fail_result($msg, $code = 500)
-    {
-        $result = [];
-
-        $result['result_code'] = $code;
-        $result['result_msg'] = $msg;
-
-        return response()->json($result);
-    }
 }
