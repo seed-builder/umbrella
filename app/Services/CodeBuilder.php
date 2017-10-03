@@ -43,10 +43,13 @@ class CodeBuilder
 			'columns' => $this->columns
 		];
 
+        print_r('templates:  ' . \GuzzleHttp\json_encode($outputs) . PHP_EOL) ;
+
 		foreach ($this->outputs as $group) {
 			if (!empty($outputs) && !in_array($group, $outputs)) {
 				continue;
 			}
+            print_r('generate ts: ' . $group . PHP_EOL) ;
 			$ts = config('codebuilder.' . $group);
 			foreach ($ts as $viewName => $settings) {
 				$name = $this->model;
@@ -62,7 +65,7 @@ class CodeBuilder
 
 				$filePath = $dir . DIRECTORY_SEPARATOR . $fileName;
 				$content = $this->blade->view()->make($group . '.' . $viewName, $data)->render();
-				print_r($filePath);
+				print_r('file: ' . $filePath . PHP_EOL);
 				file_put_contents($filePath, $content);
 			}
 		}

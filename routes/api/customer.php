@@ -14,9 +14,10 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
      *      method="GET",
      *      nickname="customer-login",
      *      summary="customer-login",
-     *      notes="customer-login,
-     *      type="array",
+     *      notes="customer-login",
+     *      type="Customer",
      *      @SWG\Parameters(
+     *          @SWG\Parameter(name="code", description="code", required=true, type="string", paramType="query", defaultValue=""),
      *      )
      *    )
      * )
