@@ -2,9 +2,9 @@
 @section('styles')
     <link rel="stylesheet" href="/assets/global/plugins/bootstrap-summernote/summernote.css">
     <style>
-        .note-editor{
-            width: 375px;
-        }
+        /*.note-editor{*/
+            /*width: 375px;*/
+        /*}*/
     </style>
 @endsection
 
@@ -12,8 +12,8 @@
     <div class="page-content">
         <div class="page-head">
             <div class="page-title">
-                <h1>top module
-                    <small>帮助中心编辑</small>
+                <h1>帮助中心
+                    <small>编辑</small>
                 </h1>
             </div>
         </div>
@@ -42,20 +42,20 @@
                             {{ csrf_field() }}
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">名称</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-1 control-label">名称</label>
+                                    <div class="col-md-10">
                                         <input type="text"  class="form-control" name="name" value="{{$entity->name}}" style="width: 375px !important;">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">排序值</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-1 control-label">排序值</label>
+                                    <div class="col-md-10">
                                         <input type="text"  class="form-control" name="sort" value="{{$entity->sort}}" style="width: 375px !important;">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">内容</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-1 control-label">内容</label>
+                                    <div class="col-md-10">
                                         <textarea id="content" class="form-control" name="content">
                                             {!! $entity->content !!}
                                         </textarea>

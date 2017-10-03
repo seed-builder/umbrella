@@ -9,7 +9,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>top module
+                <h1>帮助中心
                     <small>帮助中心</small>
                 </h1>
             </div>

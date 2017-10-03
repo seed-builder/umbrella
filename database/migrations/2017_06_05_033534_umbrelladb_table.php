@@ -112,6 +112,7 @@ class UmbrelladbTable extends Migration
             $table->increments('id');
 	        $table->integer('customer_id')->comment('customer id');
             $table->integer('umbrella_id')->nullable()->comment('umbrellas id');
+            $table->integer('price_id')->nullable()->comment('price id');
 
             $table->integer('hire_equipment_id')->comment('equipments id 借伞设备id');
             $table->integer('hire_site_id')->comment('sites id 借伞网点id');
@@ -124,7 +125,7 @@ class UmbrelladbTable extends Migration
 
             $table->integer('expire_day')->default(15)->comment('有效期（天）');
             $table->timestamp('expired_at')->nullable()->comment('到期时间');
-            $table->integer('hire_day')->default(0)->comment('租用时长');
+            $table->decimal('hire_hours',12,2)->default(0.0)->comment('租用时长');
             $table->decimal('hire_amt', 12, 2)->default('0.00')->comment('租借费用');
             $table->integer('status')->default(1)->comment('状态(1-初始，2-未拿伞租借失败，3-租借中, 4-还伞完毕，待支付租金 5-已完成, 6-逾期未归还)');
 
