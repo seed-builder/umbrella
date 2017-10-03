@@ -81,7 +81,7 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
             *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="gender", description="性别(2-女,1-男，0-未知", required=true,type="integer", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="head_img_url", description="微信头像", required=false,type="string", paramType="form", defaultValue="" ),
-                    *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="mobile", description="手机号", required=true,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="nickname", description="微信昵称", required=false,type="string", paramType="form", defaultValue="" ),
@@ -113,7 +113,7 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
             *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="gender", description="性别(2-女,1-男，0-未知", required=false,type="integer", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="head_img_url", description="微信头像", required=false,type="string", paramType="form", defaultValue="" ),
-                    *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
+            *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="mobile", description="手机号", required=false,type="string", paramType="form", defaultValue="" ),
             *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
             *          @SWG\Parameter(name="nickname", description="微信昵称", required=false,type="string", paramType="form", defaultValue="" ),
@@ -147,6 +147,4 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
     */
     Route::delete('/{id}', ['as' => 'Customer.delete', 'uses' => 'CustomerController@destroy']);
 
-
-    Route::get('/customer/login', ['as' => 'Customer.login', 'uses' => 'CustomerController@login']);
 });
