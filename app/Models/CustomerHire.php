@@ -83,6 +83,10 @@ class CustomerHire extends BaseModel
         return $this->hasOne(Site::class,'id','hire_site_id');
     }
 
+    public function return_site(){
+        return $this->hasOne(Site::class,'id','return_site_id');
+    }
+
     public function payment()
     {
         return $this->morphOne(User::class, 'reference');
