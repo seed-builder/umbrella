@@ -16,9 +16,9 @@ class CustomerHireController extends ApiController
 	}
 
     public function customerNoCompletes(){
-//        $customer = $this->request->customer;
-//        $count = CustomerHire::where('customer_id',$customer->id)->where('status',CustomerHire::STATUS_PAYING)->count();
-        $count=2;
+        $customer = $this->request->customer;
+        $count = CustomerHire::where('customer_id',$customer->id)->where('status',CustomerHire::STATUS_PAYING)->count();
+//        $count=2;
         if ($count>0)
             return $this->fail('您当前还有 '.$count.' 把伞未还，是否要立即支付');
 
