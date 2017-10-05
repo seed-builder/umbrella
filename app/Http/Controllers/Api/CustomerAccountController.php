@@ -16,8 +16,7 @@ class CustomerAccountController extends ApiController
 	}
 
 	public function showByCustomer(){
-        $customer = $this->request->cutomer;
-        info('customer_account:'.json_encode($customer));
+        $customer = $this->request->customer;
 
         $account = CustomerAccount::where('customer_id',$customer->id)->first();
 //	    $account = CustomerAccount::where('customer_id',78)->first();
