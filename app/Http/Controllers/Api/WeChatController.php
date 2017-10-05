@@ -51,14 +51,14 @@ class WeChatController extends ApiController
         $order->outer_order_sn = $result['transaction_id'];
 
         if ($order->status != CustomerPayment::STATUS_INIT)
-            return $this->success_result('');
+            return $this->success([]);
 
         event(new WechatApiEvent('支付同步回调', $result, $order));
 
         $order->status = CustomerPayment::STATUS_SUCCESS;
         $order->save();
 
-        return $this->success_result('');
+        return $this->success([]);
     }
 
     /**
