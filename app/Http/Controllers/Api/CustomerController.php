@@ -95,4 +95,26 @@ class CustomerController extends ApiController
         }
         return $this->success($customer);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $entity = $this->request->customer;
+        if(empty($entity)){
+            $entity = $this->newEntity()->newQuery()->find($id);
+        }
+        $data = $request->all();
+        unset($data['_sign']);
+        $entity->fill($data);
+        $re = $entity->save();
+        return $re ? $this->success($re) : $this->fail('update fail!');
+    }
+
 }
