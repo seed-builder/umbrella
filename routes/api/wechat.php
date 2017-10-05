@@ -19,7 +19,7 @@ Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
      *    )
      * )
      */
-    Route::any('/notify/{key}', [ 'uses' => 'WechatController@payNotify']);
+    Route::any('/notify/{key}', [ 'uses' => 'WeChatController@payNotify']);
 
     /**
      * @SWG\Api(
@@ -33,7 +33,7 @@ Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
      *    )
      * )
      */
-    Route::get('/return/{id}', [ 'uses' => 'WechatController@payReturn']);
+    Route::get('/return/{id}', [ 'uses' => 'WeChatController@payReturn']);
 
     /**
      * @SWG\Api(
@@ -47,5 +47,5 @@ Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
      *    )
      * )
      */
-    Route::get('/js-api-config', [ 'uses' => 'WechatController@jsApiConfig']);
+    Route::get('/js-api-config', [ 'uses' => 'WeChatController@jsApiConfig']);
 });
