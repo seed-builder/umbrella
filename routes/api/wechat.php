@@ -35,5 +35,17 @@ Route::group(['prefix' => 'wechat', 'middleware' => 'api.sign'], function () {
      */
     Route::get('/return/{id}', [ 'uses' => 'WechatController@payReturn']);
 
+    /**
+     * @SWG\Api(
+     *     path="/api/wechat/js-api-config",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="wechat-js-api-config",
+     *      summary="微信jsapi配置",
+     *      notes="微信jsapi配置",
+     *      type="array",
+     *    )
+     * )
+     */
     Route::get('/js-api-config', [ 'uses' => 'WechatController@jsApiConfig']);
 });

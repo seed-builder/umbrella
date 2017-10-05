@@ -31,8 +31,9 @@ class WeChatController extends ApiController
     }
 
     public function jsApiConfig(){
+        $data = $this->request->all();
         $utl = new Utl();
-        $config = $utl->config();
+        $config = $utl->config($data['url']);
 
         return $this->success($config);
     }

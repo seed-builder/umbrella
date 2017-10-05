@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+
 use App\Events\WechatApiEvent;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
@@ -11,12 +12,16 @@ class WeChatConfig
 {
 
 
-    public function getSignPackage()
+    public function getSignPackage($cur_url = null)
     {
         $jsapiTicket = $this->getJsApiTicket();
         // 注意 URL 一定要动态获取，不能 hardcode.
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        if (empty($cur_url))
+            $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        else
+            $url = $cur_url;
 
         $timestamp = time();
         $nonceStr = $this->createNonceStr();
@@ -54,7 +59,7 @@ class WeChatConfig
         $accessToken = $this->getAccessToken();
         $ticket = Cache::get('wxJsApiTicket');
 
-        if (empty($ticket)){
+        if (empty($ticket)) {
             $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket";
             $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]); // (修复证书为空SSL报错问题)
             $response = $client->request('GET', $url, [
@@ -77,7 +82,7 @@ class WeChatConfig
     {
         $access_token = Cache::get('wxAccessToken');
 
-        if (empty($access_token)){
+        if (empty($access_token)) {
             $url = "https://api.weixin.qq.com/cgi-bin/token";
             $client = new Client(['curl' => [CURLOPT_SSL_VERIFYHOST => false, CURLOPT_SSL_VERIFYPEER => false]]); // (修复证书为空SSL报错问题)
             $response = $client->request('GET', $url, [
@@ -90,14 +95,14 @@ class WeChatConfig
 
 
             $token = json_decode($response->getBody());
-            if (empty($token->access_token)){
+            if (empty($token->access_token)) {
                 event(new WechatApiEvent('获取token', $token, ''));
             }
 
 
             $access_token = $token->access_token;
 
-            Cache::add('wxAccessToken',$access_token,110);
+            Cache::add('wxAccessToken', $access_token, 110);
         }
 
         return $access_token;

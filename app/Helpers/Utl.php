@@ -19,10 +19,10 @@ class Utl
     /*
      * 微信配置
      */
-    public function config()
+    public function config($cur_url = null)
     {
         $helper = new WeChatConfig();
-        $config = $helper->getSignPackage();
+        $config = $helper->getSignPackage($cur_url);
 
         return $config;
     }
