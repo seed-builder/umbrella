@@ -84,6 +84,7 @@ class CustomerPayment extends BaseModel
     //
     protected $table = 'customer_payments';
     protected $guarded = ['id'];
+    protected $appends = ['type_name', 'channel_name'];
 
     public $validateRules = [
         'amt' => 'required|numeric|min:0.1',
@@ -249,5 +250,13 @@ class CustomerPayment extends BaseModel
         return $entity;
     }
 
+    public function getTypeNameAttribute()
+    {
+        return $this->type($this->type);
+    }
+
+    public function getChannelNameAttribute(){
+        return $this->channel();
+    }
 
 }

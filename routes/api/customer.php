@@ -75,21 +75,21 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
     *      type="Customer",
     *      @SWG\Parameters(
     *          @SWG\Parameter(name="address", description="地址", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="birth_day", description="生日", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="created_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="gender", description="性别(2-女,1-男，0-未知", required=true,type="integer", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="head_img_url", description="微信头像", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="mobile", description="手机号", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="nickname", description="微信昵称", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="openid", description="微信openid", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="password", description="密码", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="remark", description="备注", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-        *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
+    *          @SWG\Parameter(name="birth_day", description="生日", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="created_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="gender", description="性别(2-女,1-男，0-未知", required=true,type="integer", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="head_img_url", description="微信头像", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="mobile", description="手机号", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="nickname", description="微信昵称", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="openid", description="微信openid", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="password", description="密码", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="remark", description="备注", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
     *      )
     *  )
     * )
@@ -107,21 +107,21 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
     *      type="Customer",
     *      @SWG\Parameters(
     *          @SWG\Parameter(name="address", description="地址", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="birth_day", description="生日", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="created_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="gender", description="性别(2-女,1-男，0-未知", required=false,type="integer", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="head_img_url", description="微信头像", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="mobile", description="手机号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="nickname", description="微信昵称", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="openid", description="微信openid", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="password", description="密码", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="remark", description="备注", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-        *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
+    *          @SWG\Parameter(name="birth_day", description="生日", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="created_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="gender", description="性别(2-女,1-男，0-未知", required=false,type="integer", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="head_img_url", description="微信头像", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="login_time", description="", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="mobile", description="手机号", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="nickname", description="微信昵称", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="openid", description="微信openid", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="password", description="密码", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="remark", description="备注", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
     *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
     *      )
     *  )
@@ -146,5 +146,23 @@ Route::group(['prefix' => 'customer', 'middleware' => 'api.sign'], function () {
     * )
     */
     Route::delete('/{id}', ['as' => 'Customer.delete', 'uses' => 'CustomerController@destroy']);
+
+    /**
+     * @SWG\Api(
+     *     path="/api/customer/info",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="customer-info",
+     *      summary="信息详情",
+     *      notes="信息详情",
+     *      type="Customer",
+     *      @SWG\Parameters(
+     *          @SWG\Parameter(name="id", description="id", required=false, type="integer", paramType="query", defaultValue="1"),
+     *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="query", defaultValue="****")
+     *      )
+     *  )
+     * )
+     */
+    Route::get('/info', ['as' => 'Customer.info', 'uses' => 'CustomerController@info']);
 
 });

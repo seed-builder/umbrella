@@ -34,9 +34,14 @@ class VerifyApiSign
 //
 //        if (!Cache::has($token))
 //            return $this->fail(403, '令牌不存在或者已失效');
-        $customer_id = Cache::get($token);
-        $request->customer = Customer::find($customer_id);
-
+        if (!empty($token)) {
+            $customer_id = Cache::get($token);
+            if(!empty($customer_id) && $customer_id > 0)
+            {
+                $request->customer = Customer::find($customer_id);
+            }
+        }
+//        $request->customer = Customer::find(85);
         return $next($request);
     }
 

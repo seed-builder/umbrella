@@ -85,4 +85,14 @@ class CustomerController extends ApiController
             'token' => $token
         ], '');
     }
+
+    public function info(){
+        $id = $this->request->input('id', 0);
+        if(!empty($id)) {
+            $customer = Customer::find($id);
+        }else{
+            $customer = $this->request->customer;
+        }
+        return $this->success($customer);
+    }
 }
