@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 class VerifyApiSign
 {
     protected $except = [
-        '/api/wechat/customer/login',
+        '/api/customer/login',
         '/api/wechat/notify/*',
         '/api/wechat/js-api-config',
     ];
