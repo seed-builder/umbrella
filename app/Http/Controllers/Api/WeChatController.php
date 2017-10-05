@@ -30,6 +30,13 @@ class WeChatController extends ApiController
         return new CustomerPayment();
     }
 
+    public function jsApiConfig(){
+        $utl = new Utl();
+        $config = $utl->config();
+
+        return $this->success($config);
+    }
+
     /**
      * 支付成功 - 同步地址
      * @param $id

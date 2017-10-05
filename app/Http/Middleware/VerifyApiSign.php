@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Cache;
 class VerifyApiSign
 {
     protected $except = [
-        '/wechat/customer/login',
-        'file/*',
-        '/wechat/notify/*'
+        '/api/wechat/customer/login',
+        '/api/wechat/notify/*',
+        '/api/wechat/js-api-config',
     ];
 
     /**
@@ -34,8 +34,7 @@ class VerifyApiSign
 
         if (!Cache::has($token))
             return $this->fail(403, '令牌不存在或者已失效');
-        info('AAAAAAAAAAAAAAAAAAAA-token:'.$token);
-        info('AAAAAAAAAAAAAAAAAAAA-token_value:'.Cache::get($token));
+
         if (!empty($token)) {
             $customer_id = Cache::get($token);
             if(!empty($customer_id) && $customer_id > 0)
