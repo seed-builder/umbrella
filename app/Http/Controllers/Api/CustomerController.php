@@ -80,7 +80,7 @@ class CustomerController extends ApiController
                 'url' => '/register'
             ],'');
 
-        return $this->success_result([
+        return $this->success([
             'customer' => $customer,
             'token' => $token
         ], '');
