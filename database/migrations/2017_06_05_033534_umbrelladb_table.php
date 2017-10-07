@@ -215,7 +215,7 @@ class UmbrelladbTable extends Migration
             $table->integer('customer_id')->default(0)->comment('客户id');
             $table->integer('service_id')->default(0)->comment('1-故障申报 2-损坏举报 3-疑问咨询');
             $table->text('content')->nullable()->comment('');
-            $table->text('photos')->nullable()->comment('图片');
+//            $table->text('photos')->nullable()->comment('图片');
             $table->string('address')->nullable()->comment('事发地点');
 
             $table->integer('creator_id')->default(0)->comment('创建用户id');
