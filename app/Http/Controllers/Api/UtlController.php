@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Sms;
 use Dysms;
 
-class UtlController extends Controller
+class UtlController extends ApiController
 {
     //
 	/**
@@ -18,9 +18,7 @@ class UtlController extends Controller
 	public function sendVerifyCode(Request $request){
 		$phone = $request->input('phone');
 		$resp = Dysms::sendVerifyCode($phone);
-		//var_dump($resp);
-		$status = !empty($resp) && $resp->Code == 'OK' ? 200 : 400;
-		return response(['result' => $resp], $status);
+		return !empty($resp) && $resp->Code == 'OK' ? $this->success($resp): $this->fail('fail'); //response(['result' => $resp], $status);
 	}
 
 	/**
@@ -32,8 +30,11 @@ class UtlController extends Controller
 		$phone = $request->input('phone');
 		$code = $request->input('code');
 		$resp = Dysms::checkVerifyCode($phone, $code);
-		$status = $resp ? 200 : 400;
-		return response(['success' => $resp], $status);
+		return $resp ? $this->success($resp):$this->fail('fail');//response(['success' => $resp], $status);
 	}
 
+    public function newEntity(array $attributes = [])
+    {
+        // TODO: Implement newEntity() method.
+    }
 }
