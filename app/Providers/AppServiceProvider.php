@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Services\Sms\AliDaYuSms;
 use App\Services\Sms\ISmsSvr;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
 	    Relation::morphMap([
 		    'customer_payment' => CustomerPayment::class,
 		    'customer_hire' => CustomerHire::class,
+            'comment' => Comment::class,
 	    ]);
     }
 

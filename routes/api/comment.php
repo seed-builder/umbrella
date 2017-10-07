@@ -58,16 +58,16 @@ Route::group(['prefix' => 'comment', 'middleware' => 'api.sign'], function () {
     *      type="Comment",
     *      @SWG\Parameters(
     *          @SWG\Parameter(name="address", description="事发地点", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="content", description="", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="created_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="customer_id", description="客户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-                    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="photo_id", description="图片", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="service_id", description="1-故障申报 2-损坏举报 3-疑问咨询", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-        *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
+    *          @SWG\Parameter(name="content", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="created_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="customer_id", description="客户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="photos", description="图片", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="service_id", description="1-故障申报 2-损坏举报 3-疑问咨询", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
     *      )
     *  )
     * )
@@ -85,16 +85,16 @@ Route::group(['prefix' => 'comment', 'middleware' => 'api.sign'], function () {
     *      type="Comment",
     *      @SWG\Parameters(
     *          @SWG\Parameter(name="address", description="事发地点", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="content", description="", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="created_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="customer_id", description="客户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-                    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="photo_id", description="图片", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="service_id", description="1-故障申报 2-损坏举报 3-疑问咨询", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-        *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
+    *          @SWG\Parameter(name="content", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="created_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="customer_id", description="客户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="photos", description="图片", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="service_id", description="1-故障申报 2-损坏举报 3-疑问咨询", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
     *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
     *      )
     *  )

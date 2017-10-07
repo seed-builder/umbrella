@@ -20,7 +20,6 @@ use App\Models\BaseModel;
  * @SWG\Property(name="deleted_at", type="string", description="")
  * @SWG\Property(name="id", type="integer", description="")
  * @SWG\Property(name="modifier_id", type="integer", description="修改用户id")
- * @SWG\Property(name="photo_id", type="string", description="图片")
  * @SWG\Property(name="service_id", type="integer", description="1-故障申报 2-损坏举报 3-疑问咨询")
  * @SWG\Property(name="updated_at", type="string", description="")
   */
@@ -29,6 +28,7 @@ class Comment extends BaseModel
 	//
 	protected $table = 'comments';
 	protected $guarded = ['id'];
+//	protected $with = ['pics'];
 
     public $validateRules = [
         'content' => 'required',
@@ -58,5 +58,10 @@ class Comment extends BaseModel
                 return '疑问咨询';
             }
         }
+    }
+
+    public function pics()
+    {
+        return $this->morphMany(Resource::class, 'res');
     }
 }

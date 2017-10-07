@@ -16,8 +16,6 @@ Route::group(['prefix' => 'umbrella', 'middleware' => 'api.sign'], function () {
      *      summary="手动输入伞号解锁",
      *      notes="手动输入伞号解锁",
      *      type="array",
-     *      @SWG\Parameters(
-     *      )
      *    )
      * )
      */
@@ -73,18 +71,18 @@ Route::group(['prefix' => 'umbrella', 'middleware' => 'api.sign'], function () {
     *      type="Umbrella",
     *      @SWG\Parameters(
     *          @SWG\Parameter(name="color", description="颜色", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="created_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="equipment_id", description="equipments id", required=false,type="integer", paramType="form", defaultValue="" ),
-                    *          @SWG\Parameter(name="logo", description="logo", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="name", description="伞名称", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="site_id", description="sites id", required=false,type="integer", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="sn", description="伞编号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）", required=false,type="integer", paramType="form", defaultValue="1" ),
-            *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
-        *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
+    *          @SWG\Parameter(name="created_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="deleted_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="equipment_id", description="equipments id", required=false,type="integer", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="logo", description="logo", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="name", description="伞名称", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="site_id", description="sites id", required=false,type="integer", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="sn", description="伞编号", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="status", description="状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）", required=false,type="integer", paramType="form", defaultValue="1" ),
+    *          @SWG\Parameter(name="updated_at", description="", required=true,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
     *      )
     *  )
     * )
@@ -102,18 +100,18 @@ Route::group(['prefix' => 'umbrella', 'middleware' => 'api.sign'], function () {
     *      type="Umbrella",
     *      @SWG\Parameters(
     *          @SWG\Parameter(name="color", description="颜色", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="created_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="equipment_id", description="equipments id", required=false,type="integer", paramType="form", defaultValue="" ),
-                    *          @SWG\Parameter(name="logo", description="logo", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
-            *          @SWG\Parameter(name="name", description="伞名称", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="site_id", description="sites id", required=false,type="integer", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="sn", description="伞编号", required=false,type="string", paramType="form", defaultValue="" ),
-            *          @SWG\Parameter(name="status", description="状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）", required=false,type="integer", paramType="form", defaultValue="1" ),
-            *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
-        *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
+    *          @SWG\Parameter(name="created_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="creator_id", description="创建用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="deleted_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="equipment_id", description="equipments id", required=false,type="integer", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="logo", description="logo", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="modifier_id", description="修改用户id", required=false,type="integer", paramType="form", defaultValue="0" ),
+    *          @SWG\Parameter(name="name", description="伞名称", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="site_id", description="sites id", required=false,type="integer", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="sn", description="伞编号", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="status", description="状态 1-未发放 2-待借中 3-借出中 4-失效（超过还伞时间）", required=false,type="integer", paramType="form", defaultValue="1" ),
+    *          @SWG\Parameter(name="updated_at", description="", required=false,type="string", paramType="form", defaultValue="" ),
+    *          @SWG\Parameter(name="id", description="id", required=true,type="integer", paramType="path", defaultValue="" ),
     *          @SWG\Parameter(name="_sign", description="签名", required=true, type="string", paramType="form", defaultValue="****")
     *      )
     *  )
