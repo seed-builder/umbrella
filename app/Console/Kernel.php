@@ -2,10 +2,12 @@
 
 namespace App\Console;
 
+use App\Models\CustomerWithdraw;
 use App\Models\Equipment;
 use App\Models\Message;
 use App\Services\CustomerHireService;
 use App\Services\OrderService;
+use App\Services\WithdrawService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -50,6 +52,10 @@ class Kernel extends ConsoleKernel
                 $log->save();
             }
         })->everyFiveMinutes();
+
+        $schedule->call(function(WithdrawService $withdrawService){
+            $withdrawService->remit();
+        })->dailyAt('01:00');
     }
 
     /**

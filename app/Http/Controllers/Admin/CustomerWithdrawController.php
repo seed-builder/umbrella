@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\CustomerWithdraw;
@@ -68,11 +69,49 @@ class CustomerWithdrawController extends BaseController
 	*/
 	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
 		$searchCols = ["remark","sn"];
-		return parent::pagination($request, $searchCols,$with,$conditionCall,function ($entities){
+		return parent::pagination($request, $searchCols,['customer'],$conditionCall,function ($entities){
             foreach ($entities as $entity){
                 $entity->status_name = $entity->status();
             }
         });
 	}
+
+    public function filterQuery($filters, $queryBuilder)
+    {
+        foreach ($filters as $filter) {
+            foreach ($filter as $k => $v){
+                if (empty($v)) {
+                    continue ;
+                }
+                switch ($k){
+                    case 'start_created_at':{
+                        $queryBuilder->where('created_at','>=',$v );
+                        break ;
+                    }
+                    case 'end_created_at':{
+                        $queryBuilder->where('created_at','<=',$v );
+                        break ;
+                    }
+                    case 'start_amt':{
+                        $queryBuilder->where('amt','>=',$v );
+                        break ;
+                    }
+                    case 'end_amt':{
+                        $queryBuilder->where('amt','<=',$v );
+                        break ;
+                    }
+                    case 'nickname':{
+                        $ids = Customer::query()->where('nickname','like','%'.$v.'%')->pluck('id')->toArray();
+                        $queryBuilder->whereIn('customer_id',$ids );
+                        break ;
+                    }
+                    default : {
+                        $queryBuilder->where($k, 'like binary', '%' . $v . '%');
+                    }
+                }
+            }
+
+        }
+    }
 
 }

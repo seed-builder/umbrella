@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Events\WechatApiEvent;
+use App\Helpers\WeChatLib\WxPayEnterprise;
 use App\Helpers\WeChatLib\WxPayException;
 use App\Helpers\WeChatLib\WxPayJsApiPay;
 use App\Helpers\WeChatLib\WxPayReport;
@@ -49,6 +51,29 @@ class WeChatPay
 
 
         return $jsApiParams;
+    }
+
+    /**
+     * 调用接口 - 企业向个人付款
+     * @param $order
+     * @return array
+     */
+    protected function epPay($order)
+    {
+        $input = new WxPayEnterprise();
+
+        $input->setOpenid($order->customer->openid);
+        $input->setCheck_name('NO_CHECK');
+        $input->setPartner_trade_no($order->sn);
+        $input->setAmount($order->amt * 100);
+        $input->setDesc(env('PROJECT_NAME') . '账户提现');
+
+        $pay = new WeChatPay();
+        $result = $pay->enterprisePay($input);
+
+        event(new WechatApiEvent('企业向个人付款', $result, $input));
+
+        return $result;
     }
 
     /**

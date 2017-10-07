@@ -82,9 +82,9 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">提现编号</label>
+                                        <label class="col-md-3 control-label">ID</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][sn]">
+                                            <input type="text" class="form-control" name="filter[][id]">
                                         </div>
                                     </div>
                                 </div>
@@ -135,12 +135,12 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th>提现编号</th>
+                                <th>ID</th>
                                 <th>用户微信号</th>
                                 <th>提现金额</th>
-                                <th>备注</th>
                                 <th>状态</th>
                                 <th>创建时间</th>
+                                <th>备注</th>
 
                             </tr>
                             </thead>

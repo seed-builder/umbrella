@@ -22,11 +22,15 @@ define(function (require, exports, module) {
                     render: function (data, type, full) {
                         return '';
                     }
+                },{
+                    'data': 'id',
+
                 },
-                {'data': 'sn'},
-                {'data': 'customer_id'},
+                {'data': 'customer_id',
+                    render: function (data, type, full) {
+                        return full.customer.nickname;
+                    }},
                 {'data': 'amt'},
-                {'data': 'remark'},
                 {
                     'data': 'status',
                     render: function (data, type, full) {
@@ -35,6 +39,8 @@ define(function (require, exports, module) {
 
                 },
                 {'data': 'created_at'},
+                {'data': 'remark'},
+
 
             ],
             columnDefs: [
@@ -45,12 +51,12 @@ define(function (require, exports, module) {
             ],
 
             buttons: [
-                {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/customer-withdraw/create"
-                }
-                },
-                //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
+                // {
+                //     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
+                //     window.location.href = "/admin/customer-withdraw/create"
+                // }
+                // },
+                // {extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ]

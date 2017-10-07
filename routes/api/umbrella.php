@@ -8,6 +8,21 @@
 Route::group(['prefix' => 'umbrella', 'middleware' => 'api.sign'], function () {
 
     /**
+     * @SWG\Api(
+     *     path="/api/umbrella/unlock",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="umbrella-unlock",
+     *      summary="手动输入伞号解锁",
+     *      notes="手动输入伞号解锁",
+     *      type="array",
+     *      @SWG\Parameters(
+     *      )
+     *    )
+     * )
+     */
+    Route::get('/unlock', ['as' => 'Umbrella.unlock', 'uses' => 'UmbrellaController@unlock']);
+    /**
     * @SWG\Api(
     *     path="/api/umbrella",
     *     @SWG\Operation(

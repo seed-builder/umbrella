@@ -36,6 +36,25 @@ class CustomerWithdraw extends BaseModel
         'id.required' => "id不能为空",
     ];
 
+    public function customer(){
+        return $this->hasOne(Customer::class,'id','customer_id');
+    }
+
+    /**
+     * 已申请
+     */
+    const STATUS_INIT = 1;
+
+    /**
+     * 已打款
+     */
+    const STATUS_SUCCESS = 2;
+
+    /**
+     * 打款失败
+     */
+    const STATUS_FAIL = 3;
+
     public function status()
     {
         switch ($this->status) {
