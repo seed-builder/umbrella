@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\WeChatApi;
+use App\Models\CustomerPayment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
@@ -33,5 +35,68 @@ class CustomerHireController extends ApiController
             return $this->fail('您当前还有 '.$count.' 把伞未还，是否要立即支付');
 
         return $this->success([],'');
+    }
+
+    public function pay($id){
+        $data = $this->request->all();
+
+//        $fieldErrors = $this->validateFields($data);
+        $fieldErrors = '';
+
+        $hire = CustomerHire::find($id);
+        if ($hire->status == CustomerHire::STATUS_COMPLETE) {
+            $fieldErrors .= '该订单已完成';
+        }
+
+        if (!empty($fieldErrors)) {
+            return $this->fail($fieldErrors);
+        }
+
+        $user = $this->request->customer;
+        $account = $user->account;
+
+        $data['type'] = CustomerPayment::TYPE_OUT_RENT;
+        $data['reference_id'] = $id;
+//        $data['reference_type'] = 'App\Models\CustomerHire';
+        $data['reference_type'] = 'customer_hire';
+
+        $payment = new CustomerPayment();
+        if ($account->balance_amt >= $data['amt']) {
+            $data['payment_channel'] = 3;
+
+            $payment->createPayment($data, CustomerPayment::STATUS_SUCCESS);
+
+            return $this->success([]);
+        } else {
+            $order = $payment->createPayment($data);
+            $result = $this->wxpay($order);
+
+            return $this->success([
+                'order_id' => $order->id,
+                'js_params' => json_decode($result)
+            ]);
+//            return $this->result(0, '', json_decode($result));
+        }
+    }
+
+    public function check($id)
+    {
+        $hire = CustomerHire::find($id);
+        if ($hire->status == CustomerHire::STATUS_HIRING) {
+
+            $api = new WeChatApi();
+            $api->wxSend('borrow', [
+                'first' => '您成功借了一把共享雨伞，伞编号：'.$hire->umbrella->number.'，请好好爱护您的伞哦，记得按时归还！',
+                'keyword1' => 'H'.$hire->customer->id.date('YmdHis',strtotime($hire->hire_at)),
+                'keyword2' => date('Y年m月d日 H:i:s'),
+                'keyword3' => $hire->hire_amt . '元',
+            ], $hire->customer->openid);
+
+            return $this->success($hire,'出伞成功');
+        } else if ($hire->status == CustomerHire::STATUS_INIT) {
+            return $this->fail('用户未拿伞');
+        } else {
+            return $this->fail('');
+        }
     }
 }

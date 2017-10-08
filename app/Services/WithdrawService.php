@@ -66,19 +66,19 @@ class WithdrawService
      */
     protected function result($rs, $entity)
     {
-        if ($rs->return_code=='FAIL')
+        if ($rs['return_code']=='FAIL')
             return ;
 
 
-        if ($rs->result_code=='FAIL'){
-            $entity->remark = $rs->err_code_des;
+        if ($rs['result_code']=='FAIL'){
+            $entity->remark = $rs['err_code_des'];
             $entity->status = CustomerWithdraw::STATUS_FAIL;
             $entity->save();
             return ;
         }
 
-        if ($rs->result_code=='SUCCESS'){
-            $entity->remark = '【打款单号】：'.$rs->payment_no.'，【打款时间】：'.$rs->payment_time.'';
+        if ($rs['result_code']=='SUCCESS'){
+            $entity->remark = '【打款单号】：'.$rs['payment_no'].'，【打款时间】：'.$rs['payment_time'].'';
             $entity->status = CustomerWithdraw::STATUS_SUCCESS;
             $entity->save();
         }

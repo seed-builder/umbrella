@@ -25,6 +25,40 @@ Route::group(['prefix' => 'customer-hire', 'middleware' => 'api.sign'], function
     Route::get('/customer/no-completes', ['uses' => 'CustomerHireController@customerNoCompletes']);
 
     /**
+     * @SWG\Api(
+     *     path="/api/customer-hire/check/{id}",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="customer-hire-check",
+     *      summary="租借单检测（解锁伞后检测）",
+     *      notes="租借单检测（解锁伞后检测）",
+     *      type="CustomerHire",
+     *      @SWG\Parameters(
+     *          @SWG\Parameter(name="id", description="id", required=true, type="integer", paramType="path", defaultValue="1"),
+     *      )
+     *  )
+     * )
+     */
+    Route::get('/check/{id}', ['as' => 'CustomerHire.check', 'uses' => 'CustomerHireController@check']);
+
+    /**
+     * @SWG\Api(
+     *     path="/api/customer-hire/pay/{id}",
+     *     @SWG\Operation(
+     *      method="GET",
+     *      nickname="customer-hire-pay",
+     *      summary="租借单支付",
+     *      notes="租借单支付",
+     *      type="CustomerHire",
+     *      @SWG\Parameters(
+     *          @SWG\Parameter(name="id", description="id", required=true, type="integer", paramType="path", defaultValue="1"),
+     *      )
+     *  )
+     * )
+     */
+    Route::get('/pay/{id}', ['as' => 'CustomerHire.pay', 'uses' => 'CustomerHireController@pay']);
+
+    /**
     * @SWG\Api(
     *     path="/api/customer-hire",
     *     @SWG\Operation(
