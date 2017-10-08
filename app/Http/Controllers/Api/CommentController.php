@@ -14,4 +14,20 @@ class CommentController extends ApiController
 		// TODO: Implement newEntity() method.
 		return new Comment($attributes);
 	}
+
+	public function store(Request $request)
+    {
+        $data = $request->all();
+        unset($data['_sign']);
+        $customer = $this->request->customer;
+        $entity = $this->newEntity($data + ['customer_id' => $customer->id]);
+        $fieldErrors = $this->validateFields($data);
+        if (!empty($fieldErrors)) {
+            $msg = $this->formatFieldErrors($fieldErrors, $entity->fieldNames);
+            return $this->fail($msg);
+        }
+
+        $res = $entity->save();
+        return $res ? $this->success($entity) : $this->fail('store fail');
+    }
 }
