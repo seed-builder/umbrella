@@ -62,6 +62,7 @@ class CustomerHire extends BaseModel
     //
     protected $table = 'customer_hires';
     protected $guarded = ['id'];
+    protected $appends = ['status_name'];
 
     public $validateRules = [
 //        'id' => 'required',
@@ -143,6 +144,10 @@ class CustomerHire extends BaseModel
                 return '逾期未归还';
             }
         }
+    }
+
+    public function getStatusNameAttribute(){
+        return $this->status();
     }
 
 }

@@ -99,4 +99,22 @@ class CustomerHireController extends ApiController
             return $this->fail('');
         }
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+        if ($id == 0) {
+            return $this->fail('id is empty');
+        } else {
+            $entity = CustomerHire::with(['return_site', 'hire_site'])->find($id);
+            // var_dump($entity);
+            return $this->success($entity);
+        }
+    }
 }
