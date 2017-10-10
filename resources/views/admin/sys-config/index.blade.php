@@ -23,7 +23,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span id="breadcrumb"  class="active">sys_configs</span>
+            <span id="breadcrumb"  class="active">系统配置项</span>
         </li>
     </ul>
     <!-- END PAGE BREADCRUMB -->
@@ -34,7 +34,7 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="fa fa-search"></i>
-                        <span class="caption-subject font-dark sbold uppercase">sys_configs搜索</span>
+                        <span class="caption-subject font-dark sbold uppercase">系统配置项搜索</span>
                     </div>
                     <div class="tools">
                         <a href="" class="collapse"> </a>
@@ -43,79 +43,27 @@
                 <div class="portlet-body form">
                     <form class="form-horizontal search-form">
                         <div class="form-body">
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">category</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][category]">
-                                        </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">分类</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="filter[][category]">
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">created_at</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][created_at]">
-                                        </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">名称</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="filter[][name]">
                                     </div>
                                 </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">deleted_at</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][deleted_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">desc</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][desc]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">id</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][id]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">name</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">updated_at</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][updated_at]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                            <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">value</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][value]">
-                                        </div>
-                                    </div>
-                                </div>
-                                                    </div>
-                        <div class="row"></div>
-
-
+                            </div>
+                        </div>
                         <div class="form-actions right">
                             <button type="button" class="btn green table-search">查询</button>
                             <button type="button" class="btn red table-reset">重置</button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -129,7 +77,7 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="fa fa-th-list"></i>
-                        <span class="caption-subject bold uppercase font-dark">sys_configs</span>
+                        <span class="caption-subject bold uppercase font-dark">系统配置项</span>
                     </div>
                     <div class="tools">
                         <a href="" class="collapse"> </a>
@@ -141,15 +89,11 @@
                         <tr>
                             <th></th>
                             <th width="10%">操作</th>
-                                                            <th>category</th>
-                                                            <th>created_at</th>
-                                                            <th>deleted_at</th>
-                                                            <th>desc</th>
-                                                            <th>id</th>
-                                                            <th>name</th>
-                                                            <th>updated_at</th>
-                                                            <th>value</th>
-                            
+                            <th>名称</th>
+                            <th>描述</th>
+                            <th>分类</th>
+                            {{--<th>创建时间</th>--}}
+                            {{--<th>修改时间</th>--}}
                         </tr>
                         </thead>
                     </table>

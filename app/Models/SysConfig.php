@@ -28,10 +28,10 @@ class SysConfig extends BaseModel
 	protected $guarded = ['id'];
 
     public $validateRules = [
-        'id' => 'required',
+
     ];
 
     public $validateMessages = [
-        'id.required' => "id不能为空",
+
     ];
 }

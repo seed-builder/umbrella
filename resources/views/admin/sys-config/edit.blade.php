@@ -1,6 +1,11 @@
 @extends('admin.layouts.main')
 @section('styles')
-
+    <link rel="stylesheet" href="/assets/global/plugins/bootstrap-summernote/summernote.css">
+    <style>
+        /*.note-editor{*/
+        /*width: 375px;*/
+        /*}*/
+    </style>
 @endsection
 
 @section('content')
@@ -8,7 +13,7 @@
     <div class="page-head">
         <div class="page-title">
             <h1>top module
-                <small>sys_configs编辑</small>
+                <small>配置项编辑</small>
             </h1>
         </div>
     </div>
@@ -18,7 +23,7 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span id="breadcrumb" class="active">sys_configs</span>
+            <span id="breadcrumb" class="active">配置项</span>
         </li>
     </ul>
     <div class="row">
@@ -28,78 +33,52 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject font-dark sbold uppercase">sys_configs编辑</span>
+                        <span class="caption-subject font-dark sbold uppercase">配置项编辑</span>
                     </div>
 
                 </div>
                 <div class="portlet-body form">
-                    <form class="form-horizontal" id="form-id" action="/admin/sysconfig/edit/{{$entity->id}}">
-                        {{ csrf_field() }}                        <div class="form-body">
-                                                        <div class="col-md-6">
+                    <form class="form-horizontal" id="form-id" action="/admin/sys-config/edit/{{$entity->id}}">
+                        {{ csrf_field() }}
+                        <input type="hidden" class="form-control" name="id" value="{{$entity->id}}">
+                        <div class="form-body">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">category</label>
+                                    <label class="col-md-1 control-label">名称</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="category" value="{{$entity->category}}">
+                                        <input type="text" class="form-control" name="name" value="{{$entity->name}}" {{$entity->category == 'system'?'readonly':''}}>
                                     </div>
                                 </div>
                             </div>
-                                                        <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">created_at</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="created_at" value="{{$entity->created_at}}">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">deleted_at</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="deleted_at" value="{{$entity->deleted_at}}">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">desc</label>
+                                    <label class="col-md-1 control-label">描述</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="desc" value="{{$entity->desc}}">
                                     </div>
                                 </div>
                             </div>
-                                                        <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">id</label>
+                                    <label class="col-md-1 control-label">分类</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="id" value="{{$entity->id}}">
+                                        <select class="form-control" name="category">
+                                            <option value="common" {{$entity->category == 'common'?'selected':''}}>普通</option>
+                                            <option value="system" {{$entity->category == 'system'?'selected':''}}></option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                                                        <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">name</label>
+                                    <label class="col-md-1 control-label">内容</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="name" value="{{$entity->name}}">
+                                        <textarea id="content" class="form-control" name="value">
+                                            {!! $entity->value !!}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">updated_at</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="updated_at" value="{{$entity->updated_at}}">
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">value</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="value" value="{{$entity->value}}">
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                         <hr>
                         <div class="form-actions right">
@@ -116,10 +95,18 @@
 
 
 @endsection
-@section('scripts')<script>
+@section('scripts')
+    <script src="/assets/global/plugins/bootstrap-summernote/summernote.js"></script>
+    <script src="/assets/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
+    <script>
     $('.form-submit').on('click', function (e) {
         e.preventDefault();
         App.ajaxForm('#form-id','#alert-id','#blockui-id');
+    });
+    $('#content').summernote({
+        width: 375,
+        height: 667,
+        lang: 'zh-CN'
     });
 </script>
 
