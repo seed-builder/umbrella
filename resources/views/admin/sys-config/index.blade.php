@@ -9,8 +9,8 @@
     <div class="page-head">
         <!-- BEGIN PAGE TITLE -->
         <div class="page-title">
-            <h1>top module
-                <small>sys_configs</small>
+            <h1>系统管理
+                <small>配置管理</small>
             </h1>
         </div>
         <!-- END PAGE TITLE -->

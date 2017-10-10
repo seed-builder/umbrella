@@ -7,7 +7,7 @@
 <div class="page-content">
     <div class="page-head">
         <div class="page-title">
-            <h1>top module
+            <h1>配置管理
                 <small>配置项新增</small>
             </h1>
         </div>
