@@ -64,7 +64,7 @@
                                     <div class="col-md-9">
                                         <select class="form-control" name="category">
                                             <option value="common" {{$entity->category == 'common'?'selected':''}}>普通</option>
-                                            <option value="system" {{$entity->category == 'system'?'selected':''}}></option>
+                                            <option value="system" {{$entity->category == 'system'?'selected':''}}>系统</option>
                                         </select>
                                     </div>
                                 </div>
