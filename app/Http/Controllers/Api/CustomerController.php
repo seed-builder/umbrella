@@ -101,6 +101,7 @@ class CustomerController extends ApiController
         }
         $data = $request->all();
         unset($data['_sign']);
+        unset($data['token']);
         $entity->fill($data);
         $re = $entity->save();
         return $re ? $this->success($re) : $this->fail('update fail!');
