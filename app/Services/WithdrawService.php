@@ -34,16 +34,16 @@ class WithdrawService
 
             $fails = CustomerWithdraw::query()->where('status', CustomerWithdraw::STATUS_FAIL)->get();
             foreach ($fails as $fail) {
-                $rs = $wxpay->enterprisePay($fail);
+                $rs = $wxpay->epPay($fail);
                 $this->result($rs,$fail);
             }
             $withdraws = CustomerWithdraw::query()
-                ->where('created_at', $date . ' 00:00:00')
-                ->where('created_at', $date . ' 23:59:59')
+                ->where('created_at','>=', $date . ' 00:00:00')
+                ->where('created_at','<=', $date . ' 23:59:59')
                 ->where('status', CustomerWithdraw::STATUS_INIT)
                 ->get();
             foreach ($withdraws as $withdraw) {
-                $rs = $wxpay->enterprisePay($withdraw);
+                $rs = $wxpay->epPay($withdraw);
                 $this->result($rs,$withdraw);
             }
 

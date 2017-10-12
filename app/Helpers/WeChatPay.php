@@ -58,7 +58,7 @@ class WeChatPay
      * @param $order
      * @return array
      */
-    protected function epPay($order)
+    public function epPay($order)
     {
         $input = new WxPayEnterprise();
 
