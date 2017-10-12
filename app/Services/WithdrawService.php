@@ -34,17 +34,21 @@ class WithdrawService
 
             $fails = CustomerWithdraw::query()->where('status', CustomerWithdraw::STATUS_FAIL)->get();
             foreach ($fails as $fail) {
-                $rs = $wxpay->epPay($fail);
-                $this->result($rs,$fail);
+                if ($this->validateAccountDeposit($fail)){
+                    $rs = $wxpay->epPay($fail);
+                    $this->result($rs, $fail);
+                }
             }
             $withdraws = CustomerWithdraw::query()
-                ->where('created_at','>=', $date . ' 00:00:00')
-                ->where('created_at','<=', $date . ' 23:59:59')
+                ->where('created_at', '>=', $date . ' 00:00:00')
+                ->where('created_at', '<=', $date . ' 23:59:59')
                 ->where('status', CustomerWithdraw::STATUS_INIT)
                 ->get();
             foreach ($withdraws as $withdraw) {
-                $rs = $wxpay->epPay($withdraw);
-                $this->result($rs,$withdraw);
+                if ($this->validateAccountDeposit($withdraw)){
+                    $rs = $wxpay->epPay($withdraw);
+                    $this->result($rs, $withdraw);
+                }
             }
 
 
@@ -66,22 +70,41 @@ class WithdrawService
      */
     protected function result($rs, $entity)
     {
-        if ($rs['return_code']=='FAIL')
-            return ;
+        if ($rs['return_code'] == 'FAIL')
+            return;
 
 
-        if ($rs['result_code']=='FAIL'){
+        if ($rs['result_code'] == 'FAIL') {
             $entity->remark = $rs['err_code_des'];
             $entity->status = CustomerWithdraw::STATUS_FAIL;
             $entity->save();
-            return ;
+            return;
         }
 
-        if ($rs['result_code']=='SUCCESS'){
-            $entity->remark = '【打款单号】：'.$rs['payment_no'].'，【打款时间】：'.$rs['payment_time'].'';
+        if ($rs['result_code'] == 'SUCCESS') {
+            $entity->remark = '【打款单号】：' . $rs['payment_no'] . '，【打款时间】：' . $rs['payment_time'] . '';
             $entity->status = CustomerWithdraw::STATUS_SUCCESS;
             $entity->save();
         }
+    }
+
+    /**
+     * 判断当前账户可提现押金是否足够
+     * @param $withdraw
+     * @return bool
+     */
+    protected function validateAccountDeposit($withdraw)
+    {
+        $account = CustomerAccount::where('customer_id', $withdraw->customer_id);
+
+        if ($account->deposit < $withdraw->amt) {
+            $withdraw->status = CustomerWithdraw::STATUS_CLOSE;
+            $withdraw->remark = '用户账户可提现余额不足';
+            $withdraw->save();
+            return false ;
+        }
+
+        return true;
     }
 
     /**

@@ -55,6 +55,11 @@ class CustomerWithdraw extends BaseModel
      */
     const STATUS_FAIL = 3;
 
+    /**
+     * 已关闭
+     */
+    const STATUS_CLOSE = 4;
+
     public function status()
     {
         switch ($this->status) {
@@ -64,6 +69,8 @@ class CustomerWithdraw extends BaseModel
                 return '已打款';
             case 3:
                 return '打款失败';
+            case 4:
+                return '已关闭';
             default:
                 return '异常';
         }
