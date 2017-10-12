@@ -29,7 +29,11 @@ class UtlController extends ApiController
 	public function checkVerifyCode(Request $request){
 		$phone = $request->input('phone');
 		$code = $request->input('code');
-		$resp = Dysms::checkVerifyCode($phone, $code);
+		if(empty($phone) || empty($code)){
+            $resp = false;
+        }else{
+            $resp = Dysms::checkVerifyCode($phone, $code);
+        }
 		return $resp ? $this->success($resp):$this->fail('fail');//response(['success' => $resp], $status);
 	}
 

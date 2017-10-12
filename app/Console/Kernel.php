@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        'App\Console\Commands\CheckEquipmentHas',
     ];
 
     /**
@@ -41,17 +42,18 @@ class Kernel extends ConsoleKernel
             $customerHireService->due();
         })->everyFiveMinutes();
 
-        $schedule->call(function(){
-            $danger_eqs = Equipment::where('have','<',5);
-            foreach ($danger_eqs as $danger_eq){
-                $log = new Message([
-                    'category' => 1,
-                    'level' => 2,
-                    'content' => '【网点】'.$danger_eq->site->name.'【设备】'.$danger_eq->sn.'的伞量已不足五把，请尽快补充',
-                ]);
-                $log->save();
-            }
-        })->everyFiveMinutes();
+//        $schedule->call(function(){
+//            $danger_eqs = Equipment::where('have','<',5);
+//            foreach ($danger_eqs as $danger_eq){
+//                $log = new Message([
+//                    'category' => 1,
+//                    'level' => 2,
+//                    'content' => '【网点】'.$danger_eq->site->name.'【设备】'.$danger_eq->sn.'的伞量已不足五把，请尽快补充',
+//                ]);
+//                $log->save();
+//            }
+//        })->everyFiveMinutes();
+        $schedule->command('equipment:has')->everyFiveMinutes();
 
         $schedule->call(function(WithdrawService $withdrawService){
             $withdrawService->remit();
