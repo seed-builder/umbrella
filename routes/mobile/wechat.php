@@ -47,7 +47,7 @@ Route::any('wechat/test1',function (){
     $fails = \App\Models\CustomerWithdraw::query()->where('status', \App\Models\CustomerWithdraw::STATUS_FAIL)->get();
     foreach ($fails as $fail) {
         $rs = $wxpay->enterprisePay($fail);
-        $this->result($rs,$fail);
+//        $this->result($rs,$fail);
     }
     $withdraws = \App\Models\CustomerWithdraw::query()
         ->where('created_at', $date . ' 00:00:00')
@@ -56,7 +56,8 @@ Route::any('wechat/test1',function (){
         ->get();
     foreach ($withdraws as $withdraw) {
         $rs = $wxpay->enterprisePay($withdraw);
-        $this->result($rs,$withdraw);
+        dump($withdraw);
+        dump($rs);
     }
 });
 
