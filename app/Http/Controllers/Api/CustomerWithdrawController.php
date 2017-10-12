@@ -37,6 +37,7 @@ class CustomerWithdrawController extends ApiController
             'customer_id' => $customer->id,
             'amt' => $data['amt'],
             'status' => 1,
+            'sn' => 'TX'.sprintf("%05d", $customer->id) .date('YmdHis')
         ]);
         $entity->save();
 

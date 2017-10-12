@@ -50,14 +50,18 @@ Route::any('wechat/test1',function (){
 //        $this->result($rs,$fail);
     }
     $withdraws = \App\Models\CustomerWithdraw::query()
-        ->where('created_at', $date . ' 00:00:00')
-        ->where('created_at', $date . ' 23:59:59')
+        ->where('created_at', '>=',$date . ' 00:00:00')
+        ->where('created_at','<=', $date . ' 23:59:59')
         ->where('status', \App\Models\CustomerWithdraw::STATUS_INIT)
         ->get();
+//    dd($withdraws);
     foreach ($withdraws as $withdraw) {
-        $rs = $wxpay->enterprisePay($withdraw);
+        $api = new \App\Helpers\WeChatApi();
+        $rs = $api->epPay($withdraw);
+//        $rs = $wxpay->enterprisePay($wxOrder);
         dump($withdraw);
         dump($rs);
+        dd(1);
     }
 });
 

@@ -9,6 +9,8 @@
 namespace App\Helpers;
 
 
+use App\Events\WechatApiEvent;
+use App\Helpers\WeChatLib\WxPayEnterprise;
 use App\Models\Resource;
 use App\Models\SysLog;
 use GuzzleHttp\Client;
@@ -106,6 +108,28 @@ class WeChatApi
         return $this->utl()->post('https://api.weixin.qq.com/cgi-bin/message/template/send', $data);
     }
 
+    /**
+     * 生成企业向个人付款订单
+     * @param $withdraw
+     * @return array
+     */
+    public function epPay($withdraw)
+    {
+        $input = new WxPayEnterprise();
+
+        $input->setOpenid($withdraw->customer->openid);
+        $input->setCheck_name('NO_CHECK');
+        $input->setPartner_trade_no($withdraw->sn);
+        $input->setAmount($withdraw->amt * 100);
+        $input->setDesc(env('PROJECT_NAME') . '账户提现');
+
+        $pay = new WeChatPay();
+        $result = $pay->enterprisePay($input);
+
+        event(new WechatApiEvent('企业向个人付款', $result, $input));
+
+        return $result;
+    }
 
 
     /**
