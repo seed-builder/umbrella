@@ -39,3 +39,24 @@ Route::any('wechat/test',function (){
         'remark' => '押金已经从您的账户里扣除，感谢您的使用！'
     ], 'oxY5Aw2AGdwwiWtU8uyrO34ROP_w');
 });
+
+Route::any('wechat/test1',function (){
+    $wxpay = new \App\Helpers\WeChatPay();
+    $date = date('Y-m-d', strtotime('-1 day'));
+
+    $fails = \App\Models\CustomerWithdraw::query()->where('status', \App\Models\CustomerWithdraw::STATUS_FAIL)->get();
+    foreach ($fails as $fail) {
+        $rs = $wxpay->enterprisePay($fail);
+        $this->result($rs,$fail);
+    }
+    $withdraws = \App\Models\CustomerWithdraw::query()
+        ->where('created_at', $date . ' 00:00:00')
+        ->where('created_at', $date . ' 23:59:59')
+        ->where('status', \App\Models\CustomerWithdraw::STATUS_INIT)
+        ->get();
+    foreach ($withdraws as $withdraw) {
+        $rs = $wxpay->enterprisePay($withdraw);
+        $this->result($rs,$withdraw);
+    }
+});
+

@@ -58,7 +58,7 @@ class CustomerHireService
 
             DB::commit();
 
-            $this->addLog('租借逾期','执行完成',1);
+//            $this->addLog('租借逾期','执行完成',1);
 
         } catch (Exception $e) {
             $this->addLog('租借逾期',$e->getMessage(),2);
