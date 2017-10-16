@@ -4,7 +4,7 @@
 define(function (require, exports, module) {
 
     var zhCN = require('datatableZh');
-    exports.index = function ($, tableId, alertId) {
+    exports.index = function ($, tableId, alertId, App) {
 
         var table = $("#" + tableId).DataTable({
             dom: "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'<'pull-right'B>><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
@@ -20,8 +20,9 @@ define(function (require, exports, module) {
                 {
                     'data': 'id',
                     render: function (data, type, full) {
-                        return '';
-                    }
+                        return '<input type="checkbox" class="editor-active" value="'+data+'">';
+                    },
+                    className: "dt-body-center"
                 },
                 {
                     'data': 'id',
@@ -46,15 +47,10 @@ define(function (require, exports, module) {
                 },
                 {'data': 'number'},
                 {'data': 'sn'},
-                {'data': 'birth_site_name'},
-                {'data': 'birth_ep_sn'},
-                {'data': 'birth_site_address'},
-
                 {'data': 'current_site_name'},
                 {'data': 'current_ep_sn'},
                 {'data': 'current_site_address'},
                 {'data': 'equipment_channel_num'},
-
                 {
                     'data': 'status',
                     render: function (data, type, full) {
@@ -68,12 +64,15 @@ define(function (require, exports, module) {
                             return '失效'
                     }
                 },
+                {'data': 'price_name'},
                 {'data': 'created_at'},
             ],
             columnDefs: [
                 {
                     'targets': [0],
-                    "visible": false
+                    'checkboxes': { 'selectRow': true },
+                    'searchable': false,
+                    'sortable': false
                 }
             ],
 
@@ -85,8 +84,13 @@ define(function (require, exports, module) {
                 },
                 {
                     text: '下载导入模板', action: function () {
-                    window.location.href = '/admin/umbrella/down-template';
-                }
+                        window.location.href = '/admin/umbrella/down-template';
+                    }
+                },
+                {
+                    text: '批量设置价格', action: function () {
+                        $("#price-modal").modal('show');
+                    }
                 },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
@@ -115,6 +119,26 @@ define(function (require, exports, module) {
             });
         })
 
+        $('#importExcelBtn').on('click', function (e) {
+            e.preventDefault();
+            App.ajaxFormWithFile('#importExcelForm','#import-alert-id','#blockui-id');
+        });
+
+        $('#batchChangePriceBtn').on('click', function (e) {
+            e.preventDefault();
+            var arr = table.rows('.selected').data();
+            if(arr.length > 0) {
+                var ids = [];
+                for(var i = 0; i < arr.length; i ++){
+                    ids[ids.length] = arr[i].id;
+                }
+                $('#ids').val(ids.join(','));
+                App.ajaxForm('#form-price', '#price-alert-id', '#blockui-id', function () {
+                    $("#price-modal").modal('hide');
+                    table.ajax.reload();
+                });
+            }
+        });
 
     }
 

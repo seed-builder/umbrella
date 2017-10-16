@@ -280,14 +280,14 @@ abstract class DataTableController extends Controller
         return $fieldErrors;
     }
 
-    public function success($data)
+    public function success($data, $msg = '')
     {
-        return response()->json(['data' => [$data], 'cancelled' => 0]);
+        return response()->json(['data' => [$data], 'cancelled' => 0 , 'success' => true, 'msg' => $msg]);
     }
 
     public function fail($error, $fieldErrors = [])
     {
-        return response()->json(['data' => [], 'error' => $error, 'cancelled' => 1, 'fieldErrors' => $fieldErrors]);
+        return response()->json(['data' => [], 'error' => $error, 'cancelled' => 1, 'fieldErrors' => $fieldErrors,  'success' => false]);
     }
 
     public function flash_success($msg)

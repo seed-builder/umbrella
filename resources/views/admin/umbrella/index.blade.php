@@ -43,7 +43,6 @@
                     <div class="portlet-body form">
                         <form class="form-horizontal search-form">
                             <div class="form-body">
-
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">伞编号</label>
@@ -62,31 +61,6 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">出厂设备号</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][birth_ep_sn]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">出厂网点</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][birth_site_name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">出厂网点地址</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][birth_site_address]">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
                                         <label class="col-md-3 control-label">当前设备号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][current_ep_sn]">
@@ -98,14 +72,6 @@
                                         <label class="col-md-3 control-label">当前网点</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][current_site_name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">当前网点地址</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="filter[][current_site_address]">
                                         </div>
                                     </div>
                                 </div>
@@ -124,25 +90,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">创建时间</label>
-                                        <div class="col-md-4">
-                                            <input type="date" class="form-control" name="filter[][start_created_at]">
-                                        </div>
-                                        <div class="col-md-1">
-                                            --
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="date" class="form-control" name="filter[][end_created_at]">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="row"></div>
-
-
                             <div class="form-actions right">
                                 <button type="button" class="btn green table-search">查询</button>
                                 <button type="button" class="btn red table-reset">重置</button>
@@ -173,17 +121,15 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th width="10%">操作</th>
+                                <th>操作</th>
                                 <th>伞序列号</th>
                                 <th>伞编号</th>
-                                <th>出厂网点</th>
-                                <th>出厂设备号</th>
-                                <th>出厂网点地址</th>
                                 <th>当前网点</th>
                                 <th>当前设备号</th>
                                 <th>当前网点地址</th>
                                 <th>当前通道</th>
                                 <th>状态</th>
+                                <th>价格规则</th>
                                 <th>创建时间</th>
                             </tr>
                             </thead>
@@ -207,35 +153,80 @@
                 </div>
                 <div class="modal-body" id="blockui-id">
                     <div id="import-alert-id"></div>
-                    <form id="form-id" action="/admin/umbrella/import-excel">
+                    <form id="importExcelForm" class="form-horizontal" action="/admin/umbrella/import-excel">
                         {{ csrf_field() }}
-                        <input type="file" name="excel">
+                        <div class="form-group">
+                            <label for="excel" class="col-sm-2 control-label">Excel文件</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="excel" name="excel" placeholder="Excel">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price_id" class="col-sm-2 control-label">价格规则</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="price_id" >
+                                    @foreach($prices as $price)
+                                    <option value="{{$price->id}}">{{$price->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </form>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
-                    <button type="button" class="btn btn-default form-submit">确定</button>
+                    <button type="button" id="importExcelBtn" class="btn btn-default form-submit">确定</button>
                 </div>
             </div>
 
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="price-modal">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">批量设置价格规则</h4>
+                </div>
+                <div class="modal-body" id="blockui-id">
+                    <div id="price-alert-id"></div>
+                    <form id="form-price" class="form-horizontal" action="/admin/umbrella/batch-price">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="ids" id="ids">
+                        <div class="form-group">
+                            <label for="price_id"  class="col-sm-2 control-label">价格规则</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="price_id" >
+                                    @foreach($prices as $price)
+                                        <option value="{{$price->id}}">{{$price->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                    <button type="button"  id="batchChangePriceBtn" class="btn btn-default form-submit">确定</button>
+                </div>
+            </div>
 
+        </div>
+    </div>
 @endsection
 @section('scripts')
     @include('admin.layouts.datatable-js')
     <script type="text/javascript">
         $(function () {
-            seajs.use('admin/umbrella.js', function (app) {
-                app.index($, 'moduleTable', 'alert-id');
+            seajs.use('admin/umbrella.js', function (pkg) {
+                pkg.index($, 'moduleTable', 'alert-id', App);
             });
         });
 
-        $('.form-submit').on('click', function (e) {
-            e.preventDefault();
-            App.ajaxFormWithFile('#form-id','#import-alert-id','#blockui-id');
-        });
+
     </script>
 
 @endsection

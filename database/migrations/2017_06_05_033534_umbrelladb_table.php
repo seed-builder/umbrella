@@ -322,7 +322,9 @@ current_site.address AS current_site_address,
 
 birth_ep.sn AS birth_ep_sn,
 birth_site.name AS birth_site_name,
-birth_site.address AS birth_site_address
+birth_site.address AS birth_site_address,
+umbrellas.price_id,
+prices.name as price_name
 
 FROM umbrellas
 
@@ -330,6 +332,8 @@ LEFT JOIN equipments AS current_ep ON current_ep.id = umbrellas.equipment_id
 LEFT JOIN equipments AS birth_ep ON birth_ep.id = umbrellas.birth_equipment_id
 LEFT JOIN sites AS current_site ON current_site.id = umbrellas.site_id
 LEFT JOIN sites AS birth_site ON birth_site.id = umbrellas.birth_site_id 
+LEFT JOIN prices AS prices ON prices.id = umbrellas.price_id 
+
 
 
 EOD;

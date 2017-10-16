@@ -29,9 +29,10 @@ class UmbrellaController extends BaseController
      */
     public function index()
     {
-        $equipments = Equipment::all();
-        $sites = Site::all();
-        return view('admin.umbrella.index', compact('equipments', 'sites'));
+//        $equipments = Equipment::all();
+//        $sites = Site::all();
+        $prices = Price::all();
+        return view('admin.umbrella.index', compact('prices'));
     }
 
     /**
@@ -188,7 +189,8 @@ class UmbrellaController extends BaseController
                 $umbrellas[] = [
                     'number' => (string)$result[0],
                     'sn' => $result[1],
-                    'price_id' => $price->getUsingPrice()->id,
+//                    'price_id' => $price->getUsingPrice()->id,
+                    'price_id' => $data['price_id'],
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ];
@@ -217,4 +219,15 @@ class UmbrellaController extends BaseController
         $excel->export($data,'柒天伞客共享伞导入模板');
     }
 
+    public function batchPrice(Request $request){
+        $ids = $request->input('ids');
+        $priceId = $request->input('price_id');
+        if(!empty($priceId) && !empty($ids)){
+            $umbrellaIds = explode(',', $ids);
+            $res = Umbrella::whereIn('id', $umbrellaIds)->update(['price_id' => $priceId]);
+            return $res ? $this->success('成功'):$this->fail('失败');
+        }else{
+            return $this->fail('data is empty');
+        }
+    }
 }

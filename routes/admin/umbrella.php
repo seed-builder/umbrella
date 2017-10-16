@@ -7,6 +7,7 @@ Route::post('umbrella/edit/{id}', ['uses' => 'UmbrellaController@update']);
 Route::get('umbrella/show/{id}', ['uses' => 'UmbrellaController@show']);
 Route::get('umbrella/delete/{id}', ['uses' => 'UmbrellaController@destroy']);
 Route::post('umbrella/import-excel', ['uses' => 'UmbrellaController@importExcel']);
+Route::post('umbrella/batch-price', ['uses' => 'UmbrellaController@batchPrice']);
 Route::get('umbrella/down-template', ['uses' => 'UmbrellaController@downTemplate']);
 
 Route::resource('umbrella', 'UmbrellaController');
