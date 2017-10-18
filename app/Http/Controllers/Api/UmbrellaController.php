@@ -30,8 +30,8 @@ class UmbrellaController extends ApiController
         if (empty($umbrella))
             return $this->fail('伞编码输入不正确，请核对后重试！');
 
-        $price_model = new Price();
-        $price = $price_model->getUsingPrice();
+//        $price_model = new Price();
+//        $price = $price_model->getUsingPrice();
 
         $user = $request->customer;
         $hire = new CustomerHire([
@@ -41,9 +41,9 @@ class UmbrellaController extends ApiController
             'hire_site_id' => $umbrella->site_id,
             'hire_at' => date('Y-m-d H:i:s'),
             'status' => CustomerHire::STATUS_HIRING,
-            'deposit_amt' => $price->deposit_cash,
-            'expire_hours' => $price->hire_expire_hours,
-            'expired_at' => date('Y-m-d H:i:s',strtotime("+$price->hire_expire_hours hour ")),
+            'deposit_amt' => $umbrella->price->deposit_cash,
+            'expire_hours' => $umbrella->price->hire_expire_hours,
+            'expired_at' => date('Y-m-d H:i:s',strtotime("+$umbrella->price->hire_expire_hours hour ")),
         ]);
         $hire->save();
 

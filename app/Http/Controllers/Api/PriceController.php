@@ -17,7 +17,10 @@ class PriceController extends ApiController
 
 	public function index(Request $request, $conditionCall = null, $dataHandle = null)
     {
-        $entity = $this->newEntity()->getUsingPrice();
-        return $this->success($entity);
+        $entities = Price::query()->groupby('deposit_cash')->where('status',1)->get();
+        $prices = $entities->pluck('deposit_cash');
+
+//        $entity = $this->newEntity()->getUsingPrice();
+        return $this->success($prices);
     }
 }

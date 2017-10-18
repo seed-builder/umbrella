@@ -70,6 +70,10 @@ class Umbrella extends BaseModel
         return $this->hasOne(Equipment::class,'id','equipment_id');
     }
 
+    public function price(){
+        return $this->hasOne(Umbrella::class,'id','price_id');
+    }
+
     public function status(){
         switch ($this->status){
             case 1:{
