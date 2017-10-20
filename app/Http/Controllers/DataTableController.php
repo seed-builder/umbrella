@@ -270,13 +270,13 @@ abstract class DataTableController extends Controller
 
         if (empty($rules) && isset($entity->validateRules))
             $rules = $entity->validateRules;
+        if(!empty($rules)) {
+            $validator = Validator::make($data, $rules, $entity->validateMessages);
 
-        $validator = Validator::make($data, $rules ,$entity->validateMessages);
-
-        if ($validator->fails()) {
-            $fieldErrors = implode('<br/>', $validator->errors()->all());
+            if ($validator->fails()) {
+                $fieldErrors = implode('<br/>', $validator->errors()->all());
+            }
         }
-
         return $fieldErrors;
     }
 
