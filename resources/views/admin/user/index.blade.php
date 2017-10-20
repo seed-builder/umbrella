@@ -10,7 +10,7 @@
         <!-- BEGIN PAGE TITLE -->
         <div class="page-title">
             <h1>top module
-                <small>users</small>
+                <small>系统用户</small>
             </h1>
         </div>
         <!-- END PAGE TITLE -->
@@ -37,7 +37,7 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-docs font-dark"></i>
-                        <span class="caption-subject bold uppercase font-dark">users</span>
+                        <span class="caption-subject bold uppercase font-dark">系统用户</span>
                         
                     </div>
                     <div class="tools">
