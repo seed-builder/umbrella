@@ -76,8 +76,12 @@ class MessageController extends BaseController
 		$searchCols = ["content"];
 		return parent::pagination($request, $searchCols,$with,$conditionCall,function ($entities){
 		    foreach ($entities as $entity){
-                $entity->site_name = $entity->site->name;
-                $entity->equ_name = $entity->equipment->sn;
+		        if(!empty($entity->site)){
+                    $entity->site_name = $entity->site->name;
+                }
+                if(!empty($entity->equipment)){
+                    $entity->equ_name = $entity->equipment->sn;
+                }
                 $entity->category_name = $entity->category();
             }
         });
