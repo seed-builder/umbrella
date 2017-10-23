@@ -78,9 +78,13 @@ class MessageController extends BaseController
 		    foreach ($entities as $entity){
 		        if(!empty($entity->site)){
                     $entity->site_name = $entity->site->name;
+                }else{
+                    $entity->site_name = '';
                 }
                 if(!empty($entity->equipment)){
                     $entity->equ_name = $entity->equipment->sn;
+                }else{
+                    $entity->equ_name = '';
                 }
                 $entity->category_name = $entity->category();
             }
