@@ -49,6 +49,8 @@ class CheckEquipmentHas extends Command
                 'level' => 2,
                 'title' => '【网点】'.$danger_eq->site->name.'【设备】'.$danger_eq->sn.'的伞量已不足五把，请尽快补充',
                 'content' => '【网点】'.$danger_eq->site->name.'【设备】'.$danger_eq->sn.'的伞量已不足五把，请尽快补充',
+                'site_id' => $danger_eq->site_id,
+                'equipment_id' => $danger_eq->id,
             ]);
             $log->save();
         }
