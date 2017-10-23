@@ -51,6 +51,7 @@ define(function (require, exports, module) {
                         return full.category_name
                     }
                 },
+                {'data': 'content'},
                 {
                     'data': 'site_id',
                     render: function (data, type, full) {
@@ -64,7 +65,7 @@ define(function (require, exports, module) {
                     }
                 },
                 {'data': 'channel'},
-                {'data': 'content'},
+
                 {'data': 'created_at'},
                 {
                     'data': 'read',
