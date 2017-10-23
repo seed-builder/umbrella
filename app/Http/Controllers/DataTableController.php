@@ -310,7 +310,8 @@ abstract class DataTableController extends Controller
         $result = [];
         Session::flash('success', $msg);
 
-        $result['success'] = $msg;
+        $result['success'] = true;
+        $result['msg'] = $msg;
         $result['data'] = $data;
         if (!empty($redirect_url))
             $result['redirect_url'] = $redirect_url;
@@ -321,6 +322,7 @@ abstract class DataTableController extends Controller
     public function fail_result($msg)
     {
         return response()->json([
+            'success' => false,
             'error' => $msg
         ]);
     }
