@@ -16,6 +16,14 @@ class Permission extends EntrustPermission
 	protected $guarded = ['id'];
 	protected $dateFormat = 'Y-m-d H:i:s';
 
+    public $validateRules = [
+        'name' => 'required',
+    ];
+
+    public $validateMessages = [
+        'name.required' => "名称不能为空",
+    ];
+
 	public function children()
 	{
 		return $this->hasMany(Permission::class, 'pid')->orderBy('sort');

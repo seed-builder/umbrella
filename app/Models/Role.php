@@ -15,4 +15,13 @@ class Role extends EntrustRole
 {
 	protected $guarded=['id'];
 	protected $dateFormat='Y-m-d H:i:s';
+
+    public $validateRules = [
+        'name' => 'required',
+    ];
+
+    public $validateMessages = [
+        'name.required' => "名称不能为空",
+    ];
+
 }
