@@ -41,7 +41,7 @@ class CheckEquipmentHas extends Command
     {
         //
         $this->info('begin equipment check');
-        $danger_eqs = Equipment::where('have','<',5)->get();
+        $danger_eqs = Equipment::where('status', 3)->where('have','<',5)->get();
         $this->info('total 【'.$danger_eqs->count().'】 equipments has less 5 umbrella');
         foreach ($danger_eqs as $danger_eq){
             $log = new Message([
