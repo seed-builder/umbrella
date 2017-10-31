@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Helpers\WeChatApi;
+use App\Helpers\WeChatPay;
 use App\Models\CustomerPayment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -73,7 +74,9 @@ class CustomerHireController extends ApiController
             return $this->success([]);
         } else {
             $order = $payment->createPayment($data);
-            $result = $this->wxpay($order);
+            
+            $wxpay = new WeChatPay();
+            $result = $wxpay->jsApiParameters($order);
 
             return $this->success([
                 'order_id' => $order->id,
