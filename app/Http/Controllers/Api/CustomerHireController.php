@@ -74,7 +74,7 @@ class CustomerHireController extends ApiController
             return $this->success([]);
         } else {
             $order = $payment->createPayment($data);
-            
+
             $wxpay = new WeChatPay();
             $result = $wxpay->jsApiParameters($order);
 
@@ -122,7 +122,7 @@ class CustomerHireController extends ApiController
             $entity = CustomerHire::with(['return_site', 'hire_site'])->find($id);
             // var_dump($entity);
             $entity->wait_pay = false;
-
+            info($entity);
             if ($entity->status == CustomerHire::STATUS_PAYING)
                 $entity->wait_pay = true;
 
