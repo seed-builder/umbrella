@@ -63,7 +63,7 @@ class CustomerHireController extends ApiController
         $data['reference_type'] = 'customer_hire';
 
         $payment = new CustomerPayment();
-        if ($account->balance_amt >= $data['amt']) {
+        if ($account->balance_amt >= $hire->hire_amt) {
             $data['payment_channel'] = 3;
 
             $payment->createPayment($data, CustomerPayment::STATUS_SUCCESS);
