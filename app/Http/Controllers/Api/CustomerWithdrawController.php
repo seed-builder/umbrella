@@ -39,7 +39,8 @@ class CustomerWithdrawController extends ApiController
             return $this->fail('您当前可提现押金余额不足，当前可提现押金为'.$account->deposit.'元');
         }
 
-        $withing_amt = CustomerWithdraw::where('customer_id',$customer->id)->where('status',CustomerWithdraw::STATUS_INIT)->sum('amt');
+        $withing_amt = CustomerWithdraw::where('customer_id',$customer->id)
+            ->whereIn('status',[CustomerWithdraw::STATUS_INIT,CustomerWithdraw::STATUS_FAIL])->sum('amt');
 
         if ($account->deposit <= $withing_amt ){
             return $this->fail('您当前已有'.$withing_amt.'元押金正在申请提现中，请耐心等待我们的工作人员处理哦');
