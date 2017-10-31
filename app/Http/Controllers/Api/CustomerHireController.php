@@ -57,6 +57,7 @@ class CustomerHireController extends ApiController
         $user = $this->request->customer;
         $account = $user->account;
 
+        $data['customer_id'] = $user->id;
         $data['type'] = CustomerPayment::TYPE_OUT_RENT;
         $data['reference_id'] = $id;
 //        $data['reference_type'] = 'App\Models\CustomerHire';
