@@ -47,6 +47,9 @@ class CustomerHireService
                 $umbrella->status = Umbrella::STATUS_EXPIRED;
                 $umbrella->save();
 
+                if (empty($hire->customer)){
+                    continue ;
+                }
                 $api = new WeChatApi();
                 $api->wxSend('expired', [
                     'first' => '您所借的共享雨伞，伞编号：'.$hire->umbrella->number.'，已超过您的最迟还伞期限！',
