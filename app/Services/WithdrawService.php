@@ -95,7 +95,7 @@ class WithdrawService
      */
     protected function validateAccountDeposit($withdraw)
     {
-        $account = CustomerAccount::where('customer_id', $withdraw->customer_id);
+        $account = CustomerAccount::where('customer_id', $withdraw->customer_id)->first();
 
         if ($account->deposit < $withdraw->amt) {
             $withdraw->status = CustomerWithdraw::STATUS_CLOSE;

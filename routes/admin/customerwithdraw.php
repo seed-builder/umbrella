@@ -6,4 +6,9 @@ Route::get('customer-withdraw/edit/{id}', ['uses' => 'CustomerWithdrawController
 Route::post('customer-withdraw/edit/{id}', ['uses' => 'CustomerWithdrawController@update']);
 Route::get('customer-withdraw/show/{id}', ['uses' => 'CustomerWithdrawController@show']);
 Route::get('customer-withdraw/delete/{id}', ['uses' => 'CustomerWithdrawController@destroy']);
+
+Route::any('customer-withdraw/remit',function (\App\Services\WithdrawService $withdrawService){
+    $withdrawService->remit();
+});
 Route::resource('customer-withdraw', 'CustomerWithdrawController');
+
