@@ -90,6 +90,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">当前通道</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" name="filter[][equipment_channel_num]">
+                                                <option value="">请选择</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-actions right">
                                 <button type="button" class="btn green table-search">查询</button>

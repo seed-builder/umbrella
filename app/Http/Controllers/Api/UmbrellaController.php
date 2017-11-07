@@ -86,6 +86,10 @@ class UmbrellaController extends ApiController
             return $this->fail('您今日还未还的伞已超过3把，请先将租借中的伞归还');
         }
 
+        info($user->account->deposit);
+        info($price->deposit_cash);
+        info($user->account->deposit < $price->deposit_cash);
+
         if ($user->account->deposit < $price->deposit_cash)
             return $this->fail('当前押金不足，请先充值押金');
 
