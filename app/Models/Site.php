@@ -99,7 +99,7 @@ class Site extends BaseModel
     public function getPhotoAttribute()
     {
         if (!empty($this->photo_id))
-            return '/admin/show-image/'.$this->photo_id;
+            return url('/admin/show-image/'.$this->photo_id);
         else
             return url('/images/site_default.jpg');
     }
