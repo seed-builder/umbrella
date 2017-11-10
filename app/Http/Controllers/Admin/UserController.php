@@ -221,4 +221,10 @@ class UserController extends BaseController
 
 		return view('admin.user.batch-user-role',['roles' => $roles]);
 	}
+
+    public function logout(Request $request){
+        Auth::logout();
+        return redirect(url('admin/login'));
+    }
+
 }
