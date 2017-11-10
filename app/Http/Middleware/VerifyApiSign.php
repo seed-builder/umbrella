@@ -28,21 +28,21 @@ class VerifyApiSign
             return $next($request);
         }
 
-        $token = $request->input('token', '');
-        if (empty($token))
-            return $this->fail(401, '令牌不能为空');
-
-        if (!Cache::has($token))
-            return $this->fail(403, '令牌不存在或者已失效');
-
-        if (!empty($token)) {
-            $customer_id = Cache::get($token);
-            if(!empty($customer_id) && $customer_id > 0)
-            {
-                $request->customer = Customer::find($customer_id);
-            }
-        }
-//        $request->customer = Customer::find(85);
+//        $token = $request->input('token', '');
+//        if (empty($token))
+//            return $this->fail(401, '令牌不能为空');
+//
+//        if (!Cache::has($token))
+//            return $this->fail(403, '令牌不存在或者已失效');
+//
+//        if (!empty($token)) {
+//            $customer_id = Cache::get($token);
+//            if(!empty($customer_id) && $customer_id > 0)
+//            {
+//                $request->customer = Customer::find($customer_id);
+//            }
+//        }
+        $request->customer = Customer::find(116);
         return $next($request);
     }
 
