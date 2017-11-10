@@ -57,6 +57,9 @@ class UserController extends BaseController
             if (!empty($extraFields)) {
                 $props += $extraFields;
             }
+            if(!empty($props['password'])){
+                $props['password'] = bcrypt($props['password']);
+            }
             $entity = $this->newEntity($props);
             $entity->save();
             return $this->success($entity);
@@ -98,6 +101,9 @@ class UserController extends BaseController
         } else {
             if (!empty($extraFields)) {
                 $props += $extraFields;
+            }
+            if(!empty($props['password'])){
+                $props['password'] = bcrypt($props['password']);
             }
             $entity = $this->newEntity()->newQuery()->find($id);
             $entity->fill($props);
