@@ -182,7 +182,7 @@ abstract class DataTableController extends Controller
 
         $total = $queryBuilder->count();
 
-        $queryBuilder->orderBy('created_at','desc');
+//        $queryBuilder->orderBy('created_at','desc');
         if ($conditionCall != null && is_callable($conditionCall)) {
             $conditionCall($queryBuilder);
         }
@@ -213,7 +213,7 @@ abstract class DataTableController extends Controller
             $queryBuilder->select($fields);
         }
         $entities = $queryBuilder->skip($start)->take($length)->get();
-
+//var_dump($queryBuilder->toSql());
         //数据处理
         if ($dataHandleCall != null && is_callable($dataHandleCall)) {
             $dataHandleCall($entities);

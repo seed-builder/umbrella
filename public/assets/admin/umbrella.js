@@ -75,7 +75,7 @@ define(function (require, exports, module) {
                     'sortable': false
                 }
             ],
-
+            order:[[10,'desc']],
             buttons: [
                 {
                     text: '导入', action: function () {
@@ -96,6 +96,7 @@ define(function (require, exports, module) {
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ]
+
         });
 
         $(".table-search").on('click', function () {
