@@ -55,13 +55,10 @@ class Kernel extends ConsoleKernel
 //        })->everyFiveMinutes();
         $schedule->command('equipment:has')->everyFiveMinutes();
 
-//        $schedule->call(function(WithdrawService $withdrawService){
-//            $withdrawService->remit();
-//        })->dailyAt('01:00');
-
         $schedule->call(function(WithdrawService $withdrawService){
             $withdrawService->remit();
-        })->everyFiveMinutes();
+        })->dailyAt('01:00');
+
     }
 
     /**
