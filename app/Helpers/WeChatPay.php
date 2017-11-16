@@ -176,7 +176,9 @@ class WeChatPay
         $inputObj->SetAppid(env('WECHAT_APPID'));//公众账号ID
         $inputObj->SetMch_id(env('WECHAT_MCHID'));//商户号
         $inputObj->SetNonce_str(self::getNonceStr());//随机字符串
-        $inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip
+        $ip = array_key_exists( 'REMOTE_HOST', $_SERVER) ?$_SERVER['REMOTE_HOST']: gethostbyaddr($_SERVER["REMOTE_ADDR"]);
+        $inputObj->SetSpbill_create_ip($ip);//终端ip
+//        $inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip
 
         $inputObj->SetSign();//签名
         $xml = $inputObj->ToXml();
