@@ -49,7 +49,7 @@ define(function (require, exports, module) {
                 {
                     'data': 'site_id',
                     render: function (data, type, full) {
-                        return full.site != null ? full.site.name : '';
+                        return full.site != null ? full.site.name : '无';
                     }
                 },
                 {'data': 'capacity'},
