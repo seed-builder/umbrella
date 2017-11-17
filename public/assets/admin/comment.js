@@ -68,7 +68,7 @@ define(function (require, exports, module) {
                     "visible": false
                 }
             ],
-
+            order:[[6,'desc']],
             buttons: [
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},

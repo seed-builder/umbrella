@@ -67,7 +67,8 @@ define(function (require, exports, module) {
                     }
                 },
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
-            ]
+            ],
+            order:[[16,'desc']],
         });
 
         $(".table-search").on('click', function () {

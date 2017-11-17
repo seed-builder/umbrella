@@ -80,7 +80,7 @@ define(function (require, exports, module) {
                     "visible": false
                 }
             ],
-
+            order:[[6,'desc']],
             buttons: [
                 {
                     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
