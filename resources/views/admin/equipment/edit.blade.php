@@ -81,19 +81,29 @@
                                             <select class="form-control" name="status">
                                                 <option value="1" {{$entity->status==1?'selected':''}}>未启用</option>
                                                 <option value="2" {{$entity->status==2?'selected':''}}>启用</option>
-                                                <option value="3" {{$entity->status==3?'selected':''}}>系统故障</option>
+                                                <option value="3" {{$entity->status==3?'selected':''}}>在线</option>
+                                                <option value="4" {{$entity->status==4?'selected':''}}>离线</option>
+                                                <option value="5" {{$entity->status==5?'selected':''}}>系统故障</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">type</label>
+                                        <label class="col-md-3 control-label">伞机类型</label>
                                         <div class="col-md-9">
                                             <select class="form-control" name="type">
                                                 <option value="1" {{$entity->type==1?'selected':''}}>伞机设备</option>
                                                 <option value="2" {{$entity->type==2?'selected':''}}>手持设备</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">通道数量</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="channels" value="{{$entity->channels}}">
                                         </div>
                                     </div>
                                 </div>
