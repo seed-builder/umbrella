@@ -92,6 +92,30 @@ define(function (require, exports, module) {
                         $("#price-modal").modal('show');
                     }
                 },
+                {
+                    text: '初始化', action: function () {
+                        var arr = table.rows('.selected').data();
+                        if(arr.length > 0) {
+                            var ids = '';
+                            for(var i = 0; i < arr.length; i ++){
+                                if(i==0)
+                                    ids+=arr[i].id;
+                                else
+                                    ids+=','+arr[i].id;
+                            }
+
+                            layer.confirm('确认初始化该把伞吗，将清空该伞关联的设备和网点信息！',function () {
+                                // window.location.href = '/admin/umbrella/reset?id='+ids
+                                App.ajaxLink('/admin/umbrella/reset?id='+ids,'#' + alertId, '#' + tableId, function () {
+                                    layer.closeAll();
+                                    table.ajax.reload();
+                                })
+                            });
+                        }
+
+
+                    }
+                },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}

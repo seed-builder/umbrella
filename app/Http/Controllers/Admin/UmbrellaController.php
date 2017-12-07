@@ -230,4 +230,28 @@ class UmbrellaController extends BaseController
             return $this->fail('data is empty');
         }
     }
+
+    /**
+     *
+     */
+    public function reset(Request $request){
+        $ids = $request->input('id');
+
+        $ids_arr = explode(',',$ids);
+
+        Umbrella::whereIn('id',$ids_arr)->update([
+            'site_id' => 0,
+            'equipment_id' => 0,
+            'status' => Umbrella::STATUS_INIT,
+            'equipment_channel_num' => 0,
+        ]);
+//        dd($ids);
+//        $umbrella = Umbrella::find($id);
+//        $umbrella->site_id = 0;
+//        $umbrella->equipment_id = 0;
+//
+//        $umbrella->save();
+
+        return $this->success_result('初始化该伞成功');
+    }
 }
