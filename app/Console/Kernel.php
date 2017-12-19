@@ -34,6 +34,10 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+        $schedule->call(function(WithdrawService $withdrawService){
+            $withdrawService->remit();
+        })->dailyAt('01:00');
+
         $schedule->call(function(OrderService $orderService){
             $orderService->close();
         })->dailyAt('04:00');
@@ -55,9 +59,7 @@ class Kernel extends ConsoleKernel
 //        })->everyFiveMinutes();
         $schedule->command('equipment:has')->everyFiveMinutes();
 
-        $schedule->call(function(WithdrawService $withdrawService){
-            $withdrawService->remit();
-        })->dailyAt('01:00');
+
 
     }
 
