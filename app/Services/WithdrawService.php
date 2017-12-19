@@ -16,25 +16,41 @@ use App\Models\CustomerHire;
 use App\Models\CustomerWithdraw;
 use App\Models\SysLog;
 use App\Models\Umbrella;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 
 class WithdrawService
 {
     /**
-     * 租借逾期
+     * 带时间参数打款
+     * @param Request $request
      */
-    public function remit()
+    public function date_remit($date)
+    {
+        if (empty($date))
+            dd('请输入打款时间');
+
+        $this->remit($date);
+    }
+
+    /**
+     * 提现打款 调取微信企业付款接口
+     * @param null $date
+     */
+    public function remit($date = null)
     {
         DB::beginTransaction();
 
         try {
             $wxpay = new WeChatPay();
-            $date = date('Y-m-d', strtotime('-1 day'));
+
+            if(empty($date))
+                $date = date('Y-m-d', strtotime('-1 day'));
 
             $fails = CustomerWithdraw::query()->where('status', CustomerWithdraw::STATUS_FAIL)->get();
             foreach ($fails as $fail) {
-                if ($this->validateAccountDeposit($fail)){
+                if ($this->validateAccountDeposit($fail)) {
                     $rs = $wxpay->epPay($fail);
                     $this->result($rs, $fail);
                 }
@@ -45,7 +61,7 @@ class WithdrawService
                 ->where('status', CustomerWithdraw::STATUS_INIT)
                 ->get();
             foreach ($withdraws as $withdraw) {
-                if ($this->validateAccountDeposit($withdraw)){
+                if ($this->validateAccountDeposit($withdraw)) {
                     $rs = $wxpay->epPay($withdraw);
                     $this->result($rs, $withdraw);
                 }
@@ -101,7 +117,7 @@ class WithdrawService
             $withdraw->status = CustomerWithdraw::STATUS_CLOSE;
             $withdraw->remark = '用户账户可提现余额不足';
             $withdraw->save();
-            return false ;
+            return false;
         }
 
         return true;
