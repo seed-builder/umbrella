@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\CodeBuilder;
+use App\Services\CustomerHireService;
 use App\Services\DbHelper;
 use Illuminate\Foundation\Inspiring;
 
@@ -28,3 +29,9 @@ Artisan::command('build-code {table} {model} {--templates=*}', function ($table,
 	$builder->createFiles( $templates );
 	$this->comment('end build code command...');
 })->describe('build code command!');
+
+Artisan::command('chs', function () {
+    $customerHireService = new CustomerHireService;
+    $customerHireService->due();
+    $this->comment('complete!');
+})->describe(' CustomerHireService due');

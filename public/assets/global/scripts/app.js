@@ -1075,7 +1075,7 @@ var App = function () {
                                 reset: true, // close all previouse alerts first
                                 container: alert_id,
                                 type: 'success',  // alert's type
-                                message: res.success,  // alert's message
+                                message: res.msg,  // alert's message
                             });
 
                             if(success_callback !== undefined ){

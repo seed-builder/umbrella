@@ -82,7 +82,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">所属网点:</label>
                                             <div class="col-md-9">
-                                                <p class="form-control-static"> {{$entity->site->name}} </p>
+                                                <p class="form-control-static"> {{!empty($entity->site)?$entity->site->name:'无'}} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -138,9 +138,13 @@
                                                     $base = env('WECHAT_AUTH_LOGIN');
                                                     $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.$base.'&response_type=code&scope=snsapi_userinfo&state=mobileAAscanAA'.$entity->sn.'#wechat_redirect'
                                                     @endphp
+                                                    @if(!empty($entity->site))
 {{--                                                    {!! QrCode::size(300)->generate(url('mobile/customer-hire/store?hire_equipment_id='.$entity->id)) !!}--}}
                                                     {!! QrCode::size(300)->generate($url) !!}
 {{--                                                    {!! QrCode::size(300)->generate($entity->sn) !!}--}}
+                                                    @else
+                                                        未找到设备关联网点 无法显示二维码
+                                                    @endif
                                                 </p>
                                             </div>
                                         </div>
