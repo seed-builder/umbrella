@@ -18,12 +18,15 @@ class WeChatConfig
         $jsapiTicket = $this->getJsApiTicket();
         // 注意 URL 一定要动态获取，不能 hardcode.
 
-        if (!empty($_SERVER['SERVER_PORT'])) {
+        try {
             $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 
-            $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-        } else {
+            if (empty($cur_url))
+                $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            else
+                $url = $cur_url;
+        }catch (Exception $e){
+            info('获取微信配置出错，错误信息【:'.$e->getMessage().'】');
             $url = env('APP_URL');
         }
 
