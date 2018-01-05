@@ -142,7 +142,7 @@ class UmbrelladbTable extends Migration
             $table->increments('id');
             $table->string('sn')->unique()->comment('设备编号（E/M + 邮编 + 序列号(4位数字，不足补0)）');
             $table->integer('site_id')->comment('sites id');
-            $table->tinyInteger('channels')->default(10)->comment('通道数量');
+            $table->tinyInteger('channels')->default(5)->comment('通道数量');
             $table->integer('capacity')->default(50)->comment('容量（伞数量）');
             $table->integer('have')->default(0)->comment('当前还有数（伞数量）');
             $table->integer('type')->default(1)->comment('设备类型 1-伞机设备(E) 2-手持设备(M)');
