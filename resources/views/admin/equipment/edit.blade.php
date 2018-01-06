@@ -109,9 +109,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">服务端IP</label>
+                                        <label class="col-md-3 control-label">服务端http接口baseurl</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="server_ip" value="{{$entity->server_ip}}" readonly="readonly">
+                                            <input type="text" class="form-control" name="server_http_base" value="{{$entity->server_http_base}}" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>

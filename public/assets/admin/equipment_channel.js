@@ -42,6 +42,7 @@ define(function(require, exports, module) {
                         {'label': '中间', 'value': 161},
                         {'label': '借伞', 'value': 162},
                         {'label': '还伞', 'value': 163},
+                        {'label': '锁异常', 'value': 166},
                         ]
                 },
             ]
@@ -88,6 +89,8 @@ define(function(require, exports, module) {
                                return '借伞';
                            case 163:
                                return '还伞';
+                           case 166:
+                               return '锁异常';
                        }
                     } },
             ],

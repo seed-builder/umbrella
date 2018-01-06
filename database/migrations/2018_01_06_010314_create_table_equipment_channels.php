@@ -28,7 +28,7 @@ class CreateTableEquipmentChannels extends Migration
 
         Schema::table('equipments', function (Blueprint $table) {
             //
-            $table->string("server_ip")->default('')->comment('服务端ip');
+            $table->string("server_http_base")->default('')->comment('服务端http接口baseurl');
         });
     }
 
