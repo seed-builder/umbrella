@@ -24,7 +24,18 @@ define(function (require, exports, module) {
                     }
                 },
 
-                {'data': 'umbrella_sn'},
+                {
+                    'data': 'umbrella_number',
+                    render: function (data, type, full) {
+                        return data ? data :'无';
+                    }
+                },
+                {
+                    'data': 'umbrella_sn',
+                    render: function (data, type, full) {
+                        return data ? data :'无';
+                    }
+                },
                 {'data': 'customer_name'},
                 {'data': 'hire_site_name'},
                 {'data': 'hire_equ_sn'},
@@ -68,7 +79,7 @@ define(function (require, exports, module) {
                 },
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ],
-            order:[[16,'desc']],
+            order:[[17,'desc']],
         });
 
         $(".table-search").on('click', function () {

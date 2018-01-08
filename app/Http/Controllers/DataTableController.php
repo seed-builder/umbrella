@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Closure;
+use Illuminate\Support\Facades\Schema;
 use Validator;
 use Illuminate\Support\Facades\Session;
 
@@ -203,10 +204,14 @@ abstract class DataTableController extends Controller
 
         $filterCount = $queryBuilder->count();
 
+        $model_columns = Schema::getColumnListing($this->newEntity()->table);
+
         foreach ($order as $o) {
             $index = $o['column'];
             $dir = $o['dir'];
-            $queryBuilder->orderBy($columns[$index]['data'], $dir);
+
+            if (in_array($columns[$index]['data'],$model_columns))
+                $queryBuilder->orderBy($columns[$index]['data'], $dir);
         }
 
         if (!empty($fields)) {

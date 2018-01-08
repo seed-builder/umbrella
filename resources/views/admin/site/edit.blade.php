@@ -103,6 +103,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">推广链接</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="external_url" value="{{$entity->external_url}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group ">
                                         <label class="control-label col-md-3">网点照片</label>
                                         <div class="col-md-9">

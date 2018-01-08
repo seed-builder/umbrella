@@ -70,6 +70,34 @@ class CustomerHireService
         }
     }
 
+    /**
+     * 租借逾期提醒
+     */
+    public function dueTip()
+    {
+        $hires = CustomerHire::query()
+            ->where('status', CustomerHire::STATUS_HIRING)
+            ->get();
+
+        foreach ($hires as $hire) {
+            $hour = floor((strtotime($hire->expired_at) - strtotime(date('Y-m-d H:i:s'))) % 86400 / 3600);
+
+            if (empty($hire->customer)) {
+                continue;
+            }
+
+            if ($hire->price->expire_tip_hours == $hour){
+                $api = new WeChatApi();
+                $api->wxSend('expired', [
+                    'first' => '您所借的共享雨伞，伞编号：' . $hire->umbrella->number . '，即将到期，请尽快归还！',
+                    'keyword1' => 'H' . $hire->customer->id . date('YmdHis', strtotime($hire->hire_at)),
+                    'keyword2' => date('Y年m月d日 H:i:s', strtotime($hire->hire_at)),
+                    'remark' => '最迟还伞时间为：'.$hire->expired_at.'！'
+                ], $hire->customer->openid);
+            }
+        }
+    }
+
     public function addLog($action, $content, $status)
     {
         SysLog::create([
