@@ -26,6 +26,8 @@ define(function (require, exports, module) {
                 {'data': 'sn'},
                 {'data': 'outer_order_sn'},
                 {'data': 'nickname'},
+                {'data': 'mobile'},
+
                 {
                     'data': 'payment_channel',
                     render: function (data, type, full) {

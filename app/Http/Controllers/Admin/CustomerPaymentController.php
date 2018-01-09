@@ -117,7 +117,8 @@ class CustomerPaymentController extends BaseController
             'customer_payments.status',
             'customer_payments.type',
             'customer_payments.created_at',
-            'customers.nickname'
+            'customers.nickname',
+            'customers.mobile'
         );
 
         $query->leftJoin('customers', function ($join) {
@@ -131,7 +132,8 @@ class CustomerPaymentController extends BaseController
     {
         $result[0] = [
             '订单号',
-            '用户',
+            '微信昵称',
+            '手机号',
             '支付渠道',
             '金额',
             '支付状态',
@@ -142,6 +144,7 @@ class CustomerPaymentController extends BaseController
             $result[] = [
                 $entity->sn,
                 empty($entity->customer->nickname) ? '无' : $entity->customer->nickname,
+                empty($entity->customer->mobile) ? '无' : $entity->customer->mobile,
                 $entity->channel(),
                 $entity->amt,
                 $entity->status(),
