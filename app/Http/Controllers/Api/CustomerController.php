@@ -40,6 +40,7 @@ class CustomerController extends ApiController
             'country' => $response->country,
             'province' => $response->province,
             'openid' => $response->openid,
+            'login_time' => 0,
         ];
 
         $customer = Customer::query()->where('openid',$response->openid)->first();
@@ -48,6 +49,7 @@ class CustomerController extends ApiController
         }
 
         $customer->fill($info);
+        $customer->login_time = $customer->login_time+1;
         $customer->save();
 
         //创建资金账户
