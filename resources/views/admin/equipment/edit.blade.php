@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('styles')
-
+    @include('admin.layouts.datatable-css')
 @endsection
 
 @section('content')
@@ -107,7 +107,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">服务端http接口baseurl</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="server_http_base" value="{{$entity->server_http_base}}" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <hr>
                             <div class="form-actions right">
@@ -116,6 +123,38 @@
                             </div>
 
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet light bordered">
+                    <div id="alert-id"></div>
+
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-th-list"></i>
+                            <span class="caption-subject bold uppercase font-dark">设备通道</span>
+                        </div>
+                        <div class="tools">
+                            <a href="" class="collapse"> </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <table id="moduleTable" class="table table-bordered table-hover display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>equipment_id</th>
+                                <th>id</th>
+                                <th>通道号</th>
+                                <th>伞数量</th>
+                                <th>是否有效</th>
+                                <th>超时次数</th>
+                                <th>状态</th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -131,5 +170,12 @@
             App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
         });
     </script>
-
+    @include('admin.layouts.datatable-js')
+    <script type="text/javascript">
+        $(function () {
+            seajs.use('admin/equipment_channel.js', function (app) {
+                app.index($, 'moduleTable', {{$entity->id}});
+            });
+        });
+    </script>
 @endsection

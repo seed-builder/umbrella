@@ -116,6 +116,16 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="col-md-3 control-label">逾期提醒小时数</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="expire_tip_hours" >
+                                            <span class="help-block">例如：设置24 使用该规则的租借单就会在逾期前24小时提醒用户，不填写默认24小时</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="col-md-3 control-label">状态</label>
                                         <div class="col-md-9">
                                             <select class="form-control" name="status">

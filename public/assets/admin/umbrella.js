@@ -47,9 +47,24 @@ define(function (require, exports, module) {
                 },
                 {'data': 'number'},
                 {'data': 'sn'},
-                {'data': 'current_site_name'},
-                {'data': 'current_ep_sn'},
-                {'data': 'current_site_address'},
+                {
+                    'data': 'current_site_name',
+                    render: function (data, type, full) {
+                        return data ? data :'无网点信息';
+                    }
+                },
+                {
+                    'data': 'current_ep_sn',
+                    render: function (data, type, full) {
+                        return data ? data :'无设备信息';
+                    }
+                },
+                {
+                    'data': 'current_site_address',
+                    render: function (data, type, full) {
+                        return data ? data :'无网点地址';
+                    }
+                },
                 {'data': 'equipment_channel_num'},
                 {
                     'data': 'status',

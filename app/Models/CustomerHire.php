@@ -72,6 +72,10 @@ class CustomerHire extends BaseModel
 //        'id.required' => "id不能为空",
     ];
 
+    public function price(){
+        return $this->hasOne(Price::class,'id','price_id');
+    }
+
     public function customer(){
         return $this->hasOne(Customer::class,'id','customer_id');
     }

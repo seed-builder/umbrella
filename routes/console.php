@@ -35,3 +35,16 @@ Artisan::command('chs', function () {
     $customerHireService->due();
     $this->comment('complete!');
 })->describe(' CustomerHireService due');
+
+Artisan::command('generate-channels', function () {
+    $equipments = \App\Models\Equipment::all();
+    foreach ($equipments as $equipment){
+        if($equipment->equipment_channels->count() == 0){
+            for ($i = 1; $i <= $equipment->channels; $i ++)
+            \App\Models\EquipmentChannel::create([
+                'equipment_id' => $equipment->id,
+                'num' => $i
+            ]);
+        }
+    }
+})->describe(' generate equipment channels');

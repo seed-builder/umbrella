@@ -12,7 +12,7 @@ return [
 		'template_cache' =>  realpath(base_path('resources/templates/cache')),
 	],
 	//outputs groups
-	'outputs' => ['common', 'api','datatables'],
+	'outputs' => ['common', 'api','datatables','singlepage'],
 	//output group
 	//template name => output settings
 	'common' => [
@@ -34,4 +34,10 @@ return [
 		'view_show' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'show.blade.php', 'name_format' => 'snake_case2'],
 		'js' => ['path' => base_path('public/assets/admin'), 'name_pattern' => '{model}.js', 'name_format' => 'snake_case'],
 	],
+    'singlepage' => [
+        'route' => ['path' => base_path('routes/admin'), 'name_pattern' => '{model}.php', 'name_format' => 'strtolower'],
+        'controller' => ['path' => app_path('Http/Controllers/Admin'), 'name_pattern' => '{model}Controller.php'],
+        'view_index' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'index.blade.php', 'name_format' => 'snake_case2'],
+        'js' => ['path' => base_path('public/assets/admin'), 'name_pattern' => '{model}.js', 'name_format' => 'snake_case'],
+    ],
 ];

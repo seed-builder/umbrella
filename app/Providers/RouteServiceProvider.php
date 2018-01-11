@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -36,15 +37,27 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
-
-        $this->mapWebRoutes();
-
-        $this->mapAdminRoutes();
-
-        $this->mapMobileRoutes();
-
-        $this->mapWechatRoutes();
+        $request = Request::instance();
+        $path = $request->path();
+        //LogSvr::routeSvr()->info($path);
+        if(preg_match('/^api/', $path)) {
+            $this->mapApiRoutes();
+        }
+        if(preg_match('/^admin/', $path)) {
+            $this->mapAdminRoutes();
+        }
+        if(preg_match('/^partner/', $path)) {
+            $this->mapPartnerRoutes();
+        }
+        if(preg_match('/^mobile/', $path)) {
+            $this->mapMobileRoutes();
+        }
+        if(preg_match('/^wechat/', $path)) {
+             $this->mapWechatRoutes();
+        }
+        if(preg_match('/^\//', $path)) {
+            $this->mapWebRoutes();
+        }
         //
     }
 
@@ -57,9 +70,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-//        Route::middleware('web')
-//             ->namespace($this->namespace)
-//             ->group(base_path('routes/web.php'));
 	    Route::group([
 		    'middleware' => 'web',
 		    'namespace' => $this->namespace . '\Web',
@@ -78,10 +88,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-//        Route::prefix('api')
-//             ->middleware('api')
-//             ->namespace($this->namespace)
-//             ->group(base_path('routes/api.php'));
 	    Route::group([
 		    'middleware' => 'api',
 		    'namespace' => $this->namespace . '\Api',
@@ -101,11 +107,6 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	protected function mapAdminRoutes()
 	{
-//		Route::prefix('admin')
-//			->middleware('admin')
-//			->namespace($this->namespace . '\admin')
-//			->group(base_path('routes/api.php'));
-
 		Route::group([
 			'middleware' => 'admin',
 			'namespace' => $this->namespace . '\Admin',
@@ -117,6 +118,24 @@ class RouteServiceProvider extends ServiceProvider
 		});
 	}
 
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapPartnerRoutes()
+    {
+        Route::group([
+            'middleware' => 'partner',
+            'namespace' => $this->namespace . '\Partner',
+            'prefix' => 'partner',
+        ], function ($router) {
+            load_routes(base_path('routes/partner/'));
+        });
+    }
+
 	/**
 	 * Define the "api" routes for the application.
 	 *
@@ -126,11 +145,6 @@ class RouteServiceProvider extends ServiceProvider
 	 */
 	protected function mapMobileRoutes()
 	{
-//		Route::prefix('admin')
-//			->middleware('admin')
-//			->namespace($this->namespace . '\admin')
-//			->group(base_path('routes/api.php'));
-
 		Route::group([
 			'middleware' => 'mobile',
 			'namespace' => $this->namespace . '\Mobile',
