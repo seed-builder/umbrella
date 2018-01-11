@@ -197,7 +197,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             {{--</li>--}}
                             {{--<li class="divider"> </li>--}}
                             <li>
-                                <a href="/admin/user/logout">
+                                <a href="/partner/logout">
                                     <i class="icon-key"></i> 注销 </a>
                             </li>
                         </ul>
