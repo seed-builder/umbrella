@@ -21,6 +21,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @SWG\Property(name="mobile", type="string", description="手机号")
  * @SWG\Property(name="name", type="string", description="登陆账号")
  * @SWG\Property(name="password", type="string", description="密码")
+ * @SWG\Property(name="remember_token", type="string", description="remember_token")
  * @SWG\Property(name="status", type="integer", description="状态 1-启用 2-禁用")
  * @SWG\Property(name="updated_at", type="string", description="")
   */
@@ -30,7 +31,19 @@ class Partner extends Authenticatable
 	protected $table = 'partners';
 	protected $guarded = ['id'];
 
-    public $validateRules = [];
+    public $validateRules = [
+        'name' => 'required',
+        'full_name' => 'required',
+        'linkman' => 'required',
+        'mobile' => 'required',
+        'address' => 'required',
+    ];
 
-    public $validateMessages = [];
+    public $validateMessages = [
+        'name.required' => "登陆账号不能为空",
+        'full_name.required' => "经销商全称不能为空",
+        'linkman.required' => "联系人不能为空",
+        'mobile.required' => "联系电话不能为空",
+        'address.required' => "详细地址不能为空",
+    ];
 }
