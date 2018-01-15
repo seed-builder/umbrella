@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">伞标签码</label>
+                                        <label class="col-md-3 control-label">伞编码</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][umbrella_sn]">
                                         </div>
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">伞数字编号</label>
+                                        <label class="col-md-3 control-label">伞序列号</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="filter[][umbrella_number]">
                                         </div>
@@ -220,8 +220,8 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th>伞数字编号</th>
-                                <th>伞标签码</th>
+                                <th>伞序列号</th>
+                                <th>伞编码</th>
                                 <th>用户</th>
 
                                 <th>借伞网点</th>
