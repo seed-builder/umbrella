@@ -1148,7 +1148,78 @@ var App = function () {
 
             });
         },
+        ajaxPost: function(data,url,alert_id,blockui_id, success_callback, error_callback, fail_callback){
+            // block ui prevent double submit
+            App.blockUI({
+                target: blockui_id,
+                animate: true,
+            });
 
+            data._token = $('meta[name="_token"]').attr('content')
+
+            // load the form via ajax
+            $.ajax({
+                type: 'POST',
+                data: data,
+                //async: true,
+                // cache: false,
+                url: url,
+                dataType: "json",
+                timeout: 10000,
+                success: function(res)
+                {
+                    if(res.error) {
+                        App.alert({
+                            reset: true, // close all previouse alerts first
+                            container: alert_id,
+                            type: 'danger',  // alert's type
+                            message: res.error,  // alert's message
+                        });
+
+                        if(error_callback !== undefined ){
+                            error_callback();
+                        }
+                    }
+
+                    if (res.success) {
+                        if(res.redirect_url){
+                            window.location.href = res.redirect_url;
+                        }else{
+                            // App.alert({
+                            //     reset: true, // close all previouse alerts first
+                            //     container: alert_id,
+                            //     type: 'success',  // alert's type
+                            //     message: res.msg,  // alert's message
+                            // });
+
+                            if(success_callback !== undefined ){
+                                success_callback(res);
+                            }
+                        }
+                    }
+
+                    App.unblockUI(blockui_id);
+                },
+
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    App.alert({
+                        reset: true, // close all previouse alerts first
+                        container: alert_id,
+                        type: 'warning',  // alert's type
+                        message: jqXHR.responseText,  // alert's message
+                    });
+
+                    if(fail_callback !== undefined ){
+                        fail_callback();
+                    }
+
+                    App.unblockUI(blockui_id);
+                },
+
+            });
+
+        },
 
         ajaxForm: function(form_id,alert_id,blockui_id, success_callback, error_callback, fail_callback){
             // block ui prevent double submit
