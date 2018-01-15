@@ -26,10 +26,10 @@ define(function (require, exports, module) {
                 {
                     'data': 'id',
                     render: function (data, type, full) {
-                        var btns = '<button class="btn btn-xs green"><a href="/admin/partner/edit/' + data + '" style="color: white"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a></button>'
+                        var btns = '<button class="btn btn-xs green"><a href="/admin/partner/edit/' + data + '" style="color: white"> 编辑&分配设备 <i class="fa fa-fw fa-pencil"></i> </a></button>'
 
                         if(full.status == 1)
-                            btns+= '<button class="btn btn-xs red"><a href="/admin/partner/change-status/' + data + '" style="color: white"> 禁用 <i class="fa fa-fw fa-pencil"></i> </a></button>'
+                            btns+= '<button class="btn btn-xs red"><a href="/admin/partner/change-status/' + data + '" style="color: white"> 禁用 <i class="fa fa-fw fa-trash"></i> </a></button>'
                         else
                             btns+= '<button class="btn btn-xs blue"><a href="/admin/partner/change-status/' + data + '" style="color: white"> 启用 <i class="fa fa-fw fa-pencil"></i> </a></button>'
                         return btns

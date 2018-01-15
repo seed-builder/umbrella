@@ -7,4 +7,6 @@ Route::post('partner/edit/{id}', ['uses' => 'PartnerController@update']);
 Route::get('partner/show/{id}', ['uses' => 'PartnerController@show']);
 Route::get('partner/delete/{id}', ['uses' => 'PartnerController@destroy']);
 Route::get('partner/change-status/{id}', ['uses' => 'PartnerController@changeStatus']);
+Route::get('partner/allot-equipment', ['uses' => 'PartnerController@allotEquipment']);
+Route::get('partner/remove-allot-equipment', ['uses' => 'PartnerController@removeAllotEquipment']);
 Route::resource('partner', 'PartnerController');

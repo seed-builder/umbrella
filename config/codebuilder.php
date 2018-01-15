@@ -12,7 +12,7 @@ return [
 		'template_cache' =>  realpath(base_path('resources/templates/cache')),
 	],
 	//outputs groups
-	'outputs' => ['common', 'api','datatables','singlepage'],
+	'outputs' => ['common', 'api','datatables','singlepage','partner'],
 	//output group
 	//template name => output settings
 	'common' => [
@@ -39,5 +39,14 @@ return [
         'controller' => ['path' => app_path('Http/Controllers/Admin'), 'name_pattern' => '{model}Controller.php'],
         'view_index' => ['path' => base_path('resources/views/admin/{model}'), 'name_pattern' => 'index.blade.php', 'name_format' => 'snake_case2'],
         'js' => ['path' => base_path('public/assets/admin'), 'name_pattern' => '{model}.js', 'name_format' => 'snake_case'],
+    ],
+    'partner' => [
+        'route' => ['path' => base_path('routes/partner'), 'name_pattern' => '{model}.php', 'name_format' => 'strtolower'],
+        'controller' => ['path' => app_path('Http/Controllers/Partner'), 'name_pattern' => '{model}Controller.php'],
+        'view_index' => ['path' => base_path('resources/views/partner/{model}'), 'name_pattern' => 'index.blade.php', 'name_format' => 'snake_case2'],
+        'view_create' => ['path' => base_path('resources/views/partner/{model}'), 'name_pattern' => 'create.blade.php', 'name_format' => 'snake_case2'],
+        'view_edit' => ['path' => base_path('resources/views/partner/{model}'), 'name_pattern' => 'edit.blade.php', 'name_format' => 'snake_case2'],
+        'view_show' => ['path' => base_path('resources/views/partner/{model}'), 'name_pattern' => 'show.blade.php', 'name_format' => 'snake_case2'],
+        'js' => ['path' => base_path('public/assets/partner'), 'name_pattern' => '{model}.js', 'name_format' => 'snake_case'],
     ],
 ];

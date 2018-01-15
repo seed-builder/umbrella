@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Partner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Partner;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -38,54 +40,62 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
-	/**
-	 * Show the application's login form.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function showLoginForm()
-	{
-		return view('partner.login');
-	}
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('partner.login');
+    }
 
-	/**
-	 * Get the login username to be used by the controller.
-	 *
-	 * @return string
-	 */
-	public function username()
-	{
-		return 'name';
-	}
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'name';
+    }
 
-	/**
-	 * Log the user out of the application.
-	 *
-	 * @param \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function logout(Request $request)
-	{
-		$this->guard()->logout();
+    /**
+     * Log the user out of the application.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
 
-		$request->session()->flush();
+        $request->session()->flush();
 
-		$request->session()->regenerate();
+        $request->session()->regenerate();
 
-		return redirect('/partner/login');
-	}
+        return redirect('/partner/login');
+    }
 
-//	protected function attemptLogin(Request $request)
-//	{
-//		$data =  $this->credentials($request);
-//		$user = User::where('name', $data['name'])->where('password', md5($data['password']))->first();
-//		if(!empty($user)){
-//			$this->guard()->login($user, $request->has('remember'));
+    protected function attemptLogin(Request $request)
+    {
+        $data = $this->credentials($request);
+        $user = Partner::where('name', $data['name'])->where('status', 1)->first();
+
+        if (!empty($user) && Hash::check($data['password'], $user->password)) {
+            $this->guard('partner')->login($user, $request->has('remember'));
 //			event(new UserLoginedEvent($user));
-//			return true;
-//		}else{
-//			return false;
-//		}
-//	}
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors(['name'=>'登陆失败，请核对用户名密码']);
+    }
 
 }

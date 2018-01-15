@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Equipment;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\Partner;
@@ -56,7 +58,8 @@ class PartnerController extends BaseController
 	public function edit($id)
 	{
 		$entity = Partner::find($id);
-		return view('admin.partner.edit', ['entity' => $entity]);
+        $sites = Site::all();
+		return view('admin.partner.edit', ['entity' => $entity,'sites' => $sites]);
 	}
 
 	/**
@@ -90,6 +93,24 @@ class PartnerController extends BaseController
         $entity->save();
 
         return redirect(url('/admin/partner'));
+    }
+
+    public function allotEquipment(Request $request){
+        $data = $request->all();
+        $equipment_ids = explode(',',$data['equipment_ids']);
+        Equipment::whereIn('id',$equipment_ids)->update([
+            'partner_id' => $data['partner_id']
+        ]);
+        return $this->success_result('分配设备成功！');
+    }
+
+    public function removeAllotEquipment(Request $request){
+        $data = $request->all();
+        $equipment_ids = explode(',',$data['equipment_ids']);
+        Equipment::whereIn('id',$equipment_ids)->update([
+            'partner_id' => 0
+        ]);
+        return $this->success_result('取消分配设备成功！');
     }
 
 }
