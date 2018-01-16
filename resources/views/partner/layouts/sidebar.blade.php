@@ -18,14 +18,19 @@ $loginUserName = $user->fullname;
         <ul class="page-sidebar-menu   " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
             <li class="nav-item">
                 <a href="" class="nav-link nav-toggle">
-                    <i class=""></i>
-                    <span class="title"></span>
+                    <i class="fa fa-circle-o"></i>
+                    <span class="title">设备管理</span>
                     <span class="arrow"></span>
-                    test
+
                 </a>
-                <ul class="sub-menu">
-                    <li class="nav-item"><a href="" class="nav-link"><i class=""></i><span class="title">test</span></a></li>
+                <ul class="sub-menu" >
+                    <li class="nav-item"><a href="/partner/equipment" class="nav-link"><i class=""></i><span
+                                    class="title">设备信息管理</span></a></li>
+
+                    <li class="nav-item"><a href="/partner/equipment-log" class="nav-link"><i
+                                    class=""></i><span class="title">设备日志</span></a></li>
                 </ul>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

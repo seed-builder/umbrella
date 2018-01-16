@@ -75,7 +75,9 @@ class EquipmentController extends BaseController
         $searchCols = ["ip", "sn"];
         return parent::pagination($request, $searchCols, ['site'], function ($query) use ($request) {
             $partner_id = $request->input('partner_id');
-            $query->where('partner_id',$partner_id);
+            if (!empty($partner_id))
+                $query->where('partner_id',$partner_id);
+
         }, function ($entities) {
             foreach ($entities as $entity) {
                 $entity->status_name = $entity->status();

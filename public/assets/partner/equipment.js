@@ -15,7 +15,7 @@ define(function (require, exports, module) {
             select: false,
             paging: true,
             rowId: "id",
-            ajax: '/admin/equipment/pagination',
+            ajax: '/partner/equipment/pagination',
             columns: [
                 {
                     'data': 'id',
@@ -26,23 +26,7 @@ define(function (require, exports, module) {
                 {
                     'data': 'id',
                     render: function (data, type, full) {
-                        return '<div class="btn-group">' +
-                            '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">' +
-                            ' <i class="fa fa-cog"></i>' +
-                            ' <i class="fa fa-angle-down"></i>' +
-                            '</button>' +
-                            '<ul class="dropdown-menu" role="menu">' +
-                            '<li>' +
-                            '<a href="/admin/equipment/edit/' + data + '"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
-                            '</li>' +
-                            '<li>' +
-                            '<a class="csx-delete" data-url="/admin/equipment/delete/' + data + '" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
-                            '</li>' +
-                            '<li>' +
-                            '<a href="/admin/equipment/show/' + data + '"> 详情 <i class="fa fa-file-o"></i> </a>' +
-                            '</li>' +
-                            '</ul>' +
-                            '</div>'
+                        return  '<a class="btn btn-xs green" href="/partner/equipment/show/' + data + '"> 详情 <i class="fa fa-file-o"></i> </a>'
                     }
                 },
                 {'data': 'sn'},
@@ -77,11 +61,6 @@ define(function (require, exports, module) {
             ],
 
             buttons: [
-                {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/equipment/create"
-                }
-                },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
@@ -91,24 +70,13 @@ define(function (require, exports, module) {
         $(".table-search").on('click', function () {
             var data = $(this).parents('.search-form').serializeArray()
             var arr = $.param(data)
-            table.ajax.url("/admin/equipment/pagination?" + arr).load();
+            table.ajax.url("/partner/equipment/pagination?" + arr).load();
         })
 
         $(".table-reset").on('click', function () {
             $(this).parents('.search-form')[0].reset();
-            table.ajax.url("/admin/equipment/pagination").load();
+            table.ajax.url("/partner/equipment/pagination").load();
         })
-
-        $("table").on('click', '.csx-delete', function () {
-            var url = $(this).data('url')
-            layer.confirm("确定删除该记录吗?", function (result) {
-                App.ajaxLink(url, '#' + alertId, '#' + tableId, function () {
-                    table.ajax.reload();
-                    layer.closeAll();
-                })
-            });
-        })
-
 
     }
 
