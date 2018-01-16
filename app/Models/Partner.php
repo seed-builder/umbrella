@@ -46,4 +46,8 @@ class Partner extends Authenticatable
         'mobile.required' => "联系电话不能为空",
         'address.required' => "详细地址不能为空",
     ];
+
+    public function equipments(){
+        return $this->hasMany(Equipment::class,'partner_id','id');
+    }
 }

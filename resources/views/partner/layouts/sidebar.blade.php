@@ -19,16 +19,32 @@ $loginUserName = $user->fullname;
             <li class="nav-item">
                 <a href="" class="nav-link nav-toggle">
                     <i class="fa fa-circle-o"></i>
+                    <span class="title">网点管理</span>
+                    <span class="arrow"></span>
+
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="/partner/site" class="nav-link"><i class=""></i><span class="title">网点信息管理</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="" class="nav-link nav-toggle">
+                    <i class="fa fa-circle-o"></i>
                     <span class="title">设备管理</span>
                     <span class="arrow"></span>
 
                 </a>
-                <ul class="sub-menu" >
-                    <li class="nav-item"><a href="/partner/equipment" class="nav-link"><i class=""></i><span
-                                    class="title">设备信息管理</span></a></li>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="/partner/equipment" class="nav-link"><i class=""></i><span class="title">设备信息管理</span></a>
+                    </li>
 
-                    <li class="nav-item"><a href="/partner/equipment-log" class="nav-link"><i
-                                    class=""></i><span class="title">设备日志</span></a></li>
+                    <li class="nav-item">
+                        <a href="/partner/equipment-log" class="nav-link"><i class=""></i><span class="title">设备日志</span></a>
+                    </li>
                 </ul>
             </li>
         </ul>
