@@ -19,6 +19,22 @@ $loginUserName = $user->fullname;
             <li class="nav-item">
                 <a href="" class="nav-link nav-toggle">
                     <i class="fa fa-circle-o"></i>
+                    <span class="title">共享伞管理</span>
+                    <span class="arrow"></span>
+
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item">
+                        <a href="/partner/umbrella" class="nav-link"><i class=""></i><span class="title">共享伞列表</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/partner/customer-hire" class="nav-link"><i class=""></i><span class="title">租用纪录</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link nav-toggle">
+                    <i class="fa fa-circle-o"></i>
                     <span class="title">网点管理</span>
                     <span class="arrow"></span>
 
@@ -43,7 +59,8 @@ $loginUserName = $user->fullname;
                     </li>
 
                     <li class="nav-item">
-                        <a href="/partner/equipment-log" class="nav-link"><i class=""></i><span class="title">设备日志</span></a>
+                        <a href="/partner/equipment-log" class="nav-link"><i class=""></i><span
+                                    class="title">设备日志</span></a>
                     </li>
                 </ul>
             </li>

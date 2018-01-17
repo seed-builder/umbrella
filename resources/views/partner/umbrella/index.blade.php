@@ -1,6 +1,6 @@
-@extends('admin.layouts.main')
+@extends('partner.layouts.main')
 @section('styles')
-    @include('admin.layouts.datatable-css')
+    @include('partner.layouts.datatable-css')
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
         <!-- BEGIN PAGE BREADCRUMB -->
         <ul class="page-breadcrumb breadcrumb">
             <li>
-                <a href="/admin/">首页</a>
+                <a href="/partner/">首页</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -136,8 +136,8 @@
                                width="100%">
                             <thead>
                             <tr>
-                                <th></th>
-                                <th>操作</th>
+                                {{--<th></th>--}}
+                                {{--<th>操作</th>--}}
                                 <th>伞序列号</th>
                                 <th>伞编号</th>
                                 <th>当前网点</th>
@@ -169,7 +169,7 @@
                 </div>
                 <div class="modal-body" id="blockui-id">
                     <div id="import-alert-id"></div>
-                    <form id="importExcelForm" class="form-horizontal" action="/admin/umbrella/import-excel">
+                    <form id="importExcelForm" class="form-horizontal" action="/partner/umbrella/import-excel">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="excel" class="col-sm-2 control-label">Excel文件</label>
@@ -182,7 +182,7 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="price_id" >
                                     @foreach($prices as $price)
-                                    <option value="{{$price->id}}">{{$price->name}}</option>
+                                        <option value="{{$price->id}}">{{$price->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -209,7 +209,7 @@
                 </div>
                 <div class="modal-body" id="blockui-id">
                     <div id="price-alert-id"></div>
-                    <form id="form-price" class="form-horizontal" action="/admin/umbrella/batch-price">
+                    <form id="form-price" class="form-horizontal" action="/partner/umbrella/batch-price">
                         {{ csrf_field() }}
                         <input type="hidden" name="ids" id="ids">
                         <div class="form-group">
@@ -234,10 +234,10 @@
     </div>
 @endsection
 @section('scripts')
-    @include('admin.layouts.datatable-js')
+    @include('partner.layouts.datatable-js')
     <script type="text/javascript">
         $(function () {
-            seajs.use('admin/umbrella.js', function (pkg) {
+            seajs.use('partner/umbrella.js', function (pkg) {
                 pkg.index($, 'moduleTable', 'alert-id', App);
             });
         });

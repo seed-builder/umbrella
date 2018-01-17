@@ -7,7 +7,7 @@ define(function (require, exports, module) {
     exports.index = function ($, tableId, alertId) {
 
         var table = $("#" + tableId).DataTable({
-            dom: "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'<'pull-right'B>><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+            dom: "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'<'pull-right'B>><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'><'col-md-7 col-sm-12'p>>",
             language: zhCN,
             processing: true,
             serverSide: true,
