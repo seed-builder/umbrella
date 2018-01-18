@@ -87,6 +87,7 @@ class CustomerHireService
             }
 
             if ($hire->price->expire_tip_hours == $hour){
+                info('逾期提醒 租借单id：'.$hire->id);
                 $api = new WeChatApi();
                 $api->wxSend('expired', [
                     'first' => '您所借的共享雨伞，伞编号：' . $hire->umbrella->number . '，即将到期，请尽快归还！',
