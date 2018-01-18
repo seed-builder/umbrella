@@ -43,16 +43,8 @@ class Kernel extends ConsoleKernel
         })->dailyAt('04:00');
 
         $schedule->call(function(CustomerHireService $customerHireService){
-            $customerHireService->due();
-        })->everyFiveMinutes();
-
-        $schedule->call(function(CustomerHireService $customerHireService){
             $customerHireService->dueTip();
-        })->everyMinute();
-
-//        $schedule->call(function(CustomerHireService $customerHireService){
-//            $customerHireService->dueTip();
-//        })->hourly();
+        })->hourly();
 
 //        $schedule->call(function(){
 //            $danger_eqs = Equipment::where('have','<',5);
