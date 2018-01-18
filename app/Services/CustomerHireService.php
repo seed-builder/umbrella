@@ -80,7 +80,7 @@ class CustomerHireService
             ->get();
 
         foreach ($hires as $hire) {
-            $hour = floor((strtotime($hire->expired_at) - strtotime(date('Y-m-d H:i:s'))) % 86400 / 3600);
+            $hour = floor((strtotime($hire->expired_at) - strtotime(date('Y-m-d H:i:s'))) / 3600);
 
             if (empty($hire->customer)) {
                 continue;
