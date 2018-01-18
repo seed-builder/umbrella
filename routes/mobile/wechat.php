@@ -17,27 +17,30 @@ Route::any('wechat-payment/test', ['uses' => 'WeChatController@test']);
 
 Route::any('wechat/test',function (){
     $api = new \App\Helpers\WeChatApi();
-    $api->wxSend('return', [
+    $rs = $api->wxSend('return', [
         'first' => '您所借的共享雨伞已经归还，感谢您的使用！',
         'keyword1' => 'xxx',
         'keyword2' => date('Y年m月d日 H:i:s'),
         'keyword3' => '10元',
         'keyword4' => '10元',
-    ], 'oxY5Aw2AGdwwiWtU8uyrO34ROP_w');
+    ], 'od-A-09KymuzC5fCSU6R5hfuJq9g');
+    dump($rs);
 
-    $api->wxSend('borrow', [
+    $rs = $api->wxSend('borrow', [
         'first' => '您成功借了一把共享雨伞 请好好爱护您的伞哦，记得按时归还！',
         'keyword1' => 'xxx',
         'keyword2' => date('Y年m月d日 H:i:s'),
         'keyword3' =>  '10元',
-    ], 'oxY5Aw2AGdwwiWtU8uyrO34ROP_w');
+    ], 'od-A-09KymuzC5fCSU6R5hfuJq9g');
+    dump($rs);
 
-    $api->wxSend('expired', [
+    $rs = $api->wxSend('expired', [
         'first' => '已超过您的最迟还伞期限！',
         'keyword1' => 'xx',
         'keyword2' => 'xx',
         'remark' => '押金已经从您的账户里扣除，感谢您的使用！'
-    ], 'oxY5Aw2AGdwwiWtU8uyrO34ROP_w');
+    ], 'od-A-09KymuzC5fCSU6R5hfuJq9g');
+    dump($rs);
 });
 
 Route::any('wechat/test1',function (){
