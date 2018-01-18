@@ -112,7 +112,7 @@ class CustomerHireController extends MobileController
 
         $api = new WeChatApi();
         $rs = $api->wxSend('return', [
-            'first' => '您所借的共享雨伞已经归还，请将伞移出感应区，感谢您的使用！',
+            'first' => '您所借的共享雨伞，编号：'.$hire->umbrella->number.'已经归还，请将伞移出感应区，感谢您的使用！',
             'keyword1' => 'H' . $hire->customer->id . date('YmdHis', strtotime($hire->hire_at)),
             'keyword2' => date('Y年m月d日 H:i:s'),
             'keyword3' => $hire->hire_amt . '元',
