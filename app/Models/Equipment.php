@@ -70,12 +70,15 @@ class Equipment extends BaseModel
         'capacity' => 'required',
         'ip' => 'required',
         'sn' => 'required',
+        'site_id' => 'required',
+
     ];
 
     public $validateMessages = [
         'capacity.required' => "伞容量不能为空",
         'ip.required' => "ip不能为空",
         'sn.required' => "设备号不能为空",
+        'site_id.required' => "请选择一个网点",
     ];
 
     protected static function boot()

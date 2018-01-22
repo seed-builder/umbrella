@@ -26,20 +26,20 @@ define(function (require, exports, module) {
                 {
                     'data': 'id',
                     render: function (data, type, full) {
-                        return `<div class="btn-group">
-                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog"></i>
-                        <i class="fa fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="/admin/site/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
-                        </li>
-                        <li>
-                            <a class="csx-delete" data-url="/admin/site/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
-                        </li>
-                    </ul>
-                </div>`;
+                        return '<div class="btn-group">' +
+                            '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">' +
+                            '<i class="fa fa-cog"></i>' +
+                            '<i class="fa fa-angle-down"></i>' +
+                            '</button>' +
+                            '<ul class="dropdown-menu" role="menu">' +
+                            '<li>' +
+                            '<a href="/admin/site/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
+                            '</li>' +
+                            '<li>' +
+                            '<a class="csx-delete" data-url="/admin/site/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
+                            '</li>' +
+                            '</ul>' +
+                            '</div>';
                     }
                 },
                 {'data': 'province'},
@@ -109,16 +109,17 @@ define(function (require, exports, module) {
         table.on('select', rowSelect).on('deselect', rowSelect);
 
         var markers = [];
+
         function rowSelect() {
             map.remove(markers);
 
             var row = table.rows('.selected').data();
-            if (row.length<1)
+            if (row.length < 1)
                 return
 
-            if (row){
+            if (row) {
                 row = row[0]
-                if (row.longitude!=null && row.latitude!=null) {
+                if (row.longitude != null && row.latitude != null) {
                     var marker = new AMap.Marker({
                         map: map,
                         position: [row.longitude, row.latitude]

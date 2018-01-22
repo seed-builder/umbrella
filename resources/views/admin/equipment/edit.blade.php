@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">网点</label>
                                         <div class="col-md-9">
-                                            <select class="form-control" name="site_id">
+                                            <select class="form-control selectpicker" data-live-search="true" name="site_id">
                                                 <option value="0">无</option>
                                                 @foreach($sites as $site)
                                                     <option value="{{$site->id}}" {{$site->id==$entity->site_id?'selected':''}}>{{$site->name}}</option>

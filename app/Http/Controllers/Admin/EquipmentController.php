@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Site;
@@ -72,8 +73,13 @@ class EquipmentController extends BaseController
     public function pagination(Request $request, $searchCols = [], $with = [], $conditionCall = null, $dataHandleCall = null, $all_columns = false)
     {
         $searchCols = ["ip", "sn"];
-        return parent::pagination($request, $searchCols, ['site'],$conditionCall,function($entities){
-            foreach ($entities as $entity){
+        return parent::pagination($request, $searchCols, ['site'], function ($query) use ($request) {
+            $partner_id = $request->input('partner_id');
+            if (!empty($partner_id))
+                $query->where('partner_id',$partner_id);
+
+        }, function ($entities) {
+            foreach ($entities as $entity) {
                 $entity->status_name = $entity->status();
             }
         });

@@ -27,8 +27,9 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
+     * @throws Exception
      */
     public function report(Exception $exception)
     {
@@ -59,7 +60,9 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
-        return redirect()->guest(route('login'));
+        $loginUrl = config('auth.login_url.' . config('auth.defaults.guard'));
+//        dd($loginUrl);
+        return redirect()->guest($loginUrl);
+//        return redirect()->guest(route('login'));
     }
 }

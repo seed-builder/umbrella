@@ -31,6 +31,7 @@
                             <span class="caption-subject font-dark sbold uppercase">设备新增</span>
                         </div>
 
+
                     </div>
                     {{--action="/admin/equipment/store"--}}
                     <div class="portlet-body form" v-for="(item,index) in entities">
@@ -66,7 +67,8 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">网点</label>
                                         <div class="col-md-9">
-                                            <select class="form-control" v-model="item.site_id">
+                                            <select class="form-control selectpicker" data-live-search="true" v-model="item.site_id">
+                                                    <option value="">请选择</option>
                                                 @foreach($sites as $site)
                                                     <option value="{{$site->id}}">{{$site->name}}</option>
                                                 @endforeach
@@ -102,10 +104,13 @@
                             <div class="row"></div>
                             <hr>
 
-                            <div class="form-actions right" v-if="(index+1)==entities.length">
-                                <button type="button" class="btn default back-link">返回</button>
-                                <button type="button" class="btn blue" @click="entities.push({})">增加一个</button>
-                                <button type="button" class="btn green " @click="submit">提交</button>
+                            <div class="form-actions right" >
+                                <button type="button" class="btn red " @click="entities.splice(index,1)" >删除本条</button>
+
+                                <button type="button" v-if="(index+1)==entities.length" class="btn default back-link">返回</button>
+                                <button type="button" v-if="(index+1)==entities.length" class="btn blue" @click="addItem">增加一个</button>
+                                <button type="button" v-if="(index+1)==entities.length" class="btn green " @click="submit">提交</button>
+
                             </div>
 
                         </form>
@@ -122,36 +127,59 @@
 @section('scripts')
     <script src="/assets/global/scripts/vue.js"></script>
     <script>
-        new Vue({
-            el : '#app',
-            data : {
-                entities : [
-                    {
-                        sn : '',
-                        capacity : '',
-                        ip : '',
-                        site_id : '',
-                        status : 1,
-                        type : 1,
-                    }
-                ]
-            },
-            methods : {
-                submit:function(){
-                    var self = this;
-                    this.entities.forEach(function(item,index){
+        $(function(){
+            new Vue({
+                el : '#app',
+                data : {
+                    entities : [
+                        {
+                            sn : '',
+                            capacity : 50,
+                            ip : '127.0.0.1',
+                            site_id : '',
+                            status : 1,
+                            type : 1,
+                        }
+                    ]
+                },
+                methods : {
+                    addItem:function(){
+                        this.entities.push({
+                            sn : '',
+                            capacity : 50,
+                            ip : '127.0.0.1',
+                            site_id : '',
+                            status : 1,
+                            type : 1,
+                        })
 
-                        App.ajaxPost(item,'/admin/equipment/store','#alert-id', '#blockui-id',function(){
-                            self.entities.splice(index,1)
-                        });
-                    })
+                        setTimeout(function(){
+                            $('.selectpicker').selectpicker({
+                                style: 'btn-default',
+                                size: 4
+                            });
+                        },50)
+
+                    },
+                    submit:function(){
+                        var self = this;
+                        this.entities.forEach(function(item,index){
+                            setTimeout(function(){
+                                App.ajaxPost(item,'/admin/equipment/store','#alert-id', '#blockui-id',function(){
+                                    self.entities.shift()
+                                    if(self.entities.length ==0)
+                                        window.location.href= '/admin/equipment'
+                                });
+                            },1000)
+                        })
+                    }
                 }
-            }
+            })
+            $('.form-submit').on('click', function (e) {
+                e.preventDefault();
+                App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
+            });
         })
-        $('.form-submit').on('click', function (e) {
-            e.preventDefault();
-            App.ajaxForm('#form-id', '#alert-id', '#blockui-id');
-        });
     </script>
 
 @endsection

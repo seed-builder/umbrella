@@ -27,21 +27,20 @@ define(function (require, exports, module) {
                 {
                     'data': 'id',
                     render: function (data, type, full) {
-                        return `<div class="btn-group">
-                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-cog"></i>
-                        <i class="fa fa-angle-down"></i>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="/admin/umbrella/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>
-                        </li>
-                        <li>
-                            <a class="csx-delete" data-url="/admin/umbrella/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>
-                        </li>
-
-                    </ul>
-                </div>`;
+                        return '<div class="btn-group">' +
+                            '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">' +
+                            '<i class="fa fa-cog"></i>' +
+                            '<i class="fa fa-angle-down"></i>' +
+                            '</button>' +
+                            '<ul class="dropdown-menu" role="menu">' +
+                            '<li>' +
+                            '<a href="/admin/umbrella/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
+                            '</li>' +
+                            '<li>' +
+                            '<a class="csx-delete" data-url="/admin/umbrella/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
+                            '</li>' +
+                            '</ul>' +
+                            '</div>';
                         //<li><a href="/admin/umbrella/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a></li>
                     }
                 },

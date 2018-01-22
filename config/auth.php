@@ -48,6 +48,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'partner' => [
+            'driver' => 'session',
+            'provider' => 'partner',
+        ]
     ],
 
     /*
@@ -76,12 +80,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Customer::class,
         ],
-
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'partner' => [
+             'driver' => 'eloquent',
+             'model' => App\Models\Partner::class,
+         ],
     ],
 
     /*
@@ -107,4 +109,21 @@ return [
         ],
     ],
 
+    'model' => App\Models\User::class,
+
+    /*
+     * login url belong to the guard
+     */
+    'login_url' => [
+        'web' => '/admin/login',
+        'partner' => '/partner/login',
+    ],
+
+    /**
+     * index url redirect to if authenticated, belong to the guard
+     */
+    'index_url' => [
+        'web' => '/admin',
+        'partner' => '/partner',
+    ]
 ];

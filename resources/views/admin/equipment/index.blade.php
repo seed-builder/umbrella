@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">网点</label>
                                         <div class="col-md-9">
-                                            <select class="form-control" name="filter[][site_id]">
+                                            <select class="form-control selectpicker" data-live-search="true" name="filter[][site_id]">
                                                 <option value="">请选择</option>
                                                 @foreach($sites as $site)
                                                     <option value="{{$site->id}}">{{$site->name}}</option>

@@ -9,7 +9,7 @@
         <div class="page-head">
             <!-- BEGIN PAGE TITLE -->
             <div class="page-title">
-                <h1>top module
+                <h1>共享伞管理
                     <small>共享伞</small>
                 </h1>
             </div>

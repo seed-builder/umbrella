@@ -99,6 +99,41 @@ class CustomerHireService
         }
     }
 
+    /**
+     * 免费期 逾期提醒
+     */
+    public function freeDueTip()
+    {
+        $hires = CustomerHire::query()
+            ->where('status', CustomerHire::STATUS_HIRING)
+            ->get();
+
+        foreach ($hires as $hire) {
+            $freeHour = $hire->price->hire_free_hours ;
+            $created_at = strtotime($hire->created_at);
+            $freeExpireStrTime = strtotime("+$freeHour hour",$created_at);
+
+            $hour = floor(($freeExpireStrTime - strtotime(date('Y-m-d H:i:s'))) % 86400 / 3600);
+
+            if (empty($hire->customer)) {
+                continue;
+            }
+
+            $pirce = $hire->price;
+
+            if ($hire->price->expire_tip_hours_nf == $hour){
+                $api = new WeChatApi();
+                $api->wxSend('expired', [
+                    'first' => '您所借的共享雨伞，伞编号：' . $hire->umbrella->number . '，即将超过免费租借期，超过后将以每
+                    '.$pirce->hire_unit_hours.'小时'.$pirce->hire_price.'元开始计费，感谢您的使用！',
+                    'keyword1' => 'H' . $hire->customer->id . date('YmdHis', strtotime($hire->hire_at)),
+                    'keyword2' => date('Y年m月d日 H:i:s', strtotime($hire->hire_at)),
+                    'remark' => '免费期结束时间为'.date('Y-m-d H:i:s',$freeExpireStrTime).'，最迟还伞时间为：'.$hire->expired_at.'！'
+                ], $hire->customer->openid);
+            }
+        }
+    }
+
     public function addLog($action, $content, $status)
     {
         SysLog::create([

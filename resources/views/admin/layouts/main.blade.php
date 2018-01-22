@@ -56,6 +56,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color"/>
     <link href="/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/global/plugins/bootstrap-select/bootstrap-select.css" rel="stylesheet" type="text/css"/>
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -250,6 +251,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="/assets/global/scripts/app.js" type="text/javascript"></script>
 <script src="/assets/global/scripts/Shineraini.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-select/bootstrap-select.js"></script>
 
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->

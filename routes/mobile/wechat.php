@@ -16,6 +16,10 @@ Route::any('wechat-payment/hire-pay/{id}', ['uses' => 'WeChatController@hirePay'
 Route::any('wechat-payment/test', ['uses' => 'WeChatController@test']);
 
 Route::any('wechat/test',function (){
+    $d = new \App\Services\CustomerHireService();
+    $d->freeDueTip();
+
+    return ;
     $api = new \App\Helpers\WeChatApi();
     $rs = $api->wxSend('return', [
         'first' => '您所借的共享雨伞已经归还，感谢您的使用！',
