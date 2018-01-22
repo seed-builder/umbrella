@@ -44,6 +44,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function(CustomerHireService $customerHireService){
             $customerHireService->dueTip();
+            $customerHireService->freeDueTip();
         })->hourly();
 
 //        $schedule->call(function(){
