@@ -31,7 +31,7 @@ class Partner extends Migration
         });
 
         /**
-         * 设备*价格
+         * 设备*经销商
          */
         Schema::table('equipments', function (Blueprint $table) {
             $table->integer('partner_id')->default(0)->comment('经销商id');
@@ -40,9 +40,10 @@ class Partner extends Migration
         /**
          * 设备*价格
          */
-        Schema::table('prices', function (Blueprint $table) {
-            $table->integer('equipment_id')->default(0)->comment('设备id');
+        Schema::table('equipments', function (Blueprint $table) {
+            $table->integer('price_id')->default(0)->comment('价格id');
         });
+
     }
 
     /**

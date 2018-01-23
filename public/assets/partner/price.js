@@ -15,7 +15,7 @@ define(function (require, exports, module) {
             select: false,
             paging: true,
             rowId: "id",
-            ajax: '/admin/price/pagination',
+            ajax: '/partner/price/pagination',
             columns: [
                 {
                     'data': 'id',
@@ -23,25 +23,7 @@ define(function (require, exports, module) {
                         return '';
                     }
                 },
-                {
-                    'data': 'id',
-                    render: function (data, type, full) {
-                        return '<div class="btn-group">' +
-                            '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">' +
-                            '<i class="fa fa-cog"></i>' +
-                            '<i class="fa fa-angle-down"></i>' +
-                            '</button>' +
-                            '<ul class="dropdown-menu" role="menu">' +
-                            '<li>' +
-                            '<a href="/admin/price/edit/' + data + '"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
-                            '</li>' +
-                            '<li>' +
-                            '<a class="csx-delete" data-url="/admin/price/delete/' + data + '" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
-                            '</li>' +
-                            '</ul>' +
-                            '</div>';
-                    }
-                },
+
                 {'data': 'name'},
                 {'data': 'deposit_cash'},
                 {'data': 'begin'},
@@ -70,11 +52,11 @@ define(function (require, exports, module) {
             ],
 
             buttons: [
-                {
-                    text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                    window.location.href = "/admin/price/create"
-                }
-                },
+                // {
+                //     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
+                //     window.location.href = "/partner/price/create"
+                // }
+                // },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
@@ -84,12 +66,12 @@ define(function (require, exports, module) {
         $(".table-search").on('click', function () {
             var data = $(this).parents('.search-form').serializeArray()
             var arr = $.param(data)
-            table.ajax.url("/admin/price/pagination?" + arr).load();
+            table.ajax.url("/partner/price/pagination?" + arr).load();
         })
 
         $(".table-reset").on('click', function () {
             $(this).parents('.search-form')[0].reset();
-            table.ajax.url("/admin/price/pagination").load();
+            table.ajax.url("/partner/price/pagination").load();
         })
 
         $("table").on('click', '.csx-delete', function () {

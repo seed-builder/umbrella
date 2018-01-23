@@ -25,12 +25,17 @@ $loginUserName = $user->fullname;
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item">
-                        <a href="/partner/umbrella" class="nav-link"><i class=""></i><span class="title">共享伞列表</span></a>
+                        <a href="/partner/umbrella" class="nav-link"><i class=""></i><span
+                                    class="title">共享伞列表</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="/partner/customer-hire" class="nav-link"><i class=""></i><span class="title">租用纪录</span></a>
+                        <a href="/partner/customer-hire" class="nav-link"><i class=""></i><span
+                                    class="title">租用纪录</span></a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item">
+                <a href="/partner/price" class="nav-link"><i class="fa fa-circle-o"></i><span class="title">押金规则管理</span></a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link nav-toggle">
