@@ -78,7 +78,7 @@ class Equipment extends BaseModel
         'capacity.required' => "伞容量不能为空",
         'ip.required' => "ip不能为空",
         'sn.required' => "设备号不能为空",
-        'site_id.required' => "请选择一个网点",
+        'site_id.required' => "网点未选择",
     ];
 
     protected static function boot()

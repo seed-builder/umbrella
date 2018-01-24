@@ -37,7 +37,6 @@
                     <div class="portlet-body form" v-for="(item,index) in entities">
                         <div id="alert-id"></div>
                         <form class="form-horizontal" id="form-id" >
-                            {{ csrf_field() }}
                             <div class="form-body">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -163,15 +162,21 @@
                     },
                     submit:function(){
                         var self = this;
-                        this.entities.forEach(function(item,index){
-                            setTimeout(function(){
-                                App.ajaxPost(item,'/admin/equipment/store','#alert-id', '#blockui-id',function(){
-                                    self.entities.shift()
-                                    if(self.entities.length ==0)
-                                        window.location.href= '/admin/equipment'
-                                });
-                            },1000)
-                        })
+
+                        App.ajaxPost({data:this.entities},'/admin/equipment/store','#alert-id', '#blockui-id',function(){
+
+                        });
+
+//
+//                        this.entities.forEach(function(item,index){
+//                            setTimeout(function(){
+//                                App.ajaxPost(item,'/admin/equipment/store','#alert-id', '#blockui-id',function(){
+//                                    self.entities.shift()
+//                                    if(self.entities.length ==0)
+//                                        window.location.href= '/admin/equipment'
+//                                });
+//                            },1000)
+//                        })
                     }
                 }
             })
