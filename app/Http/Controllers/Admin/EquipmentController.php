@@ -74,6 +74,8 @@ class EquipmentController extends BaseController
             if (!empty($error))
                 $fieldErrors[] = '第'.($k+1).'条'.$error.'<br/>';
 
+            $item['created_at'] = date('Y-m-d H:i:s');
+            $item['updated_at'] = date('Y-m-d H:i:s');
             $entities[] = $item;
         }
 
