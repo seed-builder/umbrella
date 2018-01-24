@@ -44,6 +44,13 @@ class Partner extends Migration
             $table->integer('price_id')->default(0)->comment('价格id');
         });
 
+        /**
+         * 用户反馈
+         */
+        Schema::table('comments', function (Blueprint $table) {
+            $table->integer('site_id')->default(0)->comment('网点id');
+        });
+
     }
 
     /**
@@ -56,9 +63,10 @@ class Partner extends Migration
         Schema::dropIfExists('partners');
         Schema::table('equipments', function (Blueprint $table) {
             $table->dropColumn('partner_id');
+            $table->dropColumn('price_id');
         });
-        Schema::table('prices', function (Blueprint $table) {
-            $table->dropColumn('equipment_id');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('site_id');
         });
     }
 }

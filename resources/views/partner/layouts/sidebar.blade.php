@@ -69,6 +69,9 @@ $loginUserName = $user->fullname;
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="/partner/comment" class="nav-link"><i class="fa fa-circle-o"></i><span class="title">用户反馈管理</span></a>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>
