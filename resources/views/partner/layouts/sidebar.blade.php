@@ -35,7 +35,7 @@ $loginUserName = $user->fullname;
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="/partner/price" class="nav-link"><i class="fa fa-circle-o"></i><span class="title">押金规则管理</span></a>
+                <a href="/partner/price" class="nav-link"><i class="fa fa-circle-o"></i><span class="title"> 押金规则管理</span></a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link nav-toggle">
@@ -70,7 +70,7 @@ $loginUserName = $user->fullname;
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="/partner/comment" class="nav-link"><i class="fa fa-circle-o"></i><span class="title">用户反馈管理</span></a>
+                <a href="/partner/comment" class="nav-link"><i class="fa fa-circle-o"></i><span class="title"> 用户反馈管理</span></a>
             </li>
         </ul>
         <!-- END SIDEBAR MENU -->

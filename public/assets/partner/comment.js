@@ -15,7 +15,7 @@ define(function (require, exports, module) {
             select: false,
             paging: true,
             rowId: "id",
-            ajax: '/admin/comment/pagination',
+            ajax: '/partner/comment/pagination',
             columns: [
                 {
                     'data': 'id',
@@ -33,7 +33,7 @@ define(function (require, exports, module) {
                             '</button>' +
                             '<ul class="dropdown-menu" role="menu">' +
                             '<li>' +
-                            '<a href="/admin/comment/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>' +
+                            '<a href="/partner/comment/show/` + data + `"> 详情 <i class="fa fa-file-o"></i> </a>' +
                             '</li>' +
                             '</ul>' +
                             '</div>';
@@ -79,12 +79,12 @@ define(function (require, exports, module) {
         $(".table-search").on('click', function () {
             var data = $(this).parents('.search-form').serializeArray()
             var arr = $.param(data)
-            table.ajax.url("/admin/comment/pagination?" + arr).load();
+            table.ajax.url("/partner/comment/pagination?" + arr).load();
         })
 
         $(".table-reset").on('click', function () {
             $(this).parents('.search-form')[0].reset();
-            table.ajax.url("/admin/comment/pagination").load();
+            table.ajax.url("/partner/comment/pagination").load();
         })
 
         $("table").on('click', '.csx-delete', function () {
