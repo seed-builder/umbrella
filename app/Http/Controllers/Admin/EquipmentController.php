@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Price;
 use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
@@ -23,7 +24,8 @@ class EquipmentController extends BaseController
     public function index()
     {
         $sites = Site::all();
-        return view('admin.equipment.index', compact('sites'));
+        $prices = Price::all();
+        return view('admin.equipment.index', compact('sites','prices'));
     }
 
     /**
@@ -73,7 +75,7 @@ class EquipmentController extends BaseController
     public function pagination(Request $request, $searchCols = [], $with = [], $conditionCall = null, $dataHandleCall = null, $all_columns = false)
     {
         $searchCols = ["ip", "sn"];
-        return parent::pagination($request, $searchCols, ['site'], function ($query) use ($request) {
+        return parent::pagination($request, $searchCols, ['site','price'], function ($query) use ($request) {
             $partner_id = $request->input('partner_id');
             if (!empty($partner_id))
                 $query->where('partner_id',$partner_id);
@@ -83,6 +85,18 @@ class EquipmentController extends BaseController
                 $entity->status_name = $entity->status();
             }
         });
+    }
+
+    public function batchPrice(Request $request){
+        $ids = $request->input('ids');
+        $priceId = $request->input('price_id');
+        if(!empty($priceId) && !empty($ids)){
+            $equipment_ids = explode(',', $ids);
+            $res = Equipment::whereIn('id', $equipment_ids)->update(['price_id' => $priceId]);
+            return $res ? $this->success_result('批量设置价格成功'):$this->success_result('批量设置价格失败');
+        }else{
+            return $this->fail('data is empty');
+        }
     }
 
 }

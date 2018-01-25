@@ -137,10 +137,12 @@
                                 <th>网点</th>
                                 <th>伞容量</th>
                                 <th>当前剩余</th>
-                                <th>设备类型</th>
-                                <th>ip</th>
+                                <th>价格规则</th>
+                                <th>当前押金</th>
                                 <th>状态</th>
                                 <th>创建时间</th>
+                                <th>设备类型</th>
+                                <th>ip</th>
                             </tr>
                             </thead>
                         </table>
@@ -149,6 +151,42 @@
             </div>
         </div>
         <!-- END PAGE BASE CONTENT -->
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="price-modal">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">批量设置价格规则</h4>
+                </div>
+                <div class="modal-body" id="blockui-id">
+                    <div id="price-alert-id"></div>
+                    <form id="form-price" class="form-horizontal" action="/admin/equipment/batch-price">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="ids" id="ids">
+                        <div class="form-group">
+                            <label for="price_id"  class="col-sm-2 control-label">价格规则</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="price_id" >
+                                    @foreach($prices as $price)
+                                        <option value="{{$price->id}}">{{$price->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                    <button type="button"  id="batchChangePriceBtn" class="btn btn-default form-submit">确定</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 

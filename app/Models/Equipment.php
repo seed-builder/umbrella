@@ -134,6 +134,11 @@ class Equipment extends BaseModel
         return $this->hasMany(EquipmentChannel::class, 'equipment_id', 'id');
     }
 
+    public function price()
+    {
+        return $this->hasOne(Price::class, 'id', 'price_id');
+    }
+
     public function status()
     {
         switch ($this->status) {

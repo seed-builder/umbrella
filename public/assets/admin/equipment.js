@@ -20,8 +20,9 @@ define(function (require, exports, module) {
                 {
                     'data': 'id',
                     render: function (data, type, full) {
-                        return '';
-                    }
+                        return '<input type="checkbox" class="editor-active" value="'+data+'">';
+                    },
+                    className: "dt-body-center"
                 },
                 {
                     'data': 'id',
@@ -55,12 +56,17 @@ define(function (require, exports, module) {
                 {'data': 'capacity'},
                 {'data': 'have'},
                 {
-                    'data': 'type',
+                    'data': 'price_id',
                     render: function (data, type, full) {
-                        return data==1?'伞机设备':'手持设备'
+                        return full.price != null ? full.price.name : '无';
                     }
                 },
-                {'data': 'ip'},
+                {
+                    'data': 'price_id',
+                    render: function (data, type, full) {
+                        return full.price != null ? full.price.deposit_cash : '无';
+                    }
+                },
                 {
                     'data': 'status',
                     render: function (data, type, full) {
@@ -68,11 +74,20 @@ define(function (require, exports, module) {
                     }
                 },
                 {'data': 'created_at'},
+                {
+                    'data': 'type',
+                    render: function (data, type, full) {
+                        return data==1?'伞机设备':'手持设备'
+                    }
+                },
+                {'data': 'ip'},
             ],
             columnDefs: [
                 {
                     'targets': [0],
-                    "visible": false
+                    'checkboxes': { 'selectRow': true },
+                    'searchable': false,
+                    'sortable': false
                 }
             ],
 
@@ -80,6 +95,11 @@ define(function (require, exports, module) {
                 {
                     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
                     window.location.href = "/admin/equipment/create"
+                }
+                },
+                {
+                    text: '批量设置价格', action: function () {
+                    $("#price-modal").modal('show');
                 }
                 },
                 //{extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
@@ -108,6 +128,23 @@ define(function (require, exports, module) {
                 })
             });
         })
+
+        $('#batchChangePriceBtn').on('click', function (e) {
+            e.preventDefault();
+            var arr = table.rows('.selected').data();
+            if(arr.length > 0) {
+                var ids = [];
+                for(var i = 0; i < arr.length; i ++){
+                    ids[ids.length] = arr[i].id;
+                }
+
+                $('#ids').val(ids.join(','));
+                App.ajaxForm('#form-price', '#price-alert-id', '#blockui-id', function () {
+                    // $("#price-modal").modal('hide');
+                    table.ajax.reload();
+                });
+            }
+        });
 
 
     }
