@@ -58,6 +58,7 @@ define(function (require, exports, module) {
                 {'data': 'created_at'},
 
             ],
+            order:[[7,'desc']],
             columnDefs: [
                 {
                     'targets': [0],

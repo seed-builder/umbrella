@@ -59,7 +59,6 @@ define(function (require, exports, module) {
             //         "visible": false
             //     }
             // ],
-
             buttons: [
                 // {
                 //     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
@@ -79,7 +78,7 @@ define(function (require, exports, module) {
                 },
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
             ],
-            order:[[17,'desc']],
+            order:[[6,'desc']],
         });
 
         $(".table-search").on('click', function () {
