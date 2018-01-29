@@ -58,7 +58,7 @@ class Kernel extends ConsoleKernel
 //                $log->save();
 //            }
 //        })->everyFiveMinutes();
-        $schedule->command('equipment:has')->everyFiveMinutes();
+        $schedule->command('equipment:has')->everyThirtyMinutes();
 
 
 
