@@ -204,12 +204,12 @@ abstract class DataTableController extends Controller
 
         $filterCount = $queryBuilder->count();
 
-        $model_columns = Schema::getColumnListing($this->newEntity()->getTable());
+//        $model_columns = Schema::getColumnListing($this->newEntity()->getTable());
 
         foreach ($order as $o) {
             $index = $o['column'];
             $dir = $o['dir'];
-            if (in_array($columns[$index]['data'],$model_columns))
+//            if (in_array($columns[$index]['data'],$model_columns))
                 $queryBuilder->orderBy($columns[$index]['data'], $dir);
         }
 
