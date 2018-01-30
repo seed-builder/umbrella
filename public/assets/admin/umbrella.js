@@ -34,10 +34,10 @@ define(function (require, exports, module) {
                             '</button>' +
                             '<ul class="dropdown-menu" role="menu">' +
                             '<li>' +
-                            '<a href="/admin/umbrella/edit/` + data + `"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
+                            '<a href="/admin/umbrella/edit/' + data + '"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
                             '</li>' +
                             '<li>' +
-                            '<a class="csx-delete" data-url="/admin/umbrella/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
+                            '<a class="csx-delete" data-url="/admin/umbrella/delete/' + data + '" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
                             '</li>' +
                             '</ul>' +
                             '</div>';

@@ -7,6 +7,7 @@ use App\Models\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\Equipment;
+use Illuminate\Support\Facades\DB;
 
 class EquipmentController extends BaseController
 {
@@ -62,6 +63,31 @@ class EquipmentController extends BaseController
     {
         $entity = Equipment::find($id);
         return view('admin.equipment.show', ['entity' => $entity]);
+    }
+
+    public function store(Request $request, $only = [], $extraFields = [], $redirect_url = null)
+    {
+        $data = $request->all();
+
+        $fieldErrors = [];
+        $entities = [];
+        foreach ($data['data'] as $k=>$item){
+            $error = $this->validateFields($item);
+            if (!empty($error))
+                $fieldErrors[] = '第'.($k+1).'条'.$error.'<br/>';
+
+            $item['created_at'] = date('Y-m-d H:i:s');
+            $item['updated_at'] = date('Y-m-d H:i:s');
+            $entities[] = $item;
+        }
+
+        if (!empty($fieldErrors))
+            return $this->fail_result($fieldErrors);
+
+        DB::table('equipments')->insert($entities);
+
+        return $this->success_result('添加成功', [],'/admin/equipment');
+
     }
 
     /**
