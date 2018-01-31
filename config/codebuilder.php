@@ -12,7 +12,7 @@ return [
 		'template_cache' =>  realpath(base_path('resources/templates/cache')),
 	],
 	//outputs groups
-	'outputs' => ['partner'],
+    'outputs' => ['common', 'api','datatables','singlepage','partner'],
 	//output group
 	//template name => output settings
 	'common' => [
