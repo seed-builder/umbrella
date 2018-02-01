@@ -89,7 +89,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <div class="page-logo">
 
             <a href="#">
-                <img src="/assets/layouts/layout4/img/logo-light.png" alt="logo" class="logo-default"/> </a>
+                <img src="/images/logo-title1.jpg" alt="logo" class="logo-default" style="margin: 12px -1px 0;"/> </a>
             <div class="menu-toggler sidebar-toggler">
                 <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
             </div>
@@ -174,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
                            data-close-others="true">
                             <span class="username username-hide-on-mobile"> {{$user->name}} </span>
                             <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                            <img alt="" class="img-circle" src="/assets/layouts/layout4/img/avatar9.jpg"/> </a>
+                            <img alt="" class="img-circle" src="/images/logo.png"/> </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             {{--<li>--}}
                             {{--<a href="#">--}}

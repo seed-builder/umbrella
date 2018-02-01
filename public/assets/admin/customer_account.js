@@ -35,7 +35,8 @@ define(function (require, exports, module) {
                 {
                     'targets': [0],
                     "visible": false
-                }
+                },
+                { "orderable": false, "targets": [1,2] }
             ],
 
             buttons: [

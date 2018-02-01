@@ -43,7 +43,8 @@ define(function (require, exports, module) {
                 {
                     'targets': [0],
                     "visible": false
-                }
+                },
+                { "orderable": false, "targets": [1,2,3,4,5,6,7,8,9] }
             ],
             order:[[9,'desc']],
             buttons: [

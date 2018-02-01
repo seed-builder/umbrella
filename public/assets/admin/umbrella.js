@@ -87,7 +87,7 @@ define(function (require, exports, module) {
                     'checkboxes': { 'selectRow': true },
                     'searchable': false,
                     'sortable': false
-                }
+                },
             ],
             order:[[10,'desc']],
             buttons: [
