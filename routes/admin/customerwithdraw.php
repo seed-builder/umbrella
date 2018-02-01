@@ -6,13 +6,14 @@ Route::get('customer-withdraw/edit/{id}', ['uses' => 'CustomerWithdrawController
 Route::post('customer-withdraw/edit/{id}', ['uses' => 'CustomerWithdrawController@update']);
 Route::get('customer-withdraw/show/{id}', ['uses' => 'CustomerWithdrawController@show']);
 Route::get('customer-withdraw/delete/{id}', ['uses' => 'CustomerWithdrawController@destroy']);
+Route::post('customer-withdraw/remit', ['uses' => 'CustomerWithdrawController@remit']);
 
-Route::any('customer-withdraw/remit',function (\App\Services\WithdrawService $withdrawService,\Illuminate\Http\Request $request){
-    $date = $request->input('date','');
-    if (empty($date))
-        dd('参数错误');
-
-    $withdrawService->date_remit($date);
-});
+//Route::any('customer-withdraw/remit',function (\App\Services\WithdrawService $withdrawService,\Illuminate\Http\Request $request){
+//    $date = $request->input('date','');
+//    if (empty($date))
+//        dd('参数错误');
+//
+//    $withdrawService->date_remit($date);
+//});
 Route::resource('customer-withdraw', 'CustomerWithdrawController');
 

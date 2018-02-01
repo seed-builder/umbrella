@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Customer;
+use App\Services\WithdrawService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\CustomerWithdraw;
@@ -112,6 +113,21 @@ class CustomerWithdrawController extends BaseController
             }
 
         }
+    }
+
+    /**
+     * 手动打款功能
+     */
+    public function remit(Request $request){
+        $date = $request->input('date','');
+
+        if (empty($date))
+            return $this->fail_result('日期不能为空');
+
+        $service = new  WithdrawService();
+        $service->date_remit($date);
+
+        return $this->success_result('打款成功，请核对打款数据，若出现系统繁忙的请重新执行打款任务');
     }
 
 }

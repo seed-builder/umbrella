@@ -152,6 +152,39 @@
         <!-- END PAGE BASE CONTENT -->
     </div>
 
+    <div class="modal fade" tabindex="-1" role="dialog" id="remit-modal">
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">手动执行打款计划</h4>
+                </div>
+                <div class="modal-body" >
+                    <div id="modal-alert-id"></div>
+                    <form id="remit-form" class="form-horizontal" action="/admin/customer-withdraw/remit">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="excel" class="col-sm-2 control-label">日期</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control"  name="date" placeholder="请输入要打款的纪录的日期">
+                                <span class="help-block">例如：选择2017-10-01 则会手动执行该日期的打款计划（避免一次性打款的数据量过大造成超时）</span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+                    <button type="button" id="importExcelBtn" class="btn btn-default form-submit">确定</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 @endsection
 @section('scripts')
@@ -160,6 +193,11 @@
         $(function () {
             seajs.use('admin/customer_withdraw.js', function (app) {
                 app.index($, 'moduleTable', 'alert-id');
+            });
+
+            $('.form-submit').on('click', function (e) {
+                e.preventDefault();
+                App.ajaxForm('#remit-form', '#modal-alert-id', '#remit-modal');
             });
         });
     </script>

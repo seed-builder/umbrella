@@ -51,11 +51,11 @@ define(function (require, exports, module) {
             ],
             order:[[5,'desc']],
             buttons: [
-                // {
-                //     text: '新增<i class="fa fa-fw fa-plus"></i>', action: function () {
-                //     window.location.href = "/admin/customer-withdraw/create"
-                // }
-                // },
+                {
+                    text: '手动执行打款任务<i class="fa fa-fw fa-plus"></i>', action: function () {
+                        $("#remit-modal").modal('show')
+                    }
+                },
                 // {extend: 'excel', text: '导出Excel<i class="fa fa-fw fa-file-excel-o"></i>'},
                 //{extend: 'print', text: '打印<i class="fa fa-fw fa-print"></i>'},
                 {extend: 'colvis', text: '列显示 <i class="fa fa-bars"></i>'}
