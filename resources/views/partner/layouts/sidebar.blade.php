@@ -67,6 +67,10 @@ $loginUserName = $user->fullname;
                         <a href="/partner/equipment-log" class="nav-link"><i class=""></i><span
                                     class="title">设备日志</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/partner/message" class="nav-link"><i class=""></i><span
+                                    class="title">设备消息</span></a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">

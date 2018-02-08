@@ -70,10 +70,9 @@ class EquipmentLogController extends BaseController
 	public function pagination(Request $request, $searchCols = [], $with=[], $conditionCall = null, $dataHandleCall = null, $all_columns = false){
 
 		return parent::pagination($request,$searchCols,$with,function($queryBuilder){
-//			$partner = Auth::guard('partner')->user();
-//			$equipment_ids = $partner->equipments->pluck('id')->toArray();
-//
-//			$queryBuilder->whereIn('equipment_id',$equipment_ids);
+			$partner = Auth::guard('partner')->user();
+			$equipment_sns = $partner->equipments->pluck('sn')->toArray();
+			$queryBuilder->whereIn('equipment_sn',$equipment_sns);
 		},function($entities){
             foreach ($entities as $entity){
                 $entity->level_name = $entity->level();
