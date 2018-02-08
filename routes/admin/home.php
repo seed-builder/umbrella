@@ -8,3 +8,7 @@
 
 
 Route::get('/', ['uses' => 'HomeController@index']);
+
+Route::get('/charts/user', ['uses' => 'HomeController@chartsUser']);
+Route::get('/charts/hire', ['uses' => 'HomeController@chartsHire']);
+Route::get('/charts/payment', ['uses' => 'HomeController@chartsPayment']);
