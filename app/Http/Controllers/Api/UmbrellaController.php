@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\CustomerHire;
 use App\Models\CustomerPayment;
+use App\Models\Equipment;
 use App\Models\Price;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
@@ -34,6 +35,13 @@ class UmbrellaController extends ApiController
 //        $price = $price_model->getUsingPrice();
 
         $user = $request->customer;
+        $equipment = Equipment::find($umbrella->equipment_id);
+        $defaultPrice = Price::where('is_default',1)->first();
+        $deposit = !empty($equipment->price) ? $equipment->price->deposit_cash : $defaultPrice->deposit_cash;
+        if($user->account->deposit < $deposit){
+            return $this->fail('该设备所需押金为'.$deposit.'元，请先充值押金后再借伞！');
+        }
+
         $hire = new CustomerHire([
             'customer_id' => $user->id,
             'umbrella_id' => $umbrella->id,
@@ -41,9 +49,9 @@ class UmbrellaController extends ApiController
             'hire_site_id' => $umbrella->site_id,
             'hire_at' => date('Y-m-d H:i:s'),
             'status' => CustomerHire::STATUS_HIRING,
-            'deposit_amt' => $umbrella->price->deposit_cash,
-            'expire_hours' => $umbrella->price->hire_expire_hours,
-            'expired_at' => date('Y-m-d H:i:s',strtotime("+$umbrella->price->hire_expire_hours hour ")),
+            'deposit_amt' => $deposit,
+            'expire_hours' => $equipment->price->hire_expire_hours,
+            'expired_at' => date('Y-m-d H:i:s',strtotime("+$equipment->price->hire_expire_hours hour ")),
         ]);
         $hire->save();
 
@@ -57,7 +65,7 @@ class UmbrellaController extends ApiController
             'reference_type' => 'customer_hire',
         ],CustomerPayment::STATUS_SUCCESS);
 
-        $umbrella->status = 3 ;
+        $umbrella->status = Umbrella::STATUS_HIRING ;
         $umbrella->save();
 
         return $this->success($hire,'借伞成功');
