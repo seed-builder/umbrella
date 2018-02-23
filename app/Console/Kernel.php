@@ -43,6 +43,10 @@ class Kernel extends ConsoleKernel
         })->dailyAt('04:00');
 
         $schedule->call(function(CustomerHireService $customerHireService){
+            $customerHireService->due();
+        })->everyTenMinutes();
+
+        $schedule->call(function(CustomerHireService $customerHireService){
             $customerHireService->dueTip();
             $customerHireService->freeDueTip();
         })->hourly();
