@@ -19,6 +19,7 @@ class CommentController extends ApiController
     {
         $data = $request->all();
         unset($data['_sign']);
+        unset($data['token']);
         $customer = $this->request->customer;
         $entity = $this->newEntity($data + ['customer_id' => $customer->id]);
         $fieldErrors = $this->validateFields($data);
