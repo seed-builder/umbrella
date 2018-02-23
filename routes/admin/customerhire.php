@@ -7,4 +7,8 @@ Route::post('customer-hire/edit/{id}', ['uses' => 'CustomerHireController@update
 Route::get('customer-hire/show/{id}', ['uses' => 'CustomerHireController@show']);
 Route::get('customer-hire/delete/{id}', ['uses' => 'CustomerHireController@destroy']);
 Route::get('customer-hire/export-excel', ['uses' => 'CustomerHireController@exportExcel']);
+Route::get('customer-hire/run-due-service', function (){
+    $s = new \App\Services\CustomerHireService();
+    $s->due();
+});
 Route::resource('customer-hire', 'CustomerHireController');
