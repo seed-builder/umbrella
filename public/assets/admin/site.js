@@ -36,7 +36,7 @@ define(function (require, exports, module) {
                             '<a href="/admin/site/edit/' + data + '"> 编辑 <i class="fa fa-fw fa-pencil"></i> </a>' +
                             '</li>' +
                             '<li>' +
-                            '<a class="csx-delete" data-url="/admin/site/delete/` + data + `" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
+                            '<a class="csx-delete" data-url="/admin/site/delete/'+ data + '" href="javascript:;"> 删除 <i class="fa fa-fw fa-trash"></i> </a>' +
                             '</li>' +
                             '</ul>' +
                             '</div>';
